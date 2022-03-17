@@ -31,7 +31,7 @@ namespace Fab.Geo
             ""actions"": [
                 {
                     ""name"": ""Pan"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""77b3af4d-6e38-4c7f-b95e-5b3255340f7e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -58,7 +58,7 @@ namespace Fab.Geo
                 },
                 {
                     ""name"": ""Orbit"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""4f39a932-6fc3-455d-9949-797c84629fe5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
