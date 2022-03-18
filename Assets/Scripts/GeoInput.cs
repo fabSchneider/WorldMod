@@ -99,7 +99,7 @@ namespace Fab.Geo
                 {
                     ""name"": """",
                     ""id"": ""6e54b8f7-14f0-42bb-851b-b8909ec018fc"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""path"": ""<Touchscreen>/touch*/Press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touch"",
@@ -121,7 +121,7 @@ namespace Fab.Geo
                 {
                     ""name"": """",
                     ""id"": ""f3c60b66-fd52-4390-af15-052baeebde5b"",
-                    ""path"": ""<Touchscreen>/delta"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touch"",
@@ -692,7 +692,7 @@ namespace Fab.Geo
                 {
                     ""name"": """",
                     ""id"": ""47c2a644-3ebc-4dae-a106-589b7ca75b59"",
-                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touch"",

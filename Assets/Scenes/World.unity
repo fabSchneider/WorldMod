@@ -393,6 +393,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 19980154d70424b48b0801722c2ce701, type: 3}
+--- !u!1 &1778543086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7856592489878637004, guid: 1eb5003de71a8094ebfd32a52cda1f32, type: 3}
+  m_PrefabInstance: {fileID: 7856592490032194749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1778543093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778543086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad34261d1a17bb54a9735cc6ab0194eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 614246642}
+  orbitSpeed: 4
+  orbitLag: 0.15
+  moveSpeed: 0
+  moveLag: 0.1
+  moveBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 200, y: 200, z: 200}
+  startZoom: 4
+  minZoom: 1.01
+  maxZoom: 5
+  zoomSpeed: 3
+  zoomLag: 0.3
 --- !u!114 &2026547772 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9089927257923183192, guid: 744cc02bfeee75348aca161ad820b06b, type: 3}
@@ -538,6 +568,10 @@ PrefabInstance:
       propertyPath: world
       value: 
       objectReference: {fileID: 2026547772}
+    - target: {fileID: 7856592490295406569, guid: 1eb5003de71a8094ebfd32a52cda1f32, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7856592490295406571, guid: 1eb5003de71a8094ebfd32a52cda1f32, type: 3}
       propertyPath: m_RootOrder
       value: 0
