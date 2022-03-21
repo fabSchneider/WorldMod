@@ -44,6 +44,7 @@
     padding-right: 8px;
     padding-top: 8px;
     padding-bottom: 8px;
+    overflow: hidden;
 }
 
 .data-panel__sequence-container {
@@ -53,6 +54,7 @@
     padding-bottom: 8px;
     align-items: flex-start;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .datapoint-item {
@@ -69,6 +71,8 @@
     margin-top: 8px;
     margin-bottom: 8px;
     align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
 }
 
 .datapoint-item:enabled:hover {
@@ -129,6 +133,9 @@
     margin-top: -36px;
     display: none;
     width: 600px;
+    transition-property: height;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
 }
 
 .sequence-drop:enabled {
@@ -139,10 +146,14 @@
     height: 120px;
 }
 
-.drop-target--drop > .sequence-drop__line {
+.sequence-drop__line {
     width: 128px;
     height: 3px;
     background-color: rgb(255, 197, 0);
-    margin-top: 58px;
+    display: none;
+    top: 50%;
+}
+
+.drop-target--drop > .sequence-drop__line {
     display: flex;
 }
