@@ -1,0 +1,148 @@
+.proto {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(24, 24, 24);
+    flex-direction: row;
+    -unity-font: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO.TTF?fileID=12800000&guid=72447131e6aac6c4396a1c5ff95cfb12&type=3#CASKAYDIA COVE NERD FONT COMPLETE MONO');
+    -unity-font-definition: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO%20SDF.asset?fileID=11400000&guid=6aeb3814440f7f149b83439e65e51e46&type=2#CASKAYDIA COVE NERD FONT COMPLETE MONO SDF');
+    color: rgb(214, 214, 214);
+}
+
+.proto__panel {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.proto__info-panel {
+    width: 33%;
+}
+
+.proto__data-panel {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.proto__panel-divider {
+    min-width: 1px;
+    min-height: 1px;
+    background-color: rgb(84, 84, 84);
+}
+
+.data-panel__stock-container {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 33%;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.data-panel__sequence-container {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.datapoint-item {
+    min-width: 112px;
+    background-color: rgb(53, 53, 53);
+    height: 56px;
+    flex-direction: row;
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.datapoint-item:enabled:hover {
+    background-color: rgb(79, 79, 79);
+}
+
+.datapoint-item__drag {
+    background-color: rgba(255, 255, 255, 0.28);
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    width: 56px;
+    height: 56px;
+}
+
+.datapoint-item__label {
+    flex-grow: 1;
+    margin-left: 32px;
+    -unity-text-align: upper-center;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 32px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.container-drop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+}
+
+.container-drop:enabled {
+    display: flex;
+}
+
+.drop-target--drop.container-drop {
+    border-left-color: rgb(255, 197, 0);
+    border-right-color: rgb(255, 197, 0);
+    border-top-color: rgb(255, 197, 0);
+    border-bottom-color: rgb(255, 197, 0);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+}
+
+.sequence-drop {
+    height: 72px;
+    margin-bottom: -36px;
+    margin-top: -36px;
+    display: none;
+    width: 600px;
+}
+
+.sequence-drop:enabled {
+    display: flex;
+}
+
+.drop-target--drop.sequence-drop {
+    height: 120px;
+}
+
+.drop-target--drop > .sequence-drop__line {
+    width: 128px;
+    height: 3px;
+    background-color: rgb(255, 197, 0);
+    margin-top: 58px;
+    display: flex;
+}
