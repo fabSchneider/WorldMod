@@ -88,13 +88,38 @@ namespace Fab.WorldMod.UI
 		{
 			if (evt.button == 0)
 			{
-				//start drag
 				dragPreview.dragOffset = this.WorldToLocal(evt.position);
-				Controller.DragDrop.DragLayer.Add(dragPreview);
-				Controller.DragDrop.StartDrag(dragPreview);
-				dragPreview.PrepareForDrag(evt.position);
-				Controller.SequenceContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
-				Controller.StockContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
+				RegisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
+				RegisterCallback<PointerUpEvent>(OnPointerUpEvent);
+			}
+		}
+
+		private void OnPointerUpEvent(PointerUpEvent evt)
+		{
+			UnregisterCallback<PointerUpEvent>(OnPointerUpEvent);
+			UnregisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
+		}
+
+		private void OnPointerDragLeave(PointerLeaveEvent evt)
+		{
+			UnregisterCallback<PointerUpEvent>(OnPointerUpEvent);
+			UnregisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
+
+			// start drag	
+			Controller.DragDrop.DragLayer.Add(dragPreview);
+			Controller.DragDrop.StartDrag(dragPreview);
+			dragPreview.PrepareForDrag(evt.position);
+
+			//enable all drop areas
+			Controller.SequenceContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
+			Controller.StockContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
+
+			if (parent == Controller.SequenceContainer)
+			{
+				// disable drop areas before and after this element
+				int id = parent.IndexOf(this);
+				parent[id - 1].SetEnabled(false);
+				parent[id + 1].SetEnabled(false);
 			}
 		}
 
