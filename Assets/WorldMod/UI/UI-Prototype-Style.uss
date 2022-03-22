@@ -12,7 +12,6 @@
 }
 
 .proto__region {
-    overflow: hidden;
 }
 
 .proto__region--left {
@@ -164,8 +163,10 @@
 
 .trackpad-panel {
     flex-shrink: 0;
-    flex-grow: 1;
-    height: 200px;
+    flex-grow: 0;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
 }
 
 .trackpad {
@@ -182,10 +183,19 @@
     border-bottom-left-radius: 150px;
     border-top-right-radius: 150px;
     border-bottom-right-radius: 150px;
-    width: 300px;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    flex-shrink: 1;
+    width: 256px;
+    height: 256px;
+}
+
+.trackpad__cursor {
+    width: 32px;
+    height: 32px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.59);
+    top: -16px;
+    left: -16px;
 }

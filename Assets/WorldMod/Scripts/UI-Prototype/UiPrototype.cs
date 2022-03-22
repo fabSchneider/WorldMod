@@ -1,14 +1,14 @@
-using Fab.WorldMod.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Fab.WorldMod
+namespace Fab.WorldMod.UI
 {
 	[RequireComponent(typeof(UIDocument))]
 	public class UiPrototype : MonoBehaviour
 	{
 		private UIDocument document;
 		private DataPanelController dataPanelController;
+		private TrackpadController trackpadController;
 
 		private DragModel model;
 
@@ -20,6 +20,7 @@ namespace Fab.WorldMod
 
 			var dataPanelContainer = document.rootVisualElement.Q(name: "data-panel");
 			dataPanelController = new DataPanelController(dataPanelContainer, model);
+			trackpadController = new TrackpadController(document.rootVisualElement);
 		}
 
 

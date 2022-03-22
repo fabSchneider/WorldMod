@@ -7,7 +7,7 @@
             </ui:VisualElement>
             <ui:VisualElement class="proto__region-divider" />
             <ui:VisualElement name="trackpad-panel" class="panel trackpad-panel">
-                <Fab.WorldMod.Trackpad />
+                <Fab.WorldMod.UI.Trackpad />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement class="proto__region-divider" />
