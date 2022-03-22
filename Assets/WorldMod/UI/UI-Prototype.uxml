@@ -1,12 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/WorldMod/UI/UI-Prototype-Style.uss?fileID=7433441132597879392&amp;guid=c8d752a62a31b314394538fa37468e66&amp;type=3#UI-Prototype-Style" />
     <ui:VisualElement class="proto">
-        <ui:VisualElement class="proto__panel proto__info-panel" />
-        <ui:VisualElement class="proto__panel-divider" />
-        <ui:VisualElement class="proto__panel proto__data-panel" style="flex-grow: 1;">
-            <ui:VisualElement name="stock-container" class="data-panel__stock-container" />
-            <ui:VisualElement class="proto__panel-divider" />
-            <ui:VisualElement name="sequence-container" class="data-panel__sequence-container" />
+        <ui:VisualElement class="proto__region proto__region--left">
+            <ui:VisualElement name="info-panel" class="panel">
+                <ui:Label text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. " display-tooltip-when-elided="true" class="info-panel__text" style="-unity-text-align: upper-left;" />
+            </ui:VisualElement>
+            <ui:VisualElement class="proto__region-divider" />
+            <ui:VisualElement name="trackpad-panel" class="panel trackpad-panel">
+                <Fab.WorldMod.Trackpad />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="proto__region-divider" />
+        <ui:VisualElement class="proto__region proto__region--right">
+            <ui:VisualElement name="data-panel" style="flex-grow: 1;">
+                <ui:VisualElement name="stock-container" class="panel data-panel__stock-container" />
+                <ui:VisualElement class="proto__region-divider" />
+                <ui:VisualElement name="sequence-container" class="panel data-panel__sequence-container" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -18,7 +18,7 @@ namespace Fab.WorldMod
 
 			model = new DragModel(new string[] { "World Lights", "Population Density", "Climate", "Land", "Infrastructure" });
 
-			var dataPanelContainer = document.rootVisualElement.Q(className: "proto__data-panel");
+			var dataPanelContainer = document.rootVisualElement.Q(name: "data-panel");
 			dataPanelController = new DataPanelController(dataPanelContainer, model);
 		}
 
