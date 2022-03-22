@@ -13,10 +13,11 @@ namespace Fab.WorldMod.UI
 
 		private VisualElement cursor;
 
-		private Vector2 value;
 
+		private Vector2 value;
 		public Vector2 Value => value;
 
+		private Vector2 previousPos;
 		public Trackpad()
 		{
 			AddToClassList(classname);
@@ -33,34 +34,36 @@ namespace Fab.WorldMod.UI
 
 		private void OnPointerDown(PointerDownEvent evt)
 		{
-			Vector3 axis = CalculateAxis(this.WorldToLocal(evt.position));
+			Vector3 axis = CalculateAxis(evt.localPosition);
 			cursor.style.display = DisplayStyle.Flex;
 			SetCursorPos(axis);
 			this.CapturePointer(evt.pointerId);
-			SetAxisValue(axis);
 
+			previousPos = evt.localPosition;
 			RegisterCallback<PointerMoveEvent>(OnPointerMove);
 		}
 		private void OnPointerUp(PointerUpEvent evt)
 		{
 			cursor.style.display = DisplayStyle.None;
-			UnregisterCallback<PointerMoveEvent>(OnPointerMove);
 			this.ReleasePointer(evt.pointerId);
-			SetAxisValue(Vector2.zero);
+			UnregisterCallback<PointerMoveEvent>(OnPointerMove);
 		}
 
 		private void OnPointerMove(PointerMoveEvent evt)
 		{
-			Vector3 axis = CalculateAxis(this.WorldToLocal(evt.position));
+			
+			Vector3 axis = CalculateAxis(evt.localPosition);
 			SetCursorPos(axis);
-			SetAxisValue(axis);
+
+			//SetValue(evt.deltaPosition);
+			SetValue(Vector2.ClampMagnitude(((Vector2)evt.localPosition - previousPos) / localBound.size, 1f));
 		}
 
 
-		private void SetAxisValue(Vector2 axis)
+		private void SetValue(Vector2 value)
 		{
 			Vector2 previousValue = value;
-			value = new Vector2(axis.x, -axis.y);
+			this.value = value;
 
 			using (ChangeEvent<Vector2> changeEvent = ChangeEvent<Vector2>.GetPooled(previousValue, value))
 			{
