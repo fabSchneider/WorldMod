@@ -21,11 +21,10 @@
       "dependencies": {}
     },
     "com.fabschneider.commandterminal": {
-      "version": "https://github.com/fabSchneider/command_terminal.git?path=/CommandTerminal#v1.4.1",
+      "version": "file:com.fabschneider.commandterminal",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "1ff83a9485ff39c72b7924c61932632fce4a9419"
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.burst": {
       "version": "1.6.4",

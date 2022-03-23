@@ -299,8 +299,48 @@ MonoBehaviour:
   MaxHeight: 0.7
   SmallTerminalRatio: 0.33
   ToggleSpeed: 1000
-  ToggleHotkey: {fileID: -1264415292966281373, guid: 4a33c11f2c8a4b34ba8110e6643d9e42, type: 3}
-  ToggleFullHotkey: {fileID: 9207065824717077271, guid: 4a33c11f2c8a4b34ba8110e6643d9e42, type: 3}
+  ToggleHotkey:
+    m_Name: Toggle Hotkey
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7d8fd451-1b26-48b8-bd54-996621bb9f34
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: Ctrl+T
+      m_Id: c38121e1-8c60-4df4-b4be-1caf2dca07d1
+      m_Path: OneModifier
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Hotkey
+      m_Flags: 4
+    - m_Name: modifier
+      m_Id: df69e376-98e0-4cc1-bfb2-fe0defa69e9b
+      m_Path: <Keyboard>/ctrl
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Hotkey
+      m_Flags: 8
+    - m_Name: binding
+      m_Id: 5c9169ed-b3b3-4edf-8fea-252fdea23bf2
+      m_Path: <Keyboard>/t
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Toggle Hotkey
+      m_Flags: 8
+    m_Flags: 0
+  ToggleFullHotkey:
+    m_Name: Toggle Full Hotkey
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c429eafe-94ab-4e87-94ae-6164c5b6c42b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   BufferSize: 512
   ConsoleFont: {fileID: 12800000, guid: 72447131e6aac6c4396a1c5ff95cfb12, type: 3}
   InputCaret: '>'
@@ -913,7 +953,6 @@ GameObject:
   - component: {fileID: 2123648127}
   - component: {fileID: 2123648126}
   - component: {fileID: 2123648125}
-  - component: {fileID: 2123648128}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -979,33 +1018,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2123648128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123648124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4a33c11f2c8a4b34ba8110e6643d9e42, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 2123648125}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}

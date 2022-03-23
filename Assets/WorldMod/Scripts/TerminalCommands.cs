@@ -30,9 +30,9 @@ namespace Fab.WorldMod
 			bool value = args[0].Bool;
 
 			if (Terminal.IssuedError)
-				return; 
+				return;
 
-			projectionMaterial.SetKeyword(new LocalKeyword(projectionMaterial.shader, "_CHECKEROVERLAY"), value);
+			projectionMaterial.SetKeyword(new LocalKeyword(projectionMaterial.shader, "_SHOWCHECKER"), value);
 		}
 	}
 }
