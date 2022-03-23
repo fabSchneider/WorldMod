@@ -30,11 +30,9 @@ namespace Fab.WorldMod.UI
 				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector2>>(OnTrackpadAxis);
 		}
 
-
 		public void OnTrackpadAxis(ChangeEvent<Vector2> evt)
 		{
 			cameraController.MoveCamera(evt.newValue);
-			Debug.Log(evt.newValue);
 		}
 
 	}

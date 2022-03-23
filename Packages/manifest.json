@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.cyanilux.urp-blitrenderfeature": "https://github.com/Cyanilux/URP_BlitRenderFeature.git",
     "com.dbrizov.naughtyattributes": "2.1.1",
     "com.fabschneider.commandterminal": "https://github.com/fabSchneider/command_terminal.git?path=/CommandTerminal#v1.4.1",
     "com.unity.burst": "1.6.4",

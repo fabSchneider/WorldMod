@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.cyanilux.urp-blitrenderfeature": {
+      "version": "https://github.com/Cyanilux/URP_BlitRenderFeature.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6580f62a7a9b9dd0a40cff1990ba516a648c9bee"
+    },
     "com.dbrizov.naughtyattributes": {
       "version": "2.1.1",
       "depth": 0,

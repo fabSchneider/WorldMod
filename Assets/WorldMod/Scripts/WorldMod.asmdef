@@ -2,7 +2,8 @@
     "name": "Fab.WorldMod",
     "rootNamespace": "Fab.WorldMod",
     "references": [
-        "GUID:66858421c4a44d042af29faabfbbafb2"
+        "GUID:66858421c4a44d042af29faabfbbafb2",
+        "GUID:04a8fbc9bd2f28441810a437bfa9c588"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
