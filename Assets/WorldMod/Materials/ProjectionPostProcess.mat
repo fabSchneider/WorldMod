@@ -51,7 +51,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CHECKEROVERLAY: 0
-    - _Lensing: 1.36
+    - _Lensing: 1
     - _MaskRadius: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
