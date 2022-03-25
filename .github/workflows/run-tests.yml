@@ -2,8 +2,7 @@ name: tests
 
 on:
   pull_request:
-    branches: [ master ]
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
