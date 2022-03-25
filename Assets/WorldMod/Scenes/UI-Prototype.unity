@@ -303,12 +303,12 @@ MonoBehaviour:
     m_Name: Toggle Hotkey
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 7d8fd451-1b26-48b8-bd54-996621bb9f34
+    m_Id: 49768312-52e5-4081-81f1-170fcd635784
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: Ctrl+T
-      m_Id: c38121e1-8c60-4df4-b4be-1caf2dca07d1
+    - m_Name: Ctrl + T
+      m_Id: b7a7629e-75e7-438b-b534-5f28251d9c34
       m_Path: OneModifier
       m_Interactions: 
       m_Processors: 
@@ -316,7 +316,7 @@ MonoBehaviour:
       m_Action: Toggle Hotkey
       m_Flags: 4
     - m_Name: modifier
-      m_Id: df69e376-98e0-4cc1-bfb2-fe0defa69e9b
+      m_Id: 6ab77951-9426-440e-8e48-4e0a7378e1f2
       m_Path: <Keyboard>/ctrl
       m_Interactions: 
       m_Processors: 
@@ -324,7 +324,7 @@ MonoBehaviour:
       m_Action: Toggle Hotkey
       m_Flags: 8
     - m_Name: binding
-      m_Id: 5c9169ed-b3b3-4edf-8fea-252fdea23bf2
+      m_Id: 518a6345-0aac-4045-aa29-8068b7e702c2
       m_Path: <Keyboard>/t
       m_Interactions: 
       m_Processors: 
@@ -336,7 +336,7 @@ MonoBehaviour:
     m_Name: Toggle Full Hotkey
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: c429eafe-94ab-4e87-94ae-6164c5b6c42b
+    m_Id: 79004171-13a0-4b87-9894-e3ab53daefe4
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
