@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Fab.Lua.Console
 {
-	[RequireComponent(typeof(UIDocument))]
 	[AddComponentMenu("FabGeo/Lua/Lua Console")]
 	public class ConsoleComponent : MonoBehaviour
 	{

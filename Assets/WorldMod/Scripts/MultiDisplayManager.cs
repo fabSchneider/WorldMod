@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Fab.WorldMod
 {
-    public class DisplayManager : MonoBehaviour
+    public class MultiDisplayManager : MonoBehaviour
     {
         void Awake()
         {

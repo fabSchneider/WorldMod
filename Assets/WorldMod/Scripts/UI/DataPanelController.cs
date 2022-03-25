@@ -127,7 +127,7 @@ namespace Fab.WorldMod.UI
 		{
 			this.Controller = controller;
 			Id = index;
-			this.Q<Label>(className: labelClassname).text = controller.Model.DataStock[index].name;
+			this.Q<Label>(className: labelClassname).text = controller.Model.Stock[index].Name;
 		}
 
 		public static void Reset(DataPointItem item)
@@ -235,7 +235,7 @@ namespace Fab.WorldMod.UI
 
 		public VisualElement Root { get; private set; }
 
-		public DragModel Model { get; private set; }
+		public Datasets Model { get; private set; }
 
 		private DropArea sequenceContainerDropArea;
 
@@ -245,7 +245,7 @@ namespace Fab.WorldMod.UI
 
 
 
-		public DataPanelController(VisualElement root, DragModel model)
+		public DataPanelController(VisualElement root, Datasets model)
 		{
 			Root = root;
 			Model = model;
@@ -309,15 +309,15 @@ namespace Fab.WorldMod.UI
 		{
 			ClearContainers();
 
-			for (int i = 0; i < Model.DataStock.Count; i++)
+			for (int i = 0; i < Model.Stock.Count; i++)
 			{
 				DataPointItem item = dragItemPool.GetPooled();
 				item.Set(this, i);
-				item.SetEnabled(!Model.IsInSequence(Model.DataStock[i]));
+				item.SetEnabled(!Model.IsInSequence(Model.Stock[i]));
 				stockContainer.Add(item);
 			}
 
-			if(Model.DataSequence.Count == 0)
+			if (Model.Sequence.Count == 0)
 			{
 				sequenceContainerDropArea.Set(0);
 				sequenceContainer.Add(sequenceContainerDropArea);
@@ -327,10 +327,11 @@ namespace Fab.WorldMod.UI
 				DropArea insertArea = dragInserAreaPool.GetPooled();
 				insertArea.Set(0);
 				sequenceContainer.Add(insertArea);
-				for (int i = 0; i < Model.DataSequence.Count; i++)
+				for (int i = 0; i < Model.Sequence.Count; i++)
 				{
 					DataPointItem item = dragItemPool.GetPooled();
-					item.Set(this, Model.DataSequence[i].id);
+					
+					item.Set(this, Model.GetIndex(Model.Sequence[i]));
 					sequenceContainer.Add(item);
 					insertArea = dragInserAreaPool.GetPooled();
 					insertArea.Set(i + 1);
@@ -347,80 +348,6 @@ namespace Fab.WorldMod.UI
 			DropArea.Reset(sequenceContainerDropArea);
 			sequenceContainer.Query<DataPointItem>().ForEach(item => dragItemPool.ReturnToPool(item));
 			sequenceContainer.Query<DropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
-		}
-	}
-
-	public class DragModel
-	{
-		public class DataPoint
-		{
-			public readonly string name;
-			public readonly int id;
-
-			public DataPoint(int id, string name)
-			{
-				this.id = id;
-				this.name = name;
-			}
-		}
-
-		private List<DataPoint> dataStock;
-		private List<DataPoint> dataSequence;
-
-		public IReadOnlyList<DataPoint> DataStock => dataStock;
-
-		public IReadOnlyList<DataPoint> DataSequence => dataSequence;
-
-		public DragModel(ICollection<string> dataStock)
-		{
-			this.dataStock = new List<DataPoint>(dataStock.Count);
-			int i = 0;
-			foreach (var item in dataStock)
-			{
-				this.dataStock.Add(new DataPoint(i++, item));
-			}
-
-
-			dataSequence = new List<DataPoint>();
-		}
-
-		public bool InsertIntoSequence(int itemId, int index)
-		{
-			if (itemId < 0 || itemId >= dataStock.Count)
-				throw new ArgumentOutOfRangeException(nameof(itemId));
-
-			if (index < 0 || index > dataSequence.Count)
-				throw new ArgumentOutOfRangeException(nameof(index));
-
-			DataPoint data = dataStock[itemId];
-			// do not allow duplicates
-			// change existing items position instead
-			int existingIndex = dataSequence.IndexOf(data);
-			dataSequence.Insert(index, data);
-
-			if (existingIndex != -1)
-			{
-				if (index <= existingIndex)
-					dataSequence.RemoveAt(existingIndex + 1);
-				else
-					dataSequence.RemoveAt(existingIndex);
-			}
-
-			return true;
-		}
-
-		public bool RemoveFromSequence(int itemId)
-		{
-			if (itemId < 0 || itemId >= dataStock.Count)
-				throw new ArgumentOutOfRangeException(nameof(itemId));
-
-			DataPoint data = dataStock[itemId];
-			return dataSequence.Remove(data);
-		}
-
-		public bool IsInSequence(DataPoint data)
-		{
-			return dataSequence.Contains(data);
 		}
 	}
 }
