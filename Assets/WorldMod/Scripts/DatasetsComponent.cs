@@ -5,12 +5,16 @@ namespace Fab.WorldMod
 	[AddComponentMenu("WorldMod/Datasets")]
 	public class DatasetsComponent : MonoBehaviour
 	{
-		private Datasets datasets;
-		public Datasets Datasets => datasets;
+		private DatasetStock stock;
+		public DatasetStock Stock => stock;
+
+		private DatasetLayers layers;
+		public DatasetLayers Layers => layers;
 
 		private void Awake()
 		{
-			datasets = new Datasets();
+			stock = new DatasetStock();
+			layers = new DatasetLayers(stock);
 		}
 	}
 }

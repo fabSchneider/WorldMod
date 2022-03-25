@@ -24,7 +24,7 @@ namespace Fab.WorldMod.UI
 
 			var dataPanelContainer = document.rootVisualElement.Q(name: "data-panel");
 			if(datasets)
-				dataPanelController = new DataPanelController(dataPanelContainer, datasets.Datasets);
+				dataPanelController = new DataPanelController(dataPanelContainer, datasets.Stock, datasets.Layers);
 
 			cameraController = FindObjectOfType<WorldCameraController>();
 			if (cameraController != null)
@@ -48,7 +48,7 @@ namespace Fab.WorldMod.UI
 
 		private void OnDatasetUpdated(Dataset dataset)
 		{
-			if(dataset.Owner == datasets.Datasets)
+			if(dataset.Owner == datasets.Stock)
 				dataPanelDirty = true;
 		}
 

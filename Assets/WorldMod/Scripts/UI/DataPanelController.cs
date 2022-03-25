@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Fab.Common;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -53,7 +52,7 @@ namespace Fab.WorldMod.UI
 				RemoveFromHierarchy();
 				RemoveFromClassList(dragPreviewActiveClassname);
 				DragItem.Controller.StockContainer.Query<DropArea>().ForEach(a => a.SetEnabled(false));
-				DragItem.Controller.SequenceContainer.Query<DropArea>().ForEach(a => a.SetEnabled(false));
+				DragItem.Controller.LayersContainer.Query<DropArea>().ForEach(a => a.SetEnabled(false));
 			}
 
 			private void OnDragExited(FabDragExitedEvent evt)
@@ -63,7 +62,7 @@ namespace Fab.WorldMod.UI
 				RemoveFromHierarchy();
 				RemoveFromClassList(dragPreviewActiveClassname);
 				DragItem.Controller.StockContainer.Query<DropArea>().ForEach(a => a.SetEnabled(false));
-				DragItem.Controller.SequenceContainer.Query<DropArea>().ForEach(a => a.SetEnabled(false));
+				DragItem.Controller.LayersContainer.Query<DropArea>().ForEach(a => a.SetEnabled(false));
 			}
 		}
 
@@ -111,10 +110,10 @@ namespace Fab.WorldMod.UI
 			dragPreview.PrepareForDrag(evt.position);
 
 			//enable all drop areas
-			Controller.SequenceContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
+			Controller.LayersContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
 			Controller.StockContainer.Query<DropArea>().ForEach(a => a.SetEnabled(true));
 
-			if (parent == Controller.SequenceContainer)
+			if (parent == Controller.LayersContainer)
 			{
 				// disable drop areas before and after this element
 				int id = parent.IndexOf(this);
@@ -127,7 +126,7 @@ namespace Fab.WorldMod.UI
 		{
 			this.Controller = controller;
 			Id = index;
-			this.Q<Label>(className: labelClassname).text = controller.Model.Stock[index].Name;
+			this.Q<Label>(className: labelClassname).text = controller.Stock.Datasets[index].Name;
 		}
 
 		public static void Reset(DataPointItem item)
@@ -221,12 +220,16 @@ namespace Fab.WorldMod.UI
 	{
 		private static readonly string className = "data-panel";
 		private static readonly string stockContainerClassname = className + "__stock-container";
-		private static readonly string sequenceContainerClassname = className + "__sequence-container";
+		private static readonly string layersContainerClassname = className + "__layers-container";
+		private static readonly string containerDropClassname = "container-drop";
+		private static readonly string layersDropClassname = "layers-drop";
+		private static readonly string insertLineClassname = layersDropClassname + "__line";
+
 		private VisualElement stockContainer;
-		private VisualElement sequenceContainer;
+		private VisualElement layersContainer;
 
 		public VisualElement StockContainer => stockContainer;
-		public VisualElement SequenceContainer => sequenceContainer;
+		public VisualElement LayersContainer => layersContainer;
 
 		private ObjectPool<DataPointItem> dragItemPool;
 		private ObjectPool<DropArea> dragInserAreaPool;
@@ -235,20 +238,16 @@ namespace Fab.WorldMod.UI
 
 		public VisualElement Root { get; private set; }
 
-		public Datasets Model { get; private set; }
+		public DatasetStock Stock { get; private set; }
+		public DatasetLayers Layers { get; private set; }
 
-		private DropArea sequenceContainerDropArea;
+		private DropArea layersContainerDropArea;
 
-		private static readonly string containerDropClassname = "container-drop";
-		private static readonly string sequenceDropClassname = "sequence-drop";
-		private static readonly string insertLineClassname = sequenceDropClassname + "__line";
-
-
-
-		public DataPanelController(VisualElement root, Datasets model)
+		public DataPanelController(VisualElement root, DatasetStock stock, DatasetLayers layers)
 		{
 			Root = root;
-			Model = model;
+			Stock = stock;
+			Layers = layers;
 
 			VisualElement dragLayer = new VisualElement().AsLayer(blocking: false).WithName("drag-layer");
 			dragLayer.focusable = true;
@@ -260,12 +259,12 @@ namespace Fab.WorldMod.UI
 			stockDropArea.Set(-1);
 			stockContainer.Add(stockDropArea);
 
-			sequenceContainer = root.Q(className: sequenceContainerClassname);
-			sequenceContainerDropArea = new DropArea(DragDrop, HandleSequenceDrop).WithClass(containerDropClassname);
-			sequenceContainerDropArea.Set(0);
+			layersContainer = root.Q(className: layersContainerClassname);
+			layersContainerDropArea = new DropArea(DragDrop, HandleLayersDrop).WithClass(containerDropClassname);
+			layersContainerDropArea.Set(0);
 
 			dragItemPool = new ObjectPool<DataPointItem>(8, true, () => new DataPointItem(), DataPointItem.Reset);
-			dragInserAreaPool = new ObjectPool<DropArea>(8, true, CreateSequenceDropArea, DropArea.Reset);
+			dragInserAreaPool = new ObjectPool<DropArea>(8, true, CreateLayersDropArea, DropArea.Reset);
 
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
 
@@ -275,16 +274,15 @@ namespace Fab.WorldMod.UI
 		private bool HandleStockDrop(VisualElement item, DropArea area)
 		{
 			if (item is DataPointItem.DragPreview dragPreview)
-				return Model.RemoveFromSequence(dragPreview.DragItem.Id);
+				return Layers.RemoveFromLayers(dragPreview.DragItem.Id);
 
 			return false;
 		}
 
-
-		private DropArea CreateSequenceDropArea()
+		private DropArea CreateLayersDropArea()
 		{
-			DropArea area = new DropArea(DragDrop, HandleSequenceDrop);
-			area.AddToClassList(sequenceDropClassname);
+			DropArea area = new DropArea(DragDrop, HandleLayersDrop);
+			area.AddToClassList(layersDropClassname);
 			VisualElement insertLine = new VisualElement();
 			insertLine.AddToClassList(insertLineClassname);
 			insertLine.pickingMode = PickingMode.Ignore;
@@ -292,10 +290,13 @@ namespace Fab.WorldMod.UI
 			return area;
 		}
 
-		private bool HandleSequenceDrop(VisualElement item, DropArea area)
+		private bool HandleLayersDrop(VisualElement item, DropArea area)
 		{
 			if (item is DataPointItem.DragPreview dragPreview)
-				return Model.InsertIntoSequence(dragPreview.DragItem.Id, area.Index);
+			{
+				Layers.InsertLayer(dragPreview.DragItem.Id, area.Index);
+				return true;
+			}
 
 			return false;
 		}
@@ -309,33 +310,33 @@ namespace Fab.WorldMod.UI
 		{
 			ClearContainers();
 
-			for (int i = 0; i < Model.Stock.Count; i++)
+			for (int i = 0; i < Stock.Datasets.Count; i++)
 			{
 				DataPointItem item = dragItemPool.GetPooled();
 				item.Set(this, i);
-				item.SetEnabled(!Model.IsInSequence(Model.Stock[i]));
+				item.SetEnabled(!Layers.IsLayer(Stock.Datasets[i]));
 				stockContainer.Add(item);
 			}
 
-			if (Model.Sequence.Count == 0)
+			if (Layers.Datasets.Count == 0)
 			{
-				sequenceContainerDropArea.Set(0);
-				sequenceContainer.Add(sequenceContainerDropArea);
+				layersContainerDropArea.Set(0);
+				layersContainer.Add(layersContainerDropArea);
 			}
 			else
 			{
 				DropArea insertArea = dragInserAreaPool.GetPooled();
 				insertArea.Set(0);
-				sequenceContainer.Add(insertArea);
-				for (int i = 0; i < Model.Sequence.Count; i++)
+				layersContainer.Add(insertArea);
+				for (int i = 0; i < Layers.Datasets.Count; i++)
 				{
 					DataPointItem item = dragItemPool.GetPooled();
 					
-					item.Set(this, Model.GetIndex(Model.Sequence[i]));
-					sequenceContainer.Add(item);
+					item.Set(this, Stock.GetIndex(Layers.Datasets[i]));
+					layersContainer.Add(item);
 					insertArea = dragInserAreaPool.GetPooled();
 					insertArea.Set(i + 1);
-					sequenceContainer.Add(insertArea);
+					layersContainer.Add(insertArea);
 				}
 			}
 		}
@@ -344,10 +345,10 @@ namespace Fab.WorldMod.UI
 		{
 			stockContainer.Query<DataPointItem>().ForEach(item => dragItemPool.ReturnToPool(item));
 
-			sequenceContainerDropArea.RemoveFromHierarchy();
-			DropArea.Reset(sequenceContainerDropArea);
-			sequenceContainer.Query<DataPointItem>().ForEach(item => dragItemPool.ReturnToPool(item));
-			sequenceContainer.Query<DropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
+			layersContainerDropArea.RemoveFromHierarchy();
+			DropArea.Reset(layersContainerDropArea);
+			layersContainer.Query<DataPointItem>().ForEach(item => dragItemPool.ReturnToPool(item));
+			layersContainer.Query<DropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
 		}
 	}
 }

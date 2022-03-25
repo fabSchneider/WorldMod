@@ -15,7 +15,7 @@
             <ui:VisualElement name="data-panel" style="flex-grow: 1;">
                 <ui:VisualElement name="stock-container" class="panel data-panel__stock-container" />
                 <ui:VisualElement class="proto__region-divider" />
-                <ui:VisualElement name="sequence-container" class="panel data-panel__sequence-container" />
+                <ui:VisualElement name="sequence-container" class="panel data-panel__layers-container" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

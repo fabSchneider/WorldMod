@@ -8,7 +8,7 @@ namespace WorldMod.Lua
 	[LuaName("datasets")]
 	public class DatasetModule : LuaObject, ILuaObjectInitialize
 	{
-		private Datasets datasets;
+		private DatasetStock stock;
 
 		public void Initialize()
 		{
@@ -17,26 +17,26 @@ namespace WorldMod.Lua
 			if (comp == null)
 				throw new LuaObjectInitializationException("Could not find dataset component");
 
-			datasets = comp.Datasets;
+			stock = comp.Stock;
 		}
 
 		[LuaHelpInfo("Adds a dataset to the list of available datasets")]
 		public DatasetProxy add(string name)
 		{
-			Dataset dataset =  datasets.AddDataset(name);
+			Dataset dataset =  stock.AddDataset(name);
 			return new DatasetProxy(dataset);
 		}
 
 		[LuaHelpInfo("Returns a collection of all datasets")]
 		public DatasetProxy[] all()
 		{
-			return datasets.Stock.Select(ds => new DatasetProxy(ds)).ToArray();
+			return stock.Datasets.Select(ds => new DatasetProxy(ds)).ToArray();
 		}
 
-		[LuaHelpInfo("Finds the dataset with the specified name")]
-		public DatasetProxy find(string name)
+		[LuaHelpInfo("Gets the dataset with the specified name")]
+		public DatasetProxy get(string name)
 		{
-			Dataset dataset = datasets.Stock.FirstOrDefault(ds => ds.Name == name);
+			Dataset dataset = stock.Datasets.FirstOrDefault(ds => ds.Name == name);
 			return new DatasetProxy(dataset);
 		}
 	}
