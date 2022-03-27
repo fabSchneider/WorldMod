@@ -6,9 +6,6 @@
     bottom: 0;
     background-color: rgb(24, 24, 24);
     flex-direction: row;
-    -unity-font: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO.TTF?fileID=12800000&guid=72447131e6aac6c4396a1c5ff95cfb12&type=3#CASKAYDIA COVE NERD FONT COMPLETE MONO');
-    -unity-font-definition: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO%20SDF.asset?fileID=11400000&guid=6aeb3814440f7f149b83439e65e51e46&type=2#CASKAYDIA COVE NERD FONT COMPLETE MONO SDF');
-    color: rgb(214, 214, 214);
 }
 
 .proto__region {
@@ -35,6 +32,20 @@
     margin-right: 8px;
     margin-top: 8px;
     margin-bottom: 8px;
+}
+
+.proto__main-bar {
+}
+
+.main-bar {
+    flex-direction: row;
+    padding-left: 8px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.main-bar__toggle {
 }
 
 .data-panel__stock-container {
@@ -70,6 +81,21 @@
     align-items: center;
     flex-shrink: 0;
     overflow: hidden;
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.datapoint-item:focus {
+    border-left-color: rgb(255, 197, 0);
+    border-right-color: rgb(255, 197, 0);
+    border-top-color: rgb(255, 197, 0);
+    border-bottom-color: rgb(255, 197, 0);
 }
 
 .datapoint-item:enabled:hover {
@@ -198,4 +224,31 @@
     background-color: rgba(255, 255, 255, 0.59);
     top: -16px;
     left: -16px;
+}
+
+.unity-text-element {
+    color: rgb(214, 214, 214);
+    -unity-font: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO.TTF?fileID=12800000&guid=72447131e6aac6c4396a1c5ff95cfb12&type=3#CASKAYDIA COVE NERD FONT COMPLETE MONO');
+    -unity-font-definition: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO%20SDF.asset?fileID=11400000&guid=6aeb3814440f7f149b83439e65e51e46&type=2#CASKAYDIA COVE NERD FONT COMPLETE MONO SDF');
+    white-space: normal;
+}
+
+.language-toggle-group .unity-base-field__input {
+    flex-direction: row;
+}
+
+.language-toggle-group RadioButton {
+}
+
+.language-toggle-group RadioButton .unity-radio-button__checkmark-background {
+    display: none;
+}
+
+.language-toggle-group RadioButton:checked .unity-text-element {
+    color: rgba(231, 231, 231, 255);
+}
+
+.language-toggle-group RadioButton .unity-text-element {
+    font-size: 24px;
+    color: rgba(101, 101, 101, 255);
 }

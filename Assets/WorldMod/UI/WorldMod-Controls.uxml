@@ -1,10 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/WorldMod/UI/UI-Prototype-Style.uss?fileID=7433441132597879392&amp;guid=c8d752a62a31b314394538fa37468e66&amp;type=3#UI-Prototype-Style" />
+    <Style src="project://database/Assets/WorldMod/UI/Worldmod-Style.uss?fileID=7433441132597879392&amp;guid=c8d752a62a31b314394538fa37468e66&amp;type=3#Worldmod-Style" />
+    <Style src="project://database/Assets/WorldMod/UI/Modal-Style.uss?fileID=7433441132597879392&amp;guid=0c868d36c4f7eef458920ab40fd15f3b&amp;type=3#Modal-Style" />
     <ui:VisualElement class="proto">
         <ui:VisualElement class="proto__region proto__region--left">
-            <ui:VisualElement name="info-panel" class="panel">
-                <ui:Label text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. " display-tooltip-when-elided="true" class="info-panel__text" style="-unity-text-align: upper-left;" />
+            <ui:VisualElement name="main-bar" class="proto__main-bar main-bar">
+                <ui:RadioButtonGroup value="0" choices="EN, DE" name="language-toggles" class="language-toggle-group" />
             </ui:VisualElement>
+            <ui:VisualElement name="info-panel" class="panel" />
             <ui:VisualElement class="proto__region-divider" />
             <ui:VisualElement name="trackpad-panel" class="panel trackpad-panel">
                 <Fab.WorldMod.UI.Trackpad style="background-image: url(&apos;project://database/Assets/WorldMod/Textures/TrackpadRenderTex.renderTexture?fileID=8400000&amp;guid=2714dbe6a6a1a6b4d99e2cf102518c30&amp;type=2#TrackpadRenderTex&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-background-image-tint-color: rgb(255, 255, 255);" />
@@ -19,4 +21,5 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:Button text="" display-tooltip-when-elided="true" name="add-marker-btn" />
 </ui:UXML>
