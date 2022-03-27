@@ -848,6 +848,7 @@ GameObject:
   - component: {fileID: 1135241051}
   - component: {fileID: 1135241050}
   - component: {fileID: 1135241052}
+  - component: {fileID: 1135241053}
   m_Layer: 5
   m_Name: ControlsUI
   m_TagString: Untagged
@@ -899,6 +900,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   datasets: {fileID: 51441330}
+--- !u!114 &1135241053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135241049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa92832515cc6540a6edb502a496334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  supportedLocales:
+  - name: en-US
+  - name: de-DE
+  localizedTokens:
+  - name: yes
+    localeTexts:
+    - locale:
+        name: en-US
+      text: Yes
+    - locale:
+        name: de-DE
+      text: Ja
+  - name: no
+    localeTexts:
+    - locale:
+        name: en-US
+      text: No
+    - locale:
+        name: de-DE
+      text: Nein
+  - name: add-marker.title
+    localeTexts:
+    - locale:
+        name: en-US
+      text: "\uF84D Add a marker"
+    - locale:
+        name: de-DE
+      text: "\uF84D F\xFCge eine Markierung hinzu"
+  - name: add.marker.text
+    localeTexts:
+    - locale:
+        name: en-US
+      text: Do you want to add a marker at the current posititon?
+    - locale:
+        name: de-DE
+      text: "M\xF6chtest du eine Markierung an der aktuellen Position hinzuf\xFCgen?"
+  - name: info-text
+    localeTexts:
+    - locale:
+        name: en-US
+      text: Here should appear information on the currently selected dataset. This
+        could be some text explaining what it is about and maybe some images would
+        be nice to.
+    - locale:
+        name: de-DE
+      text: "Hier sollten Information \xFCber den momentan ausgew\xE4hlten Datensatz
+        erscheinen. Es k\xF6nnte ein Text sein, der erk\xE4rt worum es geht. Bilder
+        w\xE4ren auch sch\xF6n."
 --- !u!1 &1203454553
 GameObject:
   m_ObjectHideFlags: 0

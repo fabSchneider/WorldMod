@@ -74,6 +74,7 @@ namespace Fab.WorldMod.UI
 		public DataPointItem()
 		{
 			AddToClassList(classname);
+			focusable = true;
 			var label = new Label();
 			label.AddToClassList(labelClassname);
 			Add(label);
