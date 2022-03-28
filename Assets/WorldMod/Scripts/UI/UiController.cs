@@ -33,10 +33,10 @@ namespace Fab.WorldMod.UI
 			if (cameraController != null)
 				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector2>>(OnTrackpadAxis);
 
-			mainBarController = new MainbarController(document.rootVisualElement);
+			mainBarController = new MainbarController(document.rootVisualElement, LocalizationComponent.Localization);
 
 			infoPanel = document.rootVisualElement.Q(name: "info-panel");
-			infoPanel.Add(new Label("Info Text").WithLocalizable("INFO_TEXT"));
+			infoPanel.Add(new Label("INFO_TEXT").WithLocalizable());
 
 			if (datasets)
 				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Layers);
@@ -57,21 +57,21 @@ namespace Fab.WorldMod.UI
 		private void SetupMarkerUI()
 		{
 			markerModal = new Modal();
-			markerModal.Title = " Add a marker";
-			markerModal.TitleLabel.WithLocalizable("MARKER_TITLE");
+			markerModal.Title = "MARKER_TITLE";
+			markerModal.TitleLabel.WithLocalizable();
 			markerModal.VisibleCloseButton = false;
-			var text = new Label("Do you want to add a marker at the current position?").WithLocalizable("MARKER_TEXT");
+			var text = new Label("MARKER_TEXT").WithLocalizable();
 			markerModal.Add(text);
-			markerModal.AddButton("Yes", () =>
+			markerModal.AddButton("YES", () =>
 			{
 				Debug.Log("Marker added at " + cameraController.GetCoordinate());
 				markerModal.RemoveFromHierarchy();
-			}).WithLocalizable("YES");
-			markerModal.AddButton("No", () =>
+			}).WithLocalizable();
+			markerModal.AddButton("NO", () =>
 			{
 				Debug.Log("Canceled adding marker");
 				markerModal.RemoveFromHierarchy();
-			}).WithLocalizable("NO");
+			}).WithLocalizable();
 
 			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
 		}

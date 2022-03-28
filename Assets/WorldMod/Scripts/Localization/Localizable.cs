@@ -1,19 +1,19 @@
 using System;
-using Fab.Common;
 using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.Localization
 {
 	public class Localizable : Manipulator
 	{
-		public static readonly string localeMissingString = "$LOCALE_MISSING";
+		protected TextElement textElement;
+		protected bool isIdSet = false;
+		protected int id;
 
-		private TextElement textElement;
-		public string Key { get; private set; }
+		private ILocalization localization;
 
-		public Localizable(string key)
+		public Localizable(ILocalization localization)
 		{
-			Key = key;
+			this.localization = localization;
 		}
 
 		protected override void RegisterCallbacksOnTarget()
@@ -22,21 +22,34 @@ namespace Fab.WorldMod.Localization
 			if (textElement == null)
 				throw new Exception("Localizable Manipulator can only be added to TextElements");
 
-			Signals.Get<OnLocaleChangedSignal>().AddListener(OnLocaleChange);
+			UpdateText();
+
+			localization.LocaleChanged += UpdateText;
 		}
 
 		protected override void UnregisterCallbacksFromTarget()
 		{
 			textElement = null;
-			Signals.Get<OnLocaleChangedSignal>().RemoveListener(OnLocaleChange);
+			id = 0;
+			isIdSet = false;
+			localization.LocaleChanged -= UpdateText;
 		}
 
-		protected void OnLocaleChange(ILocalization localization)
+		protected void UpdateText()
 		{
-			if (localization.TryGetLocalizedString(Key, out string localString))
-				textElement.text = localString;
-			else
-				textElement.text = localeMissingString;
+			if (isIdSet)
+			{
+				if (localization.TryGetLocalizedString(id, out string localString))
+					textElement.text = localString;
+				else if (localization.TryGetStringKey(id, out localString))
+					textElement.text = localString;
+			}
+			else if (localization.TryGetStringID(textElement.text, out id))
+			{
+				isIdSet = true;
+				if (localization.TryGetLocalizedString(id, out string localString))
+					textElement.text = localString;
+			}
 		}
 	}
 

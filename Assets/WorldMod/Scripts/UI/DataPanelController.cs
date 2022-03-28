@@ -1,5 +1,6 @@
 ﻿using System;
 using Fab.Common;
+using Fab.WorldMod.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -71,17 +72,26 @@ namespace Fab.WorldMod.UI
 
 		private DragPreview dragPreview;
 
+		private Label label;
+		private Localizable localizable;
+
 		public DataPointItem()
 		{
 			AddToClassList(classname);
 			focusable = true;
-			var label = new Label();
+		
+			label = new Label();
 			label.AddToClassList(labelClassname);
 			Add(label);
 
 			RegisterCallback<PointerDownEvent>(OnPointerDown);
 
 			dragPreview = new DragPreview(this);
+		}
+
+		public DataPointItem(ILocalization localization) :this()
+		{
+			localizable = new Localizable(localization);
 		}
 
 		private void OnPointerDown(PointerDownEvent evt)
@@ -125,9 +135,10 @@ namespace Fab.WorldMod.UI
 
 		public void Set(DataPanelController controller, int index)
 		{
-			this.Controller = controller;
+			Controller = controller;
 			Id = index;
-			this.Q<Label>(className: labelClassname).text = controller.Stock.Datasets[index].Name;
+			label.text = controller.Stock.Datasets[index].Name;
+			label.AddManipulator(localizable);
 		}
 
 		public static void Reset(DataPointItem item)
@@ -136,7 +147,8 @@ namespace Fab.WorldMod.UI
 			item.SetEnabled(true);
 			item.RemoveFromHierarchy();
 			item.RemoveFromClassList(activeClassname);
-			item.Q<Label>(className: labelClassname).text = string.Empty;
+			item.label.text = string.Empty;
+			item.label.RemoveManipulator(item.localizable);
 			item.dragPreview.RemoveFromHierarchy();
 		}
 	}
@@ -263,7 +275,7 @@ namespace Fab.WorldMod.UI
 			layersContainerDropArea = new DropArea(DragDrop, HandleLayersDrop).WithClass(containerDropClassname);
 			layersContainerDropArea.Set(0);
 
-			dragItemPool = new ObjectPool<DataPointItem>(8, true, () => new DataPointItem(), DataPointItem.Reset);
+			dragItemPool = new ObjectPool<DataPointItem>(8, true, () => new DataPointItem(LocalizationComponent.Localization), DataPointItem.Reset);
 			dragInserAreaPool = new ObjectPool<DropArea>(8, true, CreateLayersDropArea, DropArea.Reset);
 
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);

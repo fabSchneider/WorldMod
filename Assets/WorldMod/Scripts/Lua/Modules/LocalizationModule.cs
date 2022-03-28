@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fab.Lua.Core;
@@ -10,79 +11,83 @@ namespace WorldMod.Lua
 	[LuaName("localization")]
 	public class LocalizationModule : LuaObject, ILuaObjectInitialize
 	{
-		private LocalizationComponent localization;
+		private Localization localization;
 
 		public void Initialize()
 		{
-			localization = UnityEngine.Object.FindObjectOfType<LocalizationComponent>();
+			localization = LocalizationComponent.Localization;
 
 			if (localization == null)
-				throw new LuaObjectInitializationException("Could not find localization component");
+				throw new LuaObjectInitializationException("Could not find initialized localization");
 		}
 
 		[LuaHelpInfo("Returns the currently active locale (Read only)")]
-		public string current_locale => localization.CurrentLocale.ToString();
+		public string current_locale => localization.ActiveLocale.ToString();
 
 		[LuaHelpInfo("Returns a list of all available locales")]
 		public string[] get_locales()
 		{
-			return localization.AvailableLocales.Select(l => l.ToString()).ToArray();
+			return localization.LocalizationTables.Locales.Select(l => l.ToString()).ToArray();
 		}
 
 		[LuaHelpInfo("Activates the specified locale (e.g. en-US).")]
-		public void avtivate_locale(string locale_code)
+		public void avtivate_locale(string locale)
 		{
-			Locale locale = GetLocaleFromCode(locale_code);
-			if (locale.Equals(Locale.None))
-				throw new System.Exception($"Cannot set locale to \"{locale_code}\". No matching locale is available. " +
-					$"Use {nameof(get_locales)}() to see which locales are available.");
+			if (FuzzyMatchLocale(locale, out Locale loc))
+				localization.ActivateLocale(loc);
+			else
+				throw new Exception($"Cannot set locale to \"{locale}\". No matching locale is available. " +
+						$"Use {nameof(get_locales)}() to see which locales are available.");
 
-			localization.ActivateLocale(locale);
 		}
 
 		[LuaHelpInfo("Adds a locale to the localization system")]
-		public void add_locale(string name, string code)
+		public void add_locale(string name, string language, string territory)
 		{
-			localization.AddLocale(new Locale(name, code));
+			localization.AddLocale(new Locale(name, language, territory));
 		}
 
-		[LuaHelpInfo("Sets a localized string in the localization system")]
-		public void set_string(string key, string locale_code, string local_string)
-		{
-			Locale locale = GetLocaleFromCode(locale_code);
-			if (locale.Equals(Locale.None))
-				throw new System.Exception($"Cannot add string for \"{locale_code}\". No matching locale is available." +
-					$"Use {nameof(get_locales)}() to see which locales are available.");
-			else
-			{
-				localization.LocalizationTables.SetLocalString(key, locale, local_string);
-			}
-		}
+		//[LuaHelpInfo("Sets a localized string in the localization system")]
+		//public void set_string(string key, string locale, string local_string)
+		//{
+		//	if (FuzzyMatchLocale(locale, out Locale loc))
+		//		localization.LocalizationTables.SetLocalString(key, loc, local_string);
+		//	else
+		//		throw new Exception($"Cannot add string for \"{locale}\". No matching locale is available." +
+		//				$"Use {nameof(get_locales)}() to see which locales are available.");
+		//}
 
-		[LuaHelpInfo("Sets a collection of localized string in the localization system")]
-		public void set_strings(string key, Table local_strings)
+		[LuaHelpInfo("Creates a localized string")]
+		public string @string(string key, Table local_strings)
 		{
-			List<(Locale, string)> ls = new List<(Locale, string)>(local_strings.Length);
 			foreach (var item in local_strings.Pairs)
 			{
-				Locale locale = GetLocaleFromCode(item.Key.String);
-				string value = item.Value.String;
-				if (!locale.Equals(Locale.None))
-					ls.Add((locale, value));
+				if (FuzzyMatchLocale(item.Key.String, out Locale locale))
+					localization.LocalizationTables.SetLocalString(key, locale, item.Value.String);
 			}
-
-			localization.LocalizationTables.SetLocalStrings(key, ls);
+			return key;
 		}
 
-		[LuaHelpInfo("updates all localized content")]
-		public void update()
+		private bool FuzzyMatchLocale(string localeString, out Locale locale)
 		{
-			localization.UpdateContent();
-		}
+			IEnumerable<Locale> locales = localization.LocalizationTables.Locales.Where(l => l.ToString().Contains(localeString)).ToArray();
 
-		private Locale GetLocaleFromCode(string code)
-		{
-			return localization.AvailableLocales.FirstOrDefault(l => l.Code == code);
+			locale = locales.FirstOrDefault(l => string.Equals(l.Code, localeString, StringComparison.InvariantCultureIgnoreCase));
+
+			if (!locale.Equals(Locale.None))
+				return true;
+
+			// try to match the first matching language
+			locale = locales.FirstOrDefault(l => string.Equals(l.Language, localeString, StringComparison.InvariantCultureIgnoreCase));
+
+			if (!locale.Equals(Locale.None))
+				return true;
+
+			// try to match the first matching name
+			locale = locales.FirstOrDefault(l => string.Equals(l.Name, localeString, StringComparison.InvariantCultureIgnoreCase));
+
+			return !locale.Equals(Locale.None);
+
 		}
 	}
 }

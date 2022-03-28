@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locale:
     name: English
-    code: en-US
+    language: en
+    territory: US
   localStrings:
   - id: 0
     localString: Yes
