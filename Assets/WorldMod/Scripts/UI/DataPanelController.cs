@@ -237,8 +237,7 @@ namespace Fab.WorldMod.UI
 
 		public DragDrop DragDrop { get; private set; }
 
-		public VisualElement Root { get; private set; }
-
+		public VisualElement Panel { get; private set; }
 		public DatasetStock Stock { get; private set; }
 		public DatasetLayers Layers { get; private set; }
 
@@ -246,7 +245,7 @@ namespace Fab.WorldMod.UI
 
 		public DataPanelController(VisualElement root, DatasetStock stock, DatasetLayers layers)
 		{
-			Root = root;
+			Panel = root.Q(name: "data-panel");
 			Stock = stock;
 			Layers = layers;
 

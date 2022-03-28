@@ -1,4 +1,5 @@
 ﻿using Fab.Common;
+using Fab.WorldMod.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,6 +15,7 @@ namespace Fab.WorldMod.UI
 
 		private WorldCameraController cameraController;
 
+		private MainbarController mainBarController;
 		private DataPanelController dataPanelController;
 
 		private VisualElement mainBar;
@@ -27,64 +29,19 @@ namespace Fab.WorldMod.UI
 		{
 			document = GetComponent<UIDocument>();
 
-			var dataPanelContainer = document.rootVisualElement.Q(name: "data-panel");
-			if (datasets)
-				dataPanelController = new DataPanelController(dataPanelContainer, datasets.Stock, datasets.Layers);
-
 			cameraController = FindObjectOfType<WorldCameraController>();
 			if (cameraController != null)
 				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector2>>(OnTrackpadAxis);
 
-			mainBar = document.rootVisualElement.Q(name: "main-bar");
-			mainBar.Q<RadioButtonGroup>(name: "language-toggles").RegisterValueChangedCallback(evt =>
-			 {
-				 var rbGroup = evt.target as RadioButtonGroup;
-				 int i = 0;
-				 var signal = Signals.Get<OnChangeLocaleSignal>();
-				 foreach (var choice in rbGroup.choices)
-				 {
-					 if(i == evt.newValue)
-					 {
-						 switch (choice.ToLower())
-						 {
-							 case "en":
-								 signal.Dispatch(new Locale("en-US"));
-								 return;
-							 case "de":
-								 signal.Dispatch(new Locale("de-DE"));
-								 return;
-						 }
-					 }
-					 else
-					 {
-						 i++;
-					 }
-				 }				
-			 });
-
+			mainBarController = new MainbarController(document.rootVisualElement);
 
 			infoPanel = document.rootVisualElement.Q(name: "info-panel");
+			infoPanel.Add(new Label("Info Text").WithLocalizable("INFO_TEXT"));
 
-			infoPanel.Add(new Label("Info Text").WithLocalizable("info-text"));
+			if (datasets)
+				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Layers);
 
-			markerModal = new Modal();
-			markerModal.Title = " Add a marker";
-			markerModal.TitleLabel.WithLocalizable("add-marker.title");
-			markerModal.VisibleCloseButton = false;
-			var text = new Label("Do you want to add a marker at the current position?").WithLocalizable("add.marker.text");
-			markerModal.Add(text);
-			markerModal.AddButton("Yes", () =>
-			{
-				Debug.Log("Marker added at " + cameraController.GetCoordinate());
-				markerModal.RemoveFromHierarchy();
-			}).WithLocalizable("yes");
-			markerModal.AddButton("No", () =>
-			{
-				Debug.Log("Canceled adding marker");
-				markerModal.RemoveFromHierarchy();
-			}).WithLocalizable("no");
-
-			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
+			SetupMarkerUI();
 		}
 
 		private void OnEnable()
@@ -95,6 +52,28 @@ namespace Fab.WorldMod.UI
 		private void OnDisable()
 		{
 			Signals.Get<DatasetUpdatedSignal>().RemoveListener(OnDatasetUpdated);
+		}
+
+		private void SetupMarkerUI()
+		{
+			markerModal = new Modal();
+			markerModal.Title = " Add a marker";
+			markerModal.TitleLabel.WithLocalizable("MARKER_TITLE");
+			markerModal.VisibleCloseButton = false;
+			var text = new Label("Do you want to add a marker at the current position?").WithLocalizable("MARKER_TEXT");
+			markerModal.Add(text);
+			markerModal.AddButton("Yes", () =>
+			{
+				Debug.Log("Marker added at " + cameraController.GetCoordinate());
+				markerModal.RemoveFromHierarchy();
+			}).WithLocalizable("YES");
+			markerModal.AddButton("No", () =>
+			{
+				Debug.Log("Canceled adding marker");
+				markerModal.RemoveFromHierarchy();
+			}).WithLocalizable("NO");
+
+			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
 		}
 
 		public void OnTrackpadAxis(ChangeEvent<Vector2> evt)

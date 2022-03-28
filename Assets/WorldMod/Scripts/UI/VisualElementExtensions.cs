@@ -151,13 +151,6 @@ namespace Fab.WorldMod.UI
 			elem.userData = data;
 			return elem;
 		}
-
-		public static T WithLocalizable<T>(this T elem, string identifier) where T : TextElement
-		{
-			elem.AddManipulator(new Localizable(identifier));
-			return elem;
-		}
-
 		public static (bool left, bool right, bool top, bool bottom) GetEdgeProximity(this Rect rect, Vector2 localPos, float maxDistX, float maxDistY)
         {
             bool left = localPos.x < maxDistX;

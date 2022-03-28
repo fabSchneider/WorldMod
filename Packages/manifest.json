@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.cyanilux.urp-blitrenderfeature": "https://github.com/Cyanilux/URP_BlitRenderFeature.git",
-    "com.dbrizov.naughtyattributes": "2.1.1",
+    "com.dbrizov.naughtyattributes": "2.1.4",
     "com.fabschneider.commandterminal": "https://github.com/fabSchneider/command_terminal.git?path=/CommandTerminal#v1.4.3",
     "com.unity.burst": "1.6.4",
     "com.unity.ide.visualstudio": "2.0.14",
@@ -44,7 +44,8 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.joshclose.csvhelper": "13.0.0"
   },
   "scopedRegistries": [
     {
@@ -52,6 +53,7 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.dbrizov.naughtyattributes",
+        "com.joshclose.csvhelper",
         "com.openupm",
         "com.virgis.geojson.net"
       ]
