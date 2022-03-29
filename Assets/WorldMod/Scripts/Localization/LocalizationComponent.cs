@@ -23,11 +23,15 @@ namespace Fab.WorldMod.Localization
 			if(instance != null)
 			{
 				Debug.LogError("Duplicate Localization Components are not allowed");
-				Destroy(this);
 				return;
 			}
 			var localizationTables = StringTableCollection.CreateFromAsset(localizationAsset);
 			instance = new Localization(localizationTables);
+		}
+
+		private void OnDestroy()
+		{
+			instance = null;
 		}
 
 		private void Start()

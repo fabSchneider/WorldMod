@@ -4,6 +4,19 @@ using UnityEngine;
 namespace Fab.WorldMod.Localization
 {
 	[Serializable]
+	public struct LocaleFormat
+	{
+		[SerializeField]
+		private bool isRightToLeft;
+
+		public bool IsRightToLeft => isRightToLeft;
+		public LocaleFormat(bool isRightToLeft)
+		{
+			this.isRightToLeft = isRightToLeft;
+		}
+	}
+
+	[Serializable]
 	public struct Locale
 	{
 		public static readonly Locale None = new Locale();

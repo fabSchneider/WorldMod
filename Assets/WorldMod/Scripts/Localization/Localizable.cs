@@ -5,6 +5,8 @@ namespace Fab.WorldMod.Localization
 {
 	public class Localizable : Manipulator
 	{
+		private static readonly string rightToLeftClassname = "text-element-rtl";
+
 		protected TextElement textElement;
 		protected bool isIdSet = false;
 		protected int id;
@@ -22,17 +24,25 @@ namespace Fab.WorldMod.Localization
 			if (textElement == null)
 				throw new Exception("Localizable Manipulator can only be added to TextElements");
 
-			UpdateText();
+			OnLocaleChanged();
 
-			localization.LocaleChanged += UpdateText;
+			localization.LocaleChanged += OnLocaleChanged;
 		}
 
 		protected override void UnregisterCallbacksFromTarget()
 		{
+			textElement.EnableInClassList(rightToLeftClassname, false);
 			textElement = null;
 			id = 0;
 			isIdSet = false;
-			localization.LocaleChanged -= UpdateText;
+			localization.LocaleChanged -= OnLocaleChanged;
+		}
+
+		protected void OnLocaleChanged()
+		{
+			LocaleFormat format = localization.ActiveFormat;
+			textElement.EnableInClassList(rightToLeftClassname, format.IsRightToLeft);
+			UpdateText();
 		}
 
 		protected void UpdateText()

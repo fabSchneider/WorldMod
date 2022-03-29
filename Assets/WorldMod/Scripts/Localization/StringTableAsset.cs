@@ -9,8 +9,13 @@ namespace Fab.WorldMod.Localization
 		protected Locale locale;
 		public Locale Locale => locale;
 
+		private LocaleFormat localeFormat;
+		public LocaleFormat LocaleFormat => localeFormat;
+
+
 		protected Dictionary<int, string> localStringsById;
 		public string this[int id] => localStringsById[id];
+
 
 		private StringTable() { }
 
@@ -29,7 +34,8 @@ namespace Fab.WorldMod.Localization
 			return new StringTable()
 			{
 				locale = asset.Locale,
-				localStringsById = localStringsById
+				localStringsById = localStringsById,
+				localeFormat = asset.LocaleFormat
 			};
 		}
 
@@ -59,6 +65,10 @@ namespace Fab.WorldMod.Localization
 
 		[SerializeField]
 		private List<StringItem> localStrings;
+
+		[SerializeField]
+		private LocaleFormat localeFormat;
+		public LocaleFormat LocaleFormat => localeFormat;
 
 		internal IEnumerable<StringItem> LocalStrings => localStrings;
 

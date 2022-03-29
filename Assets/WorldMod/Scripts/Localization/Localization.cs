@@ -13,6 +13,8 @@ namespace Fab.WorldMod.Localization
 		event Action LocaleChanged;
 
 		Locale ActiveLocale { get; }
+
+		LocaleFormat ActiveFormat { get; }
 		IEnumerable<Locale> Locales { get; }
 	}
 
@@ -34,6 +36,8 @@ namespace Fab.WorldMod.Localization
 		public StringTableCollection LocalizationTables => localizationTables;
 
 		public IEnumerable<Locale> Locales => localizationTables.Locales;
+
+		public LocaleFormat ActiveFormat => localizationTables[activeLocale].LocaleFormat;
 
 		public Localization(StringTableCollection localizationTables)
 		{
