@@ -17,7 +17,7 @@ namespace Fab.WorldMod.UI
 		private Vector2 value;
 		public Vector2 Value => value;
 
-		private Vector2 previousPos;
+		private Vector2 previousAxis;
 		public Trackpad()
 		{
 			AddToClassList(classname);
@@ -39,7 +39,8 @@ namespace Fab.WorldMod.UI
 			SetCursorPos(axis);
 			this.CapturePointer(evt.pointerId);
 
-			previousPos = evt.localPosition;
+			previousAxis = CalculateAxis(evt.localPosition);
+			SetValue(Vector2.zero);
 			RegisterCallback<PointerMoveEvent>(OnPointerMove);
 		}
 		private void OnPointerUp(PointerUpEvent evt)
@@ -52,11 +53,11 @@ namespace Fab.WorldMod.UI
 		private void OnPointerMove(PointerMoveEvent evt)
 		{
 			
-			Vector3 axis = CalculateAxis(evt.localPosition);
+			Vector2 axis = CalculateAxis(evt.localPosition);
 			SetCursorPos(axis);
 
-			//SetValue(evt.deltaPosition);
-			SetValue(Vector2.ClampMagnitude(((Vector2)evt.localPosition - previousPos) / localBound.size, 1f));
+			SetValue(axis - previousAxis);
+			previousAxis = axis;
 		}
 
 

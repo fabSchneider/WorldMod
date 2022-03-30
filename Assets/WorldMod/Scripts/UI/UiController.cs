@@ -78,7 +78,7 @@ namespace Fab.WorldMod.UI
 
 		public void OnTrackpadAxis(ChangeEvent<Vector2> evt)
 		{
-			cameraController.MoveCamera(evt.newValue);
+			cameraController.SpinCamera(evt.newValue);
 		}
 
 		private void OnDatasetUpdated(Dataset dataset)
