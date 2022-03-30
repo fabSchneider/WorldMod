@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-namespace ket.sketching
-{
+namespace Fab.Geo
+{ 
     public class UIInput : MonoBehaviour
     {
         private bool pointerOverUI;

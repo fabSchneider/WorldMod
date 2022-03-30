@@ -245,10 +245,14 @@
 }
 
 .language-toggle-group RadioButton:checked .unity-text-element {
-    color: rgba(231, 231, 231, 255);
+    color: rgb(231, 231, 231);
 }
 
 .language-toggle-group RadioButton .unity-text-element {
     font-size: 24px;
-    color: rgba(101, 101, 101, 255);
+    color: rgb(101, 101, 101);
+}
+
+.text-element-rtl {
+    -unity-text-align: upper-right;
 }

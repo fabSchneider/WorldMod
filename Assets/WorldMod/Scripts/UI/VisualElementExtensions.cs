@@ -140,13 +140,18 @@ namespace Fab.WorldMod.UI
             return element;
         }
 
-        public static T WithText<T>(this T btn, string text) where T : TextElement
+        public static T WithText<T>(this T elem, string text) where T : TextElement
         {
-            btn.text = text;
-            return btn;
+            elem.text = text;
+            return elem;
         }
 
-        public static (bool left, bool right, bool top, bool bottom) GetEdgeProximity(this Rect rect, Vector2 localPos, float maxDistX, float maxDistY)
+		public static T WithUserData<T>(this T elem, object data) where T : VisualElement
+		{
+			elem.userData = data;
+			return elem;
+		}
+		public static (bool left, bool right, bool top, bool bottom) GetEdgeProximity(this Rect rect, Vector2 localPos, float maxDistX, float maxDistY)
         {
             bool left = localPos.x < maxDistX;
             bool right = (rect.width - localPos.x) < maxDistX;

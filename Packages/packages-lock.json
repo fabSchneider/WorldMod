@@ -8,7 +8,7 @@
       "hash": "6580f62a7a9b9dd0a40cff1990ba516a648c9bee"
     },
     "com.dbrizov.naughtyattributes": {
-      "version": "2.1.1",
+      "version": "2.1.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -26,6 +26,13 @@
       "source": "git",
       "dependencies": {},
       "hash": "e1349106c652786bd895fa880a08b5b4ca9962aa"
+    },
+    "com.joshclose.csvhelper": {
+      "version": "13.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
     },
     "com.unity.burst": {
       "version": "1.6.4",
