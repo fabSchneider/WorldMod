@@ -27,3 +27,5 @@ MonoBehaviour:
     localString: Add a marker
   - id: 4
     localString: Do you want to add a marker at the current location?
+  localeFormat:
+    isRightToLeft: 0

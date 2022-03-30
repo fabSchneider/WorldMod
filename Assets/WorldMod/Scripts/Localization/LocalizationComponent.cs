@@ -52,7 +52,6 @@ namespace Fab.WorldMod.Localization
 
 		private void OnChangeLocale(Locale locale)
 		{
-			Debug.Log("Switching language to " + locale.Name);
 			instance.ActivateLocale(locale);
 		}
 

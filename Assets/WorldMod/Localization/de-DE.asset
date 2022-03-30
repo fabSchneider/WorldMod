@@ -16,4 +16,16 @@ MonoBehaviour:
     name: German
     language: de
     territory: DE
-  localStrings: []
+  localStrings:
+  - id: 0
+    localString: Ja
+  - id: 1
+    localString: Nein
+  - id: 2
+    localString: Hilfe
+  - id: 3
+    localString: "F\xFCge eine Markeriung hinzu"
+  - id: 4
+    localString: "M\xF6chtest du eine Markierung an dem aktuellen Ort hinzuf\xFCgen?"
+  localeFormat:
+    isRightToLeft: 0

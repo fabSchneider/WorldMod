@@ -47,16 +47,6 @@ namespace WorldMod.Lua
 			localization.AddLocale(new Locale(name, language, territory));
 		}
 
-		//[LuaHelpInfo("Sets a localized string in the localization system")]
-		//public void set_string(string key, string locale, string local_string)
-		//{
-		//	if (FuzzyMatchLocale(locale, out Locale loc))
-		//		localization.LocalizationTables.SetLocalString(key, loc, local_string);
-		//	else
-		//		throw new Exception($"Cannot add string for \"{locale}\". No matching locale is available." +
-		//				$"Use {nameof(get_locales)}() to see which locales are available.");
-		//}
-
 		[LuaHelpInfo("Creates a localized string")]
 		public string @string(string key, Table local_strings)
 		{

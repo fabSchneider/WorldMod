@@ -21,3 +21,5 @@ MonoBehaviour:
     localString: Oui
   - id: 1
     localString: No
+  localeFormat:
+    isRightToLeft: 0
