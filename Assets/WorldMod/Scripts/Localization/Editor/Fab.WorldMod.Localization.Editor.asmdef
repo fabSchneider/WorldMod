@@ -1,0 +1,18 @@
+{
+    "name": "Fab.WorldMod.Localization.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f6f905bb4b01fab4a9de8590659792d9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

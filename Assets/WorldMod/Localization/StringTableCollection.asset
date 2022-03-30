@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbf66ed5d56c7c44ab6488bfdae12e0, type: 3}
+  m_Name: StringTableCollection
+  m_EditorClassIdentifier: 
+  stringTables:
+  - {fileID: 11400000, guid: 6d7281b072efb49458cb131313e3eda4, type: 2}
+  - {fileID: 11400000, guid: 15c93a47d7727154596eb1afe9b86bc2, type: 2}
+  - {fileID: 11400000, guid: f8c0cf0cb2a69254cbca06d3a5da400c, type: 2}
+  localStringKeys:
+  - key: YES
+    id: 0
+    comment: 
+  - key: NO
+    id: 1
+    comment: 
+  - key: HELP
+    id: 2
+    comment: 
+  - key: MARKER_TITLE
+    id: 3
+    comment: Add marker popup title
+  - key: MARKER_TEXT
+    id: 4
+    comment: Add marker popup text
