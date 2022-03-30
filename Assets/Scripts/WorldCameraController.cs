@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,8 +7,7 @@ using UnityEngine.InputSystem;
 namespace Fab.Geo
 {
 	[RequireComponent(typeof(PlayerInput))]
-	[AddComponentMenu("FabGeo/World Camera Controller")]
-	public class WorldCameraController : MonoBehaviour, IWorldCameraController
+	public class WorldCameraController : MonoBehaviour
 	{
 		private readonly Vector3[] camViewRays = new Vector3[]
 		{
@@ -40,6 +40,7 @@ namespace Fab.Geo
 		[SerializeField]
 		private Vector2 zoomBounds;
 
+
 		[SerializeField]
 		private AnimationCurve zoomCurve;
 		[SerializeField]
@@ -53,7 +54,6 @@ namespace Fab.Geo
 
 
 		public event Action onAnimationFinished;
-		public event Action OnAnimationFinished;
 
 		private bool controlEnabled = true;
 
@@ -94,6 +94,7 @@ namespace Fab.Geo
 				CullWorld();
 		}
 
+
 		public Coordinate GetCoordinate()
 		{
 			return GeoUtils.PointToCoordinate(-transform.forward);
@@ -120,6 +121,55 @@ namespace Fab.Geo
 			Vector3 camLocalPos = cam.transform.localPosition;
 			cam.transform.localPosition = new Vector3(camLocalPos.x, camLocalPos.y, -Mathf.Lerp(zoomBounds.y, zoomBounds.x, zoomLevel));
 		}
+
+		Coroutine animationRoutine;
+
+		/// <summary>
+		/// Moves the camera from one coordinate to the next in a list of coordinates
+		/// </summary>
+		/// <param name="coords"></param>
+		/// <param name="speed"></param>
+		/// <param name="loop"></param>
+		public void Animate(IReadOnlyList<Coordinate> coords, float speed, bool loop)
+		{
+			if (animationRoutine != null)
+				StopCoroutine(animationRoutine);
+
+			animationRoutine = StartCoroutine(AnimateCoroutine(coords, speed, loop));
+		}
+
+		IEnumerator AnimateCoroutine(IReadOnlyList<Coordinate> coords, float speed, bool loop)
+		{
+			if (coords != null && coords.Count > 0)
+			{
+				int i = 0;
+				while (true)
+				{
+					Coordinate coord = coords[i];
+					Vector3 target = GeoUtils.LonLatToPoint(coord);
+					Vector3 current = GeoUtils.LonLatToPoint(GetCoordinate());
+
+					while (current != target)
+					{
+						current = Vector3.MoveTowards(current, target, Time.deltaTime * speed);
+						SetCoordinate(GeoUtils.PointToLonLat(current));
+						yield return null;
+					}
+					i++;
+
+					if (i == coords.Count)
+					{
+						if (loop)
+							i = 0;
+						else
+							break;
+					}
+				}
+
+				onAnimationFinished?.Invoke();
+			}
+		}
+
 
 		private void Pan(Vector2 delta)
 		{

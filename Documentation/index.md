@@ -1,6 +1,4 @@
-# This is the **World Mod** documentation.
-
-World Mod is a fork of [Fab.Geo](https://github.com/fabSchneider/fab.geo)
+# This is the **Fab.Geo** documentation.
 
 Check out the [article section](articles/intro.md) for info on how to use the app.
 

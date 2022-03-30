@@ -60,7 +60,7 @@ namespace Fab.Geo
 		}
 
 		/// <summary>
-		/// Calculates a point on a unit sphere from latitude and longitude (in radians)
+		/// Calculates a point on a unit sphere from latitude and longitude
 		/// </summary>
 		/// <param name="lat"></param>
 		/// <param name="lon"></param>
@@ -68,10 +68,12 @@ namespace Fab.Geo
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float3 LonLatToPoint(float lon, float lat)
 		{
-			float y = math.sin(lat);
-			float r = math.cos(lat);
-			float x = math.sin(lon) * r;
-			float z = -math.cos(lon) * r;
+			float latRad = math.radians(lat);
+			float latLon = math.radians(lon);
+			float y = math.sin(latRad);
+			float r = math.cos(latRad);
+			float x = math.sin(latLon) * r;
+			float z = -math.cos(latLon) * r;
 			return new float3(x, y, z);
 		}
 

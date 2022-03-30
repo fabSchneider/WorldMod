@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Mathematics;
 using Unity.Collections;
 
 namespace Fab.Geo

@@ -1,4 +1,4 @@
-using Fab.Lua.Core;
+using Fab.Geo.Lua.Core;
 
 namespace Fab.Geo.Lua.Interop
 {
