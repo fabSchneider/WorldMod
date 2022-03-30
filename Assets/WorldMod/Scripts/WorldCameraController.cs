@@ -8,7 +8,10 @@ namespace Fab.WorldMod
 	public class WorldCameraController : MonoBehaviour, IWorldCameraController
 	{
 		[SerializeField]
-		private float speed = 1f;
+		private float panSpeed = 1f;
+		[SerializeField]
+		private float orbitSpeed = 1f;
+
 		[SerializeField]
 		private float drag = 0.9f;
 
@@ -30,9 +33,9 @@ namespace Fab.WorldMod
 			spinEnergy *=  1f - drag * Time.unscaledDeltaTime;
 		}
 
-		public void SpinCamera(Vector2 axis)
+		public void SpinCamera(Vector3 axis)
 		{
-			spinRotation = Quaternion.Euler(axis.y * speed, axis.x * speed, 0f);
+			spinRotation = Quaternion.Euler(axis.y * panSpeed, axis.x * panSpeed, axis.z * orbitSpeed);
 			spinEnergy = 1f;
 		}
 

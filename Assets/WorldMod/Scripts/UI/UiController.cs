@@ -31,7 +31,7 @@ namespace Fab.WorldMod.UI
 
 			cameraController = FindObjectOfType<WorldCameraController>();
 			if (cameraController != null)
-				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector2>>(OnTrackpadAxis);
+				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector3>>(OnTrackpadAxis);
 
 			mainBarController = new MainbarController(document.rootVisualElement, LocalizationComponent.Localization);
 
@@ -76,7 +76,7 @@ namespace Fab.WorldMod.UI
 			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
 		}
 
-		public void OnTrackpadAxis(ChangeEvent<Vector2> evt)
+		public void OnTrackpadAxis(ChangeEvent<Vector3> evt)
 		{
 			cameraController.SpinCamera(evt.newValue);
 		}
