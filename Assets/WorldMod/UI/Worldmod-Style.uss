@@ -65,7 +65,7 @@
     height: 50%;
 }
 
-.datapoint-item {
+.dataset-item {
     min-width: 112px;
     background-color: rgb(53, 53, 53);
     height: 56px;
@@ -91,18 +91,18 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.datapoint-item:focus {
+.dataset-item:focus {
     border-left-color: rgb(255, 197, 0);
     border-right-color: rgb(255, 197, 0);
     border-top-color: rgb(255, 197, 0);
     border-bottom-color: rgb(255, 197, 0);
 }
 
-.datapoint-item:enabled:hover {
+.dataset-item:enabled:hover {
     background-color: rgb(79, 79, 79);
 }
 
-.datapoint-item__drag {
+.dataset-item__drag {
     background-color: rgba(255, 255, 255, 0.28);
     border-top-left-radius: 28px;
     border-bottom-left-radius: 28px;
@@ -112,7 +112,7 @@
     height: 56px;
 }
 
-.datapoint-item__label {
+.dataset-item__label {
     flex-grow: 1;
     margin-left: 32px;
     -unity-text-align: upper-center;

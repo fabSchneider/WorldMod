@@ -45,6 +45,17 @@ namespace Fab.WorldMod.Localization
 			UpdateText();
 		}
 
+		public void SetKey(string key)
+		{
+			isIdSet = localization.TryGetStringID(key, out id);
+
+			if (isIdSet)
+				UpdateText();
+			else
+				textElement.text = key;
+		}
+
+
 		protected void UpdateText()
 		{
 			if (isIdSet)

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Fab.Common;
-using UnityEngine;
 
 namespace Fab.WorldMod
 {
 	public class DatasetUpdatedSignal : ASignal<Dataset> { }
-
+	public class DatasetActivatedSignal : ASignal<Dataset> { }
 	public class Dataset
 	{
 		private DatasetStock owner;

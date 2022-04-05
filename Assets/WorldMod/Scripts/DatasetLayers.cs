@@ -31,13 +31,13 @@ namespace Fab.WorldMod
 		}
 		public void InsertLayer(int itemId, int index)
 		{
-			if (itemId < 0 || itemId >= stock.Datasets.Count)
+			if (itemId < 0 || itemId >= stock.Count)
 				throw new ArgumentOutOfRangeException(nameof(itemId));
 
 			if (index < 0 || index > layers.Count)
 				throw new ArgumentOutOfRangeException(nameof(index));
 
-			Dataset data = stock.Datasets[itemId];
+			Dataset data = stock[itemId];
 			// do not allow duplicates
 			// change existing items position instead
 			int existingIndex = layers.IndexOf(data);
@@ -64,10 +64,10 @@ namespace Fab.WorldMod
 
 		public bool RemoveFromLayers(int itemId)
 		{
-			if (itemId < 0 || itemId >= stock.Datasets.Count)
+			if (itemId < 0 || itemId >= stock.Count)
 				throw new ArgumentOutOfRangeException(nameof(itemId));
 
-			Dataset data = stock.Datasets[itemId];
+			Dataset data = stock[itemId];
 			if (layers.Remove(data))
 			{
 				layersChanged?.Invoke();

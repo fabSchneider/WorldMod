@@ -1,15 +1,25 @@
+using System.Collections;
 using System.Collections.Generic;
 using Fab.Common;
 
 namespace Fab.WorldMod
 {
-	public class DatasetStock 
+	public class DatasetStock : IEnumerable<Dataset>
 	{
 		private List<Dataset> datasets;
 
-		public IReadOnlyList<Dataset> Datasets => datasets;
-
 		public int Count => datasets.Count;
+
+		public Dataset this[int index] => datasets[index];
+		public IEnumerator<Dataset> GetEnumerator()
+		{
+			return datasets.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return datasets.GetEnumerator();
+		}
 
 		public DatasetStock()
 		{

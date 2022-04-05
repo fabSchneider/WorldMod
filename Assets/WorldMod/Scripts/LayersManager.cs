@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Fab.Common;
 using UnityEngine;
 
 namespace Fab.WorldMod
@@ -41,6 +40,7 @@ namespace Fab.WorldMod
 		{
 			if(datasetsComp)
 				datasetsComp.Layers.layersChanged -= OnLayersChanged;
+
 		}
 		private void OnLayersChanged()
 		{
@@ -79,7 +79,7 @@ namespace Fab.WorldMod
 								break;
 							default:
 								break;
-						}				
+						}
 					}
 				}
 			}
