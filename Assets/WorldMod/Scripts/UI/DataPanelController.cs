@@ -330,7 +330,7 @@ namespace Fab.WorldMod.UI
 				stockContainer.Add(item);
 			}
 
-			if (Layers.Datasets.Count == 0)
+			if (Layers.Count == 0)
 			{
 				layersContainerDropArea.Set(0);
 				layersContainer.Add(layersContainerDropArea);
@@ -340,11 +340,11 @@ namespace Fab.WorldMod.UI
 				DropArea insertArea = dragInserAreaPool.GetPooled();
 				insertArea.Set(0);
 				layersContainer.Add(insertArea);
-				for (int i = 0; i < Layers.Datasets.Count; i++)
+				for (int i = 0; i < Layers.Count; i++)
 				{
 					DataPointItem item = dragItemPool.GetPooled();
 					
-					item.Set(this, Stock.GetIndex(Layers.Datasets[i]));
+					item.Set(this, Stock.GetIndex(Layers[i]));
 					layersContainer.Add(item);
 					insertArea = dragInserAreaPool.GetPooled();
 					insertArea.Set(i + 1);

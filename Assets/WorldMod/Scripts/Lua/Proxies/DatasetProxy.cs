@@ -1,5 +1,7 @@
+using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
 using Fab.WorldMod;
+using UnityEngine;
 
 namespace WorldMod.Lua
 {
@@ -13,6 +15,18 @@ namespace WorldMod.Lua
 		{
 			get => Target.Name;
 			set => Target.Name = value;
+		}
+
+		[LuaHelpInfo("Sets the texture of this dataset")]
+		public ImageProxy texture
+		{
+			set => target.SetData("texture", value.Target);
+		}
+
+		[LuaHelpInfo("Sets the mode of this dataset")]
+		public string mode
+		{
+			set => target.SetData("mode", value);
 		}
 
 		public DatasetProxy(Dataset target)

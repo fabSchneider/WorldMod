@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Fab.Common;
+using UnityEngine;
 
 namespace Fab.WorldMod
 {
@@ -20,10 +22,32 @@ namespace Fab.WorldMod
 			}
 		}
 
+		private Dictionary<string, object> dataDict;
+
 		public Dataset(string name, DatasetStock owner)
 		{
 			this.name = name;
 			this.owner = owner;
+			dataDict = new Dictionary<string, object>();
+		}
+
+		public void SetData(string key, object data)
+		{
+			if (!dataDict.TryAdd(key, data))
+			{
+				dataDict[key] = data;
+			}
+		}
+
+		public bool TryGetData<T>(string key, out T data) where T : class
+		{
+			if(dataDict.TryGetValue(key, out object obj))
+			{
+				data = obj as T;
+				return data != null;
+			}
+			data = null;
+			return false;
 		}
 	}
 }

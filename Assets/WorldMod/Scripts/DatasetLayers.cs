@@ -1,16 +1,28 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Fab.WorldMod
 {
-	public class DatasetLayers
+	public class DatasetLayers : IEnumerable<Dataset>
 	{
 		private DatasetStock stock;
 
 		private List<Dataset> layers;
-		public IReadOnlyList<Dataset> Datasets => layers;
-
+		public Dataset this[int index] => layers[index];
 		public int Count => layers.Count;
+
+		public event Action layersChanged;
+
+		public IEnumerator<Dataset> GetEnumerator()
+		{
+			return layers.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return layers.GetEnumerator();
+		}
 
 		public DatasetLayers(DatasetStock stock)
 		{
@@ -38,6 +50,8 @@ namespace Fab.WorldMod
 				else
 					layers.RemoveAt(existingIndex);
 			}
+
+			layersChanged?.Invoke();
 		}
 
 		public void InsertLayer(Dataset dataset, int index)
@@ -54,7 +68,12 @@ namespace Fab.WorldMod
 				throw new ArgumentOutOfRangeException(nameof(itemId));
 
 			Dataset data = stock.Datasets[itemId];
-			return layers.Remove(data);
+			if (layers.Remove(data))
+			{
+				layersChanged?.Invoke();
+				return true;
+			}
+			return false;
 		}
 
 		public bool IsLayer(Dataset data)
