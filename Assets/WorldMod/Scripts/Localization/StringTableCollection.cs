@@ -98,7 +98,9 @@ namespace Fab.WorldMod.Localization
 				stringTablesByLocale[stringTable.Locale] = stringTable;
 			}
 
-			Dictionary<string, StringIdentifier> idsByKey = new Dictionary<string, StringIdentifier>(asset.LocalStringKeys.Count);
+			Dictionary<string, StringIdentifier> idsByKey = new Dictionary<string, StringIdentifier>(
+				asset.LocalStringKeys.Count,
+				StringComparer.InvariantCultureIgnoreCase);
 			foreach (var key in asset.LocalStringKeys)
 				idsByKey[key.Key] = (key.Id, key.Key);
 
