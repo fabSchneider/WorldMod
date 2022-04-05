@@ -1,6 +1,7 @@
 using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
 using Fab.WorldMod;
+using MoonSharp.Interpreter;
 using UnityEngine;
 
 namespace WorldMod.Lua
@@ -17,21 +18,32 @@ namespace WorldMod.Lua
 			set => Target.Name = value;
 		}
 
-		[LuaHelpInfo("Sets the texture of this dataset")]
-		public ImageProxy texture
-		{
-			set => target.SetData("texture", value.Target);
-		}
-
-		[LuaHelpInfo("Sets the mode of this dataset")]
-		public string mode
-		{
-			set => target.SetData("mode", value);
-		}
-
 		public DatasetProxy(Dataset target)
 		{
 			this.target = target;
+		}
+
+		public void set(Table table)
+		{
+			foreach (var pair in table.Pairs)
+			{
+				object obj = pair.Value.ToObject();
+				if (obj is LuaProxy proxy)
+					obj = proxy.TargetObject;
+
+				target.SetData(pair.Key.String, obj);
+			}
+		}
+
+		public object get(DynValue key)
+		{
+			if(target.TryGetData(key.String, out object data))
+			{
+				return data;
+			}else
+			{
+				return null;
+			}
 		}
 
 		public override string ToString()

@@ -7,6 +7,8 @@ namespace Fab.Lua.Core
 	public abstract class LuaProxy : LuaObject
 	{
 		public abstract bool IsNil();
+
+		public abstract object TargetObject { get; }
 	}
 
 	/// <summary>
@@ -16,6 +18,8 @@ namespace Fab.Lua.Core
 	public abstract class LuaProxy<T> : LuaProxy where T : class
 	{
 		protected T target;
+
+		public override object TargetObject => target;
 
 		[MoonSharpHidden]
 		public T Target => target;
