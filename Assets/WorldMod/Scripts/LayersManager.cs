@@ -34,6 +34,13 @@ namespace Fab.WorldMod
 			baseMapId = Shader.PropertyToID("_BaseMap");
 			bumpMapId = Shader.PropertyToID("_BumpMap");
 			overlayMapId = Shader.PropertyToID("_OverlayMap");
+			StartCoroutine(DelayedStart());
+		}
+
+		private IEnumerator DelayedStart()
+		{
+			yield return null;
+			UpdateLayers();
 		}
 
 		private void OnDestroy()
