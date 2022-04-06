@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fab.Common;
 
@@ -38,14 +39,17 @@ namespace Fab.WorldMod
 			}
 		}
 
-		public bool TryGetData<T>(string key, out T data) where T : class
+		public bool TryGetData<T>(string key, out T data)
 		{
 			if(dataDict.TryGetValue(key, out object obj))
 			{
-				data = obj as T;
-				return data != null;
+				if (obj is T objT)
+				{
+					data = objT;
+					return true;
+				}
 			}
-			data = null;
+			data = default(T);
 			return false;
 		}
 	}

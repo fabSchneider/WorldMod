@@ -27,9 +27,20 @@ namespace WorldMod.Lua
 		{
 			foreach (var pair in table.Pairs)
 			{
-				object obj = pair.Value.ToObject();
-				if (obj is LuaProxy proxy)
-					obj = proxy.TargetObject;
+				object obj;
+				if (pair.Value.Table != null)
+				{
+					// Hack does only support colors now
+					obj = pair.Value.ToObject<Color>();
+				}
+				else
+				{
+					obj = pair.Value.ToObject();
+					if (obj is LuaProxy proxy)
+						obj = proxy.TargetObject;
+				}
+
+
 
 				target.SetData(pair.Key.String, obj);
 			}
@@ -37,10 +48,11 @@ namespace WorldMod.Lua
 
 		public object get(DynValue key)
 		{
-			if(target.TryGetData(key.String, out object data))
+			if (target.TryGetData(key.String, out object data))
 			{
 				return data;
-			}else
+			}
+			else
 			{
 				return null;
 			}

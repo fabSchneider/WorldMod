@@ -1,5 +1,7 @@
+using System.Collections;
 using Fab.Common;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Fab.WorldMod
 {
@@ -18,7 +20,11 @@ namespace Fab.WorldMod
 		[SerializeField]
 		private Material worldLayerMaterial;
 
-		//public RenderTexture worldLayerTexture;
+		public RenderTexture worldOverlayTexture;
+
+		private RenderTexture worldOverlayBaseTexture;
+
+		public Material blitMaterial;
 
 		private int baseMapId;
 		private int bumpMapId;
@@ -34,6 +40,10 @@ namespace Fab.WorldMod
 			baseMapId = Shader.PropertyToID("_BaseMap");
 			bumpMapId = Shader.PropertyToID("_BumpMap");
 			overlayMapId = Shader.PropertyToID("_OverlayMap");
+
+			worldOverlayBaseTexture = new RenderTexture(worldOverlayTexture.descriptor);
+			worldOverlayBaseTexture.Create();
+
 			StartCoroutine(DelayedStart());
 		}
 
@@ -47,6 +57,8 @@ namespace Fab.WorldMod
 		{
 			if(datasetsComp)
 				datasetsComp.Layers.layersChanged -= OnLayersChanged;
+
+			worldOverlayBaseTexture.Release();
 
 		}
 		private void OnLayersChanged()
@@ -66,6 +78,7 @@ namespace Fab.WorldMod
 
 
 			worldMpb.Clear();
+			blitMaterial.SetTexture("_BaseTex", null);
 
 			foreach (var layer in datasetsComp.Layers)
 			{
@@ -82,7 +95,21 @@ namespace Fab.WorldMod
 								worldMpb.SetTexture(bumpMapId, tex);
 								break;
 							case "overlay":
-								worldMpb.SetTexture(overlayMapId, tex);
+
+								if (layer.TryGetData("opacity", out double opacity))
+									blitMaterial.SetFloat("_Opacity", (float)opacity);
+								else
+									blitMaterial.SetFloat("_Opacity", 1f);
+								if (layer.TryGetData("color", out Color color))
+									blitMaterial.SetColor("_Tint", color);
+								else
+									blitMaterial.SetColor("_Tint", Color.white);
+
+								Graphics.Blit(tex, worldOverlayTexture, blitMaterial, 0);
+								Graphics.Blit(worldOverlayTexture, worldOverlayBaseTexture);
+								// todo: do not use property block
+								worldMpb.SetTexture(overlayMapId, worldOverlayTexture);
+								blitMaterial.SetTexture("_BaseTex", worldOverlayBaseTexture);
 								break;
 							default:
 								break;
