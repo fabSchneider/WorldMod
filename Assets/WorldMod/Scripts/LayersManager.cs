@@ -1,30 +1,31 @@
 using System.Collections;
-using Fab.Common;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Fab.WorldMod
 {
-	[RequireComponent(typeof(DatasetsComponent))]
     public class LayersManager : MonoBehaviour
     {
+		private static readonly string layerProfilerSample = "World Layering";
+
+		[SerializeField]
 		private DatasetsComponent datasetsComp;
 
 		[SerializeField]
 		private Renderer worldRenderer;
 
-		private MaterialPropertyBlock worldMpb;
-
 		private Material worldBaseMaterial;
 
 		[SerializeField]
 		private Material worldLayerMaterial;
+		private Material worldLayerMaterialInst;
 
 		public RenderTexture worldOverlayTexture;
 
 		private RenderTexture worldOverlayBaseTexture;
 
 		public Material blitMaterial;
+		private Material blitMaterialInst;
 
 		private int baseMapId;
 		private int bumpMapId;
@@ -32,17 +33,19 @@ namespace Fab.WorldMod
 
 		void Start()
 		{
-			datasetsComp = GetComponent<DatasetsComponent>();
 			datasetsComp.Layers.layersChanged += OnLayersChanged;
-			worldMpb = new MaterialPropertyBlock();
 			worldBaseMaterial = worldRenderer.material;
 
 			baseMapId = Shader.PropertyToID("_BaseMap");
 			bumpMapId = Shader.PropertyToID("_BumpMap");
 			overlayMapId = Shader.PropertyToID("_OverlayMap");
 
+			worldLayerMaterialInst = new Material(worldLayerMaterial);
+
 			worldOverlayBaseTexture = new RenderTexture(worldOverlayTexture.descriptor);
 			worldOverlayBaseTexture.Create();
+
+			blitMaterialInst = new Material(blitMaterial);
 
 			StartCoroutine(DelayedStart());
 		}
@@ -72,13 +75,11 @@ namespace Fab.WorldMod
 			if(datasetsComp.Layers.Count == 0)
 			{
 				worldRenderer.sharedMaterial = worldBaseMaterial;
-				worldRenderer.SetPropertyBlock(null);
 				return;
 			}
 
-
-			worldMpb.Clear();
-			blitMaterial.SetTexture("_BaseTex", null);
+			worldLayerMaterialInst.CopyPropertiesFromMaterial(worldLayerMaterial);
+			blitMaterialInst.CopyPropertiesFromMaterial(blitMaterial);
 
 			foreach (var layer in datasetsComp.Layers)
 			{
@@ -89,27 +90,23 @@ namespace Fab.WorldMod
 						switch (mode)
 						{
 							case "base":
-								worldMpb.SetTexture(baseMapId, tex);
+								worldLayerMaterialInst.SetTexture(baseMapId, tex);
 								break;
 							case "normal":
-								worldMpb.SetTexture(bumpMapId, tex);
+								worldLayerMaterialInst.SetTexture(bumpMapId, tex);
 								break;
 							case "overlay":
 
 								if (layer.TryGetData("opacity", out double opacity))
-									blitMaterial.SetFloat("_Opacity", (float)opacity);
-								else
-									blitMaterial.SetFloat("_Opacity", 1f);
+									blitMaterialInst.SetFloat("_Opacity", (float)opacity);
 								if (layer.TryGetData("color", out Color color))
-									blitMaterial.SetColor("_Tint", color);
-								else
-									blitMaterial.SetColor("_Tint", Color.white);
+									blitMaterialInst.SetColor("_Tint", color);
 
-								Graphics.Blit(tex, worldOverlayTexture, blitMaterial, 0);
+								Graphics.Blit(tex, worldOverlayTexture, blitMaterialInst, 0);
 								Graphics.Blit(worldOverlayTexture, worldOverlayBaseTexture);
-								// todo: do not use property block
-								worldMpb.SetTexture(overlayMapId, worldOverlayTexture);
-								blitMaterial.SetTexture("_BaseTex", worldOverlayBaseTexture);
+								
+								worldLayerMaterialInst.SetTexture(overlayMapId, worldOverlayTexture);
+								blitMaterialInst.SetTexture("_BaseTex", worldOverlayBaseTexture);
 								break;
 							default:
 								break;
@@ -118,8 +115,7 @@ namespace Fab.WorldMod
 				}
 			}
 
-			worldRenderer.sharedMaterial = worldLayerMaterial;
-			worldRenderer.SetPropertyBlock(worldMpb);
+			worldRenderer.sharedMaterial = worldLayerMaterialInst;
 		}
     }
 }
