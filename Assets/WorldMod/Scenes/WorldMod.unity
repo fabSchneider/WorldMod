@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizationAsset: {fileID: 11400000, guid: 4800c3881af71fa429661f83459854c7, type: 2}
-  defaultLocale: {fileID: 11400000, guid: 15c93a47d7727154596eb1afe9b86bc2, type: 2}
+  defaultLocale: {fileID: 11400000, guid: 6d7281b072efb49458cb131313e3eda4, type: 2}
 --- !u!4 &1156290546
 Transform:
   m_ObjectHideFlags: 0
