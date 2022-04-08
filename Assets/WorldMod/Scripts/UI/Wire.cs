@@ -57,7 +57,7 @@ namespace Fab.WorldMod.UI
 		private float thickness = 1f;
 		private int resolution = 16;
 		private bool useAdaptiveResolution;
-		private Color tint;
+		private Color tint = Color.white;
 		private Gradient gradient;
 
 		private Texture texture;

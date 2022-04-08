@@ -126,6 +126,15 @@
     font-size: 20px;
 }
 
+.dataset-controls {
+    background-color: rgba(255, 255, 255, 0.58);
+    position: absolute;
+}
+
+.dataset-controls__wire {
+    position: absolute;
+}
+
 .container-drop {
     position: absolute;
     left: 0;

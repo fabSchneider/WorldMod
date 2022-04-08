@@ -21,7 +21,16 @@ namespace Fab.WorldMod.UI
 
 		private void OnDatasetActivated(Dataset dataset)
 		{
-			infoText.SetKey(dataset.Name + "_INFO");
+			if(dataset == null)
+			{
+				infoText.target.style.display = DisplayStyle.None;
+			}
+			else
+			{
+				infoText.target.style.display = DisplayStyle.Flex;
+				infoText.SetKey(dataset.Name + "_INFO");
+			}
+		
 		}
 	}
 }
