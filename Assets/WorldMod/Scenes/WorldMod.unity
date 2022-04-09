@@ -965,12 +965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb694ed9309b00f41afe44c161673952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  document: {fileID: 756841711}
-  start: {x: 0, y: 0}
-  end: {x: 50, y: 50}
-  thickness: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
-  resolution: 16
 --- !u!4 &1054338305
 Transform:
   m_ObjectHideFlags: 0
