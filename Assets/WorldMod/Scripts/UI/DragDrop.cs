@@ -60,8 +60,13 @@ namespace Fab.WorldMod.UI
 			dragLayer.RegisterCallback<PointerMoveEvent>(OnMove);
             dragLayer.RegisterCallback<PointerUpEvent>(OnUp);
 			dragLayer.RegisterCallback<KeyDownEvent>(OnCancel);
-            dragLayer.CaptureMouse();
-            dragLayer.Focus();
+
+			// Capture mouse, primary touch and pen pointer
+			// This is necessary because otherwise the touch up event won't fire
+			dragLayer.CapturePointer(PointerId.mousePointerId);
+			dragLayer.CapturePointer(PointerId.touchPointerIdBase);
+			dragLayer.CapturePointer(PointerId.penPointerIdBase);
+			dragLayer.Focus();
         }
 
 
@@ -74,7 +79,10 @@ namespace Fab.WorldMod.UI
             dragLayer.UnregisterCallback<PointerMoveEvent>(OnMove);
             dragLayer.UnregisterCallback<KeyDownEvent>(OnCancel);
 
-            dragLayer.ReleaseMouse();
+			// Release all pointers
+			dragLayer.ReleasePointer(PointerId.mousePointerId);
+			dragLayer.ReleasePointer(PointerId.touchPointerIdBase);
+			dragLayer.ReleasePointer(PointerId.penPointerIdBase);
             dragLayer.Blur();
 
             draggedElement = null;
