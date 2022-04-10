@@ -7,21 +7,21 @@ using UnityEngine.UIElements;
 namespace Fab.WorldMod.UI
 {
 
-	public class DataPointItem : VisualElement
+	public class DataSetItem : VisualElement
 	{
-		private static readonly string classname = "datapoint-item";
+		private static readonly string classname = "dataset-item";
 		private static readonly string activeClassname = classname + "--active";
 		private static readonly string labelClassname = classname + "__label";
 		private static readonly string dragPreviewClassname = classname + "__drag";
 		private static readonly string dragPreviewActiveClassname = dragPreviewClassname + "--active";
 
-		public new class UxmlFactory : UxmlFactory<DataPointItem, UxmlTraits> { }
+		public new class UxmlFactory : UxmlFactory<DataSetItem, UxmlTraits> { }
 
 		public class DragPreview : VisualElement
 		{
-			public DataPointItem DragItem { get; }
+			public DataSetItem DragItem { get; }
 			public Vector2 dragOffset;
-			public DragPreview(DataPointItem item)
+			public DragPreview(DataSetItem item)
 			{
 				DragItem = item;
 
@@ -75,7 +75,7 @@ namespace Fab.WorldMod.UI
 		private Label label;
 		private Localizable localizable;
 
-		public DataPointItem()
+		public DataSetItem()
 		{
 			AddToClassList(classname);
 			focusable = true;
@@ -85,13 +85,19 @@ namespace Fab.WorldMod.UI
 			Add(label);
 
 			RegisterCallback<PointerDownEvent>(OnPointerDown);
+			RegisterCallback<FocusInEvent>(OnFocus);
 
 			dragPreview = new DragPreview(this);
 		}
 
-		public DataPointItem(ILocalization localization) :this()
+		public DataSetItem(ILocalization localization) :this()
 		{
 			localizable = new Localizable(localization);
+		}
+
+		private void OnFocus(FocusInEvent evt)
+		{
+			Signals.Get<DatasetActivatedSignal>().Dispatch(Controller.Stock[Id]);
 		}
 
 		private void OnPointerDown(PointerDownEvent evt)
@@ -137,11 +143,11 @@ namespace Fab.WorldMod.UI
 		{
 			Controller = controller;
 			Id = index;
-			label.text = controller.Stock.Datasets[index].Name;
+			label.text = controller.Stock[index].Name;
 			label.AddManipulator(localizable);
 		}
 
-		public static void Reset(DataPointItem item)
+		public static void Reset(DataSetItem item)
 		{
 			item.Controller = null;
 			item.SetEnabled(true);
@@ -244,7 +250,7 @@ namespace Fab.WorldMod.UI
 		public VisualElement StockContainer => stockContainer;
 		public VisualElement LayersContainer => layersContainer;
 
-		private ObjectPool<DataPointItem> dragItemPool;
+		private ObjectPool<DataSetItem> dragItemPool;
 		private ObjectPool<DropArea> dragInserAreaPool;
 
 		public DragDrop DragDrop { get; private set; }
@@ -275,7 +281,7 @@ namespace Fab.WorldMod.UI
 			layersContainerDropArea = new DropArea(DragDrop, HandleLayersDrop).WithClass(containerDropClassname);
 			layersContainerDropArea.Set(0);
 
-			dragItemPool = new ObjectPool<DataPointItem>(8, true, () => new DataPointItem(LocalizationComponent.Localization), DataPointItem.Reset);
+			dragItemPool = new ObjectPool<DataSetItem>(8, true, () => new DataSetItem(LocalizationComponent.Localization), DataSetItem.Reset);
 			dragInserAreaPool = new ObjectPool<DropArea>(8, true, CreateLayersDropArea, DropArea.Reset);
 
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
@@ -285,7 +291,7 @@ namespace Fab.WorldMod.UI
 
 		private bool HandleStockDrop(VisualElement item, DropArea area)
 		{
-			if (item is DataPointItem.DragPreview dragPreview)
+			if (item is DataSetItem.DragPreview dragPreview)
 				return Layers.RemoveFromLayers(dragPreview.DragItem.Id);
 
 			return false;
@@ -304,7 +310,7 @@ namespace Fab.WorldMod.UI
 
 		private bool HandleLayersDrop(VisualElement item, DropArea area)
 		{
-			if (item is DataPointItem.DragPreview dragPreview)
+			if (item is DataSetItem.DragPreview dragPreview)
 			{
 				Layers.InsertLayer(dragPreview.DragItem.Id, area.Index);
 				return true;
@@ -322,15 +328,15 @@ namespace Fab.WorldMod.UI
 		{
 			ClearContainers();
 
-			for (int i = 0; i < Stock.Datasets.Count; i++)
+			for (int i = 0; i < Stock.Count; i++)
 			{
-				DataPointItem item = dragItemPool.GetPooled();
+				DataSetItem item = dragItemPool.GetPooled();
 				item.Set(this, i);
-				item.SetEnabled(!Layers.IsLayer(Stock.Datasets[i]));
+				item.SetEnabled(!Layers.IsLayer(Stock[i]));
 				stockContainer.Add(item);
 			}
 
-			if (Layers.Datasets.Count == 0)
+			if (Layers.Count == 0)
 			{
 				layersContainerDropArea.Set(0);
 				layersContainer.Add(layersContainerDropArea);
@@ -340,11 +346,11 @@ namespace Fab.WorldMod.UI
 				DropArea insertArea = dragInserAreaPool.GetPooled();
 				insertArea.Set(0);
 				layersContainer.Add(insertArea);
-				for (int i = 0; i < Layers.Datasets.Count; i++)
+				for (int i = 0; i < Layers.Count; i++)
 				{
-					DataPointItem item = dragItemPool.GetPooled();
+					DataSetItem item = dragItemPool.GetPooled();
 					
-					item.Set(this, Stock.GetIndex(Layers.Datasets[i]));
+					item.Set(this, Stock.GetIndex(Layers[i]));
 					layersContainer.Add(item);
 					insertArea = dragInserAreaPool.GetPooled();
 					insertArea.Set(i + 1);
@@ -355,11 +361,11 @@ namespace Fab.WorldMod.UI
 
 		private void ClearContainers()
 		{
-			stockContainer.Query<DataPointItem>().ForEach(item => dragItemPool.ReturnToPool(item));
+			stockContainer.Query<DataSetItem>().ForEach(item => dragItemPool.ReturnToPool(item));
 
 			layersContainerDropArea.RemoveFromHierarchy();
 			DropArea.Reset(layersContainerDropArea);
-			layersContainer.Query<DataPointItem>().ForEach(item => dragItemPool.ReturnToPool(item));
+			layersContainer.Query<DataSetItem>().ForEach(item => dragItemPool.ReturnToPool(item));
 			layersContainer.Query<DropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
 		}
 	}

@@ -30,13 +30,13 @@ namespace WorldMod.Lua
 		[LuaHelpInfo("Returns a collection of all datasets")]
 		public DatasetProxy[] all()
 		{
-			return stock.Datasets.Select(ds => new DatasetProxy(ds)).ToArray();
+			return stock.Select(ds => new DatasetProxy(ds)).ToArray();
 		}
 
 		[LuaHelpInfo("Gets the dataset with the specified name")]
 		public DatasetProxy get(string name)
 		{
-			Dataset dataset = stock.Datasets.FirstOrDefault(ds => ds.Name == name);
+			Dataset dataset = stock.FirstOrDefault(ds => ds.Name == name);
 			return new DatasetProxy(dataset);
 		}
 	}

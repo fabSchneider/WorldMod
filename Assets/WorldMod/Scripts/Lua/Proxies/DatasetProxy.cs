@@ -1,5 +1,8 @@
+using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
 using Fab.WorldMod;
+using MoonSharp.Interpreter;
+using UnityEngine;
 
 namespace WorldMod.Lua
 {
@@ -18,6 +21,41 @@ namespace WorldMod.Lua
 		public DatasetProxy(Dataset target)
 		{
 			this.target = target;
+		}
+
+		public void set(Table table)
+		{
+			foreach (var pair in table.Pairs)
+			{
+				object obj;
+				if (pair.Value.Table != null)
+				{
+					// Hack does only support colors now
+					obj = pair.Value.ToObject<Color>();
+				}
+				else
+				{
+					obj = pair.Value.ToObject();
+					if (obj is LuaProxy proxy)
+						obj = proxy.TargetObject;
+				}
+
+
+
+				target.SetData(pair.Key.String, obj);
+			}
+		}
+
+		public object get(DynValue key)
+		{
+			if (target.TryGetData(key.String, out object data))
+			{
+				return data;
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		public override string ToString()

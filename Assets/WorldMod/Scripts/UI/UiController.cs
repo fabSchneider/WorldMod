@@ -17,8 +17,8 @@ namespace Fab.WorldMod.UI
 
 		private MainbarController mainBarController;
 		private DataPanelController dataPanelController;
+		private InfoPanelController infoPanelController;
 
-		private VisualElement mainBar;
 		private VisualElement infoPanel;
 
 		private bool dataPanelDirty;
@@ -35,8 +35,7 @@ namespace Fab.WorldMod.UI
 
 			mainBarController = new MainbarController(document.rootVisualElement, LocalizationComponent.Localization);
 
-			infoPanel = document.rootVisualElement.Q(name: "info-panel");
-			infoPanel.Add(new Label("INFO_TEXT").WithLocalizable());
+			infoPanelController = new InfoPanelController(document.rootVisualElement);
 
 			if (datasets)
 				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Layers);

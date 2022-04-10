@@ -9,6 +9,7 @@ namespace WorldMod.Lua
 	public class LayersModule : LuaObject, ILuaObjectInitialize
 	{
 		private DatasetLayers layers;
+		private LayersManager layersManager;
 
 		public void Initialize()
 		{
@@ -16,6 +17,8 @@ namespace WorldMod.Lua
 
 			if (comp == null)
 				throw new LuaObjectInitializationException("Could not find dataset component");
+
+			layersManager = UnityEngine.Object.FindObjectOfType<LayersManager>();
 
 			layers = comp.Layers;
 		}
@@ -25,6 +28,12 @@ namespace WorldMod.Lua
 		{
 			layers.InsertLayer(dataset.Target, layers.Count);
 			Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset.Target);
+		}
+
+		public void update()
+		{
+			if (layersManager)
+				layersManager.UpdateLayers();
 		}
 	}
 }
