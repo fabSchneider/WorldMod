@@ -1,16 +1,28 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Fab.WorldMod
 {
-	public class DatasetLayers
+	public class DatasetLayers : IEnumerable<Dataset>
 	{
 		private DatasetStock stock;
 
 		private List<Dataset> layers;
-		public IReadOnlyList<Dataset> Datasets => layers;
-
+		public Dataset this[int index] => layers[index];
 		public int Count => layers.Count;
+
+		public event Action layersChanged;
+
+		public IEnumerator<Dataset> GetEnumerator()
+		{
+			return layers.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return layers.GetEnumerator();
+		}
 
 		public DatasetLayers(DatasetStock stock)
 		{
@@ -19,13 +31,13 @@ namespace Fab.WorldMod
 		}
 		public void InsertLayer(int itemId, int index)
 		{
-			if (itemId < 0 || itemId >= stock.Datasets.Count)
+			if (itemId < 0 || itemId >= stock.Count)
 				throw new ArgumentOutOfRangeException(nameof(itemId));
 
 			if (index < 0 || index > layers.Count)
 				throw new ArgumentOutOfRangeException(nameof(index));
 
-			Dataset data = stock.Datasets[itemId];
+			Dataset data = stock[itemId];
 			// do not allow duplicates
 			// change existing items position instead
 			int existingIndex = layers.IndexOf(data);
@@ -38,6 +50,8 @@ namespace Fab.WorldMod
 				else
 					layers.RemoveAt(existingIndex);
 			}
+
+			layersChanged?.Invoke();
 		}
 
 		public void InsertLayer(Dataset dataset, int index)
@@ -50,11 +64,16 @@ namespace Fab.WorldMod
 
 		public bool RemoveFromLayers(int itemId)
 		{
-			if (itemId < 0 || itemId >= stock.Datasets.Count)
+			if (itemId < 0 || itemId >= stock.Count)
 				throw new ArgumentOutOfRangeException(nameof(itemId));
 
-			Dataset data = stock.Datasets[itemId];
-			return layers.Remove(data);
+			Dataset data = stock[itemId];
+			if (layers.Remove(data))
+			{
+				layersChanged?.Invoke();
+				return true;
+			}
+			return false;
 		}
 
 		public bool IsLayer(Dataset data)

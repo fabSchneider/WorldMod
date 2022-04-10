@@ -28,12 +28,6 @@ namespace Fab.WorldMod.Localization
 				return HashCode.Combine(id, key);
 			}
 
-			public void Deconstruct(out int id, out string key)
-			{
-				id = this.id;
-				key = this.key;
-			}
-
 			public static implicit operator (int id, string key)(StringIdentifier value)
 			{
 				return (value.id, value.key);
@@ -49,7 +43,7 @@ namespace Fab.WorldMod.Localization
 		private Dictionary<Locale, StringTable> stringTablesByLocale;
 		public IEnumerable<Locale> Locales => stringTablesByLocale.Keys;
 
-		private Dictionary<string, StringIdentifier> identifiersByKey = new Dictionary<string, StringIdentifier>();
+		private Dictionary<string, StringIdentifier> identifiersByKey = new Dictionary<string, StringIdentifier>(StringComparer.InvariantCultureIgnoreCase);
 		public StringTable this[Locale locale] => stringTablesByLocale[locale];
 
 		public bool HasLocale(Locale locale)
@@ -104,7 +98,9 @@ namespace Fab.WorldMod.Localization
 				stringTablesByLocale[stringTable.Locale] = stringTable;
 			}
 
-			Dictionary<string, StringIdentifier> idsByKey = new Dictionary<string, StringIdentifier>(asset.LocalStringKeys.Count);
+			Dictionary<string, StringIdentifier> idsByKey = new Dictionary<string, StringIdentifier>(
+				asset.LocalStringKeys.Count,
+				StringComparer.InvariantCultureIgnoreCase);
 			foreach (var key in asset.LocalStringKeys)
 				idsByKey[key.Key] = (key.Id, key.Key);
 
