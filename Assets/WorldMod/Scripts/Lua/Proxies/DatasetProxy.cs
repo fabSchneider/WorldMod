@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
 using Fab.WorldMod;
@@ -28,19 +30,34 @@ namespace WorldMod.Lua
 			foreach (var pair in table.Pairs)
 			{
 				object obj;
-				if (pair.Value.Table != null)
+				Table valTable = pair.Value.Table;
+				if (valTable != null)
 				{
-					// Hack does only support colors now
-					obj = pair.Value.ToObject<Color>();
+					// TODO: this is really hacky
+					Script script = table.OwnerScript;
+					var colorTbl = script.Globals.RawGet("Color");
+
+					if (colorTbl != null &&
+						valTable.MetaTable != null &&
+						valTable.MetaTable.MetaTable != null &&
+						colorTbl.Table.MetaTable.ReferenceID == valTable.MetaTable.MetaTable.ReferenceID)
+					{
+						obj = pair.Value.ToObject<Color>();
+					}
+					else
+					{
+						obj = valTable.Values.AsObjects().ToArray();
+					}
+					
 				}
 				else
 				{
 					obj = pair.Value.ToObject();
-					if (obj is LuaProxy proxy)
+					if(obj is double)
+						obj = Convert.ToSingle(obj);
+					else if (obj is LuaProxy proxy)
 						obj = proxy.TargetObject;
 				}
-
-
 
 				target.SetData(pair.Key.String, obj);
 			}

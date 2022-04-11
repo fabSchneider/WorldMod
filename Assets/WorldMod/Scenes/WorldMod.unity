@@ -319,9 +319,6 @@ GameObject:
   m_Component:
   - component: {fileID: 222689925}
   - component: {fileID: 222689924}
-  - component: {fileID: 222689926}
-  - component: {fileID: 222689927}
-  - component: {fileID: 222689928}
   m_Layer: 0
   m_Name: Lua
   m_TagString: Untagged
@@ -356,48 +353,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &222689926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222689923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a10114aa6afd24f8da8c0a4873d91c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHistoryEntries: 24
-  maxPrintOutputLength: 1024
---- !u!114 &222689927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222689923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 255ffb47eba07e546ab11a96e77ee4c6, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: c180523adb6a5f04d85f77e126cb7097, type: 3}
-  m_SortingOrder: 2
---- !u!114 &222689928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222689923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed04db982c4c1c46a05cf46c2301a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &223244148
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +692,7 @@ GameObject:
   - component: {fileID: 756841712}
   - component: {fileID: 756841711}
   - component: {fileID: 756841713}
+  - component: {fileID: 756841714}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -787,6 +743,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc71d09cee9514d42ac02c15a94672c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &756841714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756841710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429faa420de29b14797886a3a65e1a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  document: {fileID: 756841711}
+  positionOffset: {x: 20, y: 20}
 --- !u!1 &802879660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1346,14 @@ MonoBehaviour:
   worldRenderer: {fileID: 1203454555}
   worldLayerMaterial: {fileID: 2100000, guid: 3019541617d06214690da9cf53455550, type: 2}
   worldOverlayTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
-  blitMaterial: {fileID: 2100000, guid: 5028395ae87429a42b27e6e29c16a01a, type: 2}
+  layerBlendMaterial: {fileID: 2100000, guid: 5028395ae87429a42b27e6e29c16a01a, type: 2}
+  layerProcessors:
+  - processMaterial: {fileID: 2100000, guid: f2018907e244d9146a786c3ff6bd54e3, type: 2}
+    properties:
+    - name: threshold
+      shaderName: _Threshold
+    - name: invert
+      shaderName: _Invert
 --- !u!4 &1677137009
 Transform:
   m_ObjectHideFlags: 0

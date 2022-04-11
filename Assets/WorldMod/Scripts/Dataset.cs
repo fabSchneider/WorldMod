@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Fab.Common;
 
@@ -29,7 +30,7 @@ namespace Fab.WorldMod
 		{
 			this.name = name;
 			this.owner = owner;
-			dataDict = new Dictionary<string, object>();
+			dataDict = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
 		}
 
 		public void SetData(string key, object data)

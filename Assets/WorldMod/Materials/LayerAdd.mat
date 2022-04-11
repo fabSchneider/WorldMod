@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OverlayBlit
+  m_Name: LayerAdd
   m_Shader: {fileID: -6465566751694194690, guid: 33a60783c27fd8b4d8450876ca3e6dfc, type: 3}
   m_ShaderKeywords: _ENUM_A
   m_LightmapFlags: 4

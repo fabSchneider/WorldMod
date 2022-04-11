@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using Fab.Common;
 using UnityEngine;
@@ -8,8 +11,9 @@ namespace Fab.WorldMod.UI
 	public class DatasetControls : VisualElement
 	{
 		private static readonly string classname = "dataset-controls";
+		private static readonly string visibleClassname = classname + "--visible";
 		private static readonly string contentClassname = classname + "__content";
-		private static readonly string wireClassname = classname + "__wire";
+		private static readonly string wireContainerClassname = classname + "__wire-container";
 
 		private DatasetStock stock;
 		private DatasetElement currentItem;
@@ -17,15 +21,15 @@ namespace Fab.WorldMod.UI
 		private ObjectPool<Wire> wirePool;
 
 		private VisualElement content;
-
+		private VisualElement wireContainer;
 		public override VisualElement contentContainer => content;
 
-		private ObjectPool<Label> controlsPool;
+		//private ObjectPool<Label> controlsPool;
 		public float XOffset { get; set; } = 300;
 
 		private Texture wireTexture;
 
-		public Color WireColor { get; set; } = new Color(1f, 1f, 1f, 0.5f);
+		public Color WireColor { get; set; } = new Color(0.5f, 0.5f, 0.5f);
 		public DatasetControls(DatasetStock stock)
 		{
 			this.stock = stock;
@@ -34,17 +38,23 @@ namespace Fab.WorldMod.UI
 
 
 			AddToClassList(classname);
+			pickingMode = PickingMode.Ignore;
+
+			wireContainer = new VisualElement().WithClass(wireContainerClassname);
+			wireContainer.pickingMode = PickingMode.Ignore;
+			hierarchy.Add(wireContainer);
 			content = new VisualElement();
 			content.AddToClassList(contentClassname);
 			hierarchy.Add(content);
 
-			controlsPool = new ObjectPool<Label>(8, true, () => new Label(), label => label.text = null);
+			//controlsPool = new ObjectPool<Label>(8, true, () => new Label(), label => label.text = null);
 
 		}
 
 		public void SetDatasetItem(DatasetElement item)
 		{
-			this.Query<Wire>().ForEach(wire => wirePool.ReturnToPool(wire));
+			wireContainer.Query<Wire>().ForEach(wire => wirePool.ReturnToPool(wire));
+			RemoveFromClassList(visibleClassname);
 
 			if (item == null)
 			{
@@ -54,26 +64,50 @@ namespace Fab.WorldMod.UI
 			else
 			{
 				currentItem = item;
-
-				content.Query<Label>().ForEach(control =>
-				{
-					control.RemoveFromHierarchy();
-					controlsPool.ReturnToPool(control);
-				});
+				content.Clear();
+				//content.Query<>().ForEach(control =>
+				//{
+				//	control.RemoveFromHierarchy();
+				//	//controlsPool.ReturnToPool(control);
+				//});
 
 				Dataset dataset = stock[item.Id];
-				foreach (string key in dataset.DataKeys)
-				{
-					Label control = controlsPool.GetPooled();
-					control.text = key;
-					content.Add(control);
-				}
+				AddControls(dataset);
 
-				style.opacity = 0f;
 				currentItem.parent.Add(this);
 				BuildWiresAsync().Forget();
-				//RegisterCallback<GeometryChangedEvent>(OnGeometryChangedAfterAdd);
 
+			}
+		}
+
+		private static readonly string controlsKey = "controls";
+		private void AddControls(Dataset dataset)
+		{
+			if (dataset.TryGetData(controlsKey, out IEnumerable controls))
+			{
+				foreach (string controlKey in controls.OfType<string>())
+				{
+					if(dataset.TryGetData(controlKey, out object controlVal))
+					{
+						if(controlVal is float number)
+						{
+							Slider slider = new Slider(controlKey, 0f, 1f);
+							slider.value = number;
+							slider.RegisterValueChangedCallback(evt =>
+							{
+								dataset.SetData(controlKey, evt.newValue);
+								Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
+							});
+							content.Add(slider);
+						}
+						else
+						{
+							Label control = new Label();
+							control.text = $"{controlKey}: {controlVal}";
+							content.Add(control);
+						}
+					}
+				}
 			}
 		}
 
@@ -82,26 +116,29 @@ namespace Fab.WorldMod.UI
 			await UniTask.DelayFrame(1);
 			Debug.Log(worldBound.height);
 
-			style.opacity = StyleKeyword.Null;
 			Vector2 anchor = GetRightAnchor(currentItem.localBound);
-			transform.position =  new Vector2(XOffset, anchor.y  - localBound.height / 2f);
+			transform.position = new Vector2(anchor.x, anchor.y - localBound.height / 2f);
 
 			SetWires();
+
+			AddToClassList(visibleClassname);
 		}
 
 
 		private void SetWires()
 		{
 			itemAnchor = GetRightAnchor(currentItem.worldBound);
-			itemAnchor = this.WorldToLocal(itemAnchor);
+			itemAnchor = wireContainer.WorldToLocal(itemAnchor);
 
 			foreach (var child in content.Children())
 			{
-				Vector2 targetAnchor = GetLeftAnchor(child.localBound);
+				Vector2 targetAnchor = new Vector2(wireContainer.worldBound.max.x, child.worldBound.min.y + child.worldBound.height / 2f);
+
+				targetAnchor = wireContainer.WorldToLocal(targetAnchor);
 
 				Wire wire = wirePool.GetPooled();
 				wire.SetEndpoints(itemAnchor, targetAnchor);
-				hierarchy.Add(wire);
+				wireContainer.Add(wire);
 			}
 
 		}
@@ -119,7 +156,6 @@ namespace Fab.WorldMod.UI
 		private Wire CreateWire()
 		{
 			Wire wire = new Wire();
-			wire.AddToClassList(wireClassname);
 			wire.Texture = wireTexture;
 			wire.Tint = WireColor;
 			wire.UseAdaptiveResolution = true;

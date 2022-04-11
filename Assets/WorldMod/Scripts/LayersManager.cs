@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Fab.Common;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -23,13 +26,79 @@ namespace Fab.WorldMod
 		public RenderTexture worldOverlayTexture;
 
 		private RenderTexture worldOverlayBaseTexture;
+		private RenderTexture worldOverlayProcessorTexture;
 
-		public Material blitMaterial;
-		private Material blitMaterialInst;
+		[SerializeField]
+		private Material layerBlendMaterial;
+		private Material layerBlendMaterialInst;
+
+		[Serializable]
+		public class LayerProcessor
+		{
+			[Serializable]
+			public class Property
+			{
+				[SerializeField]
+				private string name;
+				[SerializeField]
+				private string shaderName;
+
+				public string Name { get => name; }
+				public string ShaderName { get => shaderName; }
+
+				public Property(string name, string shaderName)
+				{
+					this.name = name;
+					this.shaderName = shaderName;
+				}
+			}
+
+			[SerializeField]
+			private Material processMaterial;
+
+			private Material processMaterialInst;
+			[SerializeField]
+			private Property[] properties;
+
+			public Material ProcessMaterial
+			{
+				get
+				{ 
+					if(processMaterialInst == null)
+						processMaterialInst = new Material(processMaterial);
+					return processMaterialInst;
+				}
+			}
+
+			public IEnumerable<Property> Properties => properties;
+
+			public LayerProcessor(Material processMaterial, Property[] processParams)
+			{
+				this.processMaterial = processMaterial;
+				properties = processParams;
+			}
+
+			public void ResetDefaults()
+			{
+				if(processMaterialInst == null)
+				{
+					processMaterialInst = new Material(processMaterial);
+				}
+				else
+				{
+					processMaterialInst.CopyPropertiesFromMaterial(processMaterial);
+				}
+			}
+		}
+
+		[SerializeField]
+		private List<LayerProcessor> layerProcessors;	
 
 		private int baseMapId;
 		private int bumpMapId;
 		private int overlayMapId;
+
+		private bool layerUpdateFlag = false;
 
 		void Start()
 		{
@@ -43,31 +112,48 @@ namespace Fab.WorldMod
 			worldLayerMaterialInst = new Material(worldLayerMaterial);
 
 			worldOverlayBaseTexture = new RenderTexture(worldOverlayTexture.descriptor);
+			worldOverlayProcessorTexture = new RenderTexture(worldOverlayTexture.descriptor);
 			worldOverlayBaseTexture.Create();
 
-			blitMaterialInst = new Material(blitMaterial);
+			layerBlendMaterialInst = new Material(layerBlendMaterial);
 
-			StartCoroutine(DelayedStart());
+			Signals.Get<DatasetUpdatedSignal>().AddListener(OnDatasetUpdated);
+
+			layerUpdateFlag = true;
+
 		}
-
-		private IEnumerator DelayedStart()
-		{
-			yield return null;
-			UpdateLayers();
-		}
-
 		private void OnDestroy()
 		{
 			if(datasetsComp)
 				datasetsComp.Layers.layersChanged -= OnLayersChanged;
 
+			Signals.Get<DatasetUpdatedSignal>().RemoveListener(OnDatasetUpdated);
+
 			worldOverlayBaseTexture.Release();
 
 		}
+
+		private void Update()
+		{
+			if (layerUpdateFlag)
+			{
+				UpdateLayers();
+				layerUpdateFlag = false;
+			}
+
+		}
+
+		private void OnDatasetUpdated(Dataset dataset)
+		{
+			if (datasetsComp.Layers.IsLayer(dataset))
+			{
+				layerUpdateFlag = true;
+			}
+		}
+
 		private void OnLayersChanged()
 		{
-			Debug.Log("Updating layers");
-			UpdateLayers();
+			layerUpdateFlag = true;
 		}
 
 		public void UpdateLayers()
@@ -78,8 +164,12 @@ namespace Fab.WorldMod
 				return;
 			}
 
+
 			worldLayerMaterialInst.CopyPropertiesFromMaterial(worldLayerMaterial);
-			blitMaterialInst.CopyPropertiesFromMaterial(blitMaterial);
+			layerBlendMaterialInst.CopyPropertiesFromMaterial(layerBlendMaterial);
+
+			foreach (var processor in layerProcessors)
+				processor.ResetDefaults();
 
 			foreach (var layer in datasetsComp.Layers)
 			{
@@ -95,18 +185,44 @@ namespace Fab.WorldMod
 							case "normal":
 								worldLayerMaterialInst.SetTexture(bumpMapId, tex);
 								break;
-							case "overlay":
-
-								if (layer.TryGetData("opacity", out double opacity))
-									blitMaterialInst.SetFloat("_Opacity", (float)opacity);
+							case "add":
+								if (layer.TryGetData("opacity", out float opacity))
+									layerBlendMaterialInst.SetFloat("_Opacity", opacity);
 								if (layer.TryGetData("color", out Color color))
-									blitMaterialInst.SetColor("_Tint", color);
+									layerBlendMaterialInst.SetColor("_Tint", color);
 
-								Graphics.Blit(tex, worldOverlayTexture, blitMaterialInst, 0);
+
+								bool processed = false;
+								//check for blit processors
+								foreach (var processor in layerProcessors)
+								{
+									processor.ResetDefaults();
+									bool process = false;
+									foreach (var prop in processor.Properties)
+									{
+										if (layer.TryGetData(prop.Name, out float val))
+										{
+											process = true;
+											processor.ProcessMaterial.SetFloat(prop.ShaderName, val);
+										}
+									}
+
+									if (process)
+									{
+										Graphics.Blit(tex, worldOverlayProcessorTexture, processor.ProcessMaterial, 0);
+										processed = true;
+									}
+								}
+
+								if(processed)
+										Graphics.Blit(worldOverlayProcessorTexture, worldOverlayTexture, layerBlendMaterialInst, 0);
+								else
+									Graphics.Blit(tex, worldOverlayTexture, layerBlendMaterialInst, 0);
+
 								Graphics.Blit(worldOverlayTexture, worldOverlayBaseTexture);
 								
 								worldLayerMaterialInst.SetTexture(overlayMapId, worldOverlayTexture);
-								blitMaterialInst.SetTexture("_BaseTex", worldOverlayBaseTexture);
+								layerBlendMaterialInst.SetTexture("_BaseTex", worldOverlayBaseTexture);
 								break;
 							default:
 								break;

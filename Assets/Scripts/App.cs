@@ -9,7 +9,7 @@ namespace Fab.Geo
 	/// </summary>
 	public static class App
 	{
-		private static int TargetFrameRate = 50;
+		private static int TargetFrameRate = 60;
 
 #if UNITY_EDITOR
         [UnityEditor.InitializeOnEnterPlayMode]
