@@ -29,6 +29,7 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.cysharp.unitask.compatible
     - com.dbrizov.naughtyattributes
     - com.joshclose.csvhelper
     - com.openupm

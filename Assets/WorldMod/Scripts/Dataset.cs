@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Fab.Common;
 
@@ -23,6 +22,8 @@ namespace Fab.WorldMod
 		}
 
 		private Dictionary<string, object> dataDict;
+
+		public IEnumerable<string> DataKeys => dataDict.Keys;
 
 		public Dataset(string name, DatasetStock owner)
 		{

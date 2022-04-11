@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI
 {
-	public class DatasetItem : VisualElement
+	public class DatasetElement : VisualElement
 	{
 		private static readonly string classname = "dataset-item";
 		private static readonly string activeClassname = classname + "--active";
@@ -13,15 +13,15 @@ namespace Fab.WorldMod.UI
 		private static readonly string dragPreviewClassname = classname + "__drag";
 		private static readonly string dragPreviewActiveClassname = dragPreviewClassname + "--active";
 
-		public new class UxmlFactory : UxmlFactory<DatasetItem, UxmlTraits> { }
+		public new class UxmlFactory : UxmlFactory<DatasetElement, UxmlTraits> { }
 
 		public class DragPreview : VisualElement
 		{
-			public DatasetItem DragItem { get; }
+			public DatasetElement DatasetElement { get; }
 			public Vector2 dragOffset;
-			public DragPreview(DatasetItem item)
+			public DragPreview(DatasetElement item)
 			{
-				DragItem = item;
+				DatasetElement = item;
 
 				AddToClassList(dragPreviewClassname);
 				pickingMode = PickingMode.Ignore;
@@ -35,8 +35,8 @@ namespace Fab.WorldMod.UI
 			public void PrepareForDrag(Vector2 pos)
 			{
 				transform.position = parent.WorldToLocal(pos - dragOffset);
-				style.width = DragItem.resolvedStyle.width;
-				style.height = DragItem.resolvedStyle.height;
+				style.width = DatasetElement.resolvedStyle.width;
+				style.height = DatasetElement.resolvedStyle.height;
 			}
 
 			private void OnDragUpdated(FabDragUpdatedEvent evt)
@@ -47,21 +47,21 @@ namespace Fab.WorldMod.UI
 
 			private void OnDragPerformed(FabDragPerformEvent evt)
 			{
-				DragItem.Controller.DragDrop.EndDrag();
+				DatasetElement.Controller.DragDrop.EndDrag();
 				RemoveFromHierarchy();
 				RemoveFromClassList(dragPreviewActiveClassname);
-				DragItem.Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
-				DragItem.Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
+				DatasetElement.Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
+				DatasetElement.Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
 			}
 
 			private void OnDragExited(FabDragExitedEvent evt)
 			{
-				DragItem.Controller.DragDrop.EndDrag();
+				DatasetElement.Controller.DragDrop.EndDrag();
 
 				RemoveFromHierarchy();
 				RemoveFromClassList(dragPreviewActiveClassname);
-				DragItem.Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
-				DragItem.Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
+				DatasetElement.Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
+				DatasetElement.Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace Fab.WorldMod.UI
 		private Label label;
 		private Localizable localizable;
 
-		public DatasetItem()
+		public DatasetElement()
 		{
 			AddToClassList(classname);
 			focusable = true;
@@ -87,15 +87,23 @@ namespace Fab.WorldMod.UI
 			dragPreview = new DragPreview(this);
 		}
 
-		public DatasetItem(ILocalization localization) : this()
+		public DatasetElement(ILocalization localization) : this()
 		{
 			localizable = new Localizable(localization);
 		}
+
+		public void SetActive(bool value)
+		{
+			EnableInClassList(activeClassname, value);
+		}
+
 
 		private void OnPointerDown(PointerDownEvent evt)
 		{
 			if (evt.button == 0)
 			{
+				Controller.SetActiveDatasetElement(this);
+
 				dragPreview.dragOffset = this.WorldToLocal(evt.position);
 				RegisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
 				RegisterCallback<PointerUpEvent>(OnPointerUpEvent);
@@ -112,6 +120,8 @@ namespace Fab.WorldMod.UI
 		{
 			UnregisterCallback<PointerUpEvent>(OnPointerUpEvent);
 			UnregisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
+
+			Controller.SetActiveDatasetElement(null);
 
 			// start drag	
 			Controller.DragDrop.DragLayer.Add(dragPreview);
@@ -139,15 +149,16 @@ namespace Fab.WorldMod.UI
 			label.AddManipulator(localizable);
 		}
 
-		public static void Reset(DatasetItem item)
+		public static void Reset(DatasetElement element)
 		{
-			item.Controller = null;
-			item.SetEnabled(true);
-			item.RemoveFromHierarchy();
-			item.RemoveFromClassList(activeClassname);
-			item.label.text = string.Empty;
-			item.label.RemoveManipulator(item.localizable);
-			item.dragPreview.RemoveFromHierarchy();
+			element.Controller = null;
+			element.SetActive(false);
+			element.SetEnabled(true);
+			element.RemoveFromHierarchy();
+			element.RemoveFromClassList(activeClassname);
+			element.label.text = string.Empty;
+			element.label.RemoveManipulator(element.localizable);
+			element.dragPreview.RemoveFromHierarchy();
 		}
 	}
 

@@ -22,7 +22,7 @@ namespace Fab.WorldMod.UI
 		public VisualElement StockContainer => stockContainer;
 		public VisualElement LayersContainer => layersContainer;
 
-		private ObjectPool<DatasetItem> dragItemPool;
+		private ObjectPool<DatasetElement> dragItemPool;
 		private ObjectPool<LayerDropArea> dragInserAreaPool;
 
 		public DragDrop DragDrop { get; private set; }
@@ -34,6 +34,8 @@ namespace Fab.WorldMod.UI
 		private LayerDropArea layersContainerDropArea;
 
 		private DatasetControls datasetControls;
+
+		private DatasetElement activeDataset;
 
 		public DataPanelController(VisualElement root, DatasetStock stock, DatasetLayers layers)
 		{
@@ -55,40 +57,43 @@ namespace Fab.WorldMod.UI
 			layersContainerDropArea = new LayerDropArea(DragDrop, HandleLayersDrop).WithClass(containerDropClassname);
 			layersContainerDropArea.Set(0);
 
-			dragItemPool = new ObjectPool<DatasetItem>(8, true, () => new DatasetItem(LocalizationComponent.Localization), DatasetItem.Reset);
+			dragItemPool = new ObjectPool<DatasetElement>(8, true, () => new DatasetElement(LocalizationComponent.Localization), DatasetElement.Reset);
 			dragInserAreaPool = new ObjectPool<LayerDropArea>(8, true, CreateLayersDropArea, LayerDropArea.Reset);
 
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
 
 			datasetControls = new DatasetControls(stock);
 
-			dataPanel.RegisterCallback<FocusInEvent>(OnFocus);
-
 			RefreshView();
 		}
 
-		private void OnFocus(FocusInEvent evt)
+		public void SetActiveDatasetElement(DatasetElement element)
 		{
-			if (evt.target is DatasetItem datasetItem)
-			{
-				Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[datasetItem.Id]);
+			if (activeDataset != element)
+				activeDataset?.SetActive(false);
 
-				if (Layers.IsLayer(Stock[datasetItem.Id]))
-					datasetControls.SetDatasetItem(datasetItem);
-				else
-					datasetControls.SetDatasetItem(null);
-			}
-			else
+			if (element == null)
 			{
+				activeDataset = null;
 				datasetControls.SetDatasetItem(null);
 				Signals.Get<DatasetActivatedSignal>().Dispatch(null);
+				return;
 			}
+
+			activeDataset = element;
+			activeDataset.SetActive(true);
+			Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[element.Id]);
+
+			if (Layers.IsLayer(Stock[element.Id]))
+				datasetControls.SetDatasetItem(element);
+			else
+				datasetControls.SetDatasetItem(null);
 		}
 
 		private bool HandleStockDrop(VisualElement item, LayerDropArea area)
 		{
-			if (item is DatasetItem.DragPreview dragPreview)
-				return Layers.RemoveFromLayers(dragPreview.DragItem.Id);
+			if (item is DatasetElement.DragPreview dragPreview)
+				return Layers.RemoveFromLayers(dragPreview.DatasetElement.Id);
 
 			return false;
 		}
@@ -106,9 +111,9 @@ namespace Fab.WorldMod.UI
 
 		private bool HandleLayersDrop(VisualElement item, LayerDropArea area)
 		{
-			if (item is DatasetItem.DragPreview dragPreview)
+			if (item is DatasetElement.DragPreview dragPreview)
 			{
-				Layers.InsertLayer(dragPreview.DragItem.Id, area.Index);
+				Layers.InsertLayer(dragPreview.DatasetElement.Id, area.Index);
 				return true;
 			}
 
@@ -126,7 +131,7 @@ namespace Fab.WorldMod.UI
 
 			for (int i = 0; i < Stock.Count; i++)
 			{
-				DatasetItem item = dragItemPool.GetPooled();
+				DatasetElement item = dragItemPool.GetPooled();
 				item.Set(this, i);
 				item.SetEnabled(!Layers.IsLayer(Stock[i]));
 				stockContainer.Add(item);
@@ -144,7 +149,7 @@ namespace Fab.WorldMod.UI
 				layersContainer.Add(insertArea);
 				for (int i = 0; i < Layers.Count; i++)
 				{
-					DatasetItem item = dragItemPool.GetPooled();
+					DatasetElement item = dragItemPool.GetPooled();
 					
 					item.Set(this, Stock.GetIndex(Layers[i]));
 					layersContainer.Add(item);
@@ -157,11 +162,11 @@ namespace Fab.WorldMod.UI
 
 		private void ClearContainers()
 		{
-			stockContainer.Query<DatasetItem>().ForEach(item => dragItemPool.ReturnToPool(item));
+			stockContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
 
 			layersContainerDropArea.RemoveFromHierarchy();
 			LayerDropArea.Reset(layersContainerDropArea);
-			layersContainer.Query<DatasetItem>().ForEach(item => dragItemPool.ReturnToPool(item));
+			layersContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
 			layersContainer.Query<LayerDropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
 		}
 	}

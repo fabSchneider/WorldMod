@@ -91,7 +91,7 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.dataset-item:focus {
+.dataset-item--active {
     border-left-color: rgb(255, 197, 0);
     border-right-color: rgb(255, 197, 0);
     border-top-color: rgb(255, 197, 0);
@@ -127,8 +127,9 @@
 }
 
 .dataset-controls {
-    background-color: rgba(255, 255, 255, 0.58);
     position: absolute;
+    padding-left: 4px;
+    margin-left: 4px;
 }
 
 .dataset-controls__wire {
