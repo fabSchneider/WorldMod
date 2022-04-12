@@ -114,7 +114,6 @@ namespace Fab.WorldMod.UI
 		private async UniTaskVoid BuildWiresAsync()
 		{
 			await UniTask.DelayFrame(1);
-			Debug.Log(worldBound.height);
 
 			Vector2 anchor = GetRightAnchor(currentItem.localBound);
 			transform.position = new Vector2(anchor.x, anchor.y - localBound.height / 2f);

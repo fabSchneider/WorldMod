@@ -1348,12 +1348,32 @@ MonoBehaviour:
   worldOverlayTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
   layerBlendMaterial: {fileID: 2100000, guid: 5028395ae87429a42b27e6e29c16a01a, type: 2}
   layerProcessors:
-  - processMaterial: {fileID: 2100000, guid: f2018907e244d9146a786c3ff6bd54e3, type: 2}
+  - shader: {fileID: -6465566751694194690, guid: 9b4efc6f6e0a29340bd151ee9d2bd5aa, type: 3}
     properties:
     - name: threshold
+      type: 0
       shaderName: _Threshold
     - name: invert
+      type: 0
       shaderName: _Invert
+  - shader: {fileID: -6465566751694194690, guid: 006773413e78ed44787d6e5a7ec8e99b, type: 3}
+    properties:
+    - name: lerp
+      type: 0
+      shaderName: _Lerp
+  - shader: {fileID: -6465566751694194690, guid: a762a2d978073d34da3ae6d764cbeadd, type: 3}
+    properties:
+    - name: tint
+      type: 1
+      shaderName: _Tint
+  - shader: {fileID: -6465566751694194690, guid: 821c9ea15965ba44ab3a0962125a6641, type: 3}
+    properties:
+    - name: gradient
+      type: 1
+      shaderName: _ColorA
+    - name: gradient_end
+      type: 1
+      shaderName: _ColorB
 --- !u!4 &1677137009
 Transform:
   m_ObjectHideFlags: 0
