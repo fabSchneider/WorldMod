@@ -799,7 +799,7 @@ Camera:
   m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 1
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -811,7 +811,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 20
-  field of view: 63.980217
+  field of view: 60
   orthographic: 0
   orthographic size: 0.3
   m_Depth: -1
@@ -1361,7 +1361,7 @@ MonoBehaviour:
     - name: lerp
       type: 0
       shaderName: _Lerp
-  - shader: {fileID: -6465566751694194690, guid: a762a2d978073d34da3ae6d764cbeadd, type: 3}
+  - shader: {fileID: 4800000, guid: 9d757e537a2936a4087ae202626fc9df, type: 3}
     properties:
     - name: tint
       type: 1
