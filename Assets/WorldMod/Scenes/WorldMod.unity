@@ -799,19 +799,19 @@ Camera:
   m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.225
+    x: 0
     y: 0
-    width: 0.5625
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 20
-  field of view: 60
+  field of view: 63.980217
   orthographic: 0
   orthographic size: 0.3
   m_Depth: -1
@@ -890,8 +890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff339fb8909858c49b41946bb0f2271f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 25
-  orbitSpeed: 1
+  panSpeed: 18
+  orbitSpeed: 0.8
   drag: 5
   targetTransform: {fileID: 218760711}
 --- !u!114 &802879668
