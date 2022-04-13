@@ -1,9 +1,11 @@
-Shader "Layers/Tint"
+Shader "Layers/Threshold"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Tint ("Tint", Color) = (1,1,1,1)
+        _Threshold ("Threshold", Float) = 0.5
+        _Invert ("Invert", Float) = 0
+
     }
     SubShader
     {
@@ -42,7 +44,8 @@ Shader "Layers/Tint"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _Tint;
+            float _Threshold;
+            float _Invert;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -50,7 +53,9 @@ Shader "Layers/Tint"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv) * _Tint;
+                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                col = lerp(col, 1 - col, _Invert);
+                return step( _Threshold, col);
             }
 
             ENDHLSL

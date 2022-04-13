@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Fab.Common;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -26,23 +27,20 @@ namespace Fab.WorldMod
 		public RenderTexture worldOverlayTexture;
 
 		private RenderTexture worldLayerBaseTex;
-		private RenderTexture worldLayerProcessorTexA;
-		private RenderTexture worldLayerProcessorTexB;
-
-		[SerializeField]
-		private Material layerBlendMaterial;
-		private Material layerBlendMaterialInst;
+		private RenderTexture worldLayerTexA;
+		private RenderTexture worldLayerTexB;
 
 		[Serializable]
 		public class LayerProcessor
 		{
 			[Serializable]
-			public class Property
+			public class Property : ISerializationCallbackReceiver
 			{
 				public enum PropertyType
 				{
 					Float,
 					Color,
+					Vector,
 					Enum
 				}
 
@@ -52,6 +50,11 @@ namespace Fab.WorldMod
 				PropertyType type;
 				[SerializeField]
 				private string shaderName;
+				[SerializeField]
+				private string enumChoices;
+
+				private List<string> keywords;
+				public IReadOnlyList<string> Keywords => keywords;
 
 				public string Name { get => name; }
 				public PropertyType Type { get => type; }
@@ -62,7 +65,39 @@ namespace Fab.WorldMod
 					this.name = name;
 					this.shaderName = shaderName;
 				}
+
+
+				public string GetKeyword(string choice)
+				{
+					for (int i = 0; i < keywords.Count; i++)
+					{
+						string keyword = keywords[i];
+						int index = keyword.LastIndexOf('_') + 1;
+						if (keyword.Substring(index, keyword.Length - index) == choice)
+							return keyword;
+					}
+
+					return null;
+				}
+
+				public void OnBeforeSerialize() { }
+
+				public void OnAfterDeserialize()
+				{
+					string[] choices = enumChoices.Split(',');
+					keywords = new List<string>(choices.Length);
+					for (int i = 0; i < choices.Length; i++)
+					{
+						string choice = choices[i].Trim();
+						if (!string.IsNullOrEmpty(choice))
+							keywords.Add(ShaderName + '_' + choice);
+					}
+				}
 			}
+
+			[SerializeField]
+			private string name;
+			public string Name => name;
 
 			private Material processMaterialDefaults;
 
@@ -109,7 +144,13 @@ namespace Fab.WorldMod
 		}
 
 		[SerializeField]
+		private List<LayerProcessor> layerBlendProcessors;
+
+		[SerializeField]
 		private List<LayerProcessor> layerProcessors;
+
+		[SerializeField]
+		private List<LayerProcessor> layerGenerators;
 
 		private int baseMapId;
 		private int bumpMapId;
@@ -130,12 +171,10 @@ namespace Fab.WorldMod
 
 			worldLayerBaseTex = new RenderTexture(worldOverlayTexture.descriptor);
 			worldLayerBaseTex.name = "WorldLayerBaseTex";
-			worldLayerProcessorTexA = new RenderTexture(worldOverlayTexture.descriptor);
-			worldLayerProcessorTexA.name = "WorldLayerProcessorTex A";
-			worldLayerProcessorTexB = new RenderTexture(worldOverlayTexture.descriptor);
-			worldLayerProcessorTexB.name = "WorldLayerProcessorTex B";
-
-			layerBlendMaterialInst = new Material(layerBlendMaterial);
+			worldLayerTexA = new RenderTexture(worldOverlayTexture.descriptor);
+			worldLayerTexA.name = "WorldLayerProcessorTex A";
+			worldLayerTexB = new RenderTexture(worldOverlayTexture.descriptor);
+			worldLayerTexB.name = "WorldLayerProcessorTex B";
 
 			Signals.Get<DatasetUpdatedSignal>().AddListener(OnDatasetUpdated);
 
@@ -201,99 +240,176 @@ namespace Fab.WorldMod
 
 			foreach (var processor in layerProcessors)
 				processor.ResetDefaults();
+			foreach (var processor in layerBlendProcessors)
+				processor.ResetDefaults();
 
 			for (int i = 0; i < datasetsComp.Layers.Count; i++)
 			{
 				var layer = datasetsComp.Layers[i];
 
-				layerBlendMaterialInst.CopyPropertiesFromMaterial(layerBlendMaterial);
-
 				if (i > 0)
 				{
 					worldLayerMaterialInst.SetTexture(overlayMapId, worldOverlayTexture);
-					layerBlendMaterialInst.SetTexture("_BaseTex", worldLayerBaseTex);
 				}
 
-				if (layer.TryGetData("texture", out Texture tex))
+				if (layer.TryGetData("mode", out string mode))
 				{
-					if (layer.TryGetData("mode", out string mode))
+					switch (mode)
 					{
-						switch (mode)
-						{
-							case "base":
-								worldLayerMaterialInst.SetTexture(baseMapId, tex);
-								break;
-							case "normal":
-								worldLayerMaterialInst.SetTexture(bumpMapId, tex);
-								break;
-							case "add":
-								if (layer.TryGetData("opacity", out float opacity))
-									layerBlendMaterialInst.SetFloat("_Opacity", opacity);
-								if (layer.TryGetData("color", out Color color))
-									layerBlendMaterialInst.SetColor("_Tint", color);
-								if (layer.TryGetData("mask", out string mask))
-								{
-									mask = mask.ToUpper();
-									if (mask == "R" || mask == "G" || mask == "B")
-									{
-										layerBlendMaterialInst.DisableKeyword("_MASK_RGBA");
-										layerBlendMaterialInst.EnableKeyword("_MASK_" + mask.ToUpper());
-									}
-								}
-
-								//check for blit processors
-								Texture currTex = tex;
-								RenderTexture processTex = worldLayerProcessorTexA;
-								foreach (var processor in layerProcessors)
-								{
-
-									processor.ResetDefaults();
-									bool process = false;
-									foreach (var prop in processor.Properties)
-									{
-										switch (prop.Type)
-										{
-											case LayerProcessor.Property.PropertyType.Float:
-												if (layer.TryGetData(prop.Name, out float val))
-												{
-													process = true;
-													processor.ProcessMaterial.SetFloat(prop.ShaderName, val);
-												}
-												break;
-											case LayerProcessor.Property.PropertyType.Color:
-												if (layer.TryGetData(prop.Name, out Color cVal))
-												{
-													process = true;
-													processor.ProcessMaterial.SetColor(prop.ShaderName, cVal);
-												}
-												break;
-											case LayerProcessor.Property.PropertyType.Enum:
-												break;
-											default:
-												break;
-										}
-									}
-
-									if (process)
-									{
-										Graphics.Blit(currTex, processTex, processor.ProcessMaterial, 0);
-										currTex = processTex;
-										processTex = processTex == worldLayerProcessorTexA ? worldLayerProcessorTexB : worldLayerProcessorTexA;
-									}
-								}
-
-								Graphics.Blit(currTex, worldOverlayTexture, layerBlendMaterialInst, 0);
-
-								Graphics.Blit(worldOverlayTexture, worldLayerBaseTex);
-								break;
-							default:
-								break;
-						}
+						case "base":
+							SetBaseLayer(layer);
+							break;
+						case "normal":
+							SetNormalLayer(layer);
+							break;
+						case "blend":
+							SetBlendLayer(layer);
+							break;
+						default:
+							break;
 					}
 				}
 			}
 
 			worldRenderer.sharedMaterial = worldLayerMaterialInst;
+		}
+
+		private void SetBaseLayer(Dataset layer)
+		{
+			if (!layer.TryGetData("texture", out Texture tex))
+				return;
+
+			worldLayerMaterialInst.SetTexture(baseMapId, tex);
+		}
+
+		private void SetNormalLayer(Dataset layer)
+		{
+			if (!layer.TryGetData("texture", out Texture tex))
+				return;
+
+			worldLayerMaterialInst.SetTexture(bumpMapId, tex);
+		}
+
+		private void SetBlendLayer(Dataset layer)
+		{
+			if (layerBlendProcessors.Count == 0)
+				return;
+
+			Texture tex = GetLayerTexture(layer);
+
+			LayerProcessor blendProcesser = layerBlendProcessors[0];
+
+			// check blendmode
+			if (layer.TryGetData("blendmode", out string blendMode))
+			{
+				var processor = layerBlendProcessors.FirstOrDefault(p => p.Name.Equals(blendMode, StringComparison.InvariantCultureIgnoreCase));
+				if (processor != null)
+					blendProcesser = processor;
+			}
+
+			blendProcesser.ProcessMaterial.SetTexture("_BaseTex", worldLayerBaseTex);
+
+			if (layer.TryGetData("opacity", out float opacity))
+				blendProcesser.ProcessMaterial.SetFloat("_Opacity", opacity);
+
+
+			Graphics.Blit(tex, worldOverlayTexture, blendProcesser.ProcessMaterial, 0);
+			Graphics.Blit(worldOverlayTexture, worldLayerBaseTex);
+		}
+
+		private bool SetProcessorPropertiesFromLayer(Dataset layer, LayerProcessor processor)
+		{
+			bool process = false;
+			Material processMaterial = processor.ProcessMaterial;
+			foreach (var prop in processor.Properties)
+			{
+				switch (prop.Type)
+				{
+					case LayerProcessor.Property.PropertyType.Float:
+						if (layer.TryGetData(prop.Name, out float val))
+						{
+							process = true;
+							processMaterial.SetFloat(prop.ShaderName, val);
+						}
+						break;
+					case LayerProcessor.Property.PropertyType.Color:
+						if (layer.TryGetData(prop.Name, out Color cVal))
+						{
+							process = true;
+							processMaterial.SetColor(prop.ShaderName, cVal);
+						}
+						break;
+					case LayerProcessor.Property.PropertyType.Vector:
+						if (layer.TryGetData(prop.Name, out Vector3 vVal))
+						{
+							process = true;
+							processMaterial.SetVector(prop.ShaderName, vVal);
+						}
+						break;
+					case LayerProcessor.Property.PropertyType.Enum:
+						if (layer.TryGetData(prop.Name, out string eVal))
+						{
+							process = true;
+							processMaterial.DisableKeyword(prop.Keywords[0]);
+							string keyword = prop.GetKeyword(eVal);
+							if (!string.IsNullOrEmpty(keyword))
+								processMaterial.EnableKeyword(keyword);
+						}
+						break;
+					default:
+						break;
+				}
+			}
+			return process;
+		}
+
+		private Texture GetLayerTexture(Dataset layer)
+		{
+			if (!layer.TryGetData("texture", out Texture tex))
+				tex = GenerateTex(layer);
+
+			if (tex == null)
+				return null;
+
+			return ProcessTexture(layer, tex);
+		}
+
+		private Texture ProcessTexture(Dataset layer, Texture tex)
+		{
+			Texture currTex = tex;
+			RenderTexture processTex = worldLayerTexA;
+			foreach (var processor in layerProcessors)
+			{
+				processor.ResetDefaults();
+
+				if (SetProcessorPropertiesFromLayer(layer, processor))
+				{
+					Graphics.Blit(currTex, processTex, processor.ProcessMaterial, 0);
+					currTex = processTex;
+					processTex = processTex == worldLayerTexA ? worldLayerTexB : worldLayerTexA;
+				}
+			}
+
+			return currTex;
+		}
+
+		private Texture GenerateTex(Dataset layer)
+		{
+			bool generated = false;
+			foreach (var processor in layerGenerators)
+			{
+				processor.ResetDefaults();
+				if(SetProcessorPropertiesFromLayer(layer, processor))
+				{
+					generated = true;
+					Graphics.Blit(null, worldLayerTexB, processor.ProcessMaterial, 0);
+				}
+			}
+
+			if(generated)
+				return worldLayerTexB;
+			else
+				return null;
 		}
 	}
 }

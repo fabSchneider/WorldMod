@@ -30,24 +30,17 @@ namespace WorldMod.Lua
 			foreach (var pair in table.Pairs)
 			{
 				object obj;
-				Table valTable = pair.Value.Table;
+				DynValue value = pair.Value;
+				Table valTable = value.Table;
 				if (valTable != null)
 				{
 					// TODO: this is really hacky
-					Script script = table.OwnerScript;
-					var colorTbl = script.Globals.RawGet("Color");
-
-					if (colorTbl != null &&
-						valTable.MetaTable != null &&
-						valTable.MetaTable.MetaTable != null &&
-						colorTbl.Table.MetaTable.ReferenceID == valTable.MetaTable.MetaTable.ReferenceID)
-					{
-						obj = pair.Value.ToObject<Color>();
-					}
+					if (TryConvert(value, "Color", out Color color))
+						obj = color;
+					else if (TryConvert(value, "Vector", out Vector3 vector))
+						obj = vector;
 					else
-					{
 						obj = valTable.Values.AsObjects().ToArray();
-					}
 					
 				}
 				else
@@ -61,6 +54,28 @@ namespace WorldMod.Lua
 
 				target.SetData(pair.Key.String, obj);
 			}
+		}
+
+		private bool TryConvert<T>(DynValue value, string varName, out T converted)
+		{
+			Table table = value.Table;
+			if (table != null)
+			{
+				Script script = table.OwnerScript;
+				var colorTbl = script.Globals.RawGet(varName);
+
+				if (colorTbl != null &&
+					table.MetaTable != null &&
+					table.MetaTable.MetaTable != null &&
+					colorTbl.Table.MetaTable.ReferenceID == table.MetaTable.MetaTable.ReferenceID)
+				{
+					converted = value.ToObject<T>();
+					return true;
+				}
+			}
+
+			converted = default;
+			return false;
 		}
 
 		public object get(DynValue key)

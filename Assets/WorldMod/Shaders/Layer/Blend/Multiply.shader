@@ -1,9 +1,11 @@
-Shader "Layers/Tint"
+Shader "Layers/Blend/Multiply"
 {
     Properties
     {
-        [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Tint ("Tint", Color) = (1,1,1,1)
+        [NoScaleOffset]_BaseTex ("BaseTex", 2D) = "black" {}
+        [NoScaleOffset]_MainTex ("InputTex", 2D) = "black" {}
+        _Opacity ("Opacity", Float) = 1.0
+        
     }
     SubShader
     {
@@ -42,15 +44,18 @@ Shader "Layers/Tint"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _Tint;
+            float _Opacity;
             CBUFFER_END
 
+            TEXTURE2D(_BaseTex);
+            SAMPLER(sampler_BaseTex);
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv) * _Tint;
+                return SAMPLE_TEXTURE2D(_BaseTex, sampler_BaseTex, i.uv) * 
+                       lerp(1, SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv), _Opacity);
             }
 
             ENDHLSL

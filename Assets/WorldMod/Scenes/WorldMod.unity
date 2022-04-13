@@ -260,7 +260,7 @@ Camera:
   far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 0.33
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1346,34 +1346,80 @@ MonoBehaviour:
   worldRenderer: {fileID: 1203454555}
   worldLayerMaterial: {fileID: 2100000, guid: 3019541617d06214690da9cf53455550, type: 2}
   worldOverlayTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
-  layerBlendMaterial: {fileID: 2100000, guid: 5028395ae87429a42b27e6e29c16a01a, type: 2}
+  layerBlendProcessors:
+  - name: Add
+    shader: {fileID: 4800000, guid: 43a3f1eb294f1114bbfd62adf420d6ca, type: 3}
+    properties: []
+  - name: Multiply
+    shader: {fileID: 4800000, guid: bebe573627492d44d810aec6facf9351, type: 3}
+    properties: []
   layerProcessors:
-  - shader: {fileID: -6465566751694194690, guid: 9b4efc6f6e0a29340bd151ee9d2bd5aa, type: 3}
+  - name: Mask
+    shader: {fileID: 4800000, guid: 1cb89518117e0ec42b0c0f7aa8e70d66, type: 3}
+    properties:
+    - name: mask
+      type: 3
+      shaderName: _MASK
+      enumChoices: R, G, B, A
+  - name: Range
+    shader: {fileID: 4800000, guid: 6a5fa9b4f679789449176507574469eb, type: 3}
+    properties:
+    - name: edge_1
+      type: 0
+      shaderName: _Edge1
+      enumChoices: 
+    - name: edge_2
+      type: 0
+      shaderName: _Edge2
+      enumChoices: 
+  - name: Threshold
+    shader: {fileID: 4800000, guid: 07c4c4cfac13d084aa229baa54d6cfad, type: 3}
     properties:
     - name: threshold
       type: 0
       shaderName: _Threshold
+      enumChoices: 
     - name: invert
       type: 0
       shaderName: _Invert
-  - shader: {fileID: -6465566751694194690, guid: 006773413e78ed44787d6e5a7ec8e99b, type: 3}
+      enumChoices: 
+  - name: ChannelLerp
+    shader: {fileID: 4800000, guid: 912d60a5cfb04234fb41ffba2a6ec21b, type: 3}
     properties:
     - name: lerp
       type: 0
       shaderName: _Lerp
-  - shader: {fileID: 4800000, guid: 9d757e537a2936a4087ae202626fc9df, type: 3}
+      enumChoices: 
+  - name: Tint
+    shader: {fileID: 4800000, guid: 9d757e537a2936a4087ae202626fc9df, type: 3}
     properties:
     - name: tint
       type: 1
       shaderName: _Tint
-  - shader: {fileID: -6465566751694194690, guid: 821c9ea15965ba44ab3a0962125a6641, type: 3}
+      enumChoices: 
+  - name: Lerp
+    shader: {fileID: 4800000, guid: b5eb90e0dde068b41ac65e74d97a3f82, type: 3}
     properties:
-    - name: gradient
+    - name: color_a
       type: 1
       shaderName: _ColorA
-    - name: gradient_end
+      enumChoices: 
+    - name: color_b
       type: 1
       shaderName: _ColorB
+      enumChoices: 
+  layerGenerators:
+  - name: Circle
+    shader: {fileID: 4800000, guid: e43be423bd0d90a45a3391840f9a48ff, type: 3}
+    properties:
+    - name: Center
+      type: 2
+      shaderName: _Center
+      enumChoices: 
+    - name: Radius
+      type: 2
+      shaderName: _Radius
+      enumChoices: 
 --- !u!4 &1677137009
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,7 +1428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677137007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.63287014, y: 1.3616247, z: 4.8815446}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

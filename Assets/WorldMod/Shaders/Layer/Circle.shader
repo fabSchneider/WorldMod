@@ -1,9 +1,9 @@
-Shader "Layers/Tint"
+Shader "Layers/Circle"
 {
     Properties
     {
-        [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Tint ("Tint", Color) = (1,1,1,1)
+        _Center ("Center", Vector) = (0.5,0.5,0,0)
+        _Radius ("Radius", Vector) = (1,1,0,0)
     }
     SubShader
     {
@@ -42,7 +42,8 @@ Shader "Layers/Tint"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _Tint;
+            float4 _Center;
+            float4 _Radius;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -50,7 +51,7 @@ Shader "Layers/Tint"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv) * _Tint;
+                return 1 - min(1, length((i.uv - _Center.xy) / _Radius.xy));
             }
 
             ENDHLSL

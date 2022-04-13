@@ -1,9 +1,10 @@
-Shader "Layers/Tint"
+Shader "Layers/Lerp"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Tint ("Tint", Color) = (1,1,1,1)
+        _ColorA ("ColorA", Color) = (0,0,0,0)
+        _ColorB ("ColorB", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -42,7 +43,8 @@ Shader "Layers/Tint"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _Tint;
+            float4 _ColorA;
+            float4 _ColorB;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -50,7 +52,7 @@ Shader "Layers/Tint"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv) * _Tint;
+                return lerp(_ColorA, _ColorB, SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv));
             }
 
             ENDHLSL
