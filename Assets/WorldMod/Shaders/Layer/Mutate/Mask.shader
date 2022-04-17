@@ -1,11 +1,9 @@
-Shader "Layers/Threshold"
+Shader "Layers/Mutate/Mask"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Threshold ("Threshold", Float) = 0.5
-        _Invert ("Invert", Float) = 0
-
+        [KeywordEnum(R, G, B, A)]_MASK("Mask", Float) = 0
     }
     SubShader
     {
@@ -22,6 +20,7 @@ Shader "Layers/Threshold"
 
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile _MASK_R _MASK_G _MASK_B _MASK_A
 
             struct VertexInput
             {
@@ -43,19 +42,23 @@ Shader "Layers/Threshold"
                 return o;
             }
 
-            CBUFFER_START(UnityPerMaterial)
-            float _Threshold;
-            float _Invert;
-            CBUFFER_END
-
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
             float4 frag (VertexOutput i) : SV_Target
             {
                 float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                col = lerp(col, 1 - col, _Invert);
-                return step( _Threshold, col);
+                #if _MASK_R
+                return col.x;
+                #elif _MASK_G
+                return col.y;
+                #elif _MASK_B
+                return col.z;
+                #elif _MASK_A
+                return col.w;
+                #else
+                return col;
+                #endif
             }
 
             ENDHLSL

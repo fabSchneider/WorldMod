@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
 using Fab.WorldMod;
 using MoonSharp.Interpreter;
@@ -34,7 +33,7 @@ namespace WorldMod.Lua
 				Table valTable = value.Table;
 				if (valTable != null)
 				{
-					// TODO: this is really hacky
+					// NOTE: this is really hacky
 					if (TryConvert(value, "Color", out Color color))
 						obj = color;
 					else if (TryConvert(value, "Vector", out Vector3 vector))

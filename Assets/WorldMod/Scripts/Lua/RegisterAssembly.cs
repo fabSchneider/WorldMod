@@ -11,6 +11,7 @@ namespace WorldMod.Lua
 		{
 			UserData.RegisterAssembly();
 			LuaEnvironment.Registry.RegisterAssembly();
+			ClrConversion.RegisterConverters();
 		}
 	}
 }

@@ -1,10 +1,10 @@
-Shader "Layers/Lerp"
+Shader "Layers/Mutate/Range"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _ColorA ("ColorA", Color) = (0,0,0,0)
-        _ColorB ("ColorB", Color) = (1,1,1,1)
+        _Edge1 ("Edge1", Float) = 0.4
+        _Edge2 ("Edge2", Float) = 0.6
     }
     SubShader
     {
@@ -43,8 +43,8 @@ Shader "Layers/Lerp"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _ColorA;
-            float4 _ColorB;
+            float _Edge1;
+            float _Edge2;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -52,7 +52,12 @@ Shader "Layers/Lerp"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                return lerp(_ColorA, _ColorB, SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv));
+                float low = min(_Edge1, _Edge2);
+                float high = max(_Edge1, _Edge2);
+                float mid = (high + low) / 2.0;
+
+                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                return smoothstep(low, mid, col) - smoothstep(mid, high, col);
             }
 
             ENDHLSL

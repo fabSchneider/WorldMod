@@ -97,10 +97,13 @@ namespace Fab.Geo.Lua.Interop
 		{
 			switch (format.ToUpper())
 			{
+				case "R":
 				case "R8":
 					return GraphicsFormat.R8_UNorm;
+				case "RG":
 				case "RG8":
 					return GraphicsFormat.R8G8_UNorm;
+				case "RGBA":
 				case "RGBA8":
 					return GraphicsFormat.R8G8B8A8_UNorm;
 				default:

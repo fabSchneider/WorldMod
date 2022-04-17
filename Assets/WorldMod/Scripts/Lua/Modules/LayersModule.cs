@@ -1,6 +1,8 @@
+using System;
 using Fab.Common;
 using Fab.Lua.Core;
 using Fab.WorldMod;
+using Fab.WorldMod.Synth;
 
 namespace WorldMod.Lua
 {
@@ -9,7 +11,8 @@ namespace WorldMod.Lua
 	public class LayersModule : LuaObject, ILuaObjectInitialize
 	{
 		private DatasetLayers layers;
-		private LayersManager layersManager;
+
+		private SynthComponent synthComponent;
 
 		public void Initialize()
 		{
@@ -18,7 +21,7 @@ namespace WorldMod.Lua
 			if (comp == null)
 				throw new LuaObjectInitializationException("Could not find dataset component");
 
-			layersManager = UnityEngine.Object.FindObjectOfType<LayersManager>();
+			synthComponent = UnityEngine.Object.FindObjectOfType<SynthComponent>();
 
 			layers = comp.Layers;
 		}
@@ -30,10 +33,17 @@ namespace WorldMod.Lua
 			Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset.Target);
 		}
 
-		public void update()
+		[LuaHelpInfo("Creates a layer for a specified channel")]
+		public SynthLayerProxy create(string channel)
 		{
-			if (layersManager)
-				layersManager.UpdateLayers();
+			if (!synthComponent.HasChannel(channel))
+				throw new Exception("The specified channel does not exist");
+
+			SynthLayer layer = new SynthLayer(channel);
+
+			var proxy = new SynthLayerProxy(synthComponent.NodeFactory);
+			proxy.SetTarget(layer);
+			return proxy;
 		}
 	}
 }

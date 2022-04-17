@@ -12,7 +12,14 @@ namespace Fab.WorldMod
 		public Dataset this[int index] => layers[index];
 		public int Count => layers.Count;
 
-		public event Action layersChanged;
+		public event Action<Dataset, ChangeEventType> layerChanged;
+
+		public enum ChangeEventType
+		{
+			Added,
+			Moved,
+			Removed
+		}
 
 		public IEnumerator<Dataset> GetEnumerator()
 		{
@@ -49,9 +56,14 @@ namespace Fab.WorldMod
 					layers.RemoveAt(existingIndex + 1);
 				else
 					layers.RemoveAt(existingIndex);
+
+				layerChanged?.Invoke(data, ChangeEventType.Moved);
+			}
+			else
+			{
+				layerChanged?.Invoke(data, ChangeEventType.Added);
 			}
 
-			layersChanged?.Invoke();
 		}
 
 		public void InsertLayer(Dataset dataset, int index)
@@ -70,7 +82,7 @@ namespace Fab.WorldMod
 			Dataset data = stock[itemId];
 			if (layers.Remove(data))
 			{
-				layersChanged?.Invoke();
+				layerChanged?.Invoke(data, ChangeEventType.Removed);
 				return true;
 			}
 			return false;

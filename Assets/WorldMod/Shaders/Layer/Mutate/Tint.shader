@@ -1,10 +1,9 @@
-Shader "Layers/Range"
+Shader "Layers/Mutate/Tint"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Edge1 ("Edge1", Float) = 0.4
-        _Edge2 ("Edge2", Float) = 0.6
+        _Color ("Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -43,8 +42,7 @@ Shader "Layers/Range"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float _Edge1;
-            float _Edge2;
+            float4 _Color;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -52,12 +50,7 @@ Shader "Layers/Range"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                float low = min(_Edge1, _Edge2);
-                float high = max(_Edge1, _Edge2);
-                float mid = (high + low) / 2.0;
-
-                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return smoothstep(low, mid, col) - smoothstep(mid, high, col);
+                return SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv) * _Color;
             }
 
             ENDHLSL

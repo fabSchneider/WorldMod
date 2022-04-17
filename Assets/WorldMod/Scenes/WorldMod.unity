@@ -584,6 +584,63 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &297474337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297474339}
+  - component: {fileID: 297474338}
+  m_Layer: 0
+  m_Name: Synthesizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297474338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297474337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd547df07e79dc0459a4691b53cea486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  datasets: {fileID: 51441330}
+  channelsData:
+  - name: Base
+    targetPropertyName: _BaseMap
+    outputTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
+  - name: Bump
+    targetPropertyName: _BumpMap
+    outputTexture: {fileID: 8600000, guid: 186b266f5e02b9a4fb52d27e7478c9b4, type: 2}
+  - name: Overlay
+    targetPropertyName: _OverlayMap
+    outputTexture: {fileID: 8600000, guid: 3b318cea6e438b348ae879458e0f7e92, type: 2}
+  nodeLibrary: {fileID: 11400000, guid: a1477d3fe3025d84b98089aab4d75b9f, type: 2}
+  layerRenderer: {fileID: 1203454555}
+--- !u!4 &297474339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297474337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725638070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1368,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677137007
 GameObject:
@@ -1324,12 +1381,12 @@ GameObject:
   - component: {fileID: 1677137009}
   - component: {fileID: 1677137008}
   m_Layer: 0
-  m_Name: Layers
+  m_Name: LayersOLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1677137008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,7 +1394,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677137007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50361038e245b314ead115d4df784112, type: 3}
   m_Name: 
@@ -1352,6 +1409,9 @@ MonoBehaviour:
     properties: []
   - name: Multiply
     shader: {fileID: 4800000, guid: bebe573627492d44d810aec6facf9351, type: 3}
+    properties: []
+  - name: Lerp
+    shader: {fileID: 4800000, guid: 39ce5387ea163d641872caef2cc3276e, type: 3}
     properties: []
   layerProcessors:
   - name: Mask
@@ -1433,9 +1493,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1708268440
+--- !u!1 &1884122059
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1443,91 +1503,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1708268444}
-  - component: {fileID: 1708268443}
-  - component: {fileID: 1708268442}
-  - component: {fileID: 1708268441}
+  - component: {fileID: 1884122061}
+  - component: {fileID: 1884122060}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Layers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!64 &1708268441
-MeshCollider:
+  m_IsActive: 0
+--- !u!114 &1884122060
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708268440}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 1884122059}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1708268442
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708268440}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 9b60734cc2fa1d6418d4927112a632b9, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1708268443
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708268440}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1708268444
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d8d41690013e245af1c4d744a1f418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  datasets: {fileID: 51441330}
+  layerGroups:
+  - name: Base
+    targetPropertyId: _BaseMap
+    outputTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
+  - name: Bump
+    targetPropertyId: _BumpMap
+    outputTexture: {fileID: 8600000, guid: 186b266f5e02b9a4fb52d27e7478c9b4, type: 2}
+  - name: Overlay
+    targetPropertyId: _OverlayMap
+    outputTexture: {fileID: 8600000, guid: 3b318cea6e438b348ae879458e0f7e92, type: 2}
+  layerRenderer: {fileID: 1203454555}
+--- !u!4 &1884122061
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708268440}
+  m_GameObject: {fileID: 1884122059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.89, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

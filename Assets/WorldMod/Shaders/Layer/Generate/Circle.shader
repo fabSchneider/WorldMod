@@ -1,4 +1,4 @@
-Shader "Layers/Circle"
+Shader "Layers/Generate/Circle"
 {
     Properties
     {

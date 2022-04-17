@@ -1,9 +1,8 @@
-Shader "Layers/ChannelLerp"
+Shader "Layers/Generate/Fill"
 {
     Properties
     {
-        [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Lerp ("Lerp", Float) = 0
+        _Color ("Color", Color) = (1,0,0,1)
     }
     SubShader
     {
@@ -12,6 +11,7 @@ Shader "Layers/ChannelLerp"
 
         HLSLINCLUDE
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+        #include "Assets/WorldMod/Shaders/Mercator.cginc"
         ENDHLSL
 
         Pass
@@ -42,7 +42,7 @@ Shader "Layers/ChannelLerp"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float _Lerp;
+            float4 _Color;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -50,11 +50,7 @@ Shader "Layers/ChannelLerp"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                float rg = lerp(col.x, col.y, min(1, _Lerp * 3));
-                float gb = lerp(rg, col.z, max(0, (_Lerp - 1.0/3.0) * 1.5));
-                float ba = lerp(gb, col.w, max(0, (_Lerp - 2.0/3.0) * 3));
-                return ba;
+                return _Color;
             }
 
             ENDHLSL
