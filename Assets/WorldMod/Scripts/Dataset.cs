@@ -24,11 +24,13 @@ namespace Fab.WorldMod
 
 		private Dictionary<string, object> dataDict;
 
+		public IEnumerable<string> DataKeys => dataDict.Keys;
+
 		public Dataset(string name, DatasetStock owner)
 		{
 			this.name = name;
 			this.owner = owner;
-			dataDict = new Dictionary<string, object>();
+			dataDict = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
 		}
 
 		public void SetData(string key, object data)

@@ -45,13 +45,15 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.joshclose.csvhelper": "13.0.0"
+    "com.joshclose.csvhelper": "13.0.0",
+    "com.cysharp.unitask.compatible": "2.3.1"
   },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "com.cysharp.unitask.compatible",
         "com.dbrizov.naughtyattributes",
         "com.joshclose.csvhelper",
         "com.openupm",

@@ -8,13 +8,13 @@ namespace Fab.WorldMod
 		private DatasetStock stock;
 		public DatasetStock Stock => stock;
 
-		private DatasetLayers layers;
-		public DatasetLayers Layers => layers;
+		private DatasetSequence sequence;
+		public DatasetSequence Sequence => sequence;
 
 		private void Awake()
 		{
 			stock = new DatasetStock();
-			layers = new DatasetLayers(stock);
+			sequence = new DatasetSequence(stock);
 		}
 	}
 }

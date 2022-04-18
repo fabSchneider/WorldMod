@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using Fab.Lua.Core;
 using MoonSharp.Interpreter.Interop;
+using System;
 
 namespace Fab.Lua.Editor
 {
@@ -20,7 +21,6 @@ namespace Fab.Lua.Editor
 
 			StringBuilder sb = new StringBuilder();
 
-			LuaEnvironment.Registry.RegisterAssembly();
 			foreach (StandardUserDataDescriptor descriptor in LuaEnvironment.Registry.GetRegisteredTypes(true))
 			{
 				LuaHelpInfo info = extactor.GetHelpInfoForUserData(descriptor);

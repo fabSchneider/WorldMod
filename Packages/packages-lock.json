@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "6580f62a7a9b9dd0a40cff1990ba516a648c9bee"
     },
+    "com.cysharp.unitask.compatible": {
+      "version": "2.3.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.dbrizov.naughtyattributes": {
       "version": "2.1.4",
       "depth": 0,

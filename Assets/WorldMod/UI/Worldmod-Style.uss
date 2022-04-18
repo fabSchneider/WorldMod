@@ -91,7 +91,7 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.dataset-item:focus {
+.dataset-item--active {
     border-left-color: rgb(255, 197, 0);
     border-right-color: rgb(255, 197, 0);
     border-top-color: rgb(255, 197, 0);
@@ -124,6 +124,55 @@
     margin-top: 0;
     margin-bottom: 0;
     font-size: 20px;
+}
+
+.dataset-controls {
+    position: absolute;
+    flex-direction: row;
+    opacity: 0;
+    scale: 0.1 1;
+    transform-origin: left;
+}
+
+.dataset-controls--visible {
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-property: all;
+    transition-delay: 0s;
+    scale: 1 1;
+    transition-timing-function: ease;
+}
+
+.dataset-controls__wire-container {
+    width: 164px;
+    margin-right: 4px;
+    transform-origin: left;
+    scale: 0.05 1;
+    opacity: 0;
+}
+
+.dataset-controls--visible > .dataset-controls__wire-container {
+    opacity: 1;
+    scale: 1 1;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-sine;
+    transition-delay: 0.05s;
+}
+
+.dataset-controls__wire-container Wire {
+}
+
+.dataset-controls__content {
+    opacity: 0;
+    min-width: 700px;
+}
+
+.dataset-controls--visible > .dataset-controls__content {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+    transition-delay: 0.25s;
 }
 
 .container-drop {
@@ -256,4 +305,90 @@
 
 .text-element-rtl {
     -unity-text-align: upper-right;
+}
+
+.unity-base-field {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.unity-base-field__label {
+    font-size: 16px;
+    min-width: 200px;
+}
+
+.unity-popup-field__input {
+    background-color: rgba(0, 0, 0, 255);
+}
+
+.unity-base-popup-field__arrow {
+    -unity-background-image-tint-color: rgba(168, 168, 168, 255);
+}
+
+.unity-toggle__checkmark {
+    -unity-background-image-tint-color: rgba(200, 200, 200, 255);
+    background-color: rgba(0, 0, 0, 255);
+    width: 36px;
+    height: 36px;
+}
+
+.unity-base-slider__tracker {
+}
+
+.unity-base-slider__dragger {
+}
+
+.unity-base-slider--horizontal .unity-base-slider__tracker {
+    margin-top: 0;
+    top: 0;
+    height: 38px;
+    background-color: rgba(0, 0, 0, 255);
+}
+
+.unity-base-slider--horizontal .unity-base-slider__dragger {
+    top: 1px;
+    margin-top: 0;
+    height: 36px;
+    width: 18px;
+    background-color: rgba(197, 197, 197, 255);
+}
+
+.unity-min-max-slider__tracker {
+    background-color: rgba(0, 0, 0, 255);
+    height: 38px;
+    margin-top: 0;
+    top: 0;
+}
+
+.unity-min-max-slider__min-thumb {
+    width: 18px;
+    height: 36px;
+    background-color: rgb(197, 197, 197);
+    margin-top: -1px;
+}
+
+.unity-min-max-slider__max-thumb {
+    width: 24px;
+    height: 36px;
+    background-color: rgb(197, 197, 197);
+    margin-top: -1px;
+}
+
+.unity-min-max-slider__dragger {
+    height: 37px;
+    top: 0;
+    margin-top: 1px;
+    background-color: rgb(156, 156, 156);
+}
+
+.unity-base-dropdown__label {
+    color: rgba(226, 226, 226, 255);
+}
+
+.unity-base-dropdown__container-outer {
+    background-color: rgba(0, 0, 0, 255);
+}
+
+.unity-base-dropdown__checkmark {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
 }
