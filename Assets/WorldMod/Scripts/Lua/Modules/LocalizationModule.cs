@@ -5,13 +5,13 @@ using Fab.Lua.Core;
 using Fab.WorldMod.Localization;
 using MoonSharp.Interpreter;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaHelpInfo("Module to access localization functions")]
 	[LuaName("localization")]
 	public class LocalizationModule : LuaObject, ILuaObjectInitialize
 	{
-		private Localization localization;
+		private Localization.Localization localization;
 
 		public void Initialize()
 		{

@@ -1,8 +1,7 @@
 using System.Linq;
 using Fab.Lua.Core;
-using Fab.WorldMod;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaHelpInfo("Module to access the world mod datasets")]
 	[LuaName("datasets")]

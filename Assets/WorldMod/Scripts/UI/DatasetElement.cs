@@ -1,4 +1,3 @@
-using Fab.Common;
 using Fab.WorldMod.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;

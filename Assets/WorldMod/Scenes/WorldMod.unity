@@ -260,7 +260,7 @@ Camera:
   far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 0.33
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -584,6 +584,63 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &297474337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297474339}
+  - component: {fileID: 297474338}
+  m_Layer: 0
+  m_Name: Synthesizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297474338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297474337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd547df07e79dc0459a4691b53cea486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  datasets: {fileID: 51441330}
+  channelsData:
+  - name: Base
+    targetPropertyName: _BaseMap
+    outputTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
+  - name: Bump
+    targetPropertyName: _BumpMap
+    outputTexture: {fileID: 8600000, guid: 186b266f5e02b9a4fb52d27e7478c9b4, type: 2}
+  - name: Overlay
+    targetPropertyName: _OverlayMap
+    outputTexture: {fileID: 8600000, guid: 3b318cea6e438b348ae879458e0f7e92, type: 2}
+  nodeLibrary: {fileID: 11400000, guid: a1477d3fe3025d84b98089aab4d75b9f, type: 2}
+  layerRenderer: {fileID: 1203454555}
+--- !u!4 &297474339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297474337}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725638070
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,9 +862,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.225
+    x: 0
     y: 0
-    width: 0.5625
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 20
@@ -890,8 +947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff339fb8909858c49b41946bb0f2271f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 25
-  orbitSpeed: 1
+  panSpeed: 18
+  orbitSpeed: 0.8
   drag: 5
   targetTransform: {fileID: 218760711}
 --- !u!114 &802879668
@@ -1216,7 +1273,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1227,8 +1284,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0
+    height: 0
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1307,62 +1364,6 @@ Transform:
   m_GameObject: {fileID: 1646186576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1677137007
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1677137009}
-  - component: {fileID: 1677137008}
-  m_Layer: 0
-  m_Name: Layers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1677137008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677137007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50361038e245b314ead115d4df784112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  datasetsComp: {fileID: 51441330}
-  worldRenderer: {fileID: 1203454555}
-  worldLayerMaterial: {fileID: 2100000, guid: 3019541617d06214690da9cf53455550, type: 2}
-  worldOverlayTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
-  layerBlendMaterial: {fileID: 2100000, guid: 5028395ae87429a42b27e6e29c16a01a, type: 2}
-  layerProcessors:
-  - processMaterial: {fileID: 2100000, guid: f2018907e244d9146a786c3ff6bd54e3, type: 2}
-    properties:
-    - name: threshold
-      shaderName: _Threshold
-    - name: invert
-      shaderName: _Invert
---- !u!4 &1677137009
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677137007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.63287014, y: 1.3616247, z: 4.8815446}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

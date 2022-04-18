@@ -1,4 +1,5 @@
-﻿using Fab.Common;
+﻿using System.Collections.Generic;
+using Fab.Common;
 using Fab.WorldMod.Localization;
 using UnityEngine.UIElements;
 
@@ -29,19 +30,21 @@ namespace Fab.WorldMod.UI
 
 		private VisualElement dataPanel;
 		public DatasetStock Stock { get; private set; }
-		public DatasetLayers Layers { get; private set; }
+		public DatasetSequence Sequence { get; private set; }
 
 		private LayerDropArea layersContainerDropArea;
 
-		private DatasetControls datasetControls;
+		private DatasetControlView datasetControls;
 
-		private DatasetElement activeDataset;
+		private DatasetElement activeDatasetElement;
 
-		public DataPanelController(VisualElement root, DatasetStock stock, DatasetLayers layers)
+		private Dictionary<int, DatasetControlView> datasetControlsById;
+
+		public DataPanelController(VisualElement root, DatasetStock stock, DatasetSequence layers)
 		{
 			dataPanel = root.Q(name: "data-panel");
 			Stock = stock;
-			Layers = layers;
+			Sequence = layers;
 
 			VisualElement dragLayer = new VisualElement().AsLayer(blocking: false).WithName("drag-layer");
 			dragLayer.focusable = true;
@@ -62,38 +65,46 @@ namespace Fab.WorldMod.UI
 
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
 
-			datasetControls = new DatasetControls(stock);
+			datasetControlsById = new Dictionary<int, DatasetControlView>();
+			foreach (Dataset dataset in stock)
+				datasetControlsById.Add(stock.GetIndex(dataset), new DatasetControlView(dataset));
 
 			RefreshView();
 		}
 
 		public void SetActiveDatasetElement(DatasetElement element)
 		{
-			if (activeDataset != element)
-				activeDataset?.SetActive(false);
+			if (activeDatasetElement != element)
+			{
+				if (activeDatasetElement != null)
+				{
+					activeDatasetElement.SetActive(false);
+					datasetControlsById[activeDatasetElement.Id].Hide();
+				}
+			}
 
 			if (element == null)
 			{
-				activeDataset = null;
-				datasetControls.SetDatasetItem(null);
+				activeDatasetElement = null;
 				Signals.Get<DatasetActivatedSignal>().Dispatch(null);
 				return;
 			}
 
-			activeDataset = element;
-			activeDataset.SetActive(true);
-			Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[element.Id]);
+			activeDatasetElement = element;
+			activeDatasetElement.SetActive(true);
 
-			if (Layers.IsLayer(Stock[element.Id]))
-				datasetControls.SetDatasetItem(element);
+			if (Sequence.IsInSequence(Stock[element.Id]))
+				datasetControlsById[activeDatasetElement.Id].Show(activeDatasetElement);
 			else
-				datasetControls.SetDatasetItem(null);
+				datasetControlsById[activeDatasetElement.Id].Hide();
+
+			Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[element.Id]);
 		}
 
 		private bool HandleStockDrop(VisualElement item, LayerDropArea area)
 		{
 			if (item is DatasetElement.DragPreview dragPreview)
-				return Layers.RemoveFromLayers(dragPreview.DatasetElement.Id);
+				return Sequence.RemoveFromSequence(dragPreview.DatasetElement.Id);
 
 			return false;
 		}
@@ -113,7 +124,7 @@ namespace Fab.WorldMod.UI
 		{
 			if (item is DatasetElement.DragPreview dragPreview)
 			{
-				Layers.InsertLayer(dragPreview.DatasetElement.Id, area.Index);
+				Sequence.InsertIntoSequence(dragPreview.DatasetElement.Id, area.Index);
 				return true;
 			}
 
@@ -133,11 +144,11 @@ namespace Fab.WorldMod.UI
 			{
 				DatasetElement item = dragItemPool.GetPooled();
 				item.Set(this, i);
-				item.SetEnabled(!Layers.IsLayer(Stock[i]));
+				item.SetEnabled(!Sequence.IsInSequence(Stock[i]));
 				stockContainer.Add(item);
 			}
 
-			if (Layers.Count == 0)
+			if (Sequence.Count == 0)
 			{
 				layersContainerDropArea.Set(0);
 				layersContainer.Add(layersContainerDropArea);
@@ -147,11 +158,11 @@ namespace Fab.WorldMod.UI
 				LayerDropArea insertArea = dragInserAreaPool.GetPooled();
 				insertArea.Set(0);
 				layersContainer.Add(insertArea);
-				for (int i = 0; i < Layers.Count; i++)
+				for (int i = 0; i < Sequence.Count; i++)
 				{
 					DatasetElement item = dragItemPool.GetPooled();
-					
-					item.Set(this, Stock.GetIndex(Layers[i]));
+
+					item.Set(this, Stock.GetIndex(Sequence[i]));
 					layersContainer.Add(item);
 					insertArea = dragInserAreaPool.GetPooled();
 					insertArea.Set(i + 1);

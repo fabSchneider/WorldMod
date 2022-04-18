@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: LayerAdd
   m_Shader: {fileID: -6465566751694194690, guid: 33a60783c27fd8b4d8450876ca3e6dfc, type: 3}
-  m_ShaderKeywords: _ENUM_A
+  m_ShaderKeywords: _MASK_RGBA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,10 +58,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ENUM: 0
+    - _ENUM: 1
+    - _MASK: 0
     - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Tint: {r: 0, g: 1, b: 0, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

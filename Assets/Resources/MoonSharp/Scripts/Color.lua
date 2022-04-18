@@ -25,6 +25,10 @@ function Color.blue( )
     return newColor(0.0, 0.0, 1.0, 1.0)
 end
 
+function Color.yellow( )
+    return newColor(1.0, 1.0, 0.0, 1.0)
+end
+
 function Color.white( )
     return newColor(1.0, 1.0, 1.0, 1.0)
 end
