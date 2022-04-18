@@ -3,7 +3,7 @@ Shader "Layers/Mutate/Mask"
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        [KeywordEnum(R, G, B, A)]_MASK("Mask", Float) = 0
+        [KeywordEnum(R, G, B, A)]_CHANNEL("Channel", Float) = 0
     }
     SubShader
     {
@@ -20,7 +20,7 @@ Shader "Layers/Mutate/Mask"
 
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _MASK_R _MASK_G _MASK_B _MASK_A
+            #pragma multi_compile _CHANNEL_R _CHANNEL_G _CHANNEL_B _CHANNEL_A
 
             struct VertexInput
             {
@@ -48,13 +48,13 @@ Shader "Layers/Mutate/Mask"
             float4 frag (VertexOutput i) : SV_Target
             {
                 float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                #if _MASK_R
+                #if _CHANNEL_R
                 return col.x;
-                #elif _MASK_G
+                #elif _CHANNEL_G
                 return col.y;
-                #elif _MASK_B
+                #elif _CHANNEL_B
                 return col.z;
-                #elif _MASK_A
+                #elif _CHANNEL_A
                 return col.w;
                 #else
                 return col;

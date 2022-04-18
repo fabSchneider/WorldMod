@@ -28,30 +28,35 @@ namespace WorldMod.Lua
 		{
 			foreach (var pair in table.Pairs)
 			{
-				object obj;
 				DynValue value = pair.Value;
-				Table valTable = value.Table;
-				if (valTable != null)
-				{
-					// NOTE: this is really hacky
-					if (TryConvert(value, "Color", out Color color))
-						obj = color;
-					else if (TryConvert(value, "Vector", out Vector3 vector))
-						obj = vector;
-					else
-						obj = valTable.Values.AsObjects().ToArray();
-					
-				}
-				else
-				{
-					obj = pair.Value.ToObject();
-					if(obj is double)
-						obj = Convert.ToSingle(obj);
-					else if (obj is LuaProxy proxy)
-						obj = proxy.TargetObject;
-				}
-
+				object obj = GetValue(value);
 				target.SetData(pair.Key.String, obj);
+			}
+		}
+
+		private object GetValue(DynValue value)
+		{
+			Table valTable = value.Table;
+			if (valTable != null)
+			{
+				//// NOTE: this is really hacky
+				//if (TryConvert(value, "Color", out Color color))
+				//	obj = color;
+				//else if (TryConvert(value, "Vector", out Vector3 vector))
+				//	obj = vector;
+				//else
+				return valTable.Values.Select(dynVal => GetValue(dynVal)).ToArray();
+
+			}
+			else
+			{
+				object obj = value.ToObject();
+				if (obj is double)
+					return Convert.ToSingle(obj);
+				else if (obj is LuaProxy proxy)
+					return proxy.TargetObject;
+				else
+					return obj;
 			}
 		}
 

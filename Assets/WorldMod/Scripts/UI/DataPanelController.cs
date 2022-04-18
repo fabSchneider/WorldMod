@@ -29,15 +29,15 @@ namespace Fab.WorldMod.UI
 
 		private VisualElement dataPanel;
 		public DatasetStock Stock { get; private set; }
-		public DatasetLayers Layers { get; private set; }
+		public DatasetSequence Layers { get; private set; }
 
 		private LayerDropArea layersContainerDropArea;
 
-		private DatasetControls datasetControls;
+		private DatasetControlView datasetControls;
 
 		private DatasetElement activeDataset;
 
-		public DataPanelController(VisualElement root, DatasetStock stock, DatasetLayers layers)
+		public DataPanelController(VisualElement root, DatasetStock stock, DatasetSequence layers)
 		{
 			dataPanel = root.Q(name: "data-panel");
 			Stock = stock;
@@ -62,7 +62,7 @@ namespace Fab.WorldMod.UI
 
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
 
-			datasetControls = new DatasetControls(stock);
+			datasetControls = new DatasetControlView(stock);
 
 			RefreshView();
 		}
@@ -84,7 +84,7 @@ namespace Fab.WorldMod.UI
 			activeDataset.SetActive(true);
 			Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[element.Id]);
 
-			if (Layers.IsLayer(Stock[element.Id]))
+			if (Layers.IsInSequence(Stock[element.Id]))
 				datasetControls.SetDatasetItem(element);
 			else
 				datasetControls.SetDatasetItem(null);
@@ -93,7 +93,7 @@ namespace Fab.WorldMod.UI
 		private bool HandleStockDrop(VisualElement item, LayerDropArea area)
 		{
 			if (item is DatasetElement.DragPreview dragPreview)
-				return Layers.RemoveFromLayers(dragPreview.DatasetElement.Id);
+				return Layers.RemoveFromSequence(dragPreview.DatasetElement.Id);
 
 			return false;
 		}
@@ -113,7 +113,7 @@ namespace Fab.WorldMod.UI
 		{
 			if (item is DatasetElement.DragPreview dragPreview)
 			{
-				Layers.InsertLayer(dragPreview.DatasetElement.Id, area.Index);
+				Layers.InsertIntoSequence(dragPreview.DatasetElement.Id, area.Index);
 				return true;
 			}
 
@@ -133,7 +133,7 @@ namespace Fab.WorldMod.UI
 			{
 				DatasetElement item = dragItemPool.GetPooled();
 				item.Set(this, i);
-				item.SetEnabled(!Layers.IsLayer(Stock[i]));
+				item.SetEnabled(!Layers.IsInSequence(Stock[i]));
 				stockContainer.Add(item);
 			}
 

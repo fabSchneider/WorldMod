@@ -1,148 +1,13 @@
 using System;
 using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
+using Fab.WorldMod;
 using Fab.WorldMod.Synth;
 using MoonSharp.Interpreter;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace WorldMod.Lua
 {
-	public class LuaNodeProperty
-	{
-		private DynValue value;
-
-		private float floatValue;
-		private Color colorValue;
-		private Vector3 vectorValue;
-		private string enumValue;
-
-		public float FloatValue  => floatValue; 
-		public Color ColorValue  => colorValue; 
-		public Vector3 VectorValue => vectorValue; 
-		public string EnumValue => enumValue; 
-
-		private string name;
-		public string Name => name;
-
-		public LuaNodeProperty(string name, DynValue value)
-		{
-			this.name = name;
-			this.value = value;
-
-		}
-
-		public void SetType(SynthNodeDescriptor.PropertyDescriptor.PropertyType type)
-		{
-			switch (type)
-			{
-				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Float:
-					floatValue = (float)value.CastToNumber();
-					return;
-				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Color:
-					colorValue = value.ToObject<Color>();
-					return;
-				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Vector:
-					vectorValue = value.ToObject<Vector3>();
-					return;
-				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Enum:
-					enumValue = value.String;
-					return;
-			}
-		}
-	}
-
-	//[LuaName("node_prop")]
-	//public class NodePropertyModule : LuaObject, ILuaObjectInitialize
-	//{
-	//	NodePropertyProxy @float(string name, float value)
-	//	{
-	//		var proxy = new NodePropertyProxy();
-	//		proxy.SetTarget(new LuaNodeProperty(name, value));
-	//		return proxy;
-	//	}
-
-	//	NodePropertyProxy color(string name, Color value)
-	//	{
-	//		var proxy = new NodePropertyProxy();
-	//		proxy.SetTarget(new LuaNodeProperty(name, value));
-	//		return proxy;
-	//	}
-
-	//	NodePropertyProxy vector(string name, Vector3 value)
-	//	{
-	//		var proxy = new NodePropertyProxy();
-	//		proxy.SetTarget(new LuaNodeProperty(name, value));
-	//		return proxy;
-	//	}
-
-	//	NodePropertyProxy @enum(string name, int value)
-	//	{
-	//		var proxy = new NodePropertyProxy();
-	//		proxy.SetTarget(new LuaNodeProperty(name, value));
-	//		return proxy;
-	//	}
-
-	//	public void Initialize()
-	//	{
-			
-	//	}
-	//}
-
-
-	public class NodePropertyProxy : LuaProxy<LuaNodeProperty>
-	{
-
-	}
-
-
-	public class LayerControl
-	{
-		public string name;
-
-
-		public event Action<float> onValueChange;
-
-		public void SetValue(float value)
-		{
-			onValueChange?.Invoke(value);
-		}
-	}
-
-	[LuaName("slider")]
-	[LuaHelpInfo("A slider control")]
-	public class LayerControlProxy : LuaProxy<LayerControl>
-	{
-		private Closure onValueChange;
-
-
-		[LuaHelpInfo("Add a function to be executed when the value of this slider changes")]
-		public void on_change(Closure callback)
-		{
-			ThrowIfNil();
-
-			onValueChange = callback;
-
-			Target.onValueChange -= OnValueChange;
-			if (onValueChange != null)
-				Target.onValueChange += OnValueChange;
-		}
-
-		public void set(float value)
-		{
-			Target.onValueChange -= OnValueChange;
-			target.SetValue(value);
-			Target.onValueChange += OnValueChange;
-		}
-
-		private void OnValueChange(float val)
-		{
-			onValueChange?.Call(val);
-		}
-
-	}
-
-
 	[LuaHelpInfo("A synth layer")]
 	[LuaName("synth_layer")]
 	public class SynthLayerProxy : LuaProxy<SynthLayer>
@@ -155,7 +20,7 @@ namespace WorldMod.Lua
 		}
 
 
-		[LuaHelpInfo("Sets a texture")]
+		[LuaHelpInfo("Sets a texture to be used as the input of the layer")]
 		public SynthLayerProxy texture(ImageProxy texture)
 		{
 			if (texture == null || texture.Target == null)
@@ -165,106 +30,113 @@ namespace WorldMod.Lua
 			return this;
 		}
 
-		[LuaHelpInfo("Interpolates dark to light of the input from color a to color b")]
-		public SynthLayerProxy lerp(Color a, Color b)
+		[LuaHelpInfo("Sets the layers generator node")]
+		public SynthLayerProxy generate(string name, params Table[] properties)
 		{
-			MutateNode node = (MutateNode)nodeFactory.CreateNode(typeof(MutateNode), "lerp");
-
-			node.Material.SetColor("_ColorA", a);
-			node.Material.SetColor("_ColorB", b);
-			target.AddMutateNode(node);
-			return this;
-		}
-
-		[LuaHelpInfo("Masks one channel of the input")]
-		public SynthLayerProxy mask(string channel)
-		{
-			MutateNode node = (MutateNode)nodeFactory.CreateNode(typeof(MutateNode), "mask");
-
-			//var descriptor = nodeFactory.GetNodeDescriptor(typeof(MutateNode), "mask");
-		
-			foreach(LocalKeyword enabled in node.Material.enabledKeywords)
-			{
-				if (enabled.name.StartsWith("_MASK"))
-					node.Material.DisableKeyword(in enabled);
-			}
-		
-			//LocalKeyword keyword = descriptor.GetKeyword("_MASK", channel);
-			//node.Material.EnableKeyword("_MASK_" + channel);
-			SetKeywordOnMaterial(node.Material, "_MASK", channel);
-			target.AddMutateNode(node);
-			return this;
-		}
-
-		private void SetKeywordOnMaterial(Material material, string propName, string keyword)
-		{
-			foreach (LocalKeyword enabled in material.enabledKeywords)
-			{
-				if (enabled.name.StartsWith(propName))
-					material.DisableKeyword(in enabled);
-			}
-
-			material.EnableKeyword(propName + "_" + keyword);
-		}
-
-		public SynthLayerProxy generate(string name, params LuaNodeProperty[] props)
-		{
-			GenNode node = (GenNode)CreateNode(typeof(GenNode), name, props);
+			GenNode node = (GenNode)CreateNode(typeof(GenNode), name, properties);
 			target.GenerateNode = node;
 			return this;
 		}
 
-		public SynthLayerProxy mutate(string name, params LuaNodeProperty[] props)
+		[LuaHelpInfo("Adds mutate node to the layer")]
+		public SynthLayerProxy mutate(string name, params Table[] properties)
 		{
-			MutateNode node = (MutateNode)CreateNode(typeof(MutateNode), name, props);
+			MutateNode node = (MutateNode)CreateNode(typeof(MutateNode), name, properties);
 			target.AddMutateNode(node);
 			return this;
 		}
 
-		public SynthLayerProxy blend(string name, params LuaNodeProperty[] props)
+		[LuaHelpInfo("Sets the layer blend mode")]
+		public SynthLayerProxy blend(string name, params Table[] properties)
 		{
-			BlendNode node = (BlendNode)CreateNode(typeof(BlendNode), name, props);
+			BlendNode node = (BlendNode)CreateNode(typeof(BlendNode), name, properties);
 			target.BlendNode = node;
 			return this;
 		}
 
-		private SynthNode CreateNode(Type nodeType, string name, LuaNodeProperty[] props)
+
+		private SynthNode CreateNode(Type nodeType, string name, Table[] properties)
 		{
 			SynthNode node = nodeFactory.CreateNode(nodeType, name);
 			SynthNodeDescriptor descriptor = nodeFactory.GetNodeDescriptor(nodeType, name);
 
-			foreach (var prop in props)
+			// Set properties and register controls
+			foreach (var prop in properties)
 			{
-				var propDescriptor = descriptor.GetProperty(prop.Name);
+				string propName = prop.Get(1).String;
+				DynValue val = prop.Get(2);
 
-				prop.SetType(propDescriptor.Type);
-				switch (propDescriptor.Type)
+				var propDescriptor = descriptor.GetProperty(propName);
+
+				if (val.UserData != null)
 				{
-					case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Float:
-						node.Material.SetFloat(propDescriptor.Id, prop.FloatValue);
-						break;
-					case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Color:
-						node.Material.SetColor(propDescriptor.Id, prop.ColorValue);
-						break;
-					case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Vector:
-						node.Material.SetVector(propDescriptor.Id, prop.VectorValue);
-						break;
-					case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Enum:
-						break;
-					default:
-						break;
+					IValueControlProxy controlProxy = (IValueControlProxy)val.UserData.Object;
+					;
+					ValueControl control = controlProxy.Target;
+					SetNodePropertyControl(node, propDescriptor, control);
 				}
+				else
+					SetNodePropertyValue(node, propDescriptor, val);
 			}
-
 			return node;
-
 		}
 
-		[LuaHelpInfo("Sets the layer blend mode")]
-		public SynthLayerProxy blend(string name)
+		private void SetNodePropertyControl(SynthNode node, SynthNodeDescriptor.PropertyDescriptor propertyDescriptor, ValueControl control)
 		{
-			target.BlendNode = (BlendNode)nodeFactory.CreateNode(typeof(BlendNode), name);
-			return this;
+			switch (propertyDescriptor.Type)
+			{
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Float:
+					var floatControl = control as ValueControl<float>;
+					node.SetFloat(propertyDescriptor, floatControl.Value);
+					floatControl.RegisterChangeCallback(val => node.SetFloat(propertyDescriptor, val));
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Color:
+					var colorControl = control as ValueControl<Color>;
+					node.SetColor(propertyDescriptor, colorControl.Value);
+					colorControl.RegisterChangeCallback(val => node.SetColor(propertyDescriptor, val));
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Vector:
+					var vectorControl = control as ValueControl<Vector3>;
+					node.SetVector(propertyDescriptor, vectorControl.Value);
+					vectorControl.RegisterChangeCallback(val => node.SetVector(propertyDescriptor, val));
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Enum:
+					if (control is ValueControl<string> stringControl)
+					{
+						node.SetEnum(propertyDescriptor, stringControl.Value);
+						stringControl.RegisterChangeCallback(val => node.SetEnum(propertyDescriptor, val));
+					}
+					else if (control is ChoiceControl choiceControl)
+					{
+						node.SetEnum(propertyDescriptor, choiceControl.CurrentChoice);
+						choiceControl.RegisterChangeCallback(val => node.SetEnum(propertyDescriptor, choiceControl.CurrentChoice));
+					}
+					return;
+				default:
+					return;
+			}
 		}
+
+		private void SetNodePropertyValue(SynthNode node, SynthNodeDescriptor.PropertyDescriptor propertyDescriptor, DynValue value)
+		{
+			switch (propertyDescriptor.Type)
+			{
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Float:
+					node.SetFloat(propertyDescriptor, (float)value.Number);
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Color:
+					node.SetColor(propertyDescriptor, value.ToObject<Color>());
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Vector:
+					node.SetVector(propertyDescriptor, value.ToObject<Vector3>());
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Enum:
+					node.SetEnum(propertyDescriptor, value.String);
+					return;
+				default:
+					return;
+			}
+		}
+
 	}
 }

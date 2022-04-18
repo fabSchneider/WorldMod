@@ -39,7 +39,7 @@ namespace Fab.WorldMod.Synth
 	[AddComponentMenu("WorldMod/Synthesizer")]
 	public class SynthComponent : MonoBehaviour
     {
-		private static readonly string datasetLayerKey = "layer";
+		private static readonly string datasetSynthKey = "synth";
 
 		[SerializeField]
 		private DatasetsComponent datasets;
@@ -49,7 +49,7 @@ namespace Fab.WorldMod.Synth
 
 		private Dictionary<string, SynthChannelData> channelsByName;
 
-		private bool[] channelUpdateFlags;
+		private bool[] channelDirtyFlags;
 
 		private bool layersUpdateFlag;
 
@@ -73,12 +73,12 @@ namespace Fab.WorldMod.Synth
 			NodeFactory = nodeLibrary.CreateNodeFactory();
 
 			channelsByName = new Dictionary<string, SynthChannelData>(channelsData.Length, StringComparer.InvariantCultureIgnoreCase);
-			channelUpdateFlags = new bool[channelsData.Length];
+			channelDirtyFlags = new bool[channelsData.Length];
 			for (int i = 0; i < channelsData.Length; i++)
 			{
 				SynthChannelData layerGroupData = channelsData[i];
 				channelsByName.Add(layerGroupData.Name, layerGroupData);
-				channelUpdateFlags[i] = true;
+				channelDirtyFlags[i] = true;
 				synthesizer.AddChannel(layerGroupData.Name, layerGroupData.Id, layerGroupData.OutputTexture);
 			}
 
@@ -88,7 +88,7 @@ namespace Fab.WorldMod.Synth
 		private void Start()
 		{
 			Signals.Get<DatasetUpdatedSignal>().AddListener(OnDatasetUpdated);
-			datasets.Layers.layerChanged += OnLayerChanged;
+			datasets.Sequence.sequenceChanged += OnSequenceChanged;
 
 			layerMaterial = new Material(layerRenderer.sharedMaterial);
 			layerMaterial.name = layerMaterial.name + " (inst)";
@@ -100,9 +100,9 @@ namespace Fab.WorldMod.Synth
 			if (layersUpdateFlag)
 			{
 				synthesizer.ClearAllChannels();
-				foreach (var dataset in datasets.Layers)
+				foreach (var dataset in datasets.Sequence)
 				{
-					if (dataset.TryGetData(datasetLayerKey, out SynthLayer layer))
+					if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
 					{
 						SynthChannelData channelData = channelsByName[layer.ChannelName];
 						synthesizer.AddLayer(layer, channelData.Id);
@@ -111,13 +111,13 @@ namespace Fab.WorldMod.Synth
 				layersUpdateFlag = false;
 			}
 
-			for (int i = 0; i < channelUpdateFlags.Length; i++)
+			for (int i = 0; i < channelDirtyFlags.Length; i++)
 			{
-				if (channelUpdateFlags[i])
+				if (channelDirtyFlags[i])
 				{
 					SynthChannelData channelData = channelsData[i];
 					synthesizer.UpdateChannel(channelData.Id);
-					channelUpdateFlags[i] = false;
+					channelDirtyFlags[i] = false;
 					layerMaterial.SetTexture(channelData.TexturePropertyId, channelData.OutputTexture);
 				}
 			}
@@ -128,29 +128,35 @@ namespace Fab.WorldMod.Synth
 			return channelsByName.ContainsKey(channel);
 		}
 
-		private void OnLayerChanged(Dataset dataset, DatasetLayers.ChangeEventType changeType)
+		private void OnSequenceChanged(Dataset dataset, DatasetSequence.ChangeEventType changeType)
 		{
-			SetGroupDirtyFlag(dataset);
+			SetChannelDirtyFlag(dataset);
 			layersUpdateFlag = true;
 		}
 
 		private void OnDatasetUpdated(Dataset dataset)
 		{
-			if (datasets.Layers.IsLayer(dataset))
+			if (datasets.Sequence.IsInSequence(dataset))
 			{
-				SetGroupDirtyFlag(dataset);
+				SetChannelDirtyFlag(dataset);
 			}
 		}
 
-		private void SetGroupDirtyFlag(Dataset dataset)
+		private void SetChannelDirtyFlag(Dataset dataset)
 		{
-			if (dataset.TryGetData(datasetLayerKey, out SynthLayer layer))
+			if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
 			{
-				SynthChannelData channelData = channelsByName[layer.ChannelName];
-				int channelIndex = Array.IndexOf(channelsData, channelData);
-				if (channelIndex != -1)
-					channelUpdateFlags[channelIndex] = true;
+				SetLayerDirty(layer);
 			}
+		}
+
+		public void SetLayerDirty(SynthLayer layer)
+		{
+			// NOTE: This does not check if the layer actually belongs to the channel. It will update the channel regardless.
+			SynthChannelData channelData = channelsByName[layer.ChannelName];
+			int channelIndex = Array.IndexOf(channelsData, channelData);
+			if (channelIndex != -1)
+				channelDirtyFlags[channelIndex] = true;
 		}
 
 		private void OnDestroy()

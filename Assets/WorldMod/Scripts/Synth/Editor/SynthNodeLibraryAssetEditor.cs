@@ -99,7 +99,7 @@ namespace Fab.WorldMod.Synth.Editor
 						foreach (LocalKeyword keyword in shader.keywordSpace.keywords)
 						{
 							if (keyword.type == ShaderKeywordType.UserDefined && keyword.name.StartsWith(propName))
-								keywords.Add(keyword.name.Substring(propName.Length + 1));
+								keywords.Add(keyword.name);
 						}
 
 						if (keywords.Count > 0)
@@ -118,7 +118,7 @@ namespace Fab.WorldMod.Synth.Editor
 					propertiesProp.InsertArrayElementAtIndex(addedProps);
 					var propProp = propertiesProp.GetArrayElementAtIndex(addedProps);
 					propProp.FindPropertyRelative("name").stringValue = ShaderUtil.GetPropertyDescription(shader, i);
-					propProp.FindPropertyRelative("id").intValue = Shader.PropertyToID(propName);
+					propProp.FindPropertyRelative("propName").stringValue = propName;
 
 					var typeProp = propProp.FindPropertyRelative("type");
 					typeProp.enumValueIndex = typeValue;

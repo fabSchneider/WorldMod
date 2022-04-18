@@ -18,18 +18,21 @@ MonoBehaviour:
       shader: {fileID: 4800000, guid: e43be423bd0d90a45a3391840f9a48ff, type: 3}
       properties:
       - name: Center
-        id: 633
+        propName: _Center
+        propId: 633
         type: 2
         keywords: []
       - name: Radius
-        id: 20
+        propName: _Radius
+        propId: 20
         type: 0
         keywords: []
     - name: Fill
       shader: {fileID: 4800000, guid: 4a5f717249b92c843a3720d9aad650f2, type: 3}
       properties:
       - name: Color
-        id: 75
+        propName: _Color
+        propId: 75
         type: 1
         keywords: []
     mutationNodes:
@@ -37,79 +40,91 @@ MonoBehaviour:
       shader: {fileID: 4800000, guid: 912d60a5cfb04234fb41ffba2a6ec21b, type: 3}
       properties:
       - name: Lerp
-        id: 624
+        propName: _Lerp
+        propId: 624
         type: 0
         keywords: []
     - name: Lerp
       shader: {fileID: 4800000, guid: b5eb90e0dde068b41ac65e74d97a3f82, type: 3}
       properties:
       - name: ColorA
-        id: 622
+        propName: _ColorA
+        propId: 622
         type: 1
         keywords: []
       - name: ColorB
-        id: 623
+        propName: _ColorB
+        propId: 623
         type: 1
         keywords: []
-    - name: Mask
-      shader: {fileID: 4800000, guid: 1cb89518117e0ec42b0c0f7aa8e70d66, type: 3}
-      properties:
-      - name: Mask
-        id: 630
-        type: 3
-        keywords:
-        - R
-        - G
-        - B
-        - A
     - name: Range
       shader: {fileID: 4800000, guid: 6a5fa9b4f679789449176507574469eb, type: 3}
       properties:
       - name: Edge1
-        id: 631
+        propName: _Edge1
+        propId: 631
         type: 0
         keywords: []
       - name: Edge2
-        id: 632
+        propName: _Edge2
+        propId: 632
         type: 0
-        keywords: []
-    - name: Tint
-      shader: {fileID: 4800000, guid: 9d757e537a2936a4087ae202626fc9df, type: 3}
-      properties:
-      - name: Tint
-        id: 619
-        type: 1
         keywords: []
     - name: Threshold
       shader: {fileID: 4800000, guid: 07c4c4cfac13d084aa229baa54d6cfad, type: 3}
       properties:
       - name: Threshold
-        id: 620
+        propName: _Threshold
+        propId: 620
         type: 0
         keywords: []
       - name: Invert
-        id: 621
+        propName: _Invert
+        propId: 621
         type: 0
         keywords: []
+    - name: Tint
+      shader: {fileID: 4800000, guid: 9d757e537a2936a4087ae202626fc9df, type: 3}
+      properties:
+      - name: Color
+        propName: _Color
+        propId: 75
+        type: 1
+        keywords: []
+    - name: Mask
+      shader: {fileID: 4800000, guid: 1cb89518117e0ec42b0c0f7aa8e70d66, type: 3}
+      properties:
+      - name: Channel
+        propName: _CHANNEL
+        propId: 1261
+        type: 3
+        keywords:
+        - _CHANNEL_R
+        - _CHANNEL_G
+        - _CHANNEL_B
+        - _CHANNEL_A
     blendNodes:
     - name: Add
       shader: {fileID: 4800000, guid: 43a3f1eb294f1114bbfd62adf420d6ca, type: 3}
       properties:
       - name: Opacity
-        id: 629
+        propName: _Opacity
+        propId: 629
         type: 0
         keywords: []
     - name: Lerp
       shader: {fileID: 4800000, guid: 39ce5387ea163d641872caef2cc3276e, type: 3}
       properties:
       - name: Opacity
-        id: 629
+        propName: _Opacity
+        propId: 629
         type: 0
         keywords: []
     - name: Multiply
       shader: {fileID: 4800000, guid: bebe573627492d44d810aec6facf9351, type: 3}
       properties:
       - name: Opacity
-        id: 629
+        propName: _Opacity
+        propId: 629
         type: 0
         keywords: []

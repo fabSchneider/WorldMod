@@ -38,7 +38,7 @@ namespace Fab.WorldMod.UI
 			infoPanelController = new InfoPanelController(document.rootVisualElement);
 
 			if (datasets)
-				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Layers);
+				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Sequence);
 
 			SetupMarkerUI();
 		}

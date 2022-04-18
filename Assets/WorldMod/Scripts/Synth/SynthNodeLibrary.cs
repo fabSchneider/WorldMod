@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Fab.WorldMod.Synth
 {
@@ -30,29 +29,6 @@ namespace Fab.WorldMod.Synth
 			throw new ArgumentException($"No property with the given name \"{name}\" was found");
 		}
 
-		//public LocalKeyword GetKeyword(string propertyName, string keyword)
-		//{
-		//	PropertyDescriptor descriptor = null;
-		//	foreach (var prop in properties)
-		//	{
-		//		if (prop.Name.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
-		//		{
-		//			descriptor = prop;
-		//			break;
-		//		}
-		//	}
-
-		//	if (descriptor == null)
-		//		throw new ArgumentException($"No property with the given name \"{name}\" was found");
-
-		//	int index = Array.IndexOf(descriptor.Keywords, keyword);
-		//	if (index == -1)
-		//		throw new ArgumentException($"No keyword with the given name \"{keyword}\" was found");
-
-		//	return new LocalKeyword(shader, propertyName + '_' + keyword);
-		//}
-
-
 		[Serializable]
 		public class PropertyDescriptor
 		{
@@ -67,8 +43,8 @@ namespace Fab.WorldMod.Synth
 			[SerializeField]
 			private string name;
 			[SerializeField]
-			[HideInInspector]
-			private int id;
+			private string propName;
+
 			[SerializeField]
 			private PropertyType type;
 			[SerializeField]
@@ -76,7 +52,7 @@ namespace Fab.WorldMod.Synth
 
 			public IEnumerable<string> Keywords => keywords;
 			public string Name => name;
-			public int Id => id;
+			public string PropName => propName;
 			public PropertyType Type => type;
 		}
 	}

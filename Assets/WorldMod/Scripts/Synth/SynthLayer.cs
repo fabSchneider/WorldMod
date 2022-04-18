@@ -24,11 +24,6 @@ namespace Fab.WorldMod.Synth
 			mutateNodes = new List<MutateNode>();
 		}
 
-		//public SynthLayer(int groupId)
-		//{
-		//	this.groupId = groupId;
-		//}
-
 		public void AddMutateNode(MutateNode node)
 		{
 			mutateNodes.Add(node);

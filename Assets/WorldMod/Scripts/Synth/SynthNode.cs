@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Fab.WorldMod.Synth
 {
@@ -18,6 +19,37 @@ namespace Fab.WorldMod.Synth
 		{
 			this.shader = shader;
 			blitMaterial = new Material(shader);
+		}
+
+		public void SetFloat(SynthNodeDescriptor.PropertyDescriptor propDescriptor, float value)
+		{
+			blitMaterial.SetFloat(propDescriptor.PropName, value);
+		}
+
+		public void SetColor(SynthNodeDescriptor.PropertyDescriptor propDescriptor, Color value)
+		{
+			blitMaterial.SetColor(propDescriptor.PropName, value);
+		}
+
+		public void SetVector(SynthNodeDescriptor.PropertyDescriptor propDescriptor, Vector3 value)
+		{
+			blitMaterial.SetVector(propDescriptor.PropName, value);
+		}
+
+		public void SetEnum(SynthNodeDescriptor.PropertyDescriptor propDescriptor, string value)
+		{
+			SetKeywordOnMaterial(blitMaterial, propDescriptor, value);
+		}
+
+		private void SetKeywordOnMaterial(Material material, SynthNodeDescriptor.PropertyDescriptor propDescriptor, string keyword)
+		{
+			foreach (LocalKeyword enabled in material.enabledKeywords)
+			{
+				if (enabled.name.StartsWith(propDescriptor.PropName))
+					material.DisableKeyword(in enabled);
+			}
+
+			material.EnableKeyword(propDescriptor.PropName + "_" + keyword);
 		}
 	}
 
