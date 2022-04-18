@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using Fab.Common;
 using Fab.WorldMod.Localization;
@@ -17,24 +15,23 @@ namespace Fab.WorldMod.UI
 		private static readonly string contentClassname = classname + "__content";
 		private static readonly string wireContainerClassname = classname + "__wire-container";
 
-		private DatasetStock stock;
-		private DatasetElement currentItem;
 		private Vector2 itemAnchor;
-		private ObjectPool<Wire> wirePool;
 
 		private VisualElement content;
 		private VisualElement wireContainer;
 		public override VisualElement contentContainer => content;
 
-		private Texture wireTexture;
-
+		private static Texture wireTexture;
 		public Color WireColor { get; set; } = new Color(0.5f, 0.5f, 0.5f);
-		public DatasetControlView(DatasetStock stock)
-		{
-			this.stock = stock;
-			wireTexture = Resources.Load<Texture2D>("WorldMod/Wire");
-			wirePool = new ObjectPool<Wire>(8, true, CreateWire, ResetWire);
+		private Wire[] wires;
 
+		public DatasetControlView(Dataset dataset)
+		{
+			if (dataset == null)
+				throw new ArgumentNullException(nameof(dataset));
+
+			if (wireTexture == null)
+				wireTexture = Resources.Load<Texture2D>("WorldMod/Wire");
 
 			AddToClassList(classname);
 			pickingMode = PickingMode.Ignore;
@@ -46,37 +43,30 @@ namespace Fab.WorldMod.UI
 			content.AddToClassList(contentClassname);
 			hierarchy.Add(content);
 
-			Signals.Get<OnChangeLocaleSignal>().AddListener(HideOnLocaleChange);
+			AddControls(dataset);
+			CreateWires();
 
+			Signals.Get<OnChangeLocaleSignal>().AddListener(HideOnLocaleChange);
 		}
 
 		private void HideOnLocaleChange(Locale locale)
 		{
-			SetDatasetItem(null);
+			Hide();
 		}
 
-		public void SetDatasetItem(DatasetElement item)
+		public void Show(VisualElement datasetItem)
 		{
-			wireContainer.Query<Wire>().ForEach(wire => wirePool.ReturnToPool(wire));
-			RemoveFromClassList(visibleClassname);
-
-			if (item == null)
-			{
-				currentItem = null;
-				RemoveFromHierarchy();
-			}
-			else
-			{
-				currentItem = item;
-				content.Clear();
-				Dataset dataset = stock[item.Id];
-				AddControls(dataset);
-
-				currentItem.parent.Add(this);
-				BuildWiresAsync().Forget();
-
-			}
+			datasetItem.parent.Q<DatasetControlView>()?.Hide();
+			datasetItem.parent.Add(this);
+			BuildWiresAsync(datasetItem).Forget();
 		}
+
+		public void Hide()
+		{
+			RemoveFromClassList(visibleClassname);
+			RemoveFromHierarchy();
+		}
+
 
 		private static readonly string controlsKey = "controls";
 		private void AddControls(Dataset dataset)
@@ -87,7 +77,7 @@ namespace Fab.WorldMod.UI
 				{
 					ValueControl control = null;
 					string style = null;
-					if(item is object[] arr)
+					if (item is object[] arr)
 					{
 						control = (ValueControl)arr[0];
 						style = (string)arr[1];
@@ -128,7 +118,7 @@ namespace Fab.WorldMod.UI
 			field.value = valueControl.Value;
 			field.RegisterValueChangedCallback(evt =>
 			{
-				if(valueControl.SetValue(evt.newValue))
+				if (valueControl.SetValue(evt.newValue))
 					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
 			});
 			content.Add(field);
@@ -154,7 +144,7 @@ namespace Fab.WorldMod.UI
 			slider.value = sliderControl.Value;
 			slider.RegisterValueChangedCallback(evt =>
 			{
-				if(sliderControl.SetValue(evt.newValue))
+				if (sliderControl.SetValue(evt.newValue))
 					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
 			});
 			content.Add(slider);
@@ -180,7 +170,7 @@ namespace Fab.WorldMod.UI
 			choiceField.value = choiceControl.CurrentChoice;
 			choiceField.RegisterValueChangedCallback(evt =>
 			{
-				if(choiceControl.SetValue(evt.newValue))
+				if (choiceControl.SetValue(evt.newValue))
 					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
 			});
 			content.Add(choiceField);
@@ -201,35 +191,32 @@ namespace Fab.WorldMod.UI
 			content.Add(container);
 		}
 
-		private async UniTaskVoid BuildWiresAsync()
+		private async UniTaskVoid BuildWiresAsync(VisualElement datasetElement)
 		{
 			await UniTask.DelayFrame(1);
 
-			if (currentItem == null)
-				return;
-
-			Vector2 anchor = GetRightAnchor(currentItem.localBound);
+			Vector2 anchor = GetRightAnchor(datasetElement.localBound);
 			float yPos = Mathf.Max(0f, anchor.y - localBound.height / 2f);
 			transform.position = new Vector2(anchor.x, yPos);
 
-			SetWires();
+			SetWires(datasetElement);
 
 			AddToClassList(visibleClassname);
 		}
 
-
-		private void SetWires()
+		private void SetWires(VisualElement datasetElement)
 		{
-			itemAnchor = GetRightAnchor(currentItem.worldBound);
+			itemAnchor = GetRightAnchor(datasetElement.worldBound);
 			itemAnchor = wireContainer.WorldToLocal(itemAnchor);
 
-			foreach (var child in content.Children())
+			for (int i = 0; i < content.childCount; i++)
 			{
+				VisualElement child = content[i];
 				Vector2 targetAnchor = new Vector2(wireContainer.worldBound.max.x, child.worldBound.min.y + child.worldBound.height / 2f);
 
 				targetAnchor = wireContainer.WorldToLocal(targetAnchor);
 
-				Wire wire = wirePool.GetPooled();
+				Wire wire = wires[i];
 				wire.SetEndpoints(itemAnchor, targetAnchor);
 				wireContainer.Add(wire);
 			}
@@ -245,18 +232,17 @@ namespace Fab.WorldMod.UI
 			return new Vector2(rect.min.x, rect.min.y + rect.height / 2f);
 		}
 
-
-		private Wire CreateWire()
+		private void CreateWires()
 		{
-			Wire wire = new Wire();
-			wire.Texture = wireTexture;
-			wire.Tint = WireColor;
-			wire.UseAdaptiveResolution = true;
-			return wire;
-		}
-		private void ResetWire(Wire wire)
-		{
-			wire.RemoveFromHierarchy();
+			wires = new Wire[content.childCount];
+			for (int i = 0; i < content.childCount; i++)
+			{
+				Wire wire = new Wire();
+				wire.Texture = wireTexture;
+				wire.Tint = WireColor;
+				wire.UseAdaptiveResolution = true;
+				wires[i] = wire;
+			}
 		}
 	}
 }
