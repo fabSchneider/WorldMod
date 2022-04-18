@@ -10,7 +10,7 @@ namespace Fab.Lua.Editor
 	public class LuaHelpMarkdownFormatter : ILuaHelpFormatter
 	{
 		private static string NL => Environment.NewLine;
-		private static string CodeTag => "`";
+		private static string CodeTag => "\t";
 
 		private static string MethodFormat = " {0}({1}) ";
 		private static string PropertyFormat = " {0} ";
@@ -27,7 +27,7 @@ namespace Fab.Lua.Editor
 				WriteHeading(sb, "Methods:", 3);
 				foreach (var methodHelp in helpInfo.methodsHelp)
 				{
-					WriteHeading(sb, MethodToString(methodHelp.method), 4);
+					WriteCode(sb, MethodToString(methodHelp.method));
 					WriteText(sb, methodHelp.helpInfo);
 				}
 			}
@@ -37,7 +37,7 @@ namespace Fab.Lua.Editor
 				WriteHeading(sb, "Properties:", 3);
 				foreach (var propertyHelp in helpInfo.propertiesHelp)
 				{
-					WriteHeading(sb, PropertyToString(propertyHelp.property), 4);
+					WriteCode(sb, PropertyToString(propertyHelp.property));
 					WriteText(sb, propertyHelp.helpInfo);
 				}
 			}
@@ -57,7 +57,7 @@ namespace Fab.Lua.Editor
 
 		private void WriteCode(StringBuilder sb, string text)
 		{
-			sb.Append(CodeTag + text + CodeTag + NL + NL);
+			sb.Append(CodeTag + text + NL + NL);
 		}
 
 		private string MethodToString(MethodInfo methodInfo)

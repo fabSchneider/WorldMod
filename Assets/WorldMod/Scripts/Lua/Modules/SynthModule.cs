@@ -2,7 +2,7 @@ using System;
 using Fab.Lua.Core;
 using Fab.WorldMod.Synth;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaHelpInfo("Module to alter the data layers")]
 	[LuaName("synth")]

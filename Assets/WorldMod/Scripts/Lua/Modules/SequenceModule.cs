@@ -1,7 +1,6 @@
 using Fab.Lua.Core;
-using Fab.WorldMod;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaHelpInfo("Module to alter the data layers")]
 	[LuaName("sequence")]

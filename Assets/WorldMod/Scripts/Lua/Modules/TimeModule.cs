@@ -1,7 +1,7 @@
 using Fab.Lua.Core;
 using UnityEngine;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaName("time")]
 	[LuaHelpInfo("Module for accessing time data")]

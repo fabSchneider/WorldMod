@@ -1,12 +1,11 @@
 using System;
 using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
-using Fab.WorldMod;
 using Fab.WorldMod.Synth;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaHelpInfo("A synth layer")]
 	[LuaName("synth_layer")]

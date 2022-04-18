@@ -1,11 +1,9 @@
 using System;
 using System.Linq;
 using Fab.Lua.Core;
-using Fab.WorldMod;
 using MoonSharp.Interpreter;
-using UnityEngine;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 
 	[LuaHelpInfo("A dataset")]
@@ -24,13 +22,27 @@ namespace WorldMod.Lua
 			this.target = target;
 		}
 
-		public void set(Table table)
+		[LuaHelpInfo("Adds data to the data set")]
+		public void add(Table table)
 		{
 			foreach (var pair in table.Pairs)
 			{
 				DynValue value = pair.Value;
 				object obj = GetValue(value);
 				target.SetData(pair.Key.String, obj);
+			}
+		}
+
+		[LuaHelpInfo("Gets data from the data set")]
+		public object get(DynValue key)
+		{
+			if (target.TryGetData(key.String, out object data))
+			{
+				return data;
+			}
+			else
+			{
+				return null;
 			}
 		}
 
@@ -57,40 +69,6 @@ namespace WorldMod.Lua
 					return proxy.TargetObject;
 				else
 					return obj;
-			}
-		}
-
-		private bool TryConvert<T>(DynValue value, string varName, out T converted)
-		{
-			Table table = value.Table;
-			if (table != null)
-			{
-				Script script = table.OwnerScript;
-				var colorTbl = script.Globals.RawGet(varName);
-
-				if (colorTbl != null &&
-					table.MetaTable != null &&
-					table.MetaTable.MetaTable != null &&
-					colorTbl.Table.MetaTable.ReferenceID == table.MetaTable.MetaTable.ReferenceID)
-				{
-					converted = value.ToObject<T>();
-					return true;
-				}
-			}
-
-			converted = default;
-			return false;
-		}
-
-		public object get(DynValue key)
-		{
-			if (target.TryGetData(key.String, out object data))
-			{
-				return data;
-			}
-			else
-			{
-				return null;
 			}
 		}
 

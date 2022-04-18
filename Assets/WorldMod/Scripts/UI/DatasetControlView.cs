@@ -81,7 +81,7 @@ namespace Fab.WorldMod.UI
 					{
 						control = (ValueControl)arr[0];
 						style = (string)arr[1];
-						Debug.Log(style);
+						// TODO: Handle styles
 					}
 					else
 					{
@@ -90,10 +90,10 @@ namespace Fab.WorldMod.UI
 
 					switch (control)
 					{
-						case SliderControl sc:
+						case RangeControl sc:
 							AddSliderControl(dataset, sc);
 							break;
-						case RangeControl rc:
+						case IntervalControl rc:
 							AddRangeControl(dataset, rc);
 							break;
 						case ChoiceControl cc:
@@ -125,7 +125,7 @@ namespace Fab.WorldMod.UI
 			field.Q<TextElement>().WithLocalizable();
 		}
 
-		private void AddRangeControl(Dataset dataset, RangeControl rangeControl)
+		private void AddRangeControl(Dataset dataset, IntervalControl rangeControl)
 		{
 			MinMaxSlider slider = new MinMaxSlider(rangeControl.Name, rangeControl.Value.x, rangeControl.Value.y, rangeControl.Min, rangeControl.Max);
 			slider.value = rangeControl.Value;
@@ -138,7 +138,7 @@ namespace Fab.WorldMod.UI
 			slider.Q<TextElement>().WithLocalizable();
 		}
 
-		private void AddSliderControl(Dataset dataset, SliderControl sliderControl)
+		private void AddSliderControl(Dataset dataset, RangeControl sliderControl)
 		{
 			Slider slider = new Slider(sliderControl.Name, sliderControl.Min, sliderControl.Max);
 			slider.value = sliderControl.Value;

@@ -1,9 +1,8 @@
 ﻿using Fab.Lua.Core;
-using Fab.WorldMod;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	public interface IValueControlProxy
 	{
@@ -36,6 +35,7 @@ namespace WorldMod.Lua
 				Target.RegisterChangeCallback(OnValueChange);
 		}
 
+		[LuaHelpInfo("Sets the value of the control")]
 		public void set(T value)
 		{
 			Target.SetValue(value);
@@ -57,9 +57,18 @@ namespace WorldMod.Lua
 		}
 	}
 
+	[LuaHelpInfo("A boolean control")]
 	public class BoolControlProxy : ValueControlProxy<bool> { }
+
+	[LuaHelpInfo("A number control")]
 	public class FloatControlProxy : ValueControlProxy<float> { }
+
+	[LuaHelpInfo("A vector control")]
 	public class VectorControlProxy : ValueControlProxy<Vector3> { }
+
+	[LuaHelpInfo("A color control")]
 	public class ColorControlProxy : ValueControlProxy<Color> { }
+
+	[LuaHelpInfo("A text control")]
 	public class StringControlProxy : ValueControlProxy<string> { }
 }

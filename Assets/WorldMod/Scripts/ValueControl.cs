@@ -85,7 +85,7 @@ namespace Fab.WorldMod
 		}
 	}
 
-	public class SliderControl : ValueControl<float>
+	public class RangeControl : ValueControl<float>
 	{
 		private float min;
 		private float max;
@@ -93,7 +93,7 @@ namespace Fab.WorldMod
 		public float Min => min;
 		public float Max => max;
 
-		public SliderControl(string name, float defaultValue, float min, float max) 
+		public RangeControl(string name, float defaultValue, float min, float max) 
 			: base(name, Mathf.Clamp(defaultValue, min, max))
 		{
 			this.min = Mathf.Min(min, max);
@@ -107,7 +107,7 @@ namespace Fab.WorldMod
 		}
 	}
 
-	public class RangeControl : ValueControl<Vector3>
+	public class IntervalControl : ValueControl<Vector3>
 	{
 		private float min;
 		private float max;
@@ -115,7 +115,7 @@ namespace Fab.WorldMod
 		public float Min => min;
 		public float Max => max;
 
-		public RangeControl(string name, float default_lower, float default_upper, float min, float max)
+		public IntervalControl(string name, float default_lower, float default_upper, float min, float max)
 			: base(name, new Vector2(Mathf.Min(default_lower, default_upper), Mathf.Max(default_lower, default_upper)))
 		{
 			this.min = Mathf.Min(min, max);
