@@ -126,7 +126,7 @@ namespace Fab.WorldMod
 		{
 			base.SetValue(new Vector3(
 				Mathf.Max(Min, Mathf.Min(value.x, value.y)),
-				Mathf.Min(Max, Mathf.Max(value.x, value.y), 0f)));
+				Mathf.Min(Max, Mathf.Max(value.x, value.y)), 0f));
 			return true;
 		}
 	}
