@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 802879667}
   featurePrefab: {fileID: 2032486259}
-  maxDistance: 500
+  maxDistance: 1000
 --- !u!114 &2007068359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,17 +1512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e6dd62065412e4b912659f5aabaf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  featureData:
-  - name: (0,0)
-    coordinate:
-      _longitude: 0
-      _latitude: 0
-      _altitude: 0
-  - name: (10, 10)
-    coordinate:
-      _longitude: 0.1745329
-      _latitude: 0.1745329
-      _altitude: 0
+  featureData: []
 --- !u!4 &2007068360
 Transform:
   m_ObjectHideFlags: 0
