@@ -67,6 +67,9 @@ namespace Fab.Lua.Core
 
 			UnloadAllScripts();
 
+			//sort files by name
+			Array.Sort(files);
+
 			int loaded = 0;
 			foreach (string scriptPath in files)
 			{
