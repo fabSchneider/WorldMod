@@ -123,6 +123,8 @@ namespace Fab.WorldMod.UI
 			});
 			content.Add(field);
 			field.Q<TextElement>().WithLocalizable();
+
+			valueControl.RegisterChangeCallback(val => field.SetValueWithoutNotify(val));
 		}
 
 		private void AddRangeControl(Dataset dataset, IntervalControl rangeControl)
@@ -136,6 +138,8 @@ namespace Fab.WorldMod.UI
 			});
 			content.Add(slider);
 			slider.Q<TextElement>().WithLocalizable();
+
+			rangeControl.RegisterChangeCallback(val => slider.SetValueWithoutNotify(val));
 		}
 
 		private void AddSliderControl(Dataset dataset, RangeControl sliderControl)
@@ -149,6 +153,8 @@ namespace Fab.WorldMod.UI
 			});
 			content.Add(slider);
 			slider.Q<TextElement>().WithLocalizable();
+
+			sliderControl.RegisterChangeCallback(val => slider.SetValueWithoutNotify(val));
 		}
 
 		private void AddChoiceControl(Dataset dataset, ChoiceControl choiceControl)
@@ -175,6 +181,8 @@ namespace Fab.WorldMod.UI
 			});
 			content.Add(choiceField);
 			choiceField.Query<TextElement>().ForEach(elem => elem.WithLocalizable());
+
+			choiceControl.RegisterChangeCallback(val => choiceField.SetValueWithoutNotify(val));
 		}
 
 		private void AddLabel(Dataset dataset, ValueControl control)

@@ -22,6 +22,13 @@ namespace Fab.WorldMod.Lua
 		[LuaHelpInfo("The current value of the control")]
 		public T value => target.Value;
 
+		[LuaHelpInfo("Gets/sets the control enabled state")]
+		public bool enabled
+		{
+			get => target.Enabled;
+			set => target.Enabled = value;
+		}
+
 		ValueControl IValueControlProxy.Target => Target;
 
 		[LuaHelpInfo("Add a function to be executed when the value of this control changes")]
