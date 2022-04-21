@@ -8,30 +8,31 @@ namespace Fab.WorldMod
 	[AddComponentMenu("WorldMod/World Features")]
     public class WorldFeaturesComponent : MonoBehaviour
     {
+		private static readonly string datasetFeaturesKey = "features";
 
-		[Serializable]
-		public struct WorldFeatureData
-		{
-			public string name;
-			public Vector2 coordinate;
-		}
-
-		private WorldFeatureCollection featureCollection;
-
-		public WorldFeatureCollection FeatureCollection => featureCollection;
+		private List<WorldFeatureCollection> featureCollections;
+		public IReadOnlyList<WorldFeatureCollection> FeatureCollections => featureCollections;
 
 		[SerializeField]
-		private List<WorldFeatureData> featureData;
+		private DatasetsComponent datasets;
+
 
 		private void Awake()
 		{
-			featureCollection = new WorldFeatureCollection(name);
+			featureCollections = new List<WorldFeatureCollection>();
+			datasets.Sequence.sequenceChanged += Sequence_sequenceChanged;
+		}
 
-			foreach (var featureData in featureData)
+		private void Sequence_sequenceChanged(Dataset dataset, DatasetSequence.ChangeEventType changeType, int lastIndex)
+		{
+			if(changeType == DatasetSequence.ChangeEventType.Added)
 			{
-				WorldFeature feature = new WorldFeature(new Coordinate(featureData.coordinate.x, featureData.coordinate.y));
-				feature.SetData("name", featureData.name);
-				featureCollection.Features.Add(feature);
+				if (dataset.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
+					featureCollections.Add(features);
+			}else if(changeType == DatasetSequence.ChangeEventType.Removed)
+			{
+				if (dataset.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
+					featureCollections.Remove(features);
 			}
 		}
 	}

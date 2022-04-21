@@ -5,6 +5,7 @@
     --scroller-color: rgb(140, 140, 140);
     --scroller-size: 14px;
     color: rgb(210, 210, 210);
+    -unity-font: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO.TTF?fileID=12800000&guid=72447131e6aac6c4396a1c5ff95cfb12&type=3#CASKAYDIA COVE NERD FONT COMPLETE MONO');
 }
 
 VisualElement {

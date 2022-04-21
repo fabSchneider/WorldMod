@@ -9,8 +9,18 @@ namespace Fab.WorldMod
 	{
 		private Coordinate coord;
 
+		public enum FeatureType
+		{
+			Point,
+			Line,
+			Polyline,
+			Polygon
+		}
+
 		private Dictionary<string, object> data;
 		public Coordinate Coordinate => coord;
+
+		public FeatureType Type => FeatureType.Point;
 
 		public WorldFeature(Coordinate coord)
 		{
@@ -41,13 +51,18 @@ namespace Fab.WorldMod
 		}
 	}
 
-    public class WorldFeatureCollection : IEnumerable<WorldFeature>
+    public class WorldFeatureCollection : IEnumerable<WorldFeature>, ICollection<WorldFeature>
     {
 		private List<WorldFeature> features;
-		public List<WorldFeature> Features => features;
 
 		private string name;
 		public string Name => name;
+
+		public int Count => features.Count;
+
+		public bool IsReadOnly => false;
+
+		public WorldFeature this[int index] => features[index];
 
 		public WorldFeatureCollection(string name)
 		{
@@ -63,6 +78,36 @@ namespace Fab.WorldMod
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return features.GetEnumerator();
+		}
+
+		public void Add(WorldFeature item)
+		{
+			features.Add(item);
+		}
+
+		public void AddRange(IEnumerable<WorldFeature> items)
+		{
+			features.AddRange(items);
+		}
+
+		public void Clear()
+		{
+			features.Clear();
+		}
+
+		public bool Contains(WorldFeature item)
+		{
+			return features.Contains(item);
+		}
+
+		public void CopyTo(WorldFeature[] array, int arrayIndex)
+		{
+			features.CopyTo(array, arrayIndex);
+		}
+
+		public bool Remove(WorldFeature item)
+		{
+			return features.Remove(item);
 		}
 	}
 }

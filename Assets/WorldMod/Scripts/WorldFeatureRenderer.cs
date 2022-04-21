@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Fab.Common;
 using Fab.Geo;
+using TMPro;
 using UnityEngine;
 
 namespace Fab.WorldMod
@@ -14,13 +15,13 @@ namespace Fab.WorldMod
 		private WorldCameraController cameraController;
 
 		[SerializeField]
-		private GameObject featurePrefab;
+		private GameObject pointFeaturePrefab;
 
 		private List<WorldFeature> featureQueryResult;
 
-		private ObjectPool<GameObject> featureObjectsPool;
+		private ObjectPool<GameObject> pointFeaturesPool;
 
-		private List<GameObject> activeFeatureObjects;
+		private List<GameObject> activePointFeatures;
 
 		[SerializeField]
 		private float maxDistance = 500f;
@@ -28,9 +29,9 @@ namespace Fab.WorldMod
 		private void Start()
 		{
 			featuresComponent = GetComponent<WorldFeaturesComponent>();
-			featureObjectsPool = new ObjectPool<GameObject>(4, true, CreateFeatureObject, ResetFeatureObject);
+			pointFeaturesPool = new ObjectPool<GameObject>(4, true, CreatePointFeature, ResetFeatureObject);
 			featureQueryResult = new List<WorldFeature>();
-			activeFeatureObjects = new List<GameObject>();
+			activePointFeatures = new List<GameObject>();
 		}
 
 		private void Update()
@@ -39,35 +40,35 @@ namespace Fab.WorldMod
 
 			GetFeaturesInRange(coord, maxDistance, featureQueryResult);
 
-			int count = Mathf.Min(featureQueryResult.Count, activeFeatureObjects.Count);
+			int count = Mathf.Min(featureQueryResult.Count, activePointFeatures.Count);
 
 			for (int i = 0; i < count; i++)
 			{
-				SetFeatureObject(featureQueryResult[i], activeFeatureObjects[i]);
+				SetPointFeature(featureQueryResult[i], activePointFeatures[i]);
 			}
 
-			if (featureQueryResult.Count < activeFeatureObjects.Count)
+			if (featureQueryResult.Count < activePointFeatures.Count)
 			{
-				for (int i = activeFeatureObjects.Count - 1; i >= featureQueryResult.Count; i--)
+				for (int i = activePointFeatures.Count - 1; i >= featureQueryResult.Count; i--)
 				{
-					featureObjectsPool.ReturnToPool(activeFeatureObjects[i]);
-					activeFeatureObjects.RemoveAt(i);
+					pointFeaturesPool.ReturnToPool(activePointFeatures[i]);
+					activePointFeatures.RemoveAt(i);
 				}
 			}
 			else
 			{
-				for (int i = activeFeatureObjects.Count; i < featureQueryResult.Count; i++)
+				for (int i = activePointFeatures.Count; i < featureQueryResult.Count; i++)
 				{		
-					GameObject obj = featureObjectsPool.GetPooled();
-					SetFeatureObject(featureQueryResult[i], obj);
-					activeFeatureObjects.Add(obj);
+					GameObject obj = pointFeaturesPool.GetPooled();
+					SetPointFeature(featureQueryResult[i], obj);
+					activePointFeatures.Add(obj);
 				}
 			}
 		}
 
-		private GameObject CreateFeatureObject()
+		private GameObject CreatePointFeature()
 		{
-			GameObject featureObject = Instantiate(featurePrefab, transform);
+			GameObject featureObject = Instantiate(pointFeaturePrefab, transform);
 			featureObject.name = "Feature Object";
 			featureObject.SetActive(false);
 			return featureObject;
@@ -81,23 +82,26 @@ namespace Fab.WorldMod
 		private void GetFeaturesInRange(Coordinate from, float range, List<WorldFeature> result)
 		{
 			result.Clear();
-			foreach (var feature in featuresComponent.FeatureCollection)
+			foreach (var features in featuresComponent.FeatureCollections)
 			{
-				float distance = GeoUtils.Distance(from, feature.Coordinate);
-				if (distance < range)
+				foreach (var feature in features)
 				{
-					result.Add(feature);
+					float distance = GeoUtils.Distance(from, feature.Coordinate);
+					if (distance < range)
+					{
+						result.Add(feature);
+					}
 				}
 			}
 		}
 
 		private static readonly string nameKey = "name";
 
-		private void SetFeatureObject(WorldFeature feature, GameObject obj)
+		private void SetPointFeature(WorldFeature feature, GameObject obj)
 		{
 			if(feature.TryGetData(nameKey, out string name))
 			{
-				var text = obj.GetComponentInChildren<TextMesh>();
+				var text = obj.GetComponentInChildren<TextMeshPro>();
 				if (text != null)
 					text.text = name;
 			}
