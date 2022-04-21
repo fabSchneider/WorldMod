@@ -1,9 +1,9 @@
-Shader "Layers/Mutate/Tint"
+Shader "Layers/Mutate/Gradient"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Color ("Color", Color) = (1,1,1,1)
+        [NoScaleOffset]_GradientTex ("GradientTex", 2D) = "white" {}
     }
     SubShader
     {
@@ -46,12 +46,14 @@ Shader "Layers/Mutate/Tint"
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
-            SAMPLER(sampler_MainTex);
+            SAMPLER(sampler_MainTex);     
+            TEXTURE2D(_GradientTex);
+            SAMPLER(sampler_GradientTex);
 
             float4 frag (VertexOutput i) : SV_Target
             {
                 float4 col =  SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return col * _Color;
+                return SAMPLE_TEXTURE2D(_GradientTex, sampler_GradientTex, float2(col.x, 0.0));
             }
 
             ENDHLSL

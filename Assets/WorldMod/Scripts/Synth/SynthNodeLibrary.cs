@@ -37,7 +37,8 @@ namespace Fab.WorldMod.Synth
 				Float,
 				Color,
 				Vector,
-				Enum
+				Enum,
+				Texture
 			}
 
 			[SerializeField]

@@ -100,8 +100,9 @@ namespace Fab.WorldMod.Synth
 			for (int i = 1; i < mutateNodes.Count; i++)
 			{
 				mutateNodes[i].Mutate(sourceBuffer, destinationBuffer);
+				RenderTexture newDestination = sourceBuffer;
 				sourceBuffer = destinationBuffer;
-				destinationBuffer = sourceBuffer;
+				destinationBuffer = newDestination;
 			}
 
 			return sourceBuffer;

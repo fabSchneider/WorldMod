@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEditor;
-using Fab.Geo.Gen;
+using Fab.Geo.Editor;
 
-namespace Fab.Geo.Editor
+namespace Fab.WorldMod.Gen.Editor
 {
 	public class GenerateDistanceFieldWindow : EditorWindow
 	{
@@ -17,10 +17,10 @@ namespace Fab.Geo.Editor
 
 
 		[SerializeField]
-		Texture2D mask;
+		Texture2D gradient;
 
 		[SerializeField]
-		bool invertMask;
+		Texture2D source;
 
 		[SerializeField]
 		OutputFormat format;
@@ -31,19 +31,21 @@ namespace Fab.Geo.Editor
 		[SerializeField]
 		Vector2Int resolution = new Vector2Int(512, 512);
 
-		[MenuItem("FabGeo/Generate/Distance Field")]
+		private ComputeShader computeShader;
+
+		private ReverseGradientGenerator generator;
+
+		[MenuItem("FabGeo/Generate/Reverse Gradient")]
 		private static void Init()
 		{
 			GenerateDistanceFieldWindow window = (GenerateDistanceFieldWindow)GetWindow(typeof(GenerateDistanceFieldWindow));
 			window.Show();
 		}
 
-		private GenerateDistanceField_OLD generator;
-
 
 		private void OnEnable()
 		{
-			generator = new GenerateDistanceField_OLD();
+			generator = new ReverseGradientGenerator();
 		}
 
 		private void OnDisable()
@@ -55,8 +57,8 @@ namespace Fab.Geo.Editor
 			SerializedObject sObj = new SerializedObject(this);
 
 			GUILayout.Label("Generator Settings", EditorStyles.boldLabel);
-			EditorGUILayout.ObjectField(sObj.FindProperty(nameof(mask)));
-			EditorGUILayout.PropertyField(sObj.FindProperty(nameof(invertMask)));
+			EditorGUILayout.ObjectField(sObj.FindProperty(nameof(gradient)));
+			EditorGUILayout.ObjectField(sObj.FindProperty(nameof(source)));
 
 			EditorGUILayout.PropertyField(sObj.FindProperty(nameof(format)));
 
@@ -75,15 +77,15 @@ namespace Fab.Geo.Editor
 			}
 			else
 			{
-				if (mask)
-					res = new Vector2Int(mask.width, mask.height);
+				if (source)
+					res = new Vector2Int(source.width, source.height);
 				else
 					res = new Vector2Int(MinResolution, MinResolution);
 			}
 
 			sObj.ApplyModifiedProperties();
 			GUILayout.Space(13);
-			EditorGUI.BeginDisabledGroup(!mask);
+			EditorGUI.BeginDisabledGroup(!source || !gradient);
 			if (GUILayout.Button("Generate"))
 			{
 				RenderTexture dst = new RenderTexture(
@@ -93,10 +95,9 @@ namespace Fab.Geo.Editor
 
 				dst.wrapMode = TextureWrapMode.Repeat;
 				dst.enableRandomWrite = true;
-				dst.name = mask.name + "_distance";
+				dst.name = source.name + "_reverse";
 
-				//generator.invertMask = invertMask;
-				dst = generator.Generate(mask);
+				dst = generator.Generate(gradient, source);
 
 				switch (format)
 				{
@@ -109,6 +110,7 @@ namespace Fab.Geo.Editor
 					default:
 						break;
 				}
+				dst.Release();
 			}
 			EditorGUI.EndDisabledGroup();
 		}

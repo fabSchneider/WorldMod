@@ -41,6 +41,11 @@ namespace Fab.WorldMod.Synth
 			SetKeywordOnMaterial(blitMaterial, propDescriptor, value);
 		}
 
+		public void SetTexture(SynthNodeDescriptor.PropertyDescriptor propDescriptor, Texture2D value)
+		{
+			blitMaterial.SetTexture(propDescriptor.PropName, value);
+		}
+
 		private void SetKeywordOnMaterial(Material material, SynthNodeDescriptor.PropertyDescriptor propDescriptor, string keyword)
 		{
 			foreach (LocalKeyword enabled in material.enabledKeywords)

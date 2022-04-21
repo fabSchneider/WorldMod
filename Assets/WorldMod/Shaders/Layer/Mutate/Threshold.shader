@@ -55,7 +55,8 @@ Shader "Layers/Mutate/Threshold"
             {
                 float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
                 col = lerp(col, 1.0 - col, _Invert);
-                return step(_Threshold, col);
+                float4 s = step(_Threshold, col);
+                return float4(s.xyz, s.w);
             }
 
             ENDHLSL

@@ -1,9 +1,8 @@
-Shader "Layers/Mutate/Tint"
+Shader "Layers/Mutate/Round"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _Color ("Color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -41,17 +40,12 @@ Shader "Layers/Mutate/Tint"
                 return o;
             }
 
-            CBUFFER_START(UnityPerMaterial)
-            float4 _Color;
-            CBUFFER_END
-
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                float4 col =  SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return col * _Color;
+                return round(SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv));
             }
 
             ENDHLSL

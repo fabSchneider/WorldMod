@@ -67,10 +67,8 @@ namespace Fab.WorldMod.Lua
 
 				var propDescriptor = descriptor.GetProperty(propName);
 
-				if (val.UserData != null)
-				{
-					IValueControlProxy controlProxy = (IValueControlProxy)val.UserData.Object;
-					;
+				if (val.UserData != null && val.UserData.Object is IValueControlProxy controlProxy)
+				{ 
 					ValueControl control = controlProxy.Target;
 					SetNodePropertyControl(node, propDescriptor, control);
 				}
@@ -111,6 +109,8 @@ namespace Fab.WorldMod.Lua
 						choiceControl.RegisterChangeCallback(val => node.SetEnum(propertyDescriptor, choiceControl.CurrentChoice));
 					}
 					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Texture:
+					return;
 				default:
 					return;
 			}
@@ -131,6 +131,9 @@ namespace Fab.WorldMod.Lua
 					return;
 				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Enum:
 					node.SetEnum(propertyDescriptor, value.String);
+					return;
+				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Texture:
+					node.SetTexture(propertyDescriptor, ((ImageProxy)value.UserData.Object).Target);
 					return;
 				default:
 					return;
