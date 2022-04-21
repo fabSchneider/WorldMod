@@ -9,6 +9,22 @@ namespace Fab.WorldMod
 		protected string name;
 		protected Type type;
 
+		protected bool enabled = true;
+		public bool Enabled
+		{
+			get => enabled;
+			set
+			{
+				if (Enabled != value)
+				{
+					enabled = value;
+					enableHandler?.Invoke(value);
+				}
+			}
+		}
+
+		protected event Action<bool> enableHandler;
+
 		public string Name => name;
 
 		public Type Type => type;
@@ -30,6 +46,17 @@ namespace Fab.WorldMod
 				controlT.UnregisterChangeCallback(onChange);
 			else
 				throw new Exception($"Cannot register callback of type \"{typeof(T).Name}\" on this control");
+		}
+
+		public void RegisterEnableCallback(Action<bool> onEnableChange)
+		{
+			enableHandler -= onEnableChange;
+			enableHandler += onEnableChange;
+		}
+
+		public void UnregisterEnableCallback(Action<bool> onEnableChange)
+		{
+			enableHandler -= onEnableChange;
 		}
 	}
 
@@ -81,7 +108,8 @@ namespace Fab.WorldMod
 
 		protected void InvokeChange(T value)
 		{
-			changeHandler?.Invoke(value);
+			if (enabled)
+				changeHandler?.Invoke(value);
 		}
 	}
 
@@ -93,7 +121,7 @@ namespace Fab.WorldMod
 		public float Min => min;
 		public float Max => max;
 
-		public RangeControl(string name, float defaultValue, float min, float max) 
+		public RangeControl(string name, float defaultValue, float min, float max)
 			: base(name, Mathf.Clamp(defaultValue, min, max))
 		{
 			this.min = Mathf.Min(min, max);
@@ -149,7 +177,7 @@ namespace Fab.WorldMod
 
 			this.choices = new List<string>(choices);
 
-			if(choiceDisplayNames != null)
+			if (choiceDisplayNames != null)
 				this.choiceDisplayNames = new List<string>(choiceDisplayNames);
 
 			if (!this.choices.Contains(defaultValue))
