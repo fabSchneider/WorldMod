@@ -12,7 +12,7 @@ namespace Fab.WorldMod
 		public Dataset this[int index] => sequence[index];
 		public int Count => sequence.Count;
 
-		public event Action<Dataset, ChangeEventType> sequenceChanged;
+		public event Action<Dataset, ChangeEventType, int> sequenceChanged;
 
 		public enum ChangeEventType
 		{
@@ -56,12 +56,11 @@ namespace Fab.WorldMod
 					sequence.RemoveAt(existingIndex + 1);
 				else
 					sequence.RemoveAt(existingIndex);
-
-				sequenceChanged?.Invoke(data, ChangeEventType.Moved);
+				sequenceChanged?.Invoke(data, ChangeEventType.Moved, existingIndex);
 			}
 			else
 			{
-				sequenceChanged?.Invoke(data, ChangeEventType.Added);
+				sequenceChanged?.Invoke(data, ChangeEventType.Added, -1);
 			}
 		}
 
@@ -83,9 +82,10 @@ namespace Fab.WorldMod
 				throw new ArgumentOutOfRangeException(nameof(itemId));
 
 			Dataset data = stock[itemId];
+			int index = sequence.IndexOf(data);
 			if (sequence.Remove(data))
 			{
-				sequenceChanged?.Invoke(data, ChangeEventType.Removed);
+				sequenceChanged?.Invoke(data, ChangeEventType.Removed, index);
 				return true;
 			}
 			return false;
@@ -94,6 +94,11 @@ namespace Fab.WorldMod
 		public bool IsInSequence(Dataset data)
 		{
 			return sequence.Contains(data);
+		}
+
+		public int GetIndexInSequence(Dataset data)
+		{
+			return sequence.IndexOf(data);
 		}
 	}
 }
