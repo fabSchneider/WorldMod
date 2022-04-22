@@ -72,13 +72,13 @@ namespace Fab.WorldMod.Synth
 	}
 
 	/// <summary>
-	/// This class represents a mutative process on an input in the synthesize chain.
+	/// This class represents a modulation process of on an input in the synthesize chain.
 	/// </summary>
-	public class MutateNode : SynthNode
+	public class ModulateNode : SynthNode
 	{
-		public MutateNode(Shader shader) : base(shader) { }
+		public ModulateNode(Shader shader) : base(shader) { }
 
-		public void Mutate(Texture inTex, RenderTexture outTex)
+		public void Modulate(Texture inTex, RenderTexture outTex)
 		{
 			Graphics.Blit(inTex, outTex, blitMaterial, 0);
 		}

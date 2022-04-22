@@ -14,19 +14,19 @@ namespace Fab.WorldMod.Synth
 		public Texture InputTexture { get; set; }
 		public GenNode GenerateNode { get; set; }
 
-		private List<MutateNode> mutateNodes;
-		public IReadOnlyList<MutateNode> MutateNodes => mutateNodes;
+		private List<ModulateNode> modulateNodes;
+		public IReadOnlyList<ModulateNode> ModulateNodes => modulateNodes;
 		public BlendNode BlendNode { get; set; }
 
 		public SynthLayer(string channelName)
 		{
 			this.channelName = channelName;
-			mutateNodes = new List<MutateNode>();
+			modulateNodes = new List<ModulateNode>();
 		}
 
-		public void AddMutateNode(MutateNode node)
+		public void AddMutateNode(ModulateNode node)
 		{
-			mutateNodes.Add(node);
+			modulateNodes.Add(node);
 		}
 	}
 }

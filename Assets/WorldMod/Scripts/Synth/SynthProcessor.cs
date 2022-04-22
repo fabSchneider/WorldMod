@@ -89,17 +89,17 @@ namespace Fab.WorldMod.Synth
 
 		private Texture MutateTexture(SynthLayer layer, Texture baseTex, RenderTexture bufferA, RenderTexture bufferB)
 		{
-			if (layer.MutateNodes.Count == 0)
+			if (layer.ModulateNodes.Count == 0)
 				return baseTex;
 
-			IReadOnlyList<MutateNode> mutateNodes = layer.MutateNodes;
-			mutateNodes[0].Mutate(baseTex, bufferA);
+			IReadOnlyList<ModulateNode> mutateNodes = layer.ModulateNodes;
+			mutateNodes[0].Modulate(baseTex, bufferA);
 			RenderTexture sourceBuffer = bufferA;
 			RenderTexture destinationBuffer = bufferB;
 
 			for (int i = 1; i < mutateNodes.Count; i++)
 			{
-				mutateNodes[i].Mutate(sourceBuffer, destinationBuffer);
+				mutateNodes[i].Modulate(sourceBuffer, destinationBuffer);
 				RenderTexture newDestination = sourceBuffer;
 				sourceBuffer = destinationBuffer;
 				destinationBuffer = newDestination;

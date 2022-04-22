@@ -35,7 +35,7 @@ namespace Fab.WorldMod.Synth
 				if (generatorNodesByName.TryGetValue(name, out SynthNodeDescriptor descriptor))
 					return descriptor;
 			}
-			else if (nodeType == typeof(MutateNode))
+			else if (nodeType == typeof(ModulateNode))
 			{
 				if (mutationNodesByName.TryGetValue(name, out SynthNodeDescriptor descriptor))
 					return descriptor;
@@ -57,10 +57,10 @@ namespace Fab.WorldMod.Synth
 				if(generatorNodesByName.TryGetValue(name, out SynthNodeDescriptor descriptor))
 					node = new GenNode(descriptor.Shader);
 			}
-			else if (nodeType == typeof(MutateNode))
+			else if (nodeType == typeof(ModulateNode))
 			{
 				if (mutationNodesByName.TryGetValue(name, out SynthNodeDescriptor descriptor))
-					node = new MutateNode(descriptor.Shader);
+					node = new ModulateNode(descriptor.Shader);
 			}
 			else if (nodeType == typeof(BlendNode))
 			{

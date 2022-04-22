@@ -37,10 +37,10 @@ namespace Fab.WorldMod.Lua
 			return this;
 		}
 
-		[LuaHelpInfo("Adds mutate node to the layer")]
-		public SynthLayerProxy mutate(string name, params Table[] properties)
+		[LuaHelpInfo("Adds a modulate node to the layer")]
+		public SynthLayerProxy modulate(string name, params Table[] properties)
 		{
-			MutateNode node = (MutateNode)CreateNode(typeof(MutateNode), name, properties);
+			ModulateNode node = (ModulateNode)CreateNode(typeof(ModulateNode), name, properties);
 			target.AddMutateNode(node);
 			return this;
 		}
