@@ -281,6 +281,14 @@
     position: absolute;
 }
 
+#trackpad-output {
+    position: absolute;
+    bottom: 36px;
+    font-size: 16px;
+    width: 100%;
+    -unity-text-align: upper-center;
+}
+
 .unity-text-element {
     color: rgb(214, 214, 214);
     white-space: normal;

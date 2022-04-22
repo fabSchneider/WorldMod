@@ -178,9 +178,10 @@ GameObject:
   - component: {fileID: 195195705}
   - component: {fileID: 195195707}
   - component: {fileID: 195195706}
+  - component: {fileID: 195195708}
   m_Layer: 0
-  m_Name: World TexCamera
-  m_TagString: MainCamera
+  m_Name: Trackpad Camera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,11 +257,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.05
   far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 0.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -276,6 +277,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &195195708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195195704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d1624bc6285ba4689ba619e2627ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldCamera: {fileID: 802879662}
 --- !u!1 &218760710
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 756841711}
-  positionOffset: {x: 20, y: 20}
+  positionOffset: {x: 10, y: 10}
 --- !u!1 &802879660
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,10 +892,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.05
   far clip plane: 20
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 0.3
   m_Depth: -1
   m_CullingMask:
@@ -961,8 +975,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panSpeed: 18
   orbitSpeed: 0.8
+  zoomSpeed: 0.5
+  zoomBounds: {x: 0.1, y: 1}
   drag: 5
   targetTransform: {fileID: 218760711}
+  _camera: {fileID: 802879662}
 --- !u!114 &802879668
 MonoBehaviour:
   m_ObjectHideFlags: 0

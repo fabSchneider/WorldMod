@@ -1,4 +1,5 @@
 ﻿using Fab.Common;
+using Fab.Geo;
 using Fab.WorldMod.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -30,8 +31,21 @@ namespace Fab.WorldMod.UI
 			document = GetComponent<UIDocument>();
 
 			cameraController = FindObjectOfType<WorldCameraController>();
+
 			if (cameraController != null)
-				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector3>>(OnTrackpadAxis);
+			{
+				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector4>>(OnTrackpadAxis);
+				Label trackpadLabel = document.rootVisualElement.Q<Label>(name = "trackpad-output");
+				trackpadLabel.schedule.Execute(() =>
+				{
+					Coordinate coord = cameraController.GetCoordinate();
+					trackpadLabel.text = string.Format("lon: {0:0.000}°  lat: {1:0.000}°  heading: {2:0.0}°",
+						Mathf.Rad2Deg * coord.longitude,
+						Mathf.Rad2Deg * coord.latitude,
+						cameraController.GetHeading());
+				}).Every(100);
+			}
+
 
 			mainBarController = new MainbarController(document.rootVisualElement, LocalizationComponent.Localization);
 
@@ -39,6 +53,8 @@ namespace Fab.WorldMod.UI
 
 			if (datasets)
 				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Sequence);
+
+
 
 			SetupMarkerUI();
 		}
@@ -75,7 +91,7 @@ namespace Fab.WorldMod.UI
 			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
 		}
 
-		public void OnTrackpadAxis(ChangeEvent<Vector3> evt)
+		public void OnTrackpadAxis(ChangeEvent<Vector4> evt)
 		{
 			cameraController.SpinCamera(evt.newValue);
 		}
