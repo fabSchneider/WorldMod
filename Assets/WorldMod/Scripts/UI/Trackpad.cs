@@ -97,7 +97,7 @@ namespace Fab.WorldMod.UI
 			{
 				if(evt.pointerId == primaryPointerID)
 				{
-					float pinch = (secondaryAxis - axis).magnitude - (secondaryAxis - primaryAxis).magnitude;
+					float pinch = (secondaryAxis - primaryAxis).magnitude - (secondaryAxis - axis).magnitude;
 					float angle = Vector2.SignedAngle(secondaryAxis - primaryAxis, secondaryAxis - axis);
 					SetValue(new Vector4(0f, 0f, angle, pinch));
 					primaryAxis = axis;
@@ -105,7 +105,7 @@ namespace Fab.WorldMod.UI
 				}
 				else if (evt.pointerId == secondaryPointerID)
 				{
-					float pinch = (axis - primaryAxis).magnitude - (secondaryAxis - primaryAxis).magnitude;
+					float pinch = (secondaryAxis - primaryAxis).magnitude - (axis - primaryAxis).magnitude;
 					float angle = Vector2.SignedAngle(secondaryAxis - primaryAxis, axis - primaryAxis);
 					SetValue(new Vector4(0f, 0f, angle, pinch));
 					secondaryAxis = axis;
