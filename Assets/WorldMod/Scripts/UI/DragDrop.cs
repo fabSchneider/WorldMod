@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -21,6 +22,8 @@ namespace Fab.WorldMod.UI
 
         private bool canceled;
         public bool Canceled => canceled;
+
+		public event Action dragStarted;
 
         public DragDrop(VisualElement dragLayer)
         {
@@ -67,7 +70,10 @@ namespace Fab.WorldMod.UI
 			dragLayer.CapturePointer(PointerId.touchPointerIdBase);
 			dragLayer.CapturePointer(PointerId.penPointerIdBase);
 			dragLayer.Focus();
-        }
+
+			dragStarted?.Invoke();
+
+		}
 
 
         public void EndDrag()

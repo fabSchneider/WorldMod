@@ -58,12 +58,12 @@ namespace Fab.WorldMod.UI
 
 		private void OnEnable()
 		{
-			Signals.Get<DatasetUpdatedSignal>().AddListener(OnDatasetUpdated);
+			//Signals.Get<DatasetUpdatedSignal>().AddListener(OnDatasetUpdated);
 		}
 
 		private void OnDisable()
 		{
-			Signals.Get<DatasetUpdatedSignal>().RemoveListener(OnDatasetUpdated);
+			//Signals.Get<DatasetUpdatedSignal>().RemoveListener(OnDatasetUpdated);
 		}
 
 		private void SetupTrackpad()
@@ -117,9 +117,9 @@ namespace Fab.WorldMod.UI
 			var fpsLabel = footer.Q<Label>(name: "fps");
 			fpsLabel.schedule.Execute(() => fpsLabel.text = $"{{ FPS: {(1f / Time.smoothDeltaTime):0.00} }}").Every(40);
 
-			Label lastClickTimeLabel = new Label();
-			lastClickTimeLabel.schedule.Execute(() => lastClickTimeLabel.text = $"{{ time since last interaction: {TimeSinceLastClick:0s} }}").Every(1000);
-			footer.Add(lastClickTimeLabel);
+			//Label lastClickTimeLabel = new Label();
+			//lastClickTimeLabel.schedule.Execute(() => lastClickTimeLabel.text = $"{{ time since last interaction: {TimeSinceLastClick:0s} }}").Every(1000);
+			//footer.Add(lastClickTimeLabel);
 		}
 
 		public void OnTrackpadAxis(ChangeEvent<Vector4> evt)
@@ -127,20 +127,20 @@ namespace Fab.WorldMod.UI
 			cameraController.SpinCamera(evt.newValue);
 		}
 
-		private void OnDatasetUpdated(Dataset dataset)
-		{
-			if (dataset.Owner == datasets.Stock)
-				dataPanelDirty = true;
-		}
+		//private void OnDatasetUpdated(Dataset dataset)
+		//{
+		//	if (dataset.Owner == datasets.Stock)
+		//		dataPanelDirty = true;
+		//}
 
-		private void Update()
-		{
-			if (dataPanelDirty)
-			{
-				dataPanelController?.RefreshView();
-				dataPanelDirty = false;
-			}
-		}
+		//private void Update()
+		//{
+		//	if (dataPanelDirty)
+		//	{
+		//		dataPanelController?.RefreshView();
+		//		dataPanelDirty = false;
+		//	}
+		//}
 
 	}
 }

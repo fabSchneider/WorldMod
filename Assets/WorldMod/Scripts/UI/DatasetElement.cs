@@ -4,65 +4,86 @@ using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI
 {
-	public class DatasetElement : VisualElement
+	public class DragPreview : VisualElement
 	{
+		private static readonly string dragPreviewClassname = "dataset-item__drag";
+		private static readonly string dragPreviewActiveClassname = "dataset-item--active";
+
+		private Draggable draggable;
+
+		public VisualElement Owner => draggable.target;
+
+		private Vector2 dragOffset;
+		public DragPreview(Draggable draggable)
+		{
+			this.draggable = draggable;
+
+			AddToClassList(dragPreviewClassname);
+			pickingMode = PickingMode.Ignore;
+			usageHints = UsageHints.DynamicTransform;
+
+			RegisterCallback<FabDragUpdatedEvent>(OnDragUpdated);
+			RegisterCallback<FabDragPerformEvent>(OnDragPerformed);
+			RegisterCallback<FabDragExitedEvent>(OnDragExited);
+		}
+
+		public void PrePrepareForDrag(Vector2 dragOffset)
+		{
+			this.dragOffset = dragOffset;
+			style.width = draggable.target.resolvedStyle.width;
+			style.height = draggable.target.resolvedStyle.height;
+		}
+
+		public void PrepareForDrag(Vector2 pos)
+		{
+			transform.position = parent.WorldToLocal(pos - dragOffset);
+			//style.width = Owner.resolvedStyle.width;
+			//style.height = Owner.resolvedStyle.height;
+		}
+
+		private void OnDragUpdated(FabDragUpdatedEvent evt)
+		{
+			AddToClassList(dragPreviewActiveClassname);
+			transform.position = parent.WorldToLocal((Vector2)evt.position - dragOffset);
+		}
+
+		private void OnDragPerformed(FabDragPerformEvent evt)
+		{
+			draggable.DragDrop.EndDrag();
+			RemoveFromHierarchy();
+			RemoveFromClassList(dragPreviewActiveClassname);
+		}
+
+		private void OnDragExited(FabDragExitedEvent evt)
+		{
+			draggable.DragDrop.EndDrag();
+			RemoveFromHierarchy();
+			RemoveFromClassList(dragPreviewActiveClassname);
+		}
+	}
+
+	public class Draggable : Manipulator
+	{
+		public DragDrop DragDrop { get; set; }
+
+		protected override void RegisterCallbacksOnTarget()
+		{
+			
+		}
+
+		protected override void UnregisterCallbacksFromTarget()
+		{
+			
+		}
+	}
+
+	public class DatasetElement : VisualElement
+		{
 		private static readonly string classname = "dataset-item";
 		private static readonly string activeClassname = classname + "--active";
 		private static readonly string labelClassname = classname + "__label";
-		private static readonly string dragPreviewClassname = classname + "__drag";
-		private static readonly string dragPreviewActiveClassname = dragPreviewClassname + "--active";
 
 		public new class UxmlFactory : UxmlFactory<DatasetElement, UxmlTraits> { }
-
-		public class DragPreview : VisualElement
-		{
-			public DatasetElement DatasetElement { get; }
-			public Vector2 dragOffset;
-			public DragPreview(DatasetElement item)
-			{
-				DatasetElement = item;
-
-				AddToClassList(dragPreviewClassname);
-				pickingMode = PickingMode.Ignore;
-				usageHints = UsageHints.DynamicTransform;
-
-				RegisterCallback<FabDragUpdatedEvent>(OnDragUpdated);
-				RegisterCallback<FabDragPerformEvent>(OnDragPerformed);
-				RegisterCallback<FabDragExitedEvent>(OnDragExited);
-			}
-
-			public void PrepareForDrag(Vector2 pos)
-			{
-				transform.position = parent.WorldToLocal(pos - dragOffset);
-				style.width = DatasetElement.resolvedStyle.width;
-				style.height = DatasetElement.resolvedStyle.height;
-			}
-
-			private void OnDragUpdated(FabDragUpdatedEvent evt)
-			{
-				AddToClassList(dragPreviewActiveClassname);
-				transform.position = parent.WorldToLocal((Vector2)evt.position - dragOffset);
-			}
-
-			private void OnDragPerformed(FabDragPerformEvent evt)
-			{
-				DatasetElement.Controller.DragDrop.EndDrag();
-				RemoveFromHierarchy();
-				RemoveFromClassList(dragPreviewActiveClassname);
-				DatasetElement.Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
-				DatasetElement.Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
-			}
-
-			private void OnDragExited(FabDragExitedEvent evt)
-			{
-				DatasetElement.Controller.DragDrop.EndDrag();
-
-				RemoveFromHierarchy();
-				RemoveFromClassList(dragPreviewActiveClassname);
-				DatasetElement.Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
-				DatasetElement.Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
-			}
-		}
 
 		public DataPanelController Controller { get; private set; }
 		public int Id { get; private set; }
@@ -71,6 +92,8 @@ namespace Fab.WorldMod.UI
 
 		private Label label;
 		private Localizable localizable;
+
+		private Draggable draggable;
 
 		public DatasetElement()
 		{
@@ -83,7 +106,9 @@ namespace Fab.WorldMod.UI
 
 			RegisterCallback<PointerDownEvent>(OnPointerDown);
 
-			dragPreview = new DragPreview(this);
+			draggable = new Draggable();
+			this.AddManipulator(draggable);
+			dragPreview = new DragPreview(draggable);
 		}
 
 		public DatasetElement(ILocalization localization) : this()
@@ -103,7 +128,7 @@ namespace Fab.WorldMod.UI
 			{
 				Controller?.SetActiveDatasetElement(this);
 
-				dragPreview.dragOffset = this.WorldToLocal(evt.position);
+				dragPreview.PrePrepareForDrag(evt.localPosition);
 				RegisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
 				RegisterCallback<PointerUpEvent>(OnPointerUpEvent);
 			}
@@ -127,11 +152,11 @@ namespace Fab.WorldMod.UI
 			Controller.DragDrop.StartDrag(dragPreview);
 			dragPreview.PrepareForDrag(evt.position);
 
-			//enable all drop areas
-			Controller.LayersContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(true));
-			Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(true));
+			////enable all drop areas
+			//Controller.SequenceContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(true));
+			//Controller.StockContainer.Query<LayerDropArea>().ForEach(a => a.SetEnabled(true));
 
-			if (parent == Controller.LayersContainer)
+			if (parent == Controller.SequenceContainer)
 			{
 				// disable drop areas before and after this element
 				int id = parent.IndexOf(this);
@@ -143,6 +168,7 @@ namespace Fab.WorldMod.UI
 		public void Set(DataPanelController controller, int index)
 		{
 			Controller = controller;
+			draggable.DragDrop = controller.DragDrop;
 			Id = index;
 			label.text = controller.Stock[index].Name;
 			label.AddManipulator(localizable);
@@ -151,6 +177,7 @@ namespace Fab.WorldMod.UI
 		public static void Reset(DatasetElement element)
 		{
 			element.Controller = null;
+			element.draggable.DragDrop = null;
 			element.SetActive(false);
 			element.SetEnabled(true);
 			element.RemoveFromHierarchy();

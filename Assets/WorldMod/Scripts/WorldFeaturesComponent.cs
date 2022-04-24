@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Fab.Geo;
 using UnityEngine;
 
 namespace Fab.WorldMod
@@ -20,18 +18,18 @@ namespace Fab.WorldMod
 		private void Awake()
 		{
 			featureCollections = new List<WorldFeatureCollection>();
-			datasets.Sequence.sequenceChanged += Sequence_sequenceChanged;
+			datasets.Sequence.sequenceChanged += OnSequenceChanged;
 		}
 
-		private void Sequence_sequenceChanged(Dataset dataset, DatasetSequence.ChangeEventType changeType, int lastIndex)
+		private void OnSequenceChanged(SequenceChangedEvent<Dataset> evt)
 		{
-			if(changeType == DatasetSequence.ChangeEventType.Added)
+			if(evt.changeType == SequenceChangeEventType.Added)
 			{
-				if (dataset.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
+				if (evt.data.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
 					featureCollections.Add(features);
-			}else if(changeType == DatasetSequence.ChangeEventType.Removed)
+			}else if(evt.changeType == SequenceChangeEventType.Removed)
 			{
-				if (dataset.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
+				if (evt.data.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
 					featureCollections.Remove(features);
 			}
 		}

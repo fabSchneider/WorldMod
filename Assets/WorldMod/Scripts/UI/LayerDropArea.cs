@@ -15,7 +15,7 @@ namespace Fab.WorldMod.UI
 
 		private DragDrop dragDrop;
 
-		private Func<VisualElement, LayerDropArea, bool> handleDragFunc;
+		private Func<VisualElement, LayerDropArea, bool> handleDropFunc;
 
 		public LayerDropArea()
 		{
@@ -27,11 +27,11 @@ namespace Fab.WorldMod.UI
 			RegisterCallback<FabDragPerformEvent>(OnDragPerform);
 		}
 
-		public LayerDropArea(DragDrop dragDrop, Func<VisualElement, LayerDropArea, bool> handleDragFunc)
+		public LayerDropArea(DragDrop dragDrop, Func<VisualElement, LayerDropArea, bool> handleDropFunc)
 			: this()
 		{
 			this.dragDrop = dragDrop;
-			this.handleDragFunc = handleDragFunc;
+			this.handleDropFunc = handleDropFunc;
 		}
 
 		private void OnDragEnter(FabDragEnterEvent evt)
@@ -46,7 +46,7 @@ namespace Fab.WorldMod.UI
 		private void OnDragPerform(FabDragPerformEvent evt)
 		{
 
-			if (handleDragFunc.Invoke(dragDrop.DraggedElement, this))
+			if (handleDropFunc.Invoke(dragDrop.DraggedElement, this))
 				dragDrop.AcceptDrop(evt);
 			else
 				dragDrop.DenyDrop(evt);

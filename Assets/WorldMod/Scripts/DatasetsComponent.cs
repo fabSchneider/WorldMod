@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fab.WorldMod
@@ -5,16 +6,16 @@ namespace Fab.WorldMod
 	[AddComponentMenu("WorldMod/Datasets")]
 	public class DatasetsComponent : MonoBehaviour
 	{
-		private DatasetStock stock;
-		public DatasetStock Stock => stock;
+		private IList<Dataset> stock;
+		public IList<Dataset> Stock => stock;
 
-		private DatasetSequence sequence;
-		public DatasetSequence Sequence => sequence;
+		private Sequence<Dataset> sequence;
+		public Sequence<Dataset> Sequence => sequence;
 
 		private void Awake()
 		{
-			stock = new DatasetStock();
-			sequence = new DatasetSequence(stock);
+			stock = new List<Dataset>();
+			sequence = new Sequence<Dataset>();
 		}
 	}
 }

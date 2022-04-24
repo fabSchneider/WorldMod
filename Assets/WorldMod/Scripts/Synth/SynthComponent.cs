@@ -128,15 +128,15 @@ namespace Fab.WorldMod.Synth
 			return channelsByName.ContainsKey(channel);
 		}
 
-		private void OnSequenceChanged(Dataset dataset, DatasetSequence.ChangeEventType changeType, int lastIndex)
+		private void OnSequenceChanged(SequenceChangedEvent<Dataset> evt)
 		{
-			SetChannelDirtyFlag(dataset);
+			SetChannelDirtyFlag(evt.data);
 			layersUpdateFlag = true;
 		}
 
 		private void OnDatasetUpdated(Dataset dataset)
 		{
-			if (datasets.Sequence.IsInSequence(dataset))
+			if (datasets.Sequence.Contains(dataset))
 			{
 				SetChannelDirtyFlag(dataset);
 			}
