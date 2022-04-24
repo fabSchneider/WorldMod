@@ -241,13 +241,13 @@
 
 .layers-drop {
     height: 72px;
-    margin-bottom: -36px;
-    margin-top: -36px;
     display: none;
-    width: 600px;
-    transition-property: height;
-    transition-duration: 0.4s;
+    width: 96px;
+    transition-property: width;
+    transition-duration: 0.25s;
     transition-timing-function: ease;
+    margin-left: -48px;
+    margin-right: -48px;
 }
 
 .layers-drop:enabled {
@@ -255,15 +255,17 @@
 }
 
 .drop-target--drop.layers-drop {
-    height: 120px;
+    width: 180px;
 }
 
 .layers-drop__line {
-    width: 3px;
+    width: 30%;
     height: 56px;
-    background-color: rgb(255, 197, 0);
+    background-color: rgba(255, 197, 0, 0);
     display: none;
-    top: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 25s;
 }
 
 .drop-target--drop > .layers-drop__line {
