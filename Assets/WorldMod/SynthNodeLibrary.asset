@@ -121,6 +121,20 @@ MonoBehaviour:
         propName: _Offset
         type: 2
         keywords: []
+    - name: Smoothstep
+      shader: {fileID: 4800000, guid: eb35f08edabdd3545b4d38c58b5c9849, type: 3}
+      properties:
+      - name: Edge1
+        propName: _Edge1
+        type: 0
+        keywords: []
+      - name: Edge2
+        propName: _Edge2
+        type: 0
+        keywords: []
+    - name: Invert
+      shader: {fileID: 4800000, guid: bb87ce199b2111d47b4243cc64e703ea, type: 3}
+      properties: []
     blendNodes:
     - name: Add
       shader: {fileID: 4800000, guid: 43a3f1eb294f1114bbfd62adf420d6ca, type: 3}

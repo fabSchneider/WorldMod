@@ -53,7 +53,7 @@ Shader "Layers/Mutate/Gradient"
             float4 frag (VertexOutput i) : SV_Target
             {
                 float4 col =  SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return SAMPLE_TEXTURE2D(_GradientTex, sampler_GradientTex, float2(col.x, 0.0));
+                return SAMPLE_TEXTURE2D(_GradientTex, sampler_GradientTex, float2(clamp(col.x, 0.01, 0.99), 0.0));
             }
 
             ENDHLSL
