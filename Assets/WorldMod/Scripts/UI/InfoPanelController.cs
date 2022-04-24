@@ -29,8 +29,12 @@ namespace Fab.WorldMod.UI
 			{
 				infoText.target.style.display = DisplayStyle.Flex;
 				infoText.SetKey(dataset.Name + "_INFO");
-			}
-		
+			}	
+		}
+
+		public void SetInfoText(string textKey)
+		{
+			infoText.SetKey(textKey);
 		}
 	}
 }

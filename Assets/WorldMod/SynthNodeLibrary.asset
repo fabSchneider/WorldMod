@@ -114,6 +114,13 @@ MonoBehaviour:
         propName: _GradientTex
         type: 4
         keywords: []
+    - name: Pan
+      shader: {fileID: 4800000, guid: 7bb5c18aa6ad02543a112106f6df4923, type: 3}
+      properties:
+      - name: Offset
+        propName: _Offset
+        type: 2
+        keywords: []
     blendNodes:
     - name: Add
       shader: {fileID: 4800000, guid: 43a3f1eb294f1114bbfd62adf420d6ca, type: 3}

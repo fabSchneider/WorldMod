@@ -206,7 +206,6 @@ namespace Fab.WorldMod.UI
 			Vector2 anchor = GetRightAnchor(datasetElement.localBound);
 			float yPos = Mathf.Max(0f, anchor.y - localBound.height / 2f);
 			transform.position = new Vector2(anchor.x, yPos);
-
 			SetWires(datasetElement);
 
 			AddToClassList(visibleClassname);
@@ -216,6 +215,8 @@ namespace Fab.WorldMod.UI
 		{
 			itemAnchor = GetRightAnchor(datasetElement.worldBound);
 			itemAnchor = wireContainer.WorldToLocal(itemAnchor);
+
+			itemAnchor.x = 0f;
 
 			for (int i = 0; i < content.childCount; i++)
 			{

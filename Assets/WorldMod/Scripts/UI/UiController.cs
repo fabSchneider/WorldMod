@@ -26,26 +26,20 @@ namespace Fab.WorldMod.UI
 
 		private Modal markerModal;
 
+		private VisualElement root;
+
+		public VisualElement Root => root;
+
+		private double lastTimeClick;
+
+		public double TimeSinceLastClick => Time.unscaledTimeAsDouble - lastTimeClick;
+
 		void Start()
 		{
 			document = GetComponent<UIDocument>();
+			root = document.rootVisualElement;
 
-			cameraController = FindObjectOfType<WorldCameraController>();
-
-			if (cameraController != null)
-			{
-				document.rootVisualElement.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector4>>(OnTrackpadAxis);
-				Label trackpadLabel = document.rootVisualElement.Q<Label>(name = "trackpad-output");
-				trackpadLabel.schedule.Execute(() =>
-				{
-					Coordinate coord = cameraController.GetCoordinate();
-					trackpadLabel.text = string.Format("lon: {0:0.000}°  lat: {1:0.000}°  heading: {2:0.0}°",
-						Mathf.Rad2Deg * coord.longitude,
-						Mathf.Rad2Deg * coord.latitude,
-						cameraController.GetHeading());
-				}).Every(100);
-			}
-
+			SetupTrackpad();
 
 			mainBarController = new MainbarController(document.rootVisualElement, LocalizationComponent.Localization);
 
@@ -54,9 +48,12 @@ namespace Fab.WorldMod.UI
 			if (datasets)
 				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Sequence);
 
+			//SetupMarkerUI();
 
+			SetupFooter();
 
-			SetupMarkerUI();
+			root.RegisterCallback<PointerDownEvent>(evt => lastTimeClick = Time.unscaledTimeAsDouble);
+
 		}
 
 		private void OnEnable()
@@ -67,6 +64,25 @@ namespace Fab.WorldMod.UI
 		private void OnDisable()
 		{
 			Signals.Get<DatasetUpdatedSignal>().RemoveListener(OnDatasetUpdated);
+		}
+
+		private void SetupTrackpad()
+		{
+			cameraController = FindObjectOfType<WorldCameraController>();
+
+			if (cameraController != null)
+			{
+				root.Q<Trackpad>().RegisterCallback<ChangeEvent<Vector4>>(OnTrackpadAxis);
+				Label trackpadLabel = document.rootVisualElement.Q<Label>(name = "trackpad-output");
+				trackpadLabel.schedule.Execute(() =>
+				{
+					Coordinate coord = cameraController.GetCoordinate();
+					trackpadLabel.text = string.Format("lon: {0:0.000}°  lat: {1:0.000}°  heading: {2:0.0}°",
+						Mathf.Rad2Deg * coord.longitude,
+						Mathf.Rad2Deg * coord.latitude,
+						cameraController.GetHeading());
+				}).Every(100);
+			}
 		}
 
 		private void SetupMarkerUI()
@@ -89,6 +105,21 @@ namespace Fab.WorldMod.UI
 			}).WithLocalizable();
 
 			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
+		}
+
+		private void SetupFooter()
+		{
+			var footer = root.Q(name: "footer");
+
+			var versionLabel = footer.Q<Label>(name: "version");
+			versionLabel.text = $"{{ world mod - v{Application.version} }}";
+
+			var fpsLabel = footer.Q<Label>(name: "fps");
+			fpsLabel.schedule.Execute(() => fpsLabel.text = $"{{ FPS: {(1f / Time.smoothDeltaTime):0.00} }}").Every(40);
+
+			Label lastClickTimeLabel = new Label();
+			lastClickTimeLabel.schedule.Execute(() => lastClickTimeLabel.text = $"{{ time since last interaction: {TimeSinceLastClick:0s} }}").Every(1000);
+			footer.Add(lastClickTimeLabel);
 		}
 
 		public void OnTrackpadAxis(ChangeEvent<Vector4> evt)

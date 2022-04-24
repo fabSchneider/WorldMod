@@ -101,7 +101,7 @@ namespace Fab.WorldMod.UI
 		{
 			if (evt.button == 0)
 			{
-				Controller.SetActiveDatasetElement(this);
+				Controller?.SetActiveDatasetElement(this);
 
 				dragPreview.dragOffset = this.WorldToLocal(evt.position);
 				RegisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
