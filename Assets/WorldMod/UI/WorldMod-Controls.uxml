@@ -23,7 +23,10 @@
                     <ui:VisualElement name="filter-container" class="panel data-panel__filter-container" />
                 </ui:VisualElement>
                 <ui:VisualElement name="sequence-container" class="panel data-panel__sequence-container" />
-                <ui:VisualElement name="controls-container" class="panel data-panel__controls-container" />
+                <ui:VisualElement class="data-panel__controls-wrapper">
+                    <ui:VisualElement name="controls-container" class="panel data-panel__controls-container" />
+                    <ui:VisualElement name="output-container" class="output-container panel" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

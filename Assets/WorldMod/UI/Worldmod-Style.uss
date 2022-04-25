@@ -148,12 +148,37 @@
     align-items: flex-start;
     flex-grow: 1;
     overflow: hidden;
-    height: 50%;
     flex-direction: row;
 }
 
+.data-panel__controls-wrapper {
+    flex-direction: row;
+    height: 290px;
+    max-height: 290px;
+}
+
 .data-panel__controls-container {
-    min-height: 128px;
+}
+
+.output-container {
+    width: 500px;
+    max-width: 500px;
+    justify-content: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.output-container > .output__entry {
+    color: rgb(108, 108, 108);
+}
+
+.output-container > .output__entry--current {
+    color: rgb(255, 255, 255);
 }
 
 .dataset-item {

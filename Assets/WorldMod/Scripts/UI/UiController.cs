@@ -19,6 +19,9 @@ namespace Fab.WorldMod.UI
 		private MainbarController mainBarController;
 		private DataPanelController dataPanelController;
 		private InfoPanelController infoPanelController;
+		private LogOutputController logOutputController;
+
+		public LogOutputController LogOutput => logOutputController;
 
 		private VisualElement infoPanel;
 
@@ -41,9 +44,11 @@ namespace Fab.WorldMod.UI
 
 			SetupTrackpad();
 
-			mainBarController = new MainbarController(document.rootVisualElement, LocalizationComponent.Localization);
+			mainBarController = new MainbarController(root, LocalizationComponent.Localization);
 
-			infoPanelController = new InfoPanelController(document.rootVisualElement);
+			infoPanelController = new InfoPanelController(root);
+
+			logOutputController = new LogOutputController(root);
 
 			if (datasets)
 				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Sequence);
