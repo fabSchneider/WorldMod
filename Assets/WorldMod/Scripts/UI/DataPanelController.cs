@@ -187,8 +187,6 @@ namespace Fab.WorldMod.UI
 
 		public void RefreshView()
 		{
-			Debug.Log("Refresh View");
-
 			ClearContainers();
 
 			for (int i = 0; i < Stock.Count; i++)

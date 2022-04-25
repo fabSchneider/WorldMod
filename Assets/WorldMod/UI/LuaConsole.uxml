@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/FabGeo-Style.uss?fileID=7433441132597879392&amp;guid=146a25247199e0b4ebe55f9e33bfffcc&amp;type=3#FabGeo-Style" />
+    <Style src="project://database/Assets/WorldMod/UI/LuaConsoleStyle.uss?fileID=7433441132597879392&amp;guid=bc8776316a280b3429df27a18f592695&amp;type=3#LuaConsoleStyle" />
+    <ui:VisualElement picking-mode="Ignore" name="lua-console" class="lua-console">
+        <ui:VisualElement picking-mode="Ignore" class="lua-console__container">
+            <ui:VisualElement picking-mode="Ignore" class="lua-console__wrapper">
+                <ui:VisualElement picking-mode="Ignore" class="lua-console__history">
+                    <ui:ScrollView name="history-container" horizontal-scroller-visibility="Hidden" class="unity-scroll-view--vertical-flipped" />
+                </ui:VisualElement>
+                <ui:Label text="error message" display-tooltip-when-elided="true" class="lua-console__error-msg" style="display: none;" />
+                <ui:TextField picking-mode="Ignore" text="type lua code here or type help() for more info" multiline="true" is-delayed="false" class="lua-console__text-field" style="border-left-color: rgb(125, 125, 125); border-right-color: rgb(125, 125, 125); border-top-color: rgb(125, 125, 125); border-bottom-color: rgb(125, 125, 125);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
