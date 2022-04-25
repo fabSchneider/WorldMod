@@ -121,6 +121,24 @@ namespace Fab.WorldMod.UI
 			EnableInClassList(activeClassname, value);
 		}
 
+		public void SetColor(Color color)
+		{
+			label.style.color = color;
+			style.borderTopColor = color;
+			style.borderBottomColor = color;
+			style.borderLeftColor = color;
+			style.borderRightColor = color;
+		}
+
+		public void ResetColor()
+		{
+			label.style.color = StyleKeyword.Null;
+			style.borderTopColor = StyleKeyword.Null;
+			style.borderBottomColor = StyleKeyword.Null;
+			style.borderLeftColor = StyleKeyword.Null;
+			style.borderRightColor = StyleKeyword.Null;
+		}
+
 
 		private void OnPointerDown(PointerDownEvent evt)
 		{
@@ -131,6 +149,8 @@ namespace Fab.WorldMod.UI
 				dragPreview.PrePrepareForDrag(evt.localPosition);
 				RegisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
 				RegisterCallback<PointerUpEvent>(OnPointerUpEvent);
+
+				evt.StopPropagation();
 			}
 		}
 
@@ -145,7 +165,7 @@ namespace Fab.WorldMod.UI
 			UnregisterCallback<PointerUpEvent>(OnPointerUpEvent);
 			UnregisterCallback<PointerLeaveEvent>(OnPointerDragLeave);
 
-			Controller.SetActiveDatasetElement(null);
+			//Controller.SetActiveDatasetElement(null);
 
 			// start drag	
 			Controller.DragDrop.DragLayer.Add(dragPreview);
@@ -184,6 +204,7 @@ namespace Fab.WorldMod.UI
 			element.RemoveFromClassList(activeClassname);
 			element.label.text = string.Empty;
 			element.label.RemoveManipulator(element.localizable);
+			element.ResetColor();
 			element.dragPreview.RemoveFromHierarchy();
 		}
 	}

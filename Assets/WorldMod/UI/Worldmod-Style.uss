@@ -203,10 +203,14 @@
 }
 
 .dataset-item--active {
-    border-left-color: rgb(255, 197, 0);
-    border-right-color: rgb(255, 197, 0);
-    border-top-color: rgb(255, 197, 0);
-    border-bottom-color: rgb(255, 197, 0);
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 .dataset-item:enabled:hover {
@@ -216,10 +220,13 @@
     background-color: rgba(255, 255, 255, 0.2);
     width: 56px;
     height: 56px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
 }
 
 .dataset-item--active > .dataset-item__label {
-    color: rgb(255, 197, 0);
 }
 
 .dataset-item__label {
@@ -254,10 +261,11 @@
 }
 
 .drop-target--drop.container-drop {
-    border-left-color: rgb(255, 197, 0);
-    border-right-color: rgb(255, 197, 0);
-    border-top-color: rgb(255, 197, 0);
-    border-bottom-color: rgb(255, 197, 0);
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.12);
     border-left-width: 3px;
     border-right-width: 3px;
     border-top-width: 3px;
@@ -284,23 +292,29 @@
 }
 
 .layers-drop__line {
-    width: 3px;
+    width: 40%;
     height: 56px;
-    background-color: rgb(255, 197, 0);
+    background-color: rgba(255, 255, 255, 0.2);
     display: none;
     margin-left: auto;
     margin-right: auto;
-    top: 25s;
+    top: 8px;
 }
 
 .drop-target--drop > .layers-drop__line {
     display: flex;
 }
 
+.info-panel {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
 .info-panel__text {
     white-space: normal;
-    -unity-text-align: upper-center;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .trackpad-panel {

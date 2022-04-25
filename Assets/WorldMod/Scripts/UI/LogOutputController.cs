@@ -22,6 +22,7 @@ namespace Fab.WorldMod
 		private Label CreateConsoleEntry()
 		{
 			var entry = new Label();
+			entry.enableRichText = true;
 			entry.AddToClassList(entryClassname);
 			return entry;
 		}

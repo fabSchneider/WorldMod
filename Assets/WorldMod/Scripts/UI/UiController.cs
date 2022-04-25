@@ -21,6 +21,8 @@ namespace Fab.WorldMod.UI
 		private InfoPanelController infoPanelController;
 		private LogOutputController logOutputController;
 
+		public DataPanelController DataPanel => dataPanelController;
+
 		public LogOutputController LogOutput => logOutputController;
 
 		private VisualElement infoPanel;

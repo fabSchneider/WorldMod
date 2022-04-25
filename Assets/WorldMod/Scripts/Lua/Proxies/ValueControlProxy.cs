@@ -71,7 +71,7 @@ namespace Fab.WorldMod.Lua
 	public class FloatControlProxy : ValueControlProxy<float> { }
 
 	[LuaHelpInfo("A vector control")]
-	public class VectorControlProxy : ValueControlProxy<Vector3> { }
+	public class Vector2ControlProxy : ValueControlProxy<Vector2> { }
 
 	[LuaHelpInfo("A color control")]
 	public class ColorControlProxy : ValueControlProxy<Color> { }

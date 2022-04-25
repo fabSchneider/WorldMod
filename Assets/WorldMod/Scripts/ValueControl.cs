@@ -135,7 +135,7 @@ namespace Fab.WorldMod
 		}
 	}
 
-	public class IntervalControl : ValueControl<Vector3>
+	public class IntervalControl : ValueControl<Vector2>
 	{
 		private float min;
 		private float max;
@@ -150,11 +150,11 @@ namespace Fab.WorldMod
 			this.max = Mathf.Max(min, max);
 		}
 
-		public override bool SetValue(Vector3 value)
+		public override bool SetValue(Vector2 value)
 		{
-			base.SetValue(new Vector3(
+			base.SetValue(new Vector2(
 				Mathf.Max(Min, Mathf.Min(value.x, value.y)),
-				Mathf.Min(Max, Mathf.Max(value.x, value.y)), 0f));
+				Mathf.Min(Max, Mathf.Max(value.x, value.y))));
 			return true;
 		}
 	}

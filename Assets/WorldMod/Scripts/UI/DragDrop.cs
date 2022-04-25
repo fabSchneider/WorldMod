@@ -164,10 +164,10 @@ namespace Fab.WorldMod.UI
         private void OnMove(PointerMoveEvent evt)
         {
             evt.StopPropagation();
-            VisualElement foundTarget = GetTargetUnderPointer(evt.position);
+            VisualElement foundTarget = dragLayer.panel.Pick(evt.position);
 
-            //new target
-            if (CurrentDropTarget != foundTarget)
+			//new target
+			if (CurrentDropTarget != foundTarget)
             {
                 //leave recent target
                 if (CurrentDropTarget != null)

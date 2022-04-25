@@ -6,12 +6,17 @@ namespace Fab.WorldMod.UI
 {
     public class InfoPanelController 
     {
+		private static readonly string textClassname = "info-panel__text";
+
 		VisualElement infoPanel;
 		Localizable infoText;
 		public InfoPanelController(VisualElement root)
 		{
 			infoPanel = root.Q(name: "info-panel");
 			Label infoLabel = new Label();
+			infoLabel.enableRichText = true;	
+			infoLabel.AddToClassList(textClassname);
+
 			infoText = new Localizable(LocalizationComponent.Localization);
 			infoLabel.AddManipulator(infoText);
 			infoPanel.Add(infoLabel);

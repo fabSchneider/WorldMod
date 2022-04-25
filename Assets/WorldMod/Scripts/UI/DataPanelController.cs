@@ -19,20 +19,20 @@ namespace Fab.WorldMod.UI
 		private static readonly string sequenceContainerClassname = className + "__sequence-container";
 		private static readonly string controlsContainerClassname = className + "__controls-container";
 
-		private static readonly string stockDropClassname = "container-drop";
+		private static readonly string containerDropClassname = "container-drop";
 		private static readonly string layersDropClassname = "layers-drop";
 		private static readonly string insertLineClassname = layersDropClassname + "__line";
 
+		private static readonly string datasetColorKey = "color";
+
 		private VisualElement stockContainer;
 		private VisualElement datasetContainer;
-		private VisualElement filterContainer;
 
 		private VisualElement sequenceContainer;
 		private VisualElement controlsContainer;
 
 		public VisualElement SequenceContainer => sequenceContainer;
 		public VisualElement StockContainer => datasetContainer;
-		public VisualElement FilterContainer => filterContainer;
 		public VisualElement ControlsContainer => controlsContainer;
 
 		private ObjectPool<DatasetElement> dragItemPool;
@@ -44,14 +44,11 @@ namespace Fab.WorldMod.UI
 		public IList<Dataset> Stock { get; private set; }
 		public Sequence<Dataset> Sequence { get; private set; }
 
+		private LayerDropArea sequenceDropArea;
 
-		private LayerDropArea emptySequenceDropArea;
+		private int activeDataset = -1;
 
-		private DatasetControlView datasetControls;
-
-		private DatasetElement activeDatasetElement;
-
-		private Dictionary<int, DatasetControlView> datasetControlsById;
+		private Dictionary<Dataset, DatasetControlView> datasetControlsByDataset;
 
 		public DataPanelController(VisualElement root, IList<Dataset> stock, Sequence<Dataset> sequence)
 		{
@@ -68,15 +65,19 @@ namespace Fab.WorldMod.UI
 
 			datasetContainer = stockContainer.Q(className: datasetContainerClassname);
 
-			filterContainer = stockContainer.Q(className: filterContainerClassname);
-
-			LayerDropArea stockDropArea = new LayerDropArea(DragDrop, HandleStockDrop).WithClass(stockDropClassname);
+			LayerDropArea stockDropArea = new LayerDropArea(DragDrop, HandleStockDrop).WithClass(containerDropClassname);
 			stockDropArea.Set(-1);
 			stockContainer.Add(stockDropArea);
 
 			sequenceContainer = root.Q(className: sequenceContainerClassname);
-			emptySequenceDropArea = new LayerDropArea(DragDrop, HandleSequenceDrop).WithClass(stockDropClassname);
-			emptySequenceDropArea.Set(0);
+			sequenceDropArea = new LayerDropArea(DragDrop, HandleSequenceDrop).WithClass(containerDropClassname);
+			sequenceDropArea.Set(0);
+
+			sequenceContainer.RegisterCallback<PointerDownEvent>(evt =>
+			{
+				DeselectActive();
+				Signals.Get<DatasetActivatedSignal>().Dispatch(null);
+			});
 
 			controlsContainer = root.Q(className: controlsContainerClassname);
 
@@ -88,56 +89,139 @@ namespace Fab.WorldMod.UI
 			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
 			root.RegisterCallback<FabDragExitedEvent>(OnDragExited);
 
-			datasetControlsById = new Dictionary<int, DatasetControlView>();
-			foreach (Dataset dataset in stock)
-				datasetControlsById.Add(stock.IndexOf(dataset), new DatasetControlView(dataset));
+			datasetControlsByDataset = new Dictionary<Dataset, DatasetControlView>();
 
 			Signals.Get<OnChangeLocaleSignal>().AddListener(RefreshOnLocalChange);
 
 			RefreshView();
 		}
 
-		public void RefreshOnLocalChange(Locale locale)
+		public void RebuildControlView(Dataset dataset)
+		{
+			var view = GetOrCreateControlView(dataset);
+			view.RebuildView();
+		}
+
+		private void RefreshOnLocalChange(Locale locale)
 		{
 			RefreshView();
 		}
 
+		private void DeselectActive()
+		{
+			if (activeDataset == -1)
+				return;
+
+			// deselect currenty active
+			dataPanel.Query<DatasetElement>().Where(de => de.Id == activeDataset).ForEach(elem =>
+			{
+				elem.SetActive(false);
+				elem.ResetColor();
+			});
+			activeDataset = -1;
+			controlsContainer.Clear();
+			ResetControlsColor();
+		}
+
 		public void SetActiveDatasetElement(DatasetElement element)
 		{
-			if (activeDatasetElement != element)
-			{
-				if (activeDatasetElement != null)
-				{
-					activeDatasetElement.SetActive(false);
-					controlsContainer.Clear();
-				}
-			}
-
 			if (element == null)
 			{
-				activeDatasetElement = null;
+				//just deselect currently active
+				if (activeDataset != -1)
+					DeselectActive();
+
+				ResetControlsColor();
 				Signals.Get<DatasetActivatedSignal>().Dispatch(null);
 				return;
 			}
 
-			activeDatasetElement = element;
-			activeDatasetElement.SetActive(true);
+			Dataset dataset = Stock[element.Id];
+			if (activeDataset == element.Id)
+			{
+				// new selection is equal to current selection
+				// just make sure to show controls if they are not already visible
+				if (Sequence.Contains(dataset))
+					SetControlsForDataset(dataset);
+				else
+					SetControlsForDataset(null);
+				return;
+			}
 
-			if (Sequence.Contains(Stock[element.Id]))
+			if (activeDataset != -1)
+				DeselectActive();
+
+			activeDataset = element.Id;
+			element.SetActive(true);
+
+			if (dataset.TryGetData(datasetColorKey, out Color color))
+				element.SetColor(color);
+
+			if (Sequence.Contains(dataset))
+				SetControlsForDataset(dataset);
+
+			Signals.Get<DatasetActivatedSignal>().Dispatch(dataset);
+		}
+
+		private void SetControlsForDataset(Dataset dataset)
+		{
+			if (dataset == null)
 			{
 				controlsContainer.Clear();
-				controlsContainer.Add(datasetControlsById[activeDatasetElement.Id]);
+				ResetControlsColor();
+				return;
 			}
-			else
-				controlsContainer.Clear();
 
-			Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[element.Id]);
+			var controlView = GetOrCreateControlView(dataset);
+			if (dataset.TryGetData(datasetColorKey, out Color color))
+				SetControlsColor(color);
+			else
+				ResetControlsColor();
+			controlsContainer.Add(controlView);
 		}
+
+		private void SetControlsColor(Color color)
+		{
+			controlsContainer.style.borderTopColor = color;
+			controlsContainer.style.borderTopWidth = 3f;
+			//controlsContainer.style.borderBottomColor = color;
+			//controlsContainer.style.borderLeftColor = color;
+			//controlsContainer.style.borderRightColor = color;
+		}
+
+		private void ResetControlsColor()
+		{
+			controlsContainer.style.borderTopColor = StyleKeyword.Null;
+			controlsContainer.style.borderTopWidth = StyleKeyword.Null;
+			controlsContainer.style.marginTop = StyleKeyword.Null;
+			//controlsContainer.style.borderBottomColor = StyleKeyword.Null;
+			//controlsContainer.style.borderLeftColor = StyleKeyword.Null;
+			//controlsContainer.style.borderRightColor = StyleKeyword.Null;
+		}
+
+
+		private DatasetControlView GetOrCreateControlView(Dataset dataset)
+		{
+			if (!Stock.Contains(dataset))
+				throw new ArgumentException("The dataset has not been added to the stock.");
+
+			if (!datasetControlsByDataset.TryGetValue(dataset, out DatasetControlView controlView))
+			{
+				controlView = new DatasetControlView(dataset);
+				controlView.RebuildView();
+				datasetControlsByDataset.Add(dataset, controlView);
+			}
+
+			return controlView;
+		}
+
 
 		private bool HandleStockDrop(VisualElement item, LayerDropArea area)
 		{
 			if (item is DragPreview dragPreview && dragPreview.Owner is DatasetElement datasetElement)
+			{
 				return Sequence.Remove(Stock[datasetElement.Id]);
+			}
 
 			return false;
 		}
@@ -188,6 +272,11 @@ namespace Fab.WorldMod.UI
 		public void RefreshView()
 		{
 			ClearContainers();
+			ResetControlsColor();
+
+			int lastActive = activeDataset;
+			DeselectActive();
+			Signals.Get<DatasetActivatedSignal>().Dispatch(null);
 
 			for (int i = 0; i < Stock.Count; i++)
 			{
@@ -195,39 +284,32 @@ namespace Fab.WorldMod.UI
 				DatasetElement item = dragItemPool.GetPooled();
 				item.Set(this, i);
 				item.SetEnabled(!Sequence.Contains(dataset));
-
-				if (dataset.TryGetData(datasetTypeKey, out string type) &&
-					type.Equals(datasetFiltereKey, StringComparison.CurrentCultureIgnoreCase))
-				{
-					filterContainer.Add(item);
-				}
-				else
-				{
-					datasetContainer.Add(item);
-				}
-
+				datasetContainer.Add(item);
 			}
 
-			if (Sequence.Count == 0)
+			sequenceDropArea.Set(Sequence.Count);
+			sequenceContainer.Add(sequenceDropArea);
+
+
+			LayerDropArea insertArea = dragInserAreaPool.GetPooled();
+			insertArea.Set(0);
+			sequenceContainer.Add(insertArea);
+			for (int i = 0; i < Sequence.Count; i++)
 			{
-				emptySequenceDropArea.Set(0);
-				sequenceContainer.Add(emptySequenceDropArea);
-			}
-			else
-			{
-				LayerDropArea insertArea = dragInserAreaPool.GetPooled();
-				insertArea.Set(0);
+				DatasetElement item = dragItemPool.GetPooled();
+
+				int id = Stock.IndexOf(Sequence[i]);
+				item.Set(this, id);
+
+				if (id == lastActive)
+				{
+					SetActiveDatasetElement(item);
+				}
+
+				sequenceContainer.Add(item);
+				insertArea = dragInserAreaPool.GetPooled();
+				insertArea.Set(i + 1);
 				sequenceContainer.Add(insertArea);
-				for (int i = 0; i < Sequence.Count; i++)
-				{
-					DatasetElement item = dragItemPool.GetPooled();
-
-					item.Set(this, Stock.IndexOf(Sequence[i]));
-					sequenceContainer.Add(item);
-					insertArea = dragInserAreaPool.GetPooled();
-					insertArea.Set(i + 1);
-					sequenceContainer.Add(insertArea);
-				}
 			}
 		}
 
@@ -235,8 +317,8 @@ namespace Fab.WorldMod.UI
 		{
 			stockContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
 
-			emptySequenceDropArea.RemoveFromHierarchy();
-			LayerDropArea.Reset(emptySequenceDropArea);
+			sequenceDropArea.RemoveFromHierarchy();
+			LayerDropArea.Reset(sequenceDropArea);
 			sequenceContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
 			sequenceContainer.Query<LayerDropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
 

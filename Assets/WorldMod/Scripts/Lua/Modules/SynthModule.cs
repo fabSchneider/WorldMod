@@ -31,10 +31,10 @@ namespace Fab.WorldMod.Lua
 			return proxy;
 		}
 
-		[LuaHelpInfo("Updates the layer until the next frame")]
-		public void update(SynthLayerProxy layer)
+		[LuaHelpInfo("Tells the synthesizer to update the specified channel until the next frame")]
+		public void update(string channel)
 		{
-			synthComponent.SetLayerDirty(layer.Target);
+			synthComponent.SetChannelDirty(channel);
 		}
 	}
 }

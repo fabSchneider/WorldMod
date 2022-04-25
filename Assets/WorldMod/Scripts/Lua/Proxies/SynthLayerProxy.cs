@@ -93,7 +93,7 @@ namespace Fab.WorldMod.Lua
 					colorControl.RegisterChangeCallback(val => node.SetColor(propertyDescriptor, val));
 					return;
 				case SynthNodeDescriptor.PropertyDescriptor.PropertyType.Vector:
-					var vectorControl = control as ValueControl<Vector3>;
+					var vectorControl = control as ValueControl<Vector2>;
 					node.SetVector(propertyDescriptor, vectorControl.Value);
 					vectorControl.RegisterChangeCallback(val => node.SetVector(propertyDescriptor, val));
 					return;

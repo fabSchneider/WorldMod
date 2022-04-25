@@ -51,7 +51,7 @@ namespace Fab.WorldMod.Synth
 
 		private bool[] channelDirtyFlags;
 
-		private bool layersUpdateFlag;
+		private bool rebuildChannelsFlag;
 
 		[SerializeField]
 		private SynthNodeLibraryAsset nodeLibrary;
@@ -82,7 +82,7 @@ namespace Fab.WorldMod.Synth
 				synthesizer.AddChannel(layerGroupData.Name, layerGroupData.Id, layerGroupData.OutputTexture);
 			}
 
-			layersUpdateFlag = true;
+			rebuildChannelsFlag = true;
 		}
 
 		private void Start()
@@ -97,7 +97,7 @@ namespace Fab.WorldMod.Synth
 
 		private void Update()
 		{
-			if (layersUpdateFlag)
+			if (rebuildChannelsFlag)
 			{
 				synthesizer.ClearAllChannels();
 				foreach (var dataset in datasets.Sequence)
@@ -108,7 +108,7 @@ namespace Fab.WorldMod.Synth
 						synthesizer.AddLayer(layer, channelData.Id);
 					}
 				}
-				layersUpdateFlag = false;
+				rebuildChannelsFlag = false;
 			}
 
 			for (int i = 0; i < channelDirtyFlags.Length; i++)
@@ -131,7 +131,7 @@ namespace Fab.WorldMod.Synth
 		private void OnSequenceChanged(SequenceChangedEvent<Dataset> evt)
 		{
 			SetChannelDirtyFlag(evt.data);
-			layersUpdateFlag = true;
+			rebuildChannelsFlag = true;
 		}
 
 		private void OnDatasetUpdated(Dataset dataset)
@@ -146,17 +146,19 @@ namespace Fab.WorldMod.Synth
 		{
 			if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
 			{
-				SetLayerDirty(layer);
+				SetChannelDirty(layer.ChannelName);
 			}
 		}
 
-		public void SetLayerDirty(SynthLayer layer)
+		public void SetChannelDirty(string channel)
 		{
-			// NOTE: This does not check if the layer actually belongs to the channel. It will update the channel regardless.
-			SynthChannelData channelData = channelsByName[layer.ChannelName];
+			SynthChannelData channelData = channelsByName[channel];
 			int channelIndex = Array.IndexOf(channelsData, channelData);
 			if (channelIndex != -1)
 				channelDirtyFlags[channelIndex] = true;
+
+			// NOTE: this will now always rebuild the channels
+			rebuildChannelsFlag = true;
 		}
 
 		private void OnDestroy()

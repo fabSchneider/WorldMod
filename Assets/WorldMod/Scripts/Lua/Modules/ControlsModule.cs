@@ -1,4 +1,5 @@
 using Fab.Lua.Core;
+using Fab.WorldMod.UI;
 using UnityEngine;
 
 namespace Fab.WorldMod.Lua
@@ -7,7 +8,22 @@ namespace Fab.WorldMod.Lua
 	[LuaName("controls")]
 	public class ControlsModule : LuaObject, ILuaObjectInitialize
 	{
-		public void Initialize() { }
+		private UiController ui;
+
+		public void Initialize()
+		{
+			ui = UnityEngine.Object.FindObjectOfType<UiController>();
+
+			if (ui == null)
+				throw new LuaObjectInitializationException("Ui controller was not found.");
+		}
+
+		[LuaHelpInfo("Rebuilds the control ui for the specified dataset")]
+		public void rebuild_controls(DatasetProxy dataset)
+		{
+			ui.DataPanel.RebuildControlView(dataset.Target);
+		}
+
 
 		[LuaHelpInfo("A control holding a number")]
 		public FloatControlProxy number(string name, float default_value)
@@ -28,10 +44,10 @@ namespace Fab.WorldMod.Lua
 		}
 
 		[LuaHelpInfo("A control holding an interval with a lower and upper bound")]
-		public VectorControlProxy interval(string name, float default_lower, float default_upper, float min, float max)
+		public Vector2ControlProxy interval(string name, float default_lower, float default_upper, float min, float max)
 		{
 			IntervalControl control = new IntervalControl(name, default_lower, default_upper, min, max);
-			VectorControlProxy proxy = new VectorControlProxy();
+			Vector2ControlProxy proxy = new Vector2ControlProxy();
 			proxy.SetTarget(control);
 			return proxy;
 		}
@@ -64,10 +80,10 @@ namespace Fab.WorldMod.Lua
 		}
 
 		[LuaHelpInfo("A control holding a vector")]
-		public VectorControlProxy vector(string name, Vector3 default_value)
+		public Vector2ControlProxy vector(string name, Vector3 default_value)
 		{
-			ValueControl<Vector3> control = new ValueControl<Vector3>(name, default_value);
-			VectorControlProxy proxy = new VectorControlProxy();
+			ValueControl<Vector2> control = new ValueControl<Vector2>(name, default_value);
+			Vector2ControlProxy proxy = new Vector2ControlProxy();
 			proxy.SetTarget(control);
 			return proxy;
 		}
