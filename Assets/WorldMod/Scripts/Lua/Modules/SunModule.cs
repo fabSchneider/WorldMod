@@ -19,7 +19,10 @@ namespace Fab.WorldMod.Lua
 		}
 
 		public float x_pos => sun.SunX;
-		public float y_pos => sun.SunY;	
+		public float y_pos => sun.SunY;
+
+		[LuaHelpInfo("Returns the coordinate that is currently in zenith")]
+		public Coordinate zenith => sun.Zenith;
 
 		public void set_x(float x)
 		{

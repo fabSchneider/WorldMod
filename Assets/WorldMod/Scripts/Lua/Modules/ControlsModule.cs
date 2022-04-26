@@ -52,6 +52,15 @@ namespace Fab.WorldMod.Lua
 			return proxy;
 		}
 
+		[LuaHelpInfo("A control holding a two dimensional vector")]
+		public Vector2ControlProxy vector2(string name, Vector2 default_value)
+		{
+			ValueControl<Vector2> control = new ValueControl<Vector2>(name, default_value);
+			Vector2ControlProxy proxy = new Vector2ControlProxy();
+			proxy.SetTarget(control);
+			return proxy;
+		}
+
 		[LuaHelpInfo("A control holding a boolean value")]
 		public BoolControlProxy toggle(string name, bool default_value)
 		{

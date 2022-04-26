@@ -1,3 +1,4 @@
+using Fab.Geo;
 using UnityEngine;
 
 namespace Fab.WorldMod
@@ -8,6 +9,8 @@ namespace Fab.WorldMod
 		{
 			transform.rotation = Quaternion.Euler(x, y, 0);
 		}
+
+		public Coordinate Zenith => GeoUtils.PointToCoordinate(-transform.forward);
 
 		public float SunX
 		{
@@ -20,7 +23,7 @@ namespace Fab.WorldMod
 
 		public float SunY
 		{
-			get { return transform.eulerAngles.x; }
+			get { return transform.eulerAngles.y; }
 			set
 			{
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, value, 0f);
