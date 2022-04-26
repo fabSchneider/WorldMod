@@ -102,7 +102,18 @@ namespace Fab.WorldMod.Synth
 				synthesizer.ClearAllChannels();
 				foreach (var dataset in datasets.Sequence)
 				{
-					if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
+					if (dataset.TryGetData(datasetSynthKey, out IEnumerable<object> layers))
+					{
+						foreach (var item in layers)
+						{
+							if(item is SynthLayer l)
+							{
+								SynthChannelData channelData = channelsByName[l.ChannelName];
+								synthesizer.AddLayer(l, channelData.Id);
+							}
+						}
+					}
+					else if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
 					{
 						SynthChannelData channelData = channelsByName[layer.ChannelName];
 						synthesizer.AddLayer(layer, channelData.Id);
@@ -144,7 +155,18 @@ namespace Fab.WorldMod.Synth
 
 		private void SetChannelDirtyFlag(Dataset dataset)
 		{
-			if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
+
+			if (dataset.TryGetData(datasetSynthKey, out IEnumerable<object> layers))
+			{
+				foreach (var item in layers)
+				{
+					if (item is SynthLayer l)
+					{
+						SetChannelDirty(l.ChannelName);
+					}
+				}
+			}
+			else if (dataset.TryGetData(datasetSynthKey, out SynthLayer layer))
 			{
 				SetChannelDirty(layer.ChannelName);
 			}

@@ -1,5 +1,6 @@
 using Fab.Common;
 using Fab.WorldMod.Localization;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI
@@ -7,6 +8,8 @@ namespace Fab.WorldMod.UI
     public class InfoPanelController 
     {
 		private static readonly string textClassname = "info-panel__text";
+
+		private static readonly string colorDataKey = "color";
 
 		VisualElement infoPanel;
 		Localizable infoText;

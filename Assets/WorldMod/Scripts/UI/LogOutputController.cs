@@ -12,7 +12,7 @@ namespace Fab.WorldMod
 		VisualElement outputContainer;
 
 
-		public int maxEntries = 8;
+		public int maxEntries = 16;
 
 		public LogOutputController(VisualElement root)
 		{

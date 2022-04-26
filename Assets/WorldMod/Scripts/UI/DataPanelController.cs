@@ -184,9 +184,6 @@ namespace Fab.WorldMod.UI
 		{
 			controlsContainer.style.borderTopColor = color;
 			controlsContainer.style.borderTopWidth = 3f;
-			//controlsContainer.style.borderBottomColor = color;
-			//controlsContainer.style.borderLeftColor = color;
-			//controlsContainer.style.borderRightColor = color;
 		}
 
 		private void ResetControlsColor()
@@ -194,9 +191,6 @@ namespace Fab.WorldMod.UI
 			controlsContainer.style.borderTopColor = StyleKeyword.Null;
 			controlsContainer.style.borderTopWidth = StyleKeyword.Null;
 			controlsContainer.style.marginTop = StyleKeyword.Null;
-			//controlsContainer.style.borderBottomColor = StyleKeyword.Null;
-			//controlsContainer.style.borderLeftColor = StyleKeyword.Null;
-			//controlsContainer.style.borderRightColor = StyleKeyword.Null;
 		}
 
 

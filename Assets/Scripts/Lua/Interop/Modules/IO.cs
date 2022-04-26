@@ -49,7 +49,7 @@ namespace Fab.Geo.Lua.Interop
 				+ string.Join(", ", imageExtensions));
 		}
 
-		private void CheckLoadPath(string path, out string loadPath, out string extension)
+		public static void CheckLoadPath(string path, out string loadPath, out string extension)
 		{
 			loadPath = Path.Combine(LuaEnvironment.DataDirectory, path);
 

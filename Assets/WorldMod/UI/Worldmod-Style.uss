@@ -1,6 +1,6 @@
 :root {
-    -unity-font-definition: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO%20SDF.asset?fileID=11400000&guid=8aab6c69d5bb84745ba9af6e91f1bdeb&type=2#CASKAYDIA COVE NERD FONT COMPLETE MONO SDF');
-    -unity-font: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO.TTF?fileID=12800000&guid=72447131e6aac6c4396a1c5ff95cfb12&type=3#CASKAYDIA COVE NERD FONT COMPLETE MONO');
+    -unity-font-definition: url('project://database/Assets/WorldMod/Fonts/JetBrainsMono-Regular%20SDF%201.asset?fileID=11400000&guid=9e6761b39e7464640a3ec13496a0f3b9&type=2#JetBrainsMono-Regular SDF 1');
+    -unity-font: url('project://database/Assets/WorldMod/Fonts/JetBrainsMono-Regular.ttf?fileID=12800000&guid=d19bfa40c042be94f97b852297fb0bd8&type=3#JetBrainsMono-Regular');
     background-color: rgb(0, 0, 0);
 }
 
@@ -23,6 +23,7 @@
     padding-right: 6px;
     padding-top: 0;
     padding-bottom: 44px;
+    flex-shrink: 0;
 }
 
 .footer__spacer {
@@ -33,7 +34,7 @@
 }
 
 .proto__region--left {
-    width: 500px;
+    width: 600px;
 }
 
 .proto__region--right {
@@ -69,8 +70,8 @@
     flex-direction: row;
     padding-left: 8px;
     padding-right: 4px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
     font-size: 24px;
     align-items: center;
 }
@@ -153,24 +154,25 @@
 
 .data-panel__controls-wrapper {
     flex-direction: row;
-    height: 290px;
-    max-height: 290px;
+    height: 320px;
+    max-height: 320px;
+    flex-shrink: 0;
 }
 
 .data-panel__controls-container {
 }
 
 .output-container {
-    width: 500px;
-    max-width: 500px;
     justify-content: flex-end;
     flex-direction: column;
     overflow: hidden;
-    flex-grow: 0;
     padding-left: 4px;
     padding-right: 4px;
     padding-top: 4px;
     padding-bottom: 4px;
+    width: 50%;
+    max-width: 50%;
+    min-width: 50%;
 }
 
 .output-container > .output__entry {
@@ -320,9 +322,9 @@
 .trackpad-panel {
     flex-shrink: 0;
     flex-grow: 0;
-    height: 500px;
     align-items: center;
     justify-content: center;
+    height: 500px;
 }
 
 .trackpad {

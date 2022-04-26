@@ -83,6 +83,12 @@ namespace Fab.WorldMod
 			return true;
 		}
 
+		public virtual bool SetValueWithoutNotify(T value)
+		{
+			this.value = value;
+			return true;
+		}
+
 		public override object GetValue()
 		{
 			return value;

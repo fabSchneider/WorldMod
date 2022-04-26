@@ -164,7 +164,7 @@ namespace Fab.WorldMod.UI
         private void OnMove(PointerMoveEvent evt)
         {
             evt.StopPropagation();
-            VisualElement foundTarget = dragLayer.panel.Pick(evt.position);
+			VisualElement foundTarget = GetTargetUnderPointer(evt.position);
 
 			//new target
 			if (CurrentDropTarget != foundTarget)
@@ -214,13 +214,20 @@ namespace Fab.WorldMod.UI
 
         private VisualElement GetTargetUnderPointer(Vector2 pointerPos)
         {
-            foreach (var target in dropTargets)
-            {
-                if (target.ContainsPoint(target.WorldToLocal(pointerPos)))
-                    return target;
-            }
+			VisualElement pick = dragLayer.panel.Pick(pointerPos);
 
-            return null;
+			if (dropTargets.Contains(pick))
+				return pick;
+
+			return null;
+
+			//foreach (var target in dropTargets)
+   //         {
+   //             if (target.ContainsPoint(target.WorldToLocal(pointerPos)))
+   //                 return target;
+   //         }
+
+   //         return null;
         }
 
     }

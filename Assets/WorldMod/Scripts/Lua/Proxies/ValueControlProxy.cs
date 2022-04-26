@@ -48,6 +48,18 @@ namespace Fab.WorldMod.Lua
 			Target.SetValue(value);
 		}
 
+		[LuaHelpInfo("Resets the value of the control to its default ")]
+		public void reset()
+		{
+			Target.SetValue(Target.DefaultValue);
+		}
+
+
+		[LuaHelpInfo("Resets the value of the control to its default without notifying any subscriber")]
+		public void silent_reset()
+		{
+			Target.SetValueWithoutNotify(Target.DefaultValue);
+		}
 
 		protected void OnValueChange(T value)
 		{

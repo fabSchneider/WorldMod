@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fab.Lua.Core;
 using Fab.WorldMod.Localization;
+using Fab.Geo.Lua.Interop;
 using MoonSharp.Interpreter;
 
 namespace Fab.WorldMod.Lua
@@ -56,6 +57,24 @@ namespace Fab.WorldMod.Lua
 					localization.LocalizationTables.SetLocalString(key, locale, item.Value.String);
 			}
 			return key;
+		}
+
+		private static readonly string NotFoundString = "#NOT_FOUND!";
+
+		[LuaHelpInfo("Returns the localized string for the current locale")]
+		public string get(string key)
+		{
+			if (localization.TryGetLocalizedString(key, out string localString))
+				return localString;
+
+			return NotFoundString;
+		}
+
+		[LuaHelpInfo("Import localization data from a csv file")]
+		public void import(string csv)
+		{
+			IO.CheckLoadPath(csv, out string loadPath, out string extension);
+			localization.ImportFromCSV(loadPath);
 		}
 
 		private bool FuzzyMatchLocale(string localeString, out Locale locale)

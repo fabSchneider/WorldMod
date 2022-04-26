@@ -37,8 +37,6 @@ namespace Fab.WorldMod.UI
 		public void PrepareForDrag(Vector2 pos)
 		{
 			transform.position = parent.WorldToLocal(pos - dragOffset);
-			//style.width = Owner.resolvedStyle.width;
-			//style.height = Owner.resolvedStyle.height;
 		}
 
 		private void OnDragUpdated(FabDragUpdatedEvent evt)
