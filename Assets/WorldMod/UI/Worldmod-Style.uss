@@ -481,3 +481,19 @@
 .unity-base-dropdown__checkmark {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
+
+.shutdown-btn {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+}
+
+#shutdown-btn-1 {
+    right: 0;
+    top: 0;
+}
+
+#shutdown-btn-2 {
+    bottom: 0;
+    right: 0;
+}

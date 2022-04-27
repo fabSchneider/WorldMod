@@ -34,5 +34,6 @@
         <ui:VisualElement class="footer__spacer" />
         <ui:Label text="{ FPS }" display-tooltip-when-elided="true" name="fps" />
     </ui:VisualElement>
-    <ui:Button text="" display-tooltip-when-elided="true" name="add-marker-btn" />
+    <ui:VisualElement name="shutdown-btn-1" class="shutdown-btn" />
+    <ui:VisualElement name="shutdown-btn-2" class="shutdown-btn" />
 </ui:UXML>

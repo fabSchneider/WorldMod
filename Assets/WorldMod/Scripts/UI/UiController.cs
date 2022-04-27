@@ -27,8 +27,6 @@ namespace Fab.WorldMod.UI
 
 		private VisualElement infoPanel;
 
-		private bool dataPanelDirty;
-
 		private Modal markerModal;
 
 		private VisualElement root;
@@ -55,22 +53,11 @@ namespace Fab.WorldMod.UI
 			if (datasets)
 				dataPanelController = new DataPanelController(document.rootVisualElement, datasets.Stock, datasets.Sequence);
 
-			//SetupMarkerUI();
-
 			SetupFooter();
 
 			root.RegisterCallback<PointerDownEvent>(evt => lastTimeClick = Time.unscaledTimeAsDouble);
 
-		}
-
-		private void OnEnable()
-		{
-			//Signals.Get<DatasetUpdatedSignal>().AddListener(OnDatasetUpdated);
-		}
-
-		private void OnDisable()
-		{
-			//Signals.Get<DatasetUpdatedSignal>().RemoveListener(OnDatasetUpdated);
+			SetupShutdownButtons();
 		}
 
 		private void SetupTrackpad()
@@ -92,27 +79,87 @@ namespace Fab.WorldMod.UI
 			}
 		}
 
-		private void SetupMarkerUI()
-		{
-			markerModal = new Modal();
-			markerModal.Title = "MARKER_TITLE";
-			markerModal.TitleLabel.WithLocalizable();
-			markerModal.VisibleCloseButton = false;
-			var text = new Label("MARKER_TEXT").WithLocalizable();
-			markerModal.Add(text);
-			markerModal.AddButton("YES", () =>
-			{
-				Debug.Log("Marker added at " + cameraController.GetCoordinate());
-				markerModal.RemoveFromHierarchy();
-			}).WithLocalizable();
-			markerModal.AddButton("NO", () =>
-			{
-				Debug.Log("Canceled adding marker");
-				markerModal.RemoveFromHierarchy();
-			}).WithLocalizable();
+		private long shutdownPressTime = 3000;
+		private bool btn1Down;
+		private bool btn2Down;
 
-			document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
+		private readonly static string shutdownBtn1Name = "shutdown-btn-1";
+		private readonly static string shutdownBtn2Name = "shutdown-btn-2";
+
+		private void SetupShutdownButtons()
+		{
+			var btn1 = root.Q(name: shutdownBtn1Name);
+			var btn2 = root.Q(name: shutdownBtn2Name);
+
+			btn1.RegisterCallback<PointerDownEvent>(OnShutdownButtonDown);
+			btn2.RegisterCallback<PointerDownEvent>(OnShutdownButtonDown);
+
+			btn1.RegisterCallback<PointerUpEvent>(OnShutdownButtonUp);
+			btn2.RegisterCallback<PointerUpEvent>(OnShutdownButtonUp);
 		}
+
+		private void OnShutdownButtonDown(PointerDownEvent evt)
+		{
+			VisualElement elem = ((VisualElement)evt.target);
+
+			elem.CapturePointer(evt.pointerId);
+			if (elem.name == shutdownBtn1Name)
+				btn1Down = true;
+			else if(elem.name == shutdownBtn2Name)
+				btn2Down = true;
+
+			if (btn1Down && btn2Down)
+				elem.schedule.Execute(ExectuteShutdown).ExecuteLater(shutdownPressTime);
+
+			Debug.Log("Down " + elem.name);
+		}
+
+		private void OnShutdownButtonUp(PointerUpEvent evt)
+		{
+			VisualElement elem = ((VisualElement)evt.target);
+			if (elem.name == shutdownBtn1Name)
+				btn1Down = false;
+			else if (elem.name == shutdownBtn2Name)
+				btn2Down = false;
+			Debug.Log("Up " + elem.name);
+			elem.ReleasePointer(evt.pointerId);
+		}
+
+		private void ExectuteShutdown()
+		{
+			if (btn1Down && btn2Down)
+			{
+				Debug.Log("Quitting...");
+#if UNITY_EDITOR
+				UnityEditor.EditorApplication.ExitPlaymode();
+#else
+				Application.Quit();
+#endif
+			}
+
+		}
+
+		//private void SetupMarkerUI()
+		//{
+		//	markerModal = new Modal();
+		//	markerModal.Title = "MARKER_TITLE";
+		//	markerModal.TitleLabel.WithLocalizable();
+		//	markerModal.VisibleCloseButton = false;
+		//	var text = new Label("MARKER_TEXT").WithLocalizable();
+		//	markerModal.Add(text);
+		//	markerModal.AddButton("YES", () =>
+		//	{
+		//		Debug.Log("Marker added at " + cameraController.GetCoordinate());
+		//		markerModal.RemoveFromHierarchy();
+		//	}).WithLocalizable();
+		//	markerModal.AddButton("NO", () =>
+		//	{
+		//		Debug.Log("Canceled adding marker");
+		//		markerModal.RemoveFromHierarchy();
+		//	}).WithLocalizable();
+
+		//	document.rootVisualElement.Q<Button>(name: "add-marker-btn").clicked += () => document.rootVisualElement.Add(markerModal);
+		//}
 
 		private void SetupFooter()
 		{
@@ -123,10 +170,6 @@ namespace Fab.WorldMod.UI
 
 			var fpsLabel = footer.Q<Label>(name: "fps");
 			fpsLabel.schedule.Execute(() => fpsLabel.text = $"{{ FPS: {(1f / Time.smoothDeltaTime):0.00} }}").Every(40);
-
-			//Label lastClickTimeLabel = new Label();
-			//lastClickTimeLabel.schedule.Execute(() => lastClickTimeLabel.text = $"{{ time since last interaction: {TimeSinceLastClick:0s} }}").Every(1000);
-			//footer.Add(lastClickTimeLabel);
 		}
 
 		public void OnTrackpadAxis(ChangeEvent<Vector4> evt)
@@ -134,20 +177,6 @@ namespace Fab.WorldMod.UI
 			cameraController.SpinCamera(evt.newValue);
 		}
 
-		//private void OnDatasetUpdated(Dataset dataset)
-		//{
-		//	if (dataset.Owner == datasets.Stock)
-		//		dataPanelDirty = true;
-		//}
-
-		//private void Update()
-		//{
-		//	if (dataPanelDirty)
-		//	{
-		//		dataPanelController?.RefreshView();
-		//		dataPanelDirty = false;
-		//	}
-		//}
 
 	}
 }
