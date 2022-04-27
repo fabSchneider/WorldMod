@@ -2,6 +2,7 @@
     -unity-font-definition: url('project://database/Assets/WorldMod/Fonts/JetBrainsMono-Regular%20SDF%201.asset?fileID=11400000&guid=9e6761b39e7464640a3ec13496a0f3b9&type=2#JetBrainsMono-Regular SDF 1');
     -unity-font: url('project://database/Assets/WorldMod/Fonts/JetBrainsMono-Regular.ttf?fileID=12800000&guid=d19bfa40c042be94f97b852297fb0bd8&type=3#JetBrainsMono-Regular');
     background-color: rgb(0, 0, 0);
+    color: rgb(200, 200, 200);
 }
 
 .proto {
@@ -89,19 +90,12 @@
     border-right-width: 0;
     border-top-width: 0;
     border-bottom-width: 0;
+    min-width: 56px;
+    min-height: 56px;
 }
 
-#info-btn {
-    width: 56px;
-    height: 56px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+.main-bar__button:hover {
+    color: rgba(255, 255, 255, 255);
 }
 
 .language-toggle-group .unity-base-field__input {
@@ -388,7 +382,6 @@
 }
 
 .unity-text-element {
-    color: rgb(214, 214, 214);
     white-space: normal;
 }
 
@@ -496,4 +489,13 @@
 #shutdown-btn-2 {
     bottom: 0;
     right: 0;
+}
+
+.tutorial-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
 }

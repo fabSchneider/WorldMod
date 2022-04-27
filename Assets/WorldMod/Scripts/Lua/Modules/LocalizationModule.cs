@@ -34,7 +34,7 @@ namespace Fab.WorldMod.Lua
 		[LuaHelpInfo("Activates the specified locale (e.g. en-US).")]
 		public void avtivate_locale(string locale)
 		{
-			if (FuzzyMatchLocale(locale, out Locale loc))
+			if (FuzzyMatchLocale(localization, locale, out Locale loc))
 				localization.ActivateLocale(loc);
 			else
 				throw new Exception($"Cannot set locale to \"{locale}\". No matching locale is available. " +
@@ -53,7 +53,7 @@ namespace Fab.WorldMod.Lua
 		{
 			foreach (var item in local_strings.Pairs)
 			{
-				if (FuzzyMatchLocale(item.Key.String, out Locale locale))
+				if (FuzzyMatchLocale(localization, item.Key.String, out Locale locale))
 					localization.LocalizationTables.SetLocalString(key, locale, item.Value.String);
 			}
 			return key;
@@ -77,7 +77,7 @@ namespace Fab.WorldMod.Lua
 			localization.ImportFromCSV(loadPath);
 		}
 
-		private bool FuzzyMatchLocale(string localeString, out Locale locale)
+		public static bool FuzzyMatchLocale(Localization.Localization localization, string localeString, out Locale locale)
 		{
 			IEnumerable<Locale> locales = localization.LocalizationTables.Locales.Where(l => l.ToString().Contains(localeString)).ToArray();
 

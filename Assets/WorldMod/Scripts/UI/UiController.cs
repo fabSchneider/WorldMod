@@ -1,4 +1,6 @@
-﻿using Fab.Common;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using Fab.Common;
 using Fab.Geo;
 using Fab.WorldMod.Localization;
 using UnityEngine;
@@ -22,7 +24,6 @@ namespace Fab.WorldMod.UI
 		private LogOutputController logOutputController;
 
 		public DataPanelController DataPanel => dataPanelController;
-
 		public LogOutputController LogOutput => logOutputController;
 
 		private VisualElement infoPanel;
@@ -33,9 +34,14 @@ namespace Fab.WorldMod.UI
 
 		public VisualElement Root => root;
 
-		private double lastTimeClick;
+		private VisualElement tutorialOverlay;
+		private static readonly string tutorialOverlayClassname = "tutorial-overlay";
 
+		private double lastTimeClick;
 		public double TimeSinceLastClick => Time.unscaledTimeAsDouble - lastTimeClick;
+
+
+
 
 		void Start()
 		{
@@ -58,6 +64,8 @@ namespace Fab.WorldMod.UI
 			root.RegisterCallback<PointerDownEvent>(evt => lastTimeClick = Time.unscaledTimeAsDouble);
 
 			SetupShutdownButtons();
+
+			SetupTutorialOverlay();
 		}
 
 		private void SetupTrackpad()
@@ -137,6 +145,37 @@ namespace Fab.WorldMod.UI
 #endif
 			}
 
+		}
+
+		private Dictionary<Locale, Texture2D> tutorialImgsByLocale = new Dictionary<Locale, Texture2D>();
+
+		public void AddTutorialOverlayImg(Texture2D tex, Locale locale)
+		{
+			tutorialImgsByLocale.Add(locale, tex);
+		}
+
+		private void SetupTutorialOverlay()
+		{
+			tutorialOverlay = new VisualElement();
+			tutorialOverlay.AddToClassList(tutorialOverlayClassname);
+			tutorialOverlay.RegisterCallback<PointerUpEvent>(evt => CloseTutorialoverlay().Forget());
+
+			var infobtn = mainBarController.MainBar.Q<Button>(name: "info-btn");
+			infobtn.clicked += () =>
+			{
+				if(tutorialImgsByLocale.TryGetValue(LocalizationComponent.Localization.ActiveLocale, out Texture2D tex))
+				{
+					tutorialOverlay.style.backgroundImage = tex;
+					root.Add(tutorialOverlay);
+				}
+			};
+		}
+
+		async UniTaskVoid CloseTutorialoverlay()
+		{
+			await UniTask.DelayFrame(1);
+			tutorialOverlay.style.backgroundImage = null;
+			tutorialOverlay.RemoveFromHierarchy();
 		}
 
 		//private void SetupMarkerUI()
