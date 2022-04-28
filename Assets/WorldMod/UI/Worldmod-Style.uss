@@ -95,7 +95,7 @@
 }
 
 .main-bar__button:hover {
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 .language-toggle-group .unity-base-field__input {
@@ -396,7 +396,7 @@
 
 .unity-base-field__label {
     font-size: 16px;
-    min-width: 280px;
+    min-width: 310px;
 }
 
 .unity-popup-field__input {

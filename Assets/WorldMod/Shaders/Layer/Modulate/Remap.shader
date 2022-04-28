@@ -1,10 +1,9 @@
-Shader "Layers/Mutate/Lerp"
+Shader "Layers/Mutate/Remap"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _ColorA ("ColorA", Color) = (0,0,0,0)
-        _ColorB ("ColorB", Color) = (1,1,1,1)
+        _Max ("Max", Float) = 1.0
     }
     SubShader
     {
@@ -43,8 +42,7 @@ Shader "Layers/Mutate/Lerp"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _ColorA;
-            float4 _ColorB;
+            float _Max;
             CBUFFER_END
 
             TEXTURE2D(_MainTex);
@@ -52,8 +50,7 @@ Shader "Layers/Mutate/Lerp"
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return float4(lerp(_ColorA, _ColorB, col.xyz), col.a);
+                return saturate(SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv) / _Max);
             }
 
             ENDHLSL

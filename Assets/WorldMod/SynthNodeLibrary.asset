@@ -135,6 +135,24 @@ MonoBehaviour:
     - name: Invert
       shader: {fileID: 4800000, guid: bb87ce199b2111d47b4243cc64e703ea, type: 3}
       properties: []
+    - name: Remap
+      shader: {fileID: 4800000, guid: f6d256e4c74d8ab4d9b23bd4ed06e97f, type: 3}
+      properties:
+      - name: Max
+        propName: _Max
+        type: 0
+        keywords: []
+    - name: Clip
+      shader: {fileID: 4800000, guid: 0d3e798b7ce7e4642a9c99643e96db79, type: 3}
+      properties:
+      - name: Threshold
+        propName: _Threshold
+        type: 0
+        keywords: []
+      - name: Invert
+        propName: _Invert
+        type: 0
+        keywords: []
     blendNodes:
     - name: Add
       shader: {fileID: 4800000, guid: 43a3f1eb294f1114bbfd62adf420d6ca, type: 3}
@@ -152,6 +170,13 @@ MonoBehaviour:
         keywords: []
     - name: Multiply
       shader: {fileID: 4800000, guid: bebe573627492d44d810aec6facf9351, type: 3}
+      properties:
+      - name: Opacity
+        propName: _Opacity
+        type: 0
+        keywords: []
+    - name: Stencil
+      shader: {fileID: 4800000, guid: 3685229c06e60bc49889d821867aa67e, type: 3}
       properties:
       - name: Opacity
         propName: _Opacity

@@ -1,10 +1,11 @@
-Shader "Layers/Mutate/Lerp"
+Shader "Layers/Blend/Stencil"
 {
     Properties
     {
-        [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _ColorA ("ColorA", Color) = (0,0,0,0)
-        _ColorB ("ColorB", Color) = (1,1,1,1)
+        [NoScaleOffset]_BaseTex ("BaseTex", 2D) = "black" {}
+        [NoScaleOffset]_MainTex ("InputTex", 2D) = "black" {}
+        _Opacity ("Opacity", Float) = 1.0
+        
     }
     SubShader
     {
@@ -43,17 +44,20 @@ Shader "Layers/Mutate/Lerp"
             }
 
             CBUFFER_START(UnityPerMaterial)
-            float4 _ColorA;
-            float4 _ColorB;
+            float _Opacity;
             CBUFFER_END
 
+            TEXTURE2D(_BaseTex);
+            SAMPLER(sampler_BaseTex);
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                float4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-                return float4(lerp(_ColorA, _ColorB, col.xyz), col.a);
+                float4 baseCol = SAMPLE_TEXTURE2D(_BaseTex, sampler_BaseTex, i.uv);
+                float4 blendCol = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                float3 blend =  lerp(baseCol.xyz, blendCol.xyz, blendCol.a * _Opacity);
+                return float4(blend, max(baseCol.a, blendCol.a)); 
             }
 
             ENDHLSL
