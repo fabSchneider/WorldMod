@@ -90,7 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alias: 0.005
+    - _Alias: 0.002
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -106,14 +106,14 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LineWidth: 0.003
+    - _LineWidth: 0.005
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SecondaryLineWidth: 0.003
+    - _SecondaryLineWidth: 0.004
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -126,8 +126,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Frequency: {r: 8, g: 16, b: 0, a: 0}
-    - _GridColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+    - _GridColor: {r: 0.26415092, g: 0.25542894, b: 0.25542894, a: 1}
     - _Offset: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _SubGridColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    - _SubGridColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   m_BuildTextureStacks: []

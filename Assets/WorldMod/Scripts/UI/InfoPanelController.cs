@@ -31,11 +31,12 @@ namespace Fab.WorldMod.UI
 		{
 			if(dataset == null)
 			{
-				infoText.target.style.display = DisplayStyle.None;
+				//infoText.target.style.display = DisplayStyle.None;
+				infoText.SetKey("$PROJECT_INFO");
 			}
 			else
 			{
-				infoText.target.style.display = DisplayStyle.Flex;
+				//infoText.target.style.display = DisplayStyle.Flex;
 				infoText.SetKey(dataset.Name + "_INFO");
 			}	
 		}

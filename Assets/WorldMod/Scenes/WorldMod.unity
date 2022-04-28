@@ -1108,7 +1108,7 @@ MonoBehaviour:
   orbitSpeed: 0.8
   zoomSpeed: 0.5
   zoomBounds: {x: 0.1, y: 1}
-  drag: 5
+  drag: 3
   targetTransform: {fileID: 218760711}
   _camera: {fileID: 802879662}
 --- !u!114 &802879668
@@ -1230,7 +1230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizationAsset: {fileID: 11400000, guid: 4800c3881af71fa429661f83459854c7, type: 2}
-  defaultLocale: {fileID: 11400000, guid: 6d7281b072efb49458cb131313e3eda4, type: 2}
+  defaultLocale: {fileID: 11400000, guid: 15c93a47d7727154596eb1afe9b86bc2, type: 2}
 --- !u!4 &1156290546
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 802879667}
   pointFeaturePrefab: {fileID: 1131412414427025582, guid: e5849cb2dfdf5b54197205d9d9813d3b, type: 3}
-  maxDistance: 1000
+  maxDistance: 2000
 --- !u!114 &2007068359
 MonoBehaviour:
   m_ObjectHideFlags: 0

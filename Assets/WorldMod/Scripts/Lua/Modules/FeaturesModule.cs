@@ -17,13 +17,25 @@ namespace Fab.WorldMod.Lua
 				throw new LuaObjectInitializationException("Missing world feature component");
 		}
 
-		[LuaHelpInfo("Adds a feature collection")]
+		[LuaHelpInfo("Creates a feature collection")]
 		public FeatureCollectionProxy create(string name)
 		{
 			WorldFeatureCollection features = new WorldFeatureCollection(name);
 			FeatureCollectionProxy proxy = new FeatureCollectionProxy();
 			proxy.SetTarget(features);
 			return proxy;
+		}
+
+		[LuaHelpInfo("Adds a feature collection to the world")]
+		public void add(FeatureCollectionProxy features)
+		{
+			featuresComponent.AddFeatures(features.Target);
+		}
+
+		[LuaHelpInfo("Adds a feature collection to the world")]
+		public void remove(FeatureCollectionProxy features)
+		{
+			featuresComponent.RemoveFeatures(features.Target);
 		}
 	}
 }
