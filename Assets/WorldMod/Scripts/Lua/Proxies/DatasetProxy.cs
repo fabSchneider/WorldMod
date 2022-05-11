@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Fab.Lua.Core;
 using MoonSharp.Interpreter;
+using UnityEngine;
 
 namespace Fab.WorldMod.Lua
 {
@@ -22,8 +23,8 @@ namespace Fab.WorldMod.Lua
 			this.target = target;
 		}
 
-		[LuaHelpInfo("Adds data to the data set")]
-		public void add(Table table)
+		[LuaHelpInfo("Sets data in the data set")]
+		public void set(Table table)
 		{
 			foreach (var pair in table.Pairs)
 			{
@@ -51,12 +52,10 @@ namespace Fab.WorldMod.Lua
 			Table valTable = value.Table;
 			if (valTable != null)
 			{
-				//// NOTE: this is really hacky
-				//if (TryConvert(value, "Color", out Color color))
-				//	obj = color;
-				//else if (TryConvert(value, "Vector", out Vector3 vector))
-				//	obj = vector;
-				//else
+				// NOTE: this is really hacky
+				if (TryConvert(value, out Color color))
+					return color;
+
 				return valTable.Values.Select(dynVal => GetValue(dynVal)).ToArray();
 
 			}
@@ -69,6 +68,20 @@ namespace Fab.WorldMod.Lua
 					return proxy.TargetObject;
 				else
 					return obj;
+			}
+		}
+
+		private bool TryConvert<T>(DynValue value, out T converted)
+		{
+			try
+			{
+				converted = value.ToObject<T>();
+				return true;
+			}
+			catch (Exception)
+			{
+				converted = default(T);
+				return false;
 			}
 		}
 

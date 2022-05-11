@@ -16,8 +16,8 @@ namespace Fab.WorldMod.UI
 		private VisualElement primaryCursor;
 		private VisualElement secondaryCursor;
 
-		private Vector3 value;
-		public Vector3 Value => value;
+		private Vector4 value;
+		public Vector4 Value => value;
 
 		private Vector2 primaryAxis;
 		private Vector2 secondaryAxis;
@@ -97,15 +97,17 @@ namespace Fab.WorldMod.UI
 			{
 				if(evt.pointerId == primaryPointerID)
 				{
+					float pinch = (secondaryAxis - primaryAxis).magnitude - (secondaryAxis - axis).magnitude;
 					float angle = Vector2.SignedAngle(secondaryAxis - primaryAxis, secondaryAxis - axis);
-					SetValue(new Vector3(0f, 0f, angle));
+					SetValue(new Vector4(0f, 0f, angle, pinch));
 					primaryAxis = axis;
 					SetCursorPos(axis, primaryCursor);
 				}
 				else if (evt.pointerId == secondaryPointerID)
 				{
+					float pinch = (secondaryAxis - primaryAxis).magnitude - (axis - primaryAxis).magnitude;
 					float angle = Vector2.SignedAngle(secondaryAxis - primaryAxis, axis - primaryAxis);
-					SetValue(new Vector3(0f, 0f, angle));
+					SetValue(new Vector4(0f, 0f, angle, pinch));
 					secondaryAxis = axis;
 					SetCursorPos(axis, secondaryCursor);
 				}
@@ -147,12 +149,12 @@ namespace Fab.WorldMod.UI
 			}
 		}
 
-		private void SetValue(Vector3 value)
+		private void SetValue(Vector4 value)
 		{
-			Vector3 previousValue = value;
+			Vector4 previousValue = value;
 			this.value = value;
 
-			using (ChangeEvent<Vector3> changeEvent = ChangeEvent<Vector3>.GetPooled(previousValue, value))
+			using (ChangeEvent<Vector4> changeEvent = ChangeEvent<Vector4>.GetPooled(previousValue, value))
 			{
 				changeEvent.target = this;
 				SendEvent(changeEvent);

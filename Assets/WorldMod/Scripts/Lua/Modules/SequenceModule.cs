@@ -8,7 +8,7 @@ namespace Fab.WorldMod.Lua
 	[LuaName("sequence")]
 	public class SequenceModule : LuaObject, ILuaObjectInitialize
 	{
-		private DatasetSequence sequence;
+		private Sequence<Dataset> sequence;
 
 		private Closure onChange;
 
@@ -25,21 +25,21 @@ namespace Fab.WorldMod.Lua
 		[LuaHelpInfo("Adds a dataset to the end of the sequence")]
 		public void add(DatasetProxy dataset)
 		{
-			sequence.InsertIntoSequence(dataset.Target, sequence.Count);
+			sequence.Insert(dataset.Target, sequence.Count);
 			//Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset.Target);
 		}
 
 		[LuaHelpInfo("Inserts a dataset into the sequence")]
 		public void insert(DatasetProxy dataset, int index)
 		{
-			sequence.InsertIntoSequence(dataset.Target, index -  1);
+			sequence.Insert(dataset.Target, index -  1);
 			//Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset.Target);
 		}
 
 		[LuaHelpInfo("Removes a dataset from the sequence")]
 		public void remove(DatasetProxy dataset)
 		{
-			sequence.RemoveFromSequence(dataset.Target);
+			sequence.Remove(dataset.Target);
 			//Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset.Target);
 		}
 
@@ -52,15 +52,15 @@ namespace Fab.WorldMod.Lua
 				sequence.sequenceChanged += OnSequenceChange;
 		}
 
+		private void OnSequenceChange(SequenceChangedEvent<Dataset> evt)
+		{
+			onChange?.Call(new DatasetProxy(evt.data), evt.changeType.ToString(), evt.lastIndex + 1);
+		}
+
 		[LuaHelpInfo("Returns the index of the dataset in the sequence. Returns 0 if the dataset is not in the sequence")]
 		public int index_of(DatasetProxy proxy)
 		{
-			return sequence.GetIndexInSequence(proxy.Target) + 1;
-		}
-
-		protected void OnSequenceChange(Dataset dataset, DatasetSequence.ChangeEventType eventType, int lastIndex)
-		{
-			onChange?.Call(new DatasetProxy(dataset), eventType.ToString(), lastIndex + 1);
+			return sequence.IndexOf(proxy.Target) + 1;
 		}
 	}
 }

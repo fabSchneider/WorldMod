@@ -38,12 +38,12 @@ namespace Fab.Geo.Editor
 			window.Show();
 		}
 
-		private GenerateDistanceField generator;
+		private GenerateDistanceField_OLD generator;
 
 
 		private void OnEnable()
 		{
-			generator = new GenerateDistanceField();
+			generator = new GenerateDistanceField_OLD();
 		}
 
 		private void OnDisable()
@@ -95,8 +95,8 @@ namespace Fab.Geo.Editor
 				dst.enableRandomWrite = true;
 				dst.name = mask.name + "_distance";
 
-				generator.invertMask = invertMask;
-				generator.Generate(mask, dst);
+				//generator.invertMask = invertMask;
+				dst = generator.Generate(mask);
 
 				switch (format)
 				{

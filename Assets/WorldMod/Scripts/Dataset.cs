@@ -8,9 +8,6 @@ namespace Fab.WorldMod
 	public class DatasetActivatedSignal : ASignal<Dataset> { }
 	public class Dataset
 	{
-		private DatasetStock owner;
-		public DatasetStock Owner => owner;
-
 		private string name;
 		public string Name
 		{
@@ -26,10 +23,9 @@ namespace Fab.WorldMod
 
 		public IEnumerable<string> DataKeys => dataDict.Keys;
 
-		public Dataset(string name, DatasetStock owner)
+		public Dataset(string name)
 		{
 			this.name = name;
-			this.owner = owner;
 			dataDict = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
 		}
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fab.Lua.Core;
 using Fab.WorldMod.Localization;
+using Fab.Geo.Lua.Interop;
 using MoonSharp.Interpreter;
 
 namespace Fab.WorldMod.Lua
@@ -33,7 +34,7 @@ namespace Fab.WorldMod.Lua
 		[LuaHelpInfo("Activates the specified locale (e.g. en-US).")]
 		public void avtivate_locale(string locale)
 		{
-			if (FuzzyMatchLocale(locale, out Locale loc))
+			if (FuzzyMatchLocale(localization, locale, out Locale loc))
 				localization.ActivateLocale(loc);
 			else
 				throw new Exception($"Cannot set locale to \"{locale}\". No matching locale is available. " +
@@ -52,13 +53,31 @@ namespace Fab.WorldMod.Lua
 		{
 			foreach (var item in local_strings.Pairs)
 			{
-				if (FuzzyMatchLocale(item.Key.String, out Locale locale))
+				if (FuzzyMatchLocale(localization, item.Key.String, out Locale locale))
 					localization.LocalizationTables.SetLocalString(key, locale, item.Value.String);
 			}
 			return key;
 		}
 
-		private bool FuzzyMatchLocale(string localeString, out Locale locale)
+		private static readonly string NotFoundString = "#NOT_FOUND!";
+
+		[LuaHelpInfo("Returns the localized string for the current locale")]
+		public string get(string key)
+		{
+			if (localization.TryGetLocalizedString(key, out string localString))
+				return localString;
+
+			return NotFoundString;
+		}
+
+		[LuaHelpInfo("Import localization data from a csv file")]
+		public void import(string csv)
+		{
+			IO.CheckLoadPath(csv, out string loadPath, out string extension);
+			localization.ImportFromCSV(loadPath);
+		}
+
+		public static bool FuzzyMatchLocale(Localization.Localization localization, string localeString, out Locale locale)
 		{
 			IEnumerable<Locale> locales = localization.LocalizationTables.Locales.Where(l => l.ToString().Contains(localeString)).ToArray();
 

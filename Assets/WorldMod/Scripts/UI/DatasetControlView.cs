@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Fab.Common;
 using Fab.WorldMod.Localization;
 using UnityEngine;
@@ -8,69 +7,100 @@ using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI
 {
+	public abstract class ControlBinding
+	{
+		protected Dataset dataset;
+
+		public abstract VisualElement VisualElement { get;  }
+
+		public abstract void Bind();
+		public abstract void Unbind();
+	}
+
+	public class ControlBinding<T> : ControlBinding
+	{
+		protected BaseField<T> field;
+		protected ValueControl<T> control;
+
+		public override VisualElement VisualElement => field;
+
+		public ControlBinding(Dataset dataset, ValueControl<T> control, BaseField<T> field)
+		{
+			this.dataset = dataset;
+			this.control = control;
+			this.field = field;
+		}
+
+		public override void Bind()
+		{
+			field.RegisterValueChangedCallback(SetValueOnControl);
+			control.RegisterChangeCallback(SetValueOnField);
+			control.RegisterEnableCallback(SetEnableOnField);
+		}
+
+		public override void Unbind()
+		{
+			field.UnregisterValueChangedCallback(SetValueOnControl);
+			control.UnregisterChangeCallback(SetValueOnField);
+			control.UnregisterEnableCallback(SetEnableOnField);
+		}
+
+		private void SetValueOnField(T value)
+		{
+				field.SetValueWithoutNotify(value);
+		}
+
+		private void SetValueOnControl(ChangeEvent<T> evt)
+		{
+			if (control.SetValue(evt.newValue))
+				Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
+		}
+
+		private void SetEnableOnField(bool state)
+		{
+			field.SetEnabled(state);
+		}
+	}
+
+
 	public class DatasetControlView : VisualElement
 	{
 		private static readonly string classname = "dataset-controls";
-		private static readonly string visibleClassname = classname + "--visible";
-		private static readonly string contentClassname = classname + "__content";
-		private static readonly string wireContainerClassname = classname + "__wire-container";
+		private static readonly string controlsKey = "controls";
 
-		private Vector2 itemAnchor;
-
-		private VisualElement content;
-		private VisualElement wireContainer;
-		public override VisualElement contentContainer => content;
-
-		private static Texture wireTexture;
-		public Color WireColor { get; set; } = new Color(0.5f, 0.5f, 0.5f);
-		private Wire[] wires;
+		private Dataset dataset;
+		private List<ControlBinding> bindings;
 
 		public DatasetControlView(Dataset dataset)
 		{
 			if (dataset == null)
 				throw new ArgumentNullException(nameof(dataset));
 
-			if (wireTexture == null)
-				wireTexture = Resources.Load<Texture2D>("WorldMod/Wire");
+			this.dataset = dataset;
 
 			AddToClassList(classname);
 			pickingMode = PickingMode.Ignore;
-
-			wireContainer = new VisualElement().WithClass(wireContainerClassname);
-			wireContainer.pickingMode = PickingMode.Ignore;
-			hierarchy.Add(wireContainer);
-			content = new VisualElement();
-			content.AddToClassList(contentClassname);
-			hierarchy.Add(content);
-
-			AddControls(dataset);
-			CreateWires();
-
-			Signals.Get<OnChangeLocaleSignal>().AddListener(HideOnLocaleChange);
 		}
 
-		private void HideOnLocaleChange(Locale locale)
+		public void RebuildView()
 		{
-			Hide();
-		}
+			Debug.Log("RebuildView");
 
-		public void Show(VisualElement datasetItem)
-		{
-			datasetItem.parent.Q<DatasetControlView>()?.Hide();
-			datasetItem.parent.Add(this);
-			BuildWiresAsync(datasetItem).Forget();
-		}
+			if(bindings == null)
+			{
+				bindings = new List<ControlBinding>();
+			}
+			else
+			{
+				foreach(ControlBinding binding in bindings)
+				{
+					binding.Unbind();
+					binding.VisualElement.RemoveFromHierarchy();
+				}
 
-		public void Hide()
-		{
-			RemoveFromClassList(visibleClassname);
-			RemoveFromHierarchy();
-		}
+				bindings.Clear();
+			}
 
-
-		private static readonly string controlsKey = "controls";
-		private void AddControls(Dataset dataset)
-		{
 			if (dataset.TryGetData(controlsKey, out IEnumerable<object> controls))
 			{
 				foreach (object item in controls)
@@ -88,76 +118,76 @@ namespace Fab.WorldMod.UI
 						control = (ValueControl)item;
 					}
 
+
 					switch (control)
 					{
 						case RangeControl sc:
-							AddSliderControl(dataset, sc);
+							bindings.Add(AddSliderControl(dataset, sc));
 							break;
 						case IntervalControl rc:
-							AddRangeControl(dataset, rc);
+							bindings.Add(AddRangeControl(dataset, rc));
 							break;
 						case ChoiceControl cc:
-							AddChoiceControl(dataset, cc);
+							bindings.Add(AddChoiceControl(dataset, cc));
 							break;
 						case ValueControl<bool> bc:
-							AddFieldControl<bool>(dataset, bc, new Toggle(bc.Name));
+							bindings.Add(AddFieldControl<bool>(dataset, bc, new Toggle(bc.Name)));
+							break;
+						case ValueControl<string> tc:
+							bindings.Add(AddLabel(dataset, tc));
 							break;
 						case null:
 							Debug.LogWarning("Control is null and will be skipped");
 							break;
 						default:
-							AddLabel(dataset, control);
+							Debug.LogWarning("Control is undetermined and will be skipped");
 							break;
 					}
 				}
 			}
+
+			foreach (ControlBinding binding in bindings)
+			{
+				binding.Bind();
+			}
+
 		}
 
-		private void AddFieldControl<T>(Dataset dataset, ValueControl<T> valueControl, BaseField<T> field)
+		private ControlBinding AddFieldControl<T>(Dataset dataset, ValueControl<T> valueControl, BaseField<T> field)
 		{
 			field.value = valueControl.Value;
-			field.RegisterValueChangedCallback(evt =>
-			{
-				if (valueControl.SetValue(evt.newValue))
-					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
-			});
-			content.Add(field);
+
+			ControlBinding binding = new ControlBinding<T>(dataset, valueControl, field);
+			Add(field);
 			field.Q<TextElement>().WithLocalizable();
+			field.SetEnabled(valueControl.Enabled);
 
-			valueControl.RegisterChangeCallback(val => field.SetValueWithoutNotify(val));
+			return binding;
 		}
 
-		private void AddRangeControl(Dataset dataset, IntervalControl rangeControl)
+		private ControlBinding AddRangeControl(Dataset dataset, IntervalControl intervalControl)
 		{
-			MinMaxSlider slider = new MinMaxSlider(rangeControl.Name, rangeControl.Value.x, rangeControl.Value.y, rangeControl.Min, rangeControl.Max);
+			MinMaxSlider slider = new MinMaxSlider(intervalControl.Name, intervalControl.Value.x, intervalControl.Value.y, intervalControl.Min, intervalControl.Max);
+			slider.value = intervalControl.Value;
+			ControlBinding binding = new ControlBinding<Vector2>(dataset, intervalControl, slider);
+			Add(slider);
+			slider.Q<TextElement>().WithLocalizable();
+			slider.SetEnabled(intervalControl.Enabled);
+			return binding;
+		}
+
+		private ControlBinding AddSliderControl(Dataset dataset, RangeControl rangeControl)
+		{
+			Slider slider = new Slider(rangeControl.Name, rangeControl.Min, rangeControl.Max);
 			slider.value = rangeControl.Value;
-			slider.RegisterValueChangedCallback(evt =>
-			{
-				if (rangeControl.SetValue(evt.newValue))
-					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
-			});
-			content.Add(slider);
+			ControlBinding binding = new ControlBinding<float>(dataset, rangeControl, slider);
+			Add(slider);
 			slider.Q<TextElement>().WithLocalizable();
-
-			rangeControl.RegisterChangeCallback(val => slider.SetValueWithoutNotify(val));
+			slider.SetEnabled(rangeControl.Enabled);
+			return binding;
 		}
 
-		private void AddSliderControl(Dataset dataset, RangeControl sliderControl)
-		{
-			Slider slider = new Slider(sliderControl.Name, sliderControl.Min, sliderControl.Max);
-			slider.value = sliderControl.Value;
-			slider.RegisterValueChangedCallback(evt =>
-			{
-				if (sliderControl.SetValue(evt.newValue))
-					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
-			});
-			content.Add(slider);
-			slider.Q<TextElement>().WithLocalizable();
-
-			sliderControl.RegisterChangeCallback(val => slider.SetValueWithoutNotify(val));
-		}
-
-		private void AddChoiceControl(Dataset dataset, ChoiceControl choiceControl)
+		private ControlBinding AddChoiceControl(Dataset dataset, ChoiceControl choiceControl)
 		{
 			Func<string, string> formatItems = null;
 			if (choiceControl.ChoiceDisplayNames != null)
@@ -174,83 +204,25 @@ namespace Fab.WorldMod.UI
 
 			DropdownField choiceField = new DropdownField(choiceControl.Name, choiceControl.Choices, choiceControl.DefaultValue, formatItems, formatItems);
 			choiceField.value = choiceControl.CurrentChoice;
-			choiceField.RegisterValueChangedCallback(evt =>
-			{
-				if (choiceControl.SetValue(evt.newValue))
-					Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
-			});
-			content.Add(choiceField);
+			ControlBinding binding = new ControlBinding<string>(dataset, choiceControl, choiceField);
+			Add(choiceField);
 			choiceField.Query<TextElement>().ForEach(elem => elem.WithLocalizable());
-
-			choiceControl.RegisterChangeCallback(val => choiceField.SetValueWithoutNotify(val));
+			choiceField.SetEnabled(choiceControl.Enabled);
+			return binding;
 		}
 
-		private void AddLabel(Dataset dataset, ValueControl control)
+		private ControlBinding AddLabel(Dataset dataset, ValueControl<string> control)
 		{
-			VisualElement container = new VisualElement();
-			container.style.flexDirection = FlexDirection.Row;
-			Label controlLabel = new Label(control.Name).WithLocalizable();
+			TextField textField = new TextField(control.Name);
 
-			Label controlValueLabel = new Label(control.GetDefaultValue().ToString());
-			if (control is ValueControl<string> stringControl)
-				controlValueLabel.WithLocalizable();
-			container.Add(controlLabel);
-			container.Add(controlValueLabel);
-			content.Add(container);
-		}
+			textField.Query<TextElement>().ForEach(elem => elem.WithLocalizable());
+			textField.value = control.DefaultValue;
+			textField.isReadOnly = true;
+			textField.SetEnabled(control.Enabled);
+			ControlBinding binding = new ControlBinding<string>(dataset, control, textField);
+			Add(textField);
 
-		private async UniTaskVoid BuildWiresAsync(VisualElement datasetElement)
-		{
-			await UniTask.DelayFrame(1);
-
-			Vector2 anchor = GetRightAnchor(datasetElement.localBound);
-			float yPos = Mathf.Max(0f, anchor.y - localBound.height / 2f);
-			transform.position = new Vector2(anchor.x, yPos);
-
-			SetWires(datasetElement);
-
-			AddToClassList(visibleClassname);
-		}
-
-		private void SetWires(VisualElement datasetElement)
-		{
-			itemAnchor = GetRightAnchor(datasetElement.worldBound);
-			itemAnchor = wireContainer.WorldToLocal(itemAnchor);
-
-			for (int i = 0; i < content.childCount; i++)
-			{
-				VisualElement child = content[i];
-				Vector2 targetAnchor = new Vector2(wireContainer.worldBound.max.x, child.worldBound.min.y + child.worldBound.height / 2f);
-
-				targetAnchor = wireContainer.WorldToLocal(targetAnchor);
-
-				Wire wire = wires[i];
-				wire.SetEndpoints(itemAnchor, targetAnchor);
-				wireContainer.Add(wire);
-			}
-
-		}
-
-		private Vector2 GetRightAnchor(Rect rect)
-		{
-			return new Vector2(rect.max.x, rect.min.y + rect.height / 2f);
-		}
-		private Vector2 GetLeftAnchor(Rect rect)
-		{
-			return new Vector2(rect.min.x, rect.min.y + rect.height / 2f);
-		}
-
-		private void CreateWires()
-		{
-			wires = new Wire[content.childCount];
-			for (int i = 0; i < content.childCount; i++)
-			{
-				Wire wire = new Wire();
-				wire.Texture = wireTexture;
-				wire.Tint = WireColor;
-				wire.UseAdaptiveResolution = true;
-				wires[i] = wire;
-			}
+			return binding;
 		}
 	}
 }

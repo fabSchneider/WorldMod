@@ -1,10 +1,8 @@
-Shader "Layers/Mutate/Lerp"
+Shader "Layers/Mutate/Floor"
 {
     Properties
     {
         [NoScaleOffset]_MainTex ("InputTex", 2D) = "white" {}
-        _ColorA ("ColorA", Color) = (0,0,0,0)
-        _ColorB ("ColorB", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -42,17 +40,12 @@ Shader "Layers/Mutate/Lerp"
                 return o;
             }
 
-            CBUFFER_START(UnityPerMaterial)
-            float4 _ColorA;
-            float4 _ColorB;
-            CBUFFER_END
-
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
             float4 frag (VertexOutput i) : SV_Target
             {
-                return lerp(_ColorA, _ColorB, SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv));
+                return floor(SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv));
             }
 
             ENDHLSL

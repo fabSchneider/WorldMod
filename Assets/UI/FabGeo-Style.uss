@@ -248,6 +248,8 @@ VisualElement {
 
 .topbar {
     flex-direction: row-reverse;
+    position: absolute;
+    bottom: 0;
 }
 
 .topbar__button {

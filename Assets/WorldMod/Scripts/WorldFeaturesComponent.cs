@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using Fab.Geo;
 using UnityEngine;
 
 namespace Fab.WorldMod
 {
 	[AddComponentMenu("WorldMod/World Features")]
-    public class WorldFeaturesComponent : MonoBehaviour
-    {
+	public class WorldFeaturesComponent : MonoBehaviour
+	{
 		private static readonly string datasetFeaturesKey = "features";
 
 		private List<WorldFeatureCollection> featureCollections;
@@ -20,20 +18,31 @@ namespace Fab.WorldMod
 		private void Awake()
 		{
 			featureCollections = new List<WorldFeatureCollection>();
-			datasets.Sequence.sequenceChanged += Sequence_sequenceChanged;
+			//datasets.Sequence.sequenceChanged += OnSequenceChanged;
 		}
 
-		private void Sequence_sequenceChanged(Dataset dataset, DatasetSequence.ChangeEventType changeType, int lastIndex)
+		public void AddFeatures(WorldFeatureCollection collection)
 		{
-			if(changeType == DatasetSequence.ChangeEventType.Added)
-			{
-				if (dataset.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
-					featureCollections.Add(features);
-			}else if(changeType == DatasetSequence.ChangeEventType.Removed)
-			{
-				if (dataset.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
-					featureCollections.Remove(features);
-			}
+			if (!featureCollections.Contains(collection))
+				featureCollections.Add(collection);
 		}
+
+		public void RemoveFeatures(WorldFeatureCollection collection)
+		{
+			featureCollections.Remove(collection);
+		}
+
+		//private void OnSequenceChanged(SequenceChangedEvent<Dataset> evt)
+		//{
+		//	if(evt.changeType == SequenceChangeEventType.Added)
+		//	{
+		//		if (evt.data.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
+		//			featureCollections.Add(features);
+		//	}else if(evt.changeType == SequenceChangeEventType.Removed)
+		//	{
+		//		if (evt.data.TryGetData(datasetFeaturesKey, out WorldFeatureCollection features))
+		//			featureCollections.Remove(features);
+		//	}
+		//}
 	}
 }

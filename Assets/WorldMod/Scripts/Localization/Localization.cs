@@ -113,5 +113,10 @@ namespace Fab.WorldMod.Localization
 		{
 			return localizationTables.TyrGetStringKey(id, out key);
 		}
+
+		public void ImportFromCSV(string filePath)
+		{
+			LocalizationImportUtility.ImportFromCSV(filePath, localizationTables);
+		}
 	}
 }

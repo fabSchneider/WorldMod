@@ -19,7 +19,16 @@ namespace Fab.WorldMod.Lua
 		}
 
 		public float x_pos => sun.SunX;
-		public float y_pos => sun.SunY;	
+		public float y_pos => sun.SunY;
+
+		[LuaHelpInfo("Returns the coordinate that is currently in zenith")]
+		public Coordinate zenith => sun.Zenith;
+
+		[LuaHelpInfo("Binds the suns position to the current view")]
+		public void follow_view()
+		{
+			sun.FollowCamera = true;
+		}
 
 		public void set_x(float x)
 		{

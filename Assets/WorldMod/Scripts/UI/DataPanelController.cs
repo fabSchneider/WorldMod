@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fab.Common;
 using Fab.WorldMod.Localization;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI
@@ -12,16 +14,26 @@ namespace Fab.WorldMod.UI
 	{
 		private static readonly string className = "data-panel";
 		private static readonly string stockContainerClassname = className + "__stock-container";
-		private static readonly string layersContainerClassname = className + "__layers-container";
+		private static readonly string datasetContainerClassname = className + "__dataset-container";
+		private static readonly string filterContainerClassname = className + "__filter-container";
+		private static readonly string sequenceContainerClassname = className + "__sequence-container";
+		private static readonly string controlsContainerClassname = className + "__controls-container";
+
 		private static readonly string containerDropClassname = "container-drop";
 		private static readonly string layersDropClassname = "layers-drop";
 		private static readonly string insertLineClassname = layersDropClassname + "__line";
 
-		private VisualElement stockContainer;
-		private VisualElement layersContainer;
+		private static readonly string datasetColorKey = "color";
 
-		public VisualElement StockContainer => stockContainer;
-		public VisualElement LayersContainer => layersContainer;
+		private VisualElement stockContainer;
+		private VisualElement datasetContainer;
+
+		private VisualElement sequenceContainer;
+		private VisualElement controlsContainer;
+
+		public VisualElement SequenceContainer => sequenceContainer;
+		public VisualElement StockContainer => datasetContainer;
+		public VisualElement ControlsContainer => controlsContainer;
 
 		private ObjectPool<DatasetElement> dragItemPool;
 		private ObjectPool<LayerDropArea> dragInserAreaPool;
@@ -29,22 +41,20 @@ namespace Fab.WorldMod.UI
 		public DragDrop DragDrop { get; private set; }
 
 		private VisualElement dataPanel;
-		public DatasetStock Stock { get; private set; }
-		public DatasetSequence Sequence { get; private set; }
+		public IList<Dataset> Stock { get; private set; }
+		public Sequence<Dataset> Sequence { get; private set; }
 
-		private LayerDropArea layersContainerDropArea;
+		private LayerDropArea sequenceDropArea;
 
-		private DatasetControlView datasetControls;
+		private int activeDataset = -1;
 
-		private DatasetElement activeDatasetElement;
+		private Dictionary<Dataset, DatasetControlView> datasetControlsByDataset;
 
-		private Dictionary<int, DatasetControlView> datasetControlsById;
-
-		public DataPanelController(VisualElement root, DatasetStock stock, DatasetSequence layers)
+		public DataPanelController(VisualElement root, IList<Dataset> stock, Sequence<Dataset> sequence)
 		{
 			dataPanel = root.Q(name: "data-panel");
 			Stock = stock;
-			Sequence = layers;
+			Sequence = sequence;
 
 			VisualElement dragLayer = new VisualElement().AsLayer(blocking: false).WithName("drag-layer");
 			dragLayer.focusable = true;
@@ -52,66 +62,167 @@ namespace Fab.WorldMod.UI
 			DragDrop = new DragDrop(dragLayer);
 
 			stockContainer = root.Q(className: stockContainerClassname);
+
+			datasetContainer = stockContainer.Q(className: datasetContainerClassname);
+
 			LayerDropArea stockDropArea = new LayerDropArea(DragDrop, HandleStockDrop).WithClass(containerDropClassname);
 			stockDropArea.Set(-1);
 			stockContainer.Add(stockDropArea);
 
-			layersContainer = root.Q(className: layersContainerClassname);
-			layersContainerDropArea = new LayerDropArea(DragDrop, HandleLayersDrop).WithClass(containerDropClassname);
-			layersContainerDropArea.Set(0);
+			sequenceContainer = root.Q(className: sequenceContainerClassname);
+			sequenceDropArea = new LayerDropArea(DragDrop, HandleSequenceDrop).WithClass(containerDropClassname);
+			sequenceDropArea.Set(0);
+
+			sequenceContainer.RegisterCallback<PointerDownEvent>(evt =>
+			{
+				DeselectActive();
+				Signals.Get<DatasetActivatedSignal>().Dispatch(null);
+			});
+
+			controlsContainer = root.Q(className: controlsContainerClassname);
 
 			dragItemPool = new ObjectPool<DatasetElement>(8, true, () => new DatasetElement(LocalizationComponent.Localization), DatasetElement.Reset);
 			dragInserAreaPool = new ObjectPool<LayerDropArea>(8, true, CreateLayersDropArea, LayerDropArea.Reset);
 
-			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
+			DragDrop.dragStarted += OnDragStarted;
 
-			datasetControlsById = new Dictionary<int, DatasetControlView>();
-			foreach (Dataset dataset in stock)
-				datasetControlsById.Add(stock.GetIndex(dataset), new DatasetControlView(dataset));
+			root.RegisterCallback<FabDragPerformEvent>(OnDropPerformed);
+			root.RegisterCallback<FabDragExitedEvent>(OnDragExited);
+
+			datasetControlsByDataset = new Dictionary<Dataset, DatasetControlView>();
+
+			Signals.Get<OnChangeLocaleSignal>().AddListener(RefreshOnLocalChange);
 
 			RefreshView();
 		}
 
+		public void RebuildControlView(Dataset dataset)
+		{
+			var view = GetOrCreateControlView(dataset);
+			view.RebuildView();
+		}
+
+		private void RefreshOnLocalChange(Locale locale)
+		{
+			RefreshView();
+		}
+
+		private void DeselectActive()
+		{
+			if (activeDataset == -1)
+				return;
+
+			// deselect currenty active
+			dataPanel.Query<DatasetElement>().Where(de => de.Id == activeDataset).ForEach(elem =>
+			{
+				elem.SetActive(false);
+				elem.ResetColor();
+			});
+			activeDataset = -1;
+			controlsContainer.Clear();
+			ResetControlsColor();
+		}
+
 		public void SetActiveDatasetElement(DatasetElement element)
 		{
-			if (activeDatasetElement != element)
-			{
-				if (activeDatasetElement != null)
-				{
-					activeDatasetElement.SetActive(false);
-					datasetControlsById[activeDatasetElement.Id].Hide();
-				}
-			}
-
 			if (element == null)
 			{
-				activeDatasetElement = null;
+				//just deselect currently active
+				if (activeDataset != -1)
+					DeselectActive();
+
+				ResetControlsColor();
 				Signals.Get<DatasetActivatedSignal>().Dispatch(null);
 				return;
 			}
 
-			activeDatasetElement = element;
-			activeDatasetElement.SetActive(true);
+			Dataset dataset = Stock[element.Id];
+			if (activeDataset == element.Id)
+			{
+				// new selection is equal to current selection
+				// just make sure to show controls if they are not already visible
+				if (Sequence.Contains(dataset))
+					SetControlsForDataset(dataset);
+				else
+					SetControlsForDataset(null);
+				return;
+			}
 
-			if (Sequence.IsInSequence(Stock[element.Id]))
-				datasetControlsById[activeDatasetElement.Id].Show(activeDatasetElement);
-			else
-				datasetControlsById[activeDatasetElement.Id].Hide();
+			if (activeDataset != -1)
+				DeselectActive();
 
-			Signals.Get<DatasetActivatedSignal>().Dispatch(Stock[element.Id]);
+			activeDataset = element.Id;
+			element.SetActive(true);
+
+			if (dataset.TryGetData(datasetColorKey, out Color color))
+				element.SetColor(color);
+
+			if (Sequence.Contains(dataset))
+				SetControlsForDataset(dataset);
+
+			Signals.Get<DatasetActivatedSignal>().Dispatch(dataset);
 		}
+
+		private void SetControlsForDataset(Dataset dataset)
+		{
+			if (dataset == null)
+			{
+				controlsContainer.Clear();
+				ResetControlsColor();
+				return;
+			}
+
+			var controlView = GetOrCreateControlView(dataset);
+			if (dataset.TryGetData(datasetColorKey, out Color color))
+				SetControlsColor(color);
+			else
+				ResetControlsColor();
+			controlsContainer.Add(controlView);
+		}
+
+		private void SetControlsColor(Color color)
+		{
+			controlsContainer.style.borderTopColor = color;
+			controlsContainer.style.borderTopWidth = 3f;
+		}
+
+		private void ResetControlsColor()
+		{
+			controlsContainer.style.borderTopColor = StyleKeyword.Null;
+			controlsContainer.style.borderTopWidth = StyleKeyword.Null;
+			controlsContainer.style.marginTop = StyleKeyword.Null;
+		}
+
+
+		private DatasetControlView GetOrCreateControlView(Dataset dataset)
+		{
+			if (!Stock.Contains(dataset))
+				throw new ArgumentException("The dataset has not been added to the stock.");
+
+			if (!datasetControlsByDataset.TryGetValue(dataset, out DatasetControlView controlView))
+			{
+				controlView = new DatasetControlView(dataset);
+				controlView.RebuildView();
+				datasetControlsByDataset.Add(dataset, controlView);
+			}
+
+			return controlView;
+		}
+
 
 		private bool HandleStockDrop(VisualElement item, LayerDropArea area)
 		{
-			if (item is DatasetElement.DragPreview dragPreview)
-				return Sequence.RemoveFromSequence(dragPreview.DatasetElement.Id);
+			if (item is DragPreview dragPreview && dragPreview.Owner is DatasetElement datasetElement)
+			{
+				return Sequence.Remove(Stock[datasetElement.Id]);
+			}
 
 			return false;
 		}
 
 		private LayerDropArea CreateLayersDropArea()
 		{
-			LayerDropArea area = new LayerDropArea(DragDrop, HandleLayersDrop);
+			LayerDropArea area = new LayerDropArea(DragDrop, HandleSequenceDrop);
 			area.AddToClassList(layersDropClassname);
 			VisualElement insertLine = new VisualElement();
 			insertLine.AddToClassList(insertLineClassname);
@@ -120,54 +231,79 @@ namespace Fab.WorldMod.UI
 			return area;
 		}
 
-		private bool HandleLayersDrop(VisualElement item, LayerDropArea area)
+		private bool HandleSequenceDrop(VisualElement item, LayerDropArea area)
 		{
-			if (item is DatasetElement.DragPreview dragPreview)
+			if (item is DragPreview dragPreview && dragPreview.Owner is DatasetElement datasetElement)
 			{
-				Sequence.InsertIntoSequence(dragPreview.DatasetElement.Id, area.Index);
+				Sequence.Insert(Stock[datasetElement.Id], area.Index);
 				return true;
 			}
 
 			return false;
 		}
 
+		private void OnDragStarted()
+		{
+			//enable all drop areas
+			dataPanel.Query<LayerDropArea>().ForEach(a => a.SetEnabled(true));
+		}
+
+
 		private void OnDropPerformed(FabDragPerformEvent evt)
 		{
+			dataPanel.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
 			RefreshView();
 		}
+
+		private void OnDragExited(FabDragExitedEvent evt)
+		{
+			dataPanel.Query<LayerDropArea>().ForEach(a => a.SetEnabled(false));
+		}
+
+		private static readonly string datasetTypeKey = "type";
+		private static readonly string datasetFiltereKey = "filter";
 
 		public void RefreshView()
 		{
 			ClearContainers();
+			ResetControlsColor();
+
+			int lastActive = activeDataset;
+			DeselectActive();
+			Signals.Get<DatasetActivatedSignal>().Dispatch(null);
 
 			for (int i = 0; i < Stock.Count; i++)
 			{
+				Dataset dataset = Stock[i];
 				DatasetElement item = dragItemPool.GetPooled();
 				item.Set(this, i);
-				item.SetEnabled(!Sequence.IsInSequence(Stock[i]));
-				stockContainer.Add(item);
+				item.SetEnabled(!Sequence.Contains(dataset));
+				datasetContainer.Add(item);
 			}
 
-			if (Sequence.Count == 0)
+			sequenceDropArea.Set(Sequence.Count);
+			sequenceContainer.Add(sequenceDropArea);
+
+
+			LayerDropArea insertArea = dragInserAreaPool.GetPooled();
+			insertArea.Set(0);
+			sequenceContainer.Add(insertArea);
+			for (int i = 0; i < Sequence.Count; i++)
 			{
-				layersContainerDropArea.Set(0);
-				layersContainer.Add(layersContainerDropArea);
-			}
-			else
-			{
-				LayerDropArea insertArea = dragInserAreaPool.GetPooled();
-				insertArea.Set(0);
-				layersContainer.Add(insertArea);
-				for (int i = 0; i < Sequence.Count; i++)
+				DatasetElement item = dragItemPool.GetPooled();
+
+				int id = Stock.IndexOf(Sequence[i]);
+				item.Set(this, id);
+
+				if (id == lastActive)
 				{
-					DatasetElement item = dragItemPool.GetPooled();
-
-					item.Set(this, Stock.GetIndex(Sequence[i]));
-					layersContainer.Add(item);
-					insertArea = dragInserAreaPool.GetPooled();
-					insertArea.Set(i + 1);
-					layersContainer.Add(insertArea);
+					SetActiveDatasetElement(item);
 				}
+
+				sequenceContainer.Add(item);
+				insertArea = dragInserAreaPool.GetPooled();
+				insertArea.Set(i + 1);
+				sequenceContainer.Add(insertArea);
 			}
 		}
 
@@ -175,10 +311,12 @@ namespace Fab.WorldMod.UI
 		{
 			stockContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
 
-			layersContainerDropArea.RemoveFromHierarchy();
-			LayerDropArea.Reset(layersContainerDropArea);
-			layersContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
-			layersContainer.Query<LayerDropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
+			sequenceDropArea.RemoveFromHierarchy();
+			LayerDropArea.Reset(sequenceDropArea);
+			sequenceContainer.Query<DatasetElement>().ForEach(item => dragItemPool.ReturnToPool(item));
+			sequenceContainer.Query<LayerDropArea>().ForEach(item => dragInserAreaPool.ReturnToPool(item));
+
+			controlsContainer.Clear();
 		}
 	}
 }

@@ -11,6 +11,8 @@ namespace Fab.WorldMod.UI
 		VisualElement mainBar;
 		RadioButtonGroup languageButtonGroup;
 
+		public VisualElement MainBar => mainBar;
+
 		public MainbarController(VisualElement root, ILocalization localization)
 		{
 			mainBar = root.Q(name: "main-bar");
