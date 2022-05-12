@@ -37,22 +37,33 @@ namespace Fab.Lua.Console
 		/// </summary>
 		private int selectedHistoryEntry = 0;
 
+
+		private void OnEnable()
+		{
+			doc = GetComponent<UIDocument>();
+			doc.enabled = true;
+		}
+
+		private void OnDisable()
+		{
+			doc.enabled = false;
+			doc = null;
+		}
+
 		private void Start()
 		{
-			consoleComp = GetComponent<ConsoleComponent>();
-
-			doc = GetComponent<UIDocument>();
+			consoleComp = GetComponent<ConsoleComponent>();		
 
 			consoleElem = doc.rootVisualElement.Q(className: className);
 
-			consoleElem.Q<Button>(name: toggleBtnName).clicked += () => consoleElem.ToggleInClassList(hiddenClassName);
-			consoleElem.Q<Button>(name: resetBtnName).clicked += () =>
-			{
-				consoleComp.ResetConsole();
-				UpdateHistory();
-				consoleTextField.SetValueWithoutNotify(string.Empty);
-				errorMsg.style.display = DisplayStyle.None;
-			};
+			//consoleElem.Q<Button>(name: toggleBtnName).clicked += () => consoleElem.ToggleInClassList(hiddenClassName);
+			//consoleElem.Q<Button>(name: resetBtnName).clicked += () =>
+			//{
+			//	consoleComp.ResetConsole();
+			//	UpdateHistory();
+			//	consoleTextField.SetValueWithoutNotify(string.Empty);
+			//	errorMsg.style.display = DisplayStyle.None;
+			//};
 
 			consoleTextField = consoleElem.Q<TextField>(className: textFieldClassName);
 
@@ -149,6 +160,13 @@ namespace Fab.Lua.Console
 				if (selectedHistoryEntry >= 0 && selectedHistoryEntry < consoleHistory.childCount)
 					((HistoryEntryElement)consoleHistory[selectedHistoryEntry]).SetSelected(false);
 			}
+		}
+
+		public void ResetUI()
+		{
+			UpdateHistory();
+			consoleTextField.SetValueWithoutNotify(string.Empty);
+			errorMsg.style.display = DisplayStyle.None;
 		}
 
 		private void UpdateHistory()

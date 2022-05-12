@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StringTableCollection
   m_EditorClassIdentifier: 
   stringTables:
-  - {fileID: 11400000, guid: 6d7281b072efb49458cb131313e3eda4, type: 2}
   - {fileID: 11400000, guid: 15c93a47d7727154596eb1afe9b86bc2, type: 2}
+  - {fileID: 11400000, guid: 6d7281b072efb49458cb131313e3eda4, type: 2}
   localStringKeys:
   - key: YES
     id: 0

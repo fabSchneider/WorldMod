@@ -14,7 +14,7 @@ function Coord.__eq( a, b )
 end
 
 function Coord:__tostring()
-    return "(lon: " .. self.lon .. "°, lat: " .. self.lat .. "°, alt: " .. self.alt .. "m)"
+    return string.format("(lon: %.2f°, lat: %.2f°, alt: %.2fm)", self.lon, self.lat, self.alt)
 end
 
 return setmetatable( Coord, { __call = function( _, ... ) return newCoord( ... ) end } )

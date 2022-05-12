@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -21,6 +22,8 @@ namespace Fab.WorldMod.UI
 
         private bool canceled;
         public bool Canceled => canceled;
+
+		public event Action dragStarted;
 
         public DragDrop(VisualElement dragLayer)
         {
@@ -67,7 +70,10 @@ namespace Fab.WorldMod.UI
 			dragLayer.CapturePointer(PointerId.touchPointerIdBase);
 			dragLayer.CapturePointer(PointerId.penPointerIdBase);
 			dragLayer.Focus();
-        }
+
+			dragStarted?.Invoke();
+
+		}
 
 
         public void EndDrag()
@@ -158,10 +164,10 @@ namespace Fab.WorldMod.UI
         private void OnMove(PointerMoveEvent evt)
         {
             evt.StopPropagation();
-            VisualElement foundTarget = GetTargetUnderPointer(evt.position);
+			VisualElement foundTarget = GetTargetUnderPointer(evt.position);
 
-            //new target
-            if (CurrentDropTarget != foundTarget)
+			//new target
+			if (CurrentDropTarget != foundTarget)
             {
                 //leave recent target
                 if (CurrentDropTarget != null)
@@ -208,13 +214,20 @@ namespace Fab.WorldMod.UI
 
         private VisualElement GetTargetUnderPointer(Vector2 pointerPos)
         {
-            foreach (var target in dropTargets)
-            {
-                if (target.ContainsPoint(target.WorldToLocal(pointerPos)))
-                    return target;
-            }
+			VisualElement pick = dragLayer.panel.Pick(pointerPos);
 
-            return null;
+			if (dropTargets.Contains(pick))
+				return pick;
+
+			return null;
+
+			//foreach (var target in dropTargets)
+   //         {
+   //             if (target.ContainsPoint(target.WorldToLocal(pointerPos)))
+   //                 return target;
+   //         }
+
+   //         return null;
         }
 
     }

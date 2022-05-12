@@ -1,6 +1,7 @@
 using MoonSharp.Interpreter;
 using MoonSharp.Interpreter.Interop;
 using System;
+using System.Collections.Generic;
 
 namespace Fab.Lua.Core
 {
@@ -58,6 +59,17 @@ namespace Fab.Lua.Core
 
 			if (target == null)
 				throw new NullReferenceException($"{((StandardUserDataDescriptor)UserData.GetDescriptorForObject(this)).FriendlyName} is nil");
+		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is LuaProxy<T> proxy &&
+				   EqualityComparer<T>.Default.Equals(target, proxy.target);
+		}
+
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(target);
 		}
 	}
 

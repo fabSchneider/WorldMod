@@ -54,8 +54,6 @@
     background-color: rgba(0, 0, 0, 0);
     -unity-font-style: normal;
     font-size: 28px;
-    -unity-font: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO.TTF?fileID=12800000&guid=72447131e6aac6c4396a1c5ff95cfb12&type=3#CASKAYDIA COVE NERD FONT COMPLETE MONO');
-    -unity-font-definition: url('project://database/Assets/Fonts/CASKAYDIA%20COVE%20NERD%20FONT%20COMPLETE%20MONO%20SDF.asset?fileID=11400000&guid=6aeb3814440f7f149b83439e65e51e46&type=2#CASKAYDIA COVE NERD FONT COMPLETE MONO SDF');
     margin-left: 8px;
     margin-right: 8px;
     margin-top: 8px;
@@ -139,6 +137,7 @@
     border-top-width: 0;
     border-bottom-width: 0;
     color: rgb(130, 130, 130);
+    display: none;
 }
 
 #add-marker-btn:hover {

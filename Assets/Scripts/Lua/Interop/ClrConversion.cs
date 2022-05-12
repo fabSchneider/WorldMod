@@ -26,8 +26,11 @@ namespace Fab.Geo.Lua.Interop
 			Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Coordinate>(CoordinateToScript);
 			Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Coordinate), ScriptToCoordinate);
 
-			Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Vector3>(VectorToScript);
-			Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Vector3), ScriptToVector);
+			Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Vector3>(Vector3ToScript);
+			Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Vector3), ScriptToVector3);
+
+			Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Vector2>(Vector2ToScript);
+			Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Vector2), ScriptToVector2);
 
 			Script.GlobalOptions.CustomConverters.SetClrToScriptCustomConversion<Color>(ColorToScript);
 			Script.GlobalOptions.CustomConverters.SetScriptToClrCustomConversion(DataType.Table, typeof(Color), ScriptToColor);
@@ -49,7 +52,7 @@ namespace Fab.Geo.Lua.Interop
 			return new Coordinate(Mathf.Deg2Rad * lon, Mathf.Deg2Rad * lat, alt);
 		}
 
-		static DynValue VectorToScript(Script script, Vector3 vector)
+		static DynValue Vector3ToScript(Script script, Vector3 vector)
 		{
 			DynValue x = DynValue.NewNumber(vector.x);
 			DynValue y = DynValue.NewNumber(vector.y);
@@ -57,13 +60,28 @@ namespace Fab.Geo.Lua.Interop
 			return script.Call(script.Globals.Get(VEC), x, y, z);
 		}
 
-		static object ScriptToVector(DynValue dynVal)
+		static object ScriptToVector3(DynValue dynVal)
 		{
 			Table table = dynVal.Table;
 			float x = (float)table.Get(VEC_X).CastToNumber();
 			float y = (float)table.Get(VEC_Y).CastToNumber();
 			float z = (float)table.Get(VEC_Z).CastToNumber();
 			return new Vector3(x, y, z);
+		}
+
+		static DynValue Vector2ToScript(Script script, Vector2 vector)
+		{
+			DynValue x = DynValue.NewNumber(vector.x);
+			DynValue y = DynValue.NewNumber(vector.y);
+			return script.Call(script.Globals.Get(VEC), x, y, 0f);
+		}
+
+		static object ScriptToVector2(DynValue dynVal)
+		{
+			Table table = dynVal.Table;
+			float x = (float)table.Get(VEC_X).CastToNumber();
+			float y = (float)table.Get(VEC_Y).CastToNumber();
+			return new Vector2(x, y);
 		}
 
 		static DynValue ColorToScript(Script script, Color color)

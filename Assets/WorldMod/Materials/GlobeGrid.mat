@@ -50,19 +50,19 @@ Material:
     - _Cap: 1
     - _Float: 0.4
     - _Float_1: 0.004
-    - _LineWidth: 0.0035
+    - _LineWidth: 0.002
     - _PoleCapSize: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SecondaryLineWidth: 0.0025
+    - _SecondaryLineWidth: 0.0015
     - _SubFrequency: 1.09
     - _line: 0.00002
     - _power: 8
     - _x: 18
     m_Colors:
-    - _BaseColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+    - _BaseColor: {r: 0, g: 0.023060799, b: 0.023060799, a: 0}
     - _Frequency: {r: 8, g: 16, b: 0, a: 0}
-    - _GridColor: {r: 1, g: 1, b: 1, a: 0.16470589}
+    - _GridColor: {r: 1, g: 1, b: 1, a: 0.15686275}
     - _LineCorrection: {r: 0.5, g: 0, b: 0, a: 0}
     - _LineWidth: {r: 0.0005, g: 0.0005, b: 0, a: 0}
     - _Offset: {r: 3, g: 3, b: 0, a: 0}

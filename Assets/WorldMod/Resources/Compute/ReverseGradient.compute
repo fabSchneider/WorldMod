@@ -1,0 +1,27 @@
+
+#pragma kernel CSMain
+
+Texture2D<float4> Gradient;
+int SampleSize;
+
+
+Texture2D<float4> Source;
+RWTexture2D<float4> Result;
+
+
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    int pick = 0;
+    float best = 99999;
+    for(int i = 0; i < SampleSize; i++){
+        float d = distance(Source[id.xy], Gradient[uint2(i, 0)]);
+        if(d < best){
+            pick = i;
+            best = d;
+        }
+    }
+
+    Result[id.xy] =  (float)pick / (SampleSize - 1.0);
+}

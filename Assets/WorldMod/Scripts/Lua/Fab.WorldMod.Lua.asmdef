@@ -1,0 +1,25 @@
+{
+    "name": "Fab.WorldMod.Lua",
+    "rootNamespace": "Fab.WorldMod.Lua",
+    "references": [
+        "GUID:8b7f6e1967d3724498e6c93f135870c3",
+        "GUID:4298efc50ec98f84ea1034dbbcd56de8",
+        "GUID:e2de4ca187c61c545b2314b0ac6b98cb",
+        "GUID:66858421c4a44d042af29faabfbbafb2",
+        "GUID:f6f905bb4b01fab4a9de8590659792d9",
+        "GUID:fcc34533cfdb9d44b9849c9b291f128f",
+        "GUID:2caf69e25baef464299abf0be57bf7c7",
+        "GUID:295bf292576904645bc785544eaaf32f",
+        "GUID:b1f7fc5c23dee524c90cba809eaa1d44",
+        "GUID:04a8fbc9bd2f28441810a437bfa9c588"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

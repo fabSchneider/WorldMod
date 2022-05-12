@@ -35,15 +35,25 @@ namespace Fab.Geo.Gen
 			Graphics.Blit(tmpMask, distance);
 
 			compute.SetTexture(passKernel, "SqrDistanceField", distance);
-			ExecutePass(distance, new int2(0, 1));
-			ExecutePass(distance, new int2(1, 0));
+			int iY = ExecutePass(distance, new int2(0, 1));
+			int iX = ExecutePass(distance, new int2(1, 0));
+			Debug.Log(Mathf.Max(iX, iY));
 
 			tmpMask.Release();
 			changedFlagBuffer.Release();
 			changedFlagBuffer = null;
 
+			int normKernel = compute.FindKernel("NormalizeDistance");
+			compute.SetTexture(normKernel, "SqrDistanceField", distance);
+			compute.SetInts("resolution", distance.width, distance.height);
+			compute.SetInt("maxIteration", Mathf.Max(iX, iY));
+			int groupX = (int)math.ceil(distance.width / 8f);
+			int groupY = (int)math.ceil(distance.height / 8f);
+			compute.Dispatch(normKernel, groupX, groupY, 1);
+
 			return distance;
 		}
+
 
 		private RenderTexture CreateMask(Texture2D source)
 		{
@@ -61,7 +71,7 @@ namespace Fab.Geo.Gen
 			return mask;
 		}
 
-		private void ExecutePass(RenderTexture texture, int2 offset)
+		private int ExecutePass(RenderTexture texture, int2 offset)
 		{
 			compute.SetInts("passOffest", offset.x, offset.y);
 			compute.SetInts("resolution", texture.width, texture.height);
@@ -80,10 +90,11 @@ namespace Fab.Geo.Gen
 				int[] numChanges = new int[1];
 				changedFlagBuffer.GetData(numChanges);
 				if (numChanges[0] == 0)
-					return;
+					return i;
 			}
 
 			Debug.LogError("Max iterations exceeded");
+			return MaxIterations;
 		}
 	}
 }

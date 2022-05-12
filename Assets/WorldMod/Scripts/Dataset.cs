@@ -5,12 +5,9 @@ using Fab.Common;
 namespace Fab.WorldMod
 {
 	public class DatasetUpdatedSignal : ASignal<Dataset> { }
-	public class DatasetActivatedSignal : ASignal<Dataset> { }
+	public class DatasetSelectedSignal : ASignal<Dataset> { }
 	public class Dataset
 	{
-		private DatasetStock owner;
-		public DatasetStock Owner => owner;
-
 		private string name;
 		public string Name
 		{
@@ -24,11 +21,12 @@ namespace Fab.WorldMod
 
 		private Dictionary<string, object> dataDict;
 
-		public Dataset(string name, DatasetStock owner)
+		public IEnumerable<string> DataKeys => dataDict.Keys;
+
+		public Dataset(string name)
 		{
 			this.name = name;
-			this.owner = owner;
-			dataDict = new Dictionary<string, object>();
+			dataDict = new Dictionary<string, object>(StringComparer.InvariantCultureIgnoreCase);
 		}
 
 		public void SetData(string key, object data)

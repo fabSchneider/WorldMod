@@ -1,14 +1,15 @@
+using System.Collections.Generic;
 using System.Linq;
+using Fab.Common;
 using Fab.Lua.Core;
-using Fab.WorldMod;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	[LuaHelpInfo("Module to access the world mod datasets")]
 	[LuaName("datasets")]
 	public class DatasetModule : LuaObject, ILuaObjectInitialize
 	{
-		private DatasetStock stock;
+		private IList<Dataset> stock;
 
 		public void Initialize()
 		{
@@ -23,7 +24,9 @@ namespace WorldMod.Lua
 		[LuaHelpInfo("Adds a dataset to the list of available datasets")]
 		public DatasetProxy add(string name)
 		{
-			Dataset dataset =  stock.AddDataset(name);
+			Dataset dataset = new Dataset(name);
+			stock.Add(dataset);
+			Signals.Get<DatasetUpdatedSignal>().Dispatch(dataset);
 			return new DatasetProxy(dataset);
 		}
 

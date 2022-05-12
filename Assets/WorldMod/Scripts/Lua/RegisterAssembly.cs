@@ -2,7 +2,7 @@ using Fab.Lua.Core;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-namespace WorldMod.Lua
+namespace Fab.WorldMod.Lua
 {
 	internal static class RegisterAssembly
 	{

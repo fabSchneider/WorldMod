@@ -5,12 +5,27 @@ local function newColor( r, g, b, a )
     return setmetatable( { r = r or 0.0, g = g or 0.0, b = b or 0.0, a = a or 1.0 }, Color )
 end
 
+
 function iscolor( colorTbl )
     return getmetatable( colorTbl ) == Color
 end
 
 function Color.__eq( a, b )
     return a.r == b.r and a.g == b.g and a.b == b.b and a.a == a.a
+end
+
+function Color.hex( hex )
+    r = tonumber(string.sub(hex, 1, 2), 16) / 255.0
+    g = tonumber(string.sub(hex, 3, 4), 16) / 255.0
+    b = tonumber(string.sub(hex, 5, 6), 16) / 255.0
+    return newColor(r, g, b, 1.0)
+end
+
+function Color.hex( hex, a )
+    r = tonumber(string.sub(hex, 1, 2), 16) / 255.0
+    g = tonumber(string.sub(hex, 3, 4), 16) / 255.0
+    b = tonumber(string.sub(hex, 5, 6), 16) / 255.0
+    return newColor(r, g, b, a)
 end
 
 function Color.red( )
@@ -23,6 +38,10 @@ end
 
 function Color.blue( )
     return newColor(0.0, 0.0, 1.0, 1.0)
+end
+
+function Color.yellow( )
+    return newColor(1.0, 1.0, 0.0, 1.0)
 end
 
 function Color.white( )

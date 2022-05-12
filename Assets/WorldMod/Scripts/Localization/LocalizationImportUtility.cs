@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using CsvHelper;
 
 namespace Fab.WorldMod.Localization
 {
-    public static class LocalizationImportUtility
-    {
+	public static class LocalizationImportUtility
+	{
 		private static readonly string keyFieldName = "Key";
 		private static readonly string idFieldName = "Id";
 		private static readonly string commentFieldName = "Comment";
@@ -16,7 +17,7 @@ namespace Fab.WorldMod.Localization
 			if (!File.Exists(filePath))
 				throw new FileNotFoundException("Could not import from file because the file was not found.");
 
-			if(Path.GetExtension(filePath) != ".csv")
+			if (Path.GetExtension(filePath) != ".csv")
 				throw new FileLoadException("File is of the wrong format. Expected format is .csv");
 
 
@@ -54,6 +55,37 @@ namespace Fab.WorldMod.Localization
 						if (csv.TryGetField(localeNames[i], out string localString))
 							if (!string.IsNullOrEmpty(localString))
 								stringTables[i].AddLocalString(id, localString);
+					}
+				}
+			}
+		}
+
+		public static void ImportFromCSV(string filePath, StringTableCollection stringTables)
+		{
+			if (!File.Exists(filePath))
+				throw new FileNotFoundException("Could not import from file because the file was not found.");
+
+			if (Path.GetExtension(filePath) != ".csv")
+				throw new FileLoadException("File is of the wrong format. Expected format is .csv");
+
+
+
+			using (var reader = new StreamReader(filePath, encoding: System.Text.Encoding.Default))
+			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+			{
+				Locale[] locales = stringTables.Locales.ToArray();
+				string[] localeNames = locales.Select(l => l.ToString()).ToArray();
+
+				csv.Read();
+				csv.ReadHeader();
+				while (csv.Read())
+				{
+					string key = csv.GetField(keyFieldName);
+
+					for (int i = 0; i < locales.Length; i++)
+					{
+						if (csv.TryGetField(localeNames[i], out string localString))
+							stringTables.SetLocalString(key, locales[i], localString);
 					}
 				}
 			}
