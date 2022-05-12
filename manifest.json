@@ -1,0 +1,2688 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ABaseSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ABaseSignal.html",
+          "hash": "OitUoyaICTVMX2XeI8uzGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ASignal-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ASignal-1.html",
+          "hash": "WjtMvx0WOoWgXECiDsyodw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ASignal-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ASignal-2.html",
+          "hash": "i42Or9UFCGBJiDpO6PII8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ASignal-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ASignal-3.html",
+          "hash": "AeeVvaVxzFft/zPfjW+1aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ASignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ASignal.html",
+          "hash": "+M7n+FjY7WhAL+9WTZIb3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ISignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ISignal.html",
+          "hash": "GZkLVEMjuQE+4wA4jMtH/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.ObjectPool-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.ObjectPool-1.html",
+          "hash": "QwYGv1xDJOFTbZzLd7A9Dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.PoolExhaustedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.PoolExhaustedException.html",
+          "hash": "aMqIZ6uqHr5I46B7AatOdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.SignalHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.SignalHub.html",
+          "hash": "4tu7FS3/GvA873SpM9ydag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.Signals.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.Signals.html",
+          "hash": "0cnEBKnwETmczitOdEgPkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Common.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Common.html",
+          "hash": "vOExkrjc2moAu6jX9BlXTg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.App.html",
+          "hash": "Dl0GD3Wch7KQGDjAsc/5MA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.CameraPostProcessController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.CameraPostProcessController.html",
+          "hash": "PYCG+lp/5GQQGQCthpCLaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.CameraTranslateAndOrbit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.CameraTranslateAndOrbit.html",
+          "hash": "VHdq6GCpetqQ34EiPRQrQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.ChunkLOD.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.ChunkLOD.html",
+          "hash": "nFFFzDBFSAOTMaBWVNNRWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.CityData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.CityData.html",
+          "hash": "J1BYHoHtosNaisrgNJboDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.CityDataCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.CityDataCollection.html",
+          "hash": "eFuBNuA93JdJ9t9bqgpzzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Coordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Coordinate.html",
+          "hash": "k2tBabfKdHKEA05GuofcQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.BlitWindow.OutputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.BlitWindow.OutputFormat.html",
+          "hash": "Blk/7bBvBaAMrtg1FNh0sw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.BlitWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.BlitWindow.html",
+          "hash": "s8h7e+eyJ+tG1hSrcKpOjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.EditorUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.EditorUtils.html",
+          "hash": "051dMlj1qZpevEww06I9Uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.GenerateDensity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.GenerateDensity.html",
+          "hash": "17C4ysJr2Uc5yfsnqfL1FA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.GenerateDistanceFieldWindow.OutputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.GenerateDistanceFieldWindow.OutputFormat.html",
+          "hash": "kqQ4mMAbQPBA9Xw4CR5ZBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.GenerateDistanceFieldWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.GenerateDistanceFieldWindow.html",
+          "hash": "gQW4t29BOZ6bIxh5LTauHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Editor.html",
+          "hash": "JaM+WK9LdHvn0WRyav9Nnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.FaceCamera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.FaceCamera.html",
+          "hash": "L10hkyDn1TrYzhYSQvALMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Feature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Feature.html",
+          "hash": "x00ef6UFELLcJoGDSPQnUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.FeatureLine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.FeatureLine.html",
+          "hash": "u98Ug0G0sSgGuPO1tivJWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.FeatureManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.FeatureManager.html",
+          "hash": "MVSvEJq0SeXG0bX/6c32iA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.FeaturePoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.FeaturePoint.html",
+          "hash": "zySjFHjvMpT7+oSNgoA8Ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.FeaturePolyline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.FeaturePolyline.html",
+          "hash": "SQ/q/46UtbQeGMxvp9S3bQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Gen.GenerateDistanceField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Gen.GenerateDistanceField.html",
+          "hash": "DsH4cjkblupazAzafXrdWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Gen.GenerateDistanceField_OLD.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Gen.GenerateDistanceField_OLD.html",
+          "hash": "EkJsTamuY1RTm2D9kVapuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Gen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Gen.html",
+          "hash": "Pmdi1F8cr4AV174na94zIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GenerateWorldChunkJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GenerateWorldChunkJob.html",
+          "hash": "H14uIRUZh+SVRTNIDzdqTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GeoInput.IPlayerActions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GeoInput.IPlayerActions.html",
+          "hash": "OA+qlwde+tX2Ai2QI+f+IQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GeoInput.IUIActions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GeoInput.IUIActions.html",
+          "hash": "o7N+nzl4fJzfNUBjImchGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GeoInput.PlayerActions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GeoInput.PlayerActions.html",
+          "hash": "mlxktcIHX2gRsZ0rulxE9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GeoInput.UIActions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GeoInput.UIActions.html",
+          "hash": "zMNLz1Pho6QPRfda1Lcs2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GeoInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GeoInput.html",
+          "hash": "8BQuGwGEXy7nH4tM01cO1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.GeoUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.GeoUtils.html",
+          "hash": "TuC1zT0ICZf2h+Ln+dTTLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.IWorldCameraAnimator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.IWorldCameraAnimator.html",
+          "hash": "u32e7xv93HDNSoDV81kkOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.IWorldCameraController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.IWorldCameraController.html",
+          "hash": "vv9pZOqNKBx5TXk5vti8FQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.ButtonProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.ButtonProxy.html",
+          "hash": "r3alDj3kFsPSh88ZsW3LAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Camera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Camera.html",
+          "hash": "nCrzxH9IgIdPMpDUcBVthw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.ChoiceProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.ChoiceProxy.html",
+          "hash": "DEOiodI7XsufCtCfS9ORQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.ClrConversion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.ClrConversion.html",
+          "hash": "0EHdhM1Fv1gNzzitYDuKsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.ControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.ControlProxy.html",
+          "hash": "KzMOMj9PKL4S7mhZKWXGaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Controls.html",
+          "hash": "SCfIeghnbP34TbFha/IcEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.FeatureProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.FeatureProxy.html",
+          "hash": "MxnnY6KUzIa9ItFp3g0oUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.FeatureProxyFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.FeatureProxyFactory.html",
+          "hash": "7MAV9kkRC7ZqOI2hxaBnxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Features.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Features.html",
+          "hash": "Y6uN+l9IDVruK/vlCkkWQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Geo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Geo.html",
+          "hash": "ZJ3FC2R58mBGun9YHKcong=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.IO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.IO.html",
+          "hash": "ql+I7l8CQudJ5ofW0ha3Nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.ImageProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.ImageProxy.html",
+          "hash": "KoKZnRI7J/HoTfA12Eovag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.ImageProxyFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.ImageProxyFactory.html",
+          "hash": "LdHJGsoXpcScMn6SK5LP6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.LabelProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.LabelProxy.html",
+          "hash": "73yd8gKFwPkKysXKfHPYrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Popup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Popup.html",
+          "hash": "pKIhHYBGv5BvuWml8qiTtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Random.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Random.html",
+          "hash": "Hmab/ivcGSGY+PAtJ2bv9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.Record.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.Record.html",
+          "hash": "mumxHrmitDE9O7WI7yeiKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.SeparatorProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.SeparatorProxy.html",
+          "hash": "93E5ZCKTyh9pq8mZgYB/QA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.SliderProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.SliderProxy.html",
+          "hash": "aGLniGW9i4f3P1HSBm6NGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.World.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.World.html",
+          "hash": "3eE2O9s2WoWNDGxNiACGpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.Lua.Interop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.Lua.Interop.html",
+          "hash": "DGKE5i1gc8YOGlQIQK6XuQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.MeshUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.MeshUtils.html",
+          "hash": "FzXOuLBggcl0ANpXBWRZQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.SceneUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.SceneUtils.html",
+          "hash": "aDzc4lYSY7gvkXBCYxdvoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UI.ControlPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UI.ControlPanel.html",
+          "hash": "sVqIT+9uVdr/q51K+5G8Mg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UI.Popup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UI.Popup.html",
+          "hash": "EB01m8Y4+Ct9Zvajsuu7ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UI.ReloadUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UI.ReloadUI.html",
+          "hash": "q9QL35yV9jbc2oJrmgVHVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UI.UIManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UI.UIManager.html",
+          "hash": "98Niu70CB2Ug5I3N/Q74lA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UI.VisualElementHierachyBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UI.VisualElementHierachyBuilder.html",
+          "hash": "+WG03qAcAdyS5kbeGVt8Ow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UI.html",
+          "hash": "hGxhymMAkiyDMafUvptjnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.UIInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.UIInput.html",
+          "hash": "94IoYr/JXnQP05PiE9V47g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.World.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.World.html",
+          "hash": "pXfDbk2jZcqoKib1kVRGEw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.WorldCameraAnimator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.WorldCameraAnimator.html",
+          "hash": "k42sX6IEFC9VWKJK/6LAdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.WorldCameraController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.WorldCameraController.html",
+          "hash": "6BT+fZsocEp50FyUoAHxGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.WorldChunk.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.WorldChunk.html",
+          "hash": "MqiflCHHcaxOImJpK7rmtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.WorldInputHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.WorldInputHandler.html",
+          "hash": "KqvzSYdtZYa6XHAX1KPaJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Geo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Geo.html",
+          "hash": "xn7AqlGkXfyFtLnmpbzjoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.ChoiceControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.ChoiceControl.html",
+          "hash": "mH6OQ7RMvArBATf/dXWnvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Dataset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Dataset.html",
+          "hash": "z4sHc25NVfFE07TNa2FHew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.DatasetGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.DatasetGroup.html",
+          "hash": "S87rtXD0I1gdBdDPn+sUxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.DatasetGroupSequence.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.DatasetGroupSequence.html",
+          "hash": "TiQbuT/x1M7OYeSnRwNNjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.DatasetSelectedSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.DatasetSelectedSignal.html",
+          "hash": "/oIVr2eRiM8udbc88wxjeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.DatasetUpdatedSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.DatasetUpdatedSignal.html",
+          "hash": "2YpeYuCj+STmO7PqH+a7aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.DatasetsComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.DatasetsComponent.html",
+          "hash": "NkD3IxEjDGwPz6Hatqo9mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Gen.Editor.GenerateDistanceFieldWindow.OutputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Gen.Editor.GenerateDistanceFieldWindow.OutputFormat.html",
+          "hash": "HftuY/2o0qVaM56wffBwlg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Gen.Editor.GenerateDistanceFieldWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Gen.Editor.GenerateDistanceFieldWindow.html",
+          "hash": "Bb5o69DGmbiuE0VdHSpXAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Gen.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Gen.Editor.html",
+          "hash": "IB9qUOnsAU7WJt3swSFZLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Gen.ReverseGradientGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Gen.ReverseGradientGenerator.html",
+          "hash": "zC+I9yBIff+/hLTwf7Gmtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Gen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Gen.html",
+          "hash": "q2voUulirS/ZzOouFKRtvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.IntervalControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.IntervalControl.html",
+          "hash": "eZWCZLiekcm0BGiaUuED1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.Editor.StringTableCollectionAssetEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.Editor.StringTableCollectionAssetEditor.html",
+          "hash": "dMdoh07ZW1HEEL98IJFbdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.Editor.html",
+          "hash": "YOmK1pNeqz/3Ykbd/7bT0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.ILocalization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.ILocalization.html",
+          "hash": "aqNRyPQTMYEQeiS899GgXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.LocalStringKey.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.LocalStringKey.html",
+          "hash": "LMR+dHOcR+mXAT/jg1ifLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.Locale.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.Locale.html",
+          "hash": "Exizry8g+RBpxnM1ulO45g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.LocaleFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.LocaleFormat.html",
+          "hash": "8YChfrJWCmTD2UDWcqI+ZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.Localizable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.Localizable.html",
+          "hash": "PlOKukj4d1mMxRSkJiSV7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.Localization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.Localization.html",
+          "hash": "ExA6JrYhg+dD4m97MUvhyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.LocalizationComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.LocalizationComponent.html",
+          "hash": "9X4Q6+YoFp7zKj2ZeUZZfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.LocalizationImportUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.LocalizationImportUtility.html",
+          "hash": "32WzDX3ty5m2OEbnL687Qg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.LocalizationUIExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.LocalizationUIExtensions.html",
+          "hash": "lnWcDaZC9lpg1qty1Bei8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.OnChangeLocaleSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.OnChangeLocaleSignal.html",
+          "hash": "tJNLBh7tP0cWckQDGftaVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.StringTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.StringTable.html",
+          "hash": "6ctVAN7GG/sJK+C/8/WtTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.StringTableAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.StringTableAsset.html",
+          "hash": "yHgihgfYTLFCzvNxtEXqEw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.StringTableCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.StringTableCollection.html",
+          "hash": "mm3EuQmBAbf60JwGCy6Zlw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.StringTableCollectionAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.StringTableCollectionAsset.html",
+          "hash": "zBdTHI9b885YMRZJ0bF9xQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.UIdGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.UIdGenerator.html",
+          "hash": "jPntM7USi+rfDlVg7wnfOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Localization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Localization.html",
+          "hash": "QK05BWIwPk5NzB4FNQO9BA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.LogOutputController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.LogOutputController.html",
+          "hash": "NGIy9IziqlQp/S/fr7qh0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.BoolControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.BoolControlProxy.html",
+          "hash": "RuRgyDpowihX7xQzr0Ikbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.ColorControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.ColorControlProxy.html",
+          "hash": "0y36inAMfb2EhpaKuXgDtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.ControlsModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.ControlsModule.html",
+          "hash": "ji4e/5DmY7aYLavI+tu6mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.DatasetModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.DatasetModule.html",
+          "hash": "ekRRTvzFfrMsh+UfromArg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.DatasetProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.DatasetProxy.html",
+          "hash": "Ib3c7jlIE2XPwGg6aLkFwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.FeatureCollectionProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.FeatureCollectionProxy.html",
+          "hash": "z3WN4sQRPwl+qdIGYBUTAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.FeaturesModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.FeaturesModule.html",
+          "hash": "Z/X1GME92Fwz4bL+2XmaLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.FloatControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.FloatControlProxy.html",
+          "hash": "0B2R94ou3+rWarz+7GkByg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.IValueControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.IValueControlProxy.html",
+          "hash": "q21cs78MxQxMqAHQEq3I5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.LocalizationModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.LocalizationModule.html",
+          "hash": "tldCgB6cqvrZFrequFAPfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.LogModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.LogModule.html",
+          "hash": "d/VxmvU9E1mvQh8DAYoboA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.LuaConsoleCommands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.LuaConsoleCommands.html",
+          "hash": "mYjt8iPjdbWKfZb5rC9yHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.ProjectionModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.ProjectionModule.html",
+          "hash": "KMiNAMXpy4bvXqeo1o3pJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.SequenceModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.SequenceModule.html",
+          "hash": "9MXJdHnb7SfB1LaO9jvhug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.StringControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.StringControlProxy.html",
+          "hash": "n3lKozVP1w1GAmCu6LGsFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.SunModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.SunModule.html",
+          "hash": "m/Au1S4W7muKreEKujqPeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.SynthLayerProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.SynthLayerProxy.html",
+          "hash": "dqoq+GQSBRJlKN/Ux23lCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.SynthModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.SynthModule.html",
+          "hash": "4lyAzYjg5B7frTDrhU+CBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.TimeModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.TimeModule.html",
+          "hash": "nY/z39AfJlMk+DoW/y7wqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.TutorialModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.TutorialModule.html",
+          "hash": "a0jyP8Nf3CEF8pC76Gq4JA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.ValueControlProxy-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.ValueControlProxy-1.html",
+          "hash": "4+U7AM3eOabI+jJDtHP26g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.Vector2ControlProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.Vector2ControlProxy.html",
+          "hash": "ze46Lau3ARLwwROyGWbI3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Lua.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Lua.html",
+          "hash": "FbTa1PevgxWrF89A1ROxwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Modal.UxmlFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Modal.UxmlFactory.html",
+          "hash": "IbH6eY6Ug/r4TbveAkatew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Modal.UxmlTraits.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Modal.UxmlTraits.html",
+          "hash": "rKs1KbvSUEOTL/QmyjUQnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Modal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Modal.html",
+          "hash": "uGCOSmUnosBZua/6kfw+wg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.MultiDisplayManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.MultiDisplayManager.html",
+          "hash": "ZP4h1z5mJ4mFBS+0KNUXGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.ProjectionController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.ProjectionController.html",
+          "hash": "ZX1QEwoFAqhCBhvDmrQywg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.RangeControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.RangeControl.html",
+          "hash": "iggYCfeL1GQlonSfCh3q8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.RenderTextureUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.RenderTextureUtil.html",
+          "hash": "xMeCvFK5l8E2U/QOI/a26g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Sequence-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Sequence-1.html",
+          "hash": "8YwpXkWhi9P7OoirJpIRqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.SequenceChangeEventType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.SequenceChangeEventType.html",
+          "hash": "6u+J+trgDCygYuSCPw9L9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.SequenceChangedEvent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.SequenceChangedEvent-1.html",
+          "hash": "cd6ckUt+AovaNIy0CZoolA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.SunController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.SunController.html",
+          "hash": "cSMUGEYmD/QAPVi+vnOsRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.BlendNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.BlendNode.html",
+          "hash": "xEJscK4ee+4c5r/byxsJFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.Editor.SynthNodeLibraryAssetEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.Editor.SynthNodeLibraryAssetEditor.html",
+          "hash": "1KIz7XiQgtR1koadWhe0eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.Editor.html",
+          "hash": "qdIfTgXYPvsuefkYEflSkg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.GenNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.GenNode.html",
+          "hash": "BVNQWiCuIJh/vPtKH6B36A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.ModulateNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.ModulateNode.html",
+          "hash": "fxN36K9sclVJFaJ6tbdaLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthChannel.html",
+          "hash": "xW4l5GrBEy3cQOmJNIORNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthChannelData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthChannelData.html",
+          "hash": "c6/gaSzXHtLmBsb2z+Udbg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthComponent.html",
+          "hash": "8Qa19rZ1k3ltXtnS/r7giQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthLayer.html",
+          "hash": "uy8Z09O31GQtDo6+d4lQUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNode.html",
+          "hash": "KxnxCCxX2aUDJNRQMQyMHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNodeDescriptor.PropertyDescriptor.PropertyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNodeDescriptor.PropertyDescriptor.PropertyType.html",
+          "hash": "6k5S1VLuGY/xwg2M0W6bIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNodeDescriptor.PropertyDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNodeDescriptor.PropertyDescriptor.html",
+          "hash": "+bCWKG/M0P06qkJPzBO07Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNodeDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNodeDescriptor.html",
+          "hash": "PSRpZuvYtjcXcJCl9G3Xvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNodeFactory.html",
+          "hash": "cNhzi1uCP2bS1iryn4ts6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNodeLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNodeLibrary.html",
+          "hash": "q3RW3NHUOCAoq7CEXtkp+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthNodeLibraryAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthNodeLibraryAsset.html",
+          "hash": "/JGUEcZLLRFTwyaKD4SQrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.SynthProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.SynthProcessor.html",
+          "hash": "POVswM2Gvg/PsZHjBPQCxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.Synthesizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.Synthesizer.html",
+          "hash": "0AsmSSNBjo4ed5708uc4yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.Synth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.Synth.html",
+          "hash": "YB6itDeFUaQDDIxpqZYdTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.TerminalCommands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.TerminalCommands.html",
+          "hash": "ywilV1FCQ4vczL/uJNBovA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.TrackpadCamera.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.TrackpadCamera.html",
+          "hash": "DcVPmB83tSHGjU0NmJ7aQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.BezierUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.BezierUtil.html",
+          "hash": "4mgJamSxtxpjLN3JY0vO5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.ControlBinding-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.ControlBinding-1.html",
+          "hash": "W+Us1uJyFlwlbUDB172tTg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.ControlBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.ControlBinding.html",
+          "hash": "eXb595odUxMYRjvdrLtJhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.DataPanelController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.DataPanelController.html",
+          "hash": "027U7aX7mYFJnKEreIcz3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.DatasetControlView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.DatasetControlView.html",
+          "hash": "+OowmTiUmLFDAKiUEYmQVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.DatasetElement.UxmlFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.DatasetElement.UxmlFactory.html",
+          "hash": "t7/HZXTVchHwbB7xrm3bmg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.DatasetElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.DatasetElement.html",
+          "hash": "knSHtAVHVkwRmTk/IJIcQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.DragDrop.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.DragDrop.html",
+          "hash": "sYD2d5bHupNKzTWhvOoj8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.DragPreview.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.DragPreview.html",
+          "hash": "p8/ORMyQ1KXEYa60y702yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.Draggable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.Draggable.html",
+          "hash": "XRVYEjd7IXFCE9jHXsCuUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FabDragAndDropEventBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FabDragAndDropEventBase-1.html",
+          "hash": "kG9MsOFN9+9Ee82t4UbjhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FabDragEnterEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FabDragEnterEvent.html",
+          "hash": "2UmvTnVuVgGfO8xdkuL8Sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FabDragExitedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FabDragExitedEvent.html",
+          "hash": "NyutxGLkq3jtF9U7fc9d/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FabDragLeaveEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FabDragLeaveEvent.html",
+          "hash": "v/pLbaKTTMmc68G97y5CSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FabDragPerformEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FabDragPerformEvent.html",
+          "hash": "PJK/0Lg/b3yIEbDoclEFDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FabDragUpdatedEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FabDragUpdatedEvent.html",
+          "hash": "tjUOELLJxydKsy5N+IKOUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.FrameRateView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.FrameRateView.html",
+          "hash": "x6PAnxREwlOLEwYGUPwhQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.IFabDragAndDropEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.IFabDragAndDropEvent.html",
+          "hash": "mDNGbmkRsA4el1VE4xQHJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.InfoPanelController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.InfoPanelController.html",
+          "hash": "4bikz7xrpl0E+7LAm5VEGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.LayerDropArea.UxmlFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.LayerDropArea.UxmlFactory.html",
+          "hash": "0QBHUo5bQg9QQLeGhIzvAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.LayerDropArea.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.LayerDropArea.html",
+          "hash": "L2kWTWD1009TAiVD+eIUSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.MainbarController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.MainbarController.html",
+          "hash": "QHJDm1ESX4n+kt6qZBQ+ZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.Trackpad.UxmlFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.Trackpad.UxmlFactory.html",
+          "hash": "jFHnGfahxdNALtNNrGGkAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.Trackpad.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.Trackpad.html",
+          "hash": "MWNWLJGw8GAlYYSOSDN3gg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.UiController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.UiController.html",
+          "hash": "G7bEaatQIIcXFswoSKmJHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.VisualElementExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.VisualElementExtensions.html",
+          "hash": "kMlPFIOLG1AsCfyzKZP9BA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.Wire.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.Wire.html",
+          "hash": "hE5MgNmCvtEuAKO8CBy/aA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.UI.html",
+          "hash": "5JBPsuetybSmt/HcMrYNvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.ValueControl-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.ValueControl-1.html",
+          "hash": "4R3anB0T9bLTLrUO/sVVPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.ValueControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.ValueControl.html",
+          "hash": "h5MnT5TWyuorAzWGprYQ7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.WorldCameraController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.WorldCameraController.html",
+          "hash": "XtOLzf7am/moBzHCMc+htQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.WorldFeature.FeatureType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.WorldFeature.FeatureType.html",
+          "hash": "/UGaaoZN7vea6UsyHqU+rg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.WorldFeature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.WorldFeature.html",
+          "hash": "I8st/oZ1AUENFCy0eBWTQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.WorldFeatureCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.WorldFeatureCollection.html",
+          "hash": "scOoqUZ8Vr2rAXWcSo1jUw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.WorldFeatureRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.WorldFeatureRenderer.html",
+          "hash": "UpwwX0G3md16YAwQQpP/LA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.WorldFeaturesComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.WorldFeaturesComponent.html",
+          "hash": "hwB0V4Lo3OXwkHSZjxH3Xw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.WorldMod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.WorldMod.html",
+          "hash": "pg4PqR6shHHBvo9u+QCCTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "UyZLhND7Eu3YpU1fshtZGA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "9iCoTFbT+j5J/TFiWD0lDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/commands.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/commands.html",
+          "hash": "7jERs7vpequ/x0inOjN/rQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/controls.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/controls.html",
+          "hash": "S0zZw0oIGBahKKeh+TYJuw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "zlWBtc9RZE9Y0F84NU192A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "WI6Hkr4fwwkXn9hvJmp+aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/world-0.1.0.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/world-0.1.0.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/world01-0.4.0.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/world01-0.4.0.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/world02-0.4.0.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/world02-0.4.0.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "OnFJlx3BRZaemi3iAjm+WA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "scripting/debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "scripting/debugging.html",
+          "hash": "tFCS75AQf5IwxPoDAZWF1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "scripting/example1.md",
+      "output": {
+        ".html": {
+          "relative_path": "scripting/example1.html",
+          "hash": "2v6aqIZgBOm8HFvfry92Jg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "scripting/quickstart.md",
+      "output": {
+        ".html": {
+          "relative_path": "scripting/quickstart.html",
+          "hash": "bv2HciwQUuvW5x0uNPOWNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "scripting/reference.md",
+      "output": {
+        ".html": {
+          "relative_path": "scripting/reference.html",
+          "hash": "u3Hvc4VAHJfjw0Mv3iDZXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "scripting/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "scripting/toc.html",
+          "hash": "3vBm3Me1iHwgoCwxllE6Ng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "a4nQ0EYCpcXd9dwHs4/IcA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 9,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 203,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
