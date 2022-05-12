@@ -5,7 +5,7 @@ using Fab.Common;
 namespace Fab.WorldMod
 {
 	public class DatasetUpdatedSignal : ASignal<Dataset> { }
-	public class DatasetActivatedSignal : ASignal<Dataset> { }
+	public class DatasetSelectedSignal : ASignal<Dataset> { }
 	public class Dataset
 	{
 		private string name;

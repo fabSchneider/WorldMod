@@ -1,6 +1,5 @@
 using Fab.Common;
 using Fab.WorldMod.Localization;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI
@@ -24,10 +23,10 @@ namespace Fab.WorldMod.UI
 			infoLabel.AddManipulator(infoText);
 			infoPanel.Add(infoLabel);
 
-			Signals.Get<DatasetActivatedSignal>().AddListener(OnDatasetActivated);
+			Signals.Get<DatasetSelectedSignal>().AddListener(OnDatasetSelected);
 		}
 
-		private void OnDatasetActivated(Dataset dataset)
+		private void OnDatasetSelected(Dataset dataset)
 		{
 			if(dataset == null)
 			{

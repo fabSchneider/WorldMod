@@ -84,8 +84,6 @@ namespace Fab.WorldMod.UI
 
 		public void RebuildView()
 		{
-			Debug.Log("RebuildView");
-
 			if(bindings == null)
 			{
 				bindings = new List<ControlBinding>();
