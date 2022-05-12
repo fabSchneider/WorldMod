@@ -140,10 +140,11 @@ namespace Fab.WorldMod.UI
 					element.SetColor(color);
 
 				if (Sequence.Contains(dataset))
-					SetControlsForDataset(dataset);
-
-				Signals.Get<DatasetSelectedSignal>().Dispatch(dataset);
+					SetControlsForDataset(dataset);			
 			}
+
+			selectedDataset = id;
+			Signals.Get<DatasetSelectedSignal>().Dispatch(dataset);
 		}
 
 		private void DeselectDatasetWithoutNotify()
