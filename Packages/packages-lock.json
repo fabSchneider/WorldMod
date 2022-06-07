@@ -22,7 +22,7 @@
       "url": "https://package.openupm.com"
     },
     "com.fab.livelua": {
-      "version": "file:LuaConsole",
+      "version": "file:LiveLua",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
