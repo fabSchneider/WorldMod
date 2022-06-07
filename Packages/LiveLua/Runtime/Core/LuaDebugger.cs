@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Fab.Lua.Core
 {
-	[AddComponentMenu("FabGeo/Lua/Lua Debugger")]
+	[AddComponentMenu("Lua/Lua Debugger")]
 	public class LuaDebugger : MonoBehaviour
 	{
-		private LuaManager manager;
+		private LuaManagerComponent manager;
 
 		[SerializeField]
 		private int port = 41912;
@@ -19,7 +19,7 @@ namespace Fab.Lua.Core
 			Debug.Log("Starting debug server on port " + port);
 
 			debuggerServer = new MoonSharpVsCodeDebugServer(port);
-			manager = GetComponent<LuaManager>();
+			manager = GetComponent<LuaManagerComponent>();
 
 			// attach already loaded scripts
 			foreach (var script in manager.LoadedScripts)

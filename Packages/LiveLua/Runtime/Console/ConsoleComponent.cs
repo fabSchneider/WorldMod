@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Fab.Lua.Console
 {
-	[AddComponentMenu("FabGeo/Lua/Lua Console")]
+	[AddComponentMenu("Lua/Lua Console")]
 	public class ConsoleComponent : MonoBehaviour
 	{
 		[Tooltip("Maximum number of items in the history.")]

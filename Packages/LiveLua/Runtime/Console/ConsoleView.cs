@@ -6,7 +6,7 @@ namespace Fab.Lua.Console
 {
 	[RequireComponent(typeof(ConsoleComponent))]
 	[RequireComponent(typeof(UIDocument))]
-	[AddComponentMenu("FabGeo/Lua/Lua Console View")]
+	[AddComponentMenu("Lua/Lua Console View")]
 	public class ConsoleView : MonoBehaviour
 	{
 		private static readonly string className = "lua-console";

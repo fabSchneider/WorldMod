@@ -10,8 +10,8 @@ namespace Fab.Lua.Core
 	/// <summary>
 	/// Manager class responsible for loading, unloading and updating lua scripts
 	/// </summary>
-	[AddComponentMenu("FabGeo/Lua/Lua Manager")]
-	public class LuaManager : MonoBehaviour
+	[AddComponentMenu("Lua/Lua Manager")]
+	public class LuaManagerComponent : MonoBehaviour
 	{
 		private static readonly string LuaFileSearchPattern = "*.lua";
 
