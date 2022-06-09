@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Fab.Common;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;
 

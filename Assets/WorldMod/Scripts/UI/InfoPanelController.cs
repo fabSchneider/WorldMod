@@ -1,5 +1,5 @@
 using Fab.Common;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using UnityEngine.UIElements;
 
 namespace Fab.WorldMod.UI

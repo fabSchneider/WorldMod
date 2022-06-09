@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using CsvHelper;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	public static class LocalizationImportUtility
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	public class StringTable
 	{

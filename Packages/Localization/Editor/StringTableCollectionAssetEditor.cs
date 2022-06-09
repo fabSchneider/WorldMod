@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Fab.WorldMod.Localization.Editor
+namespace Fab.Localization.Editor
 {
 
 	[CustomEditor(typeof(StringTableCollectionAsset))]

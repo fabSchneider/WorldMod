@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	[Serializable]
 	public class LocalStringKey
@@ -29,7 +29,7 @@ namespace Fab.WorldMod.Localization
 
 	[CreateAssetMenu(
 		fileName = "StringTableCollection.asset",
-		menuName = "WorldMod/Localization/String Table Collection")]
+		menuName = "Localization/String Table Collection")]
 	public class StringTableCollectionAsset : ScriptableObject
 	{
 		[SerializeField]

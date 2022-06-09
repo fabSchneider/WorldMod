@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Fab.Common;
 using UnityEngine;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
-	public class OnChangeLocaleSignal : ASignal<Locale> { }
+	public class OnChangeLocaleSignal { }
 
-	[AddComponentMenu("WorldMod/Localization")]
+	[AddComponentMenu("Localization/Localization")]
 	public class LocalizationComponent : MonoBehaviour
 	{
 		private static Localization instance;
@@ -17,6 +16,7 @@ namespace Fab.WorldMod.Localization
 
 		[SerializeField]
 		private StringTableAsset defaultLocale;
+
 
 		private void Awake()
 		{
@@ -38,21 +38,6 @@ namespace Fab.WorldMod.Localization
 		{
 			if (defaultLocale != null && instance.LocalizationTables.HasLocale(defaultLocale.Locale))
 				instance.ActivateLocale(defaultLocale.Locale);		
-		}
-
-		private void OnEnable()
-		{
-			Signals.Get<OnChangeLocaleSignal>().AddListener(OnChangeLocale);
-		}
-
-		private void OnDisable()
-		{
-			Signals.Get<OnChangeLocaleSignal>().RemoveListener(OnChangeLocale);
-		}
-
-		private void OnChangeLocale(Locale locale)
-		{
-			instance.ActivateLocale(locale);
 		}
 
 		public IEnumerable<Locale> AvailableLocales => instance.LocalizationTables.Locales;

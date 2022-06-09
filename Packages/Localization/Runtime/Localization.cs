@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	public interface ILocalization
 	{
@@ -9,6 +9,8 @@ namespace Fab.WorldMod.Localization
 		bool TryGetLocalizedString(int id, out string localString);
 		bool TryGetStringID(string key, out int id);
 		bool TryGetStringKey(int id, out string key);
+
+		public void ActivateLocale(Locale locale);
 
 		event Action LocaleChanged;
 

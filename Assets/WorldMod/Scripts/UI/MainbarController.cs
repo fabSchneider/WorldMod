@@ -1,5 +1,4 @@
-using Fab.Common;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using UnityEngine.UIElements;
 using System.Linq;
 using System.Collections.Generic;
@@ -22,16 +21,14 @@ namespace Fab.WorldMod.UI
 			languageButtonGroup.userData = locales;
 			languageButtonGroup.choices = locales.Select(l => l.Language.ToUpper());
 			languageButtonGroup.value = locales.IndexOf(localization.ActiveLocale);
-			languageButtonGroup.RegisterValueChangedCallback(OnLanguageToggleChange);
-		}
-
-		protected void OnLanguageToggleChange(ChangeEvent<int> evt)
-		{
-			if(evt.newValue != -1)
+			languageButtonGroup.RegisterValueChangedCallback(evt =>
 			{
-				Locale locale = ((List<Locale>)languageButtonGroup.userData)[evt.newValue];
-				Signals.Get<OnChangeLocaleSignal>().Dispatch(locale);
-			}
+				if (evt.newValue != -1)
+				{
+					Locale locale = localization.Locales.ElementAt(evt.newValue);
+					localization.ActivateLocale(locale);
+				}
+			});
 		}
 	}
 }

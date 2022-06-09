@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fab.Common;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -61,7 +61,7 @@ namespace Fab.WorldMod.UI
 
 			datasetControlsByDataset = new Dictionary<Dataset, DatasetControlView>();
 
-			Signals.Get<OnChangeLocaleSignal>().AddListener(RefreshOnLocalChange);
+			LocalizationComponent.Localization.LocaleChanged += RefreshOnLocalChange;
 
 			RefreshView();
 		}
@@ -72,7 +72,7 @@ namespace Fab.WorldMod.UI
 			view.RebuildView();
 		}
 
-		private void RefreshOnLocalChange(Locale locale)
+		private void RefreshOnLocalChange()
 		{
 			RefreshView();
 		}

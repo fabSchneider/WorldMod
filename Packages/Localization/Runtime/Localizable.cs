@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.UIElements;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	public class Localizable : Manipulator
 	{

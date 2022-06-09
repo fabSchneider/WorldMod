@@ -1,0 +1,19 @@
+{
+  "name": "com.fab.localization",
+  "version": "0.1.0",
+  "displayName": "Localization",
+  "description": "A simple localization system working with csv files and Unity's UI Toolkit.\n\nCSV Helper package needed as a dependency. \nGet it through openupm with: \n\nopenupm add com.joshclose.csvhelper",
+  "unity": "2021.3",
+  "unityRelease": "3f1",
+  "keywords": [],
+  "author": {
+    "name": "Fabian Schneider"
+  },
+  "samples": [
+    {
+      "displayName": "Text Localization",
+      "description": "An example of the localization system in action",
+      "path": "Samples~/TextLocalization"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	public class StringTableCollection
 	{
@@ -38,7 +38,6 @@ namespace Fab.WorldMod.Localization
 				return new StringIdentifier(value.id, value.key);
 			}
 		}
-
 
 		private Dictionary<Locale, StringTable> stringTablesByLocale;
 		public IEnumerable<Locale> Locales => stringTablesByLocale.Keys;

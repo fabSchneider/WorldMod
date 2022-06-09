@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Fab.Common;
 using Fab.Geo;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using UnityEngine;
 using UnityEngine.UIElements;
 

@@ -1,4 +1,4 @@
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	public static class UIdGenerator 
 	{

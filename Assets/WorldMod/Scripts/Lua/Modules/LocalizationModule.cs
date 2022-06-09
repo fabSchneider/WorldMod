@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fab.Lua.Core;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using Fab.Geo.Lua.Interop;
 using MoonSharp.Interpreter;
 

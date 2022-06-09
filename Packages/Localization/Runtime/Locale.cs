@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 	[Serializable]
 	public struct LocaleFormat

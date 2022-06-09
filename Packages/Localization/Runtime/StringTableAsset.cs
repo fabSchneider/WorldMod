@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fab.WorldMod.Localization
+namespace Fab.Localization
 {
 
 
 	[CreateAssetMenu(
 	fileName = "StringTable.asset",
-	menuName = "WorldMod/Localization/String Table")]
+	menuName = "Localization/String Table")]
 	public class StringTableAsset : ScriptableObject
     {
 		[SerializeField]

@@ -27,6 +27,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.fab.localization": {
+      "version": "file:Localization",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.fab.synth": {
       "version": "file:Synth",
       "depth": 0,

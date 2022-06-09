@@ -1,6 +1,6 @@
 using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
-using Fab.WorldMod.Localization;
+using Fab.Localization;
 using Fab.WorldMod.UI;
 using UnityEngine;
 
