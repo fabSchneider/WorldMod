@@ -1,7 +1,7 @@
 using System;
 using Fab.Geo.Lua.Interop;
 using Fab.Lua.Core;
-using Fab.WorldMod.Synth;
+using Fab.Synth;
 using MoonSharp.Interpreter;
 using UnityEngine;
 

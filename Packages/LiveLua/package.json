@@ -2,7 +2,7 @@
   "name": "com.fab.livelua",
   "version": "0.1.0",
   "displayName": "Live Lua",
-  "description": "A live lua scripting console build on to of moonsharp",
+  "description": "A live lua scripting console build on to of moonsharp.\nFor this package to work add the moonsharp package from this git link:\n\nhttps://github.com/fabSchneider/moonsharp.git#v2.0.0-upm.533e8b0",
   "unity": "2021.2",
   "unityRelease": "7f1",
   "keywords": [],

@@ -635,6 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 297474339}
   - component: {fileID: 297474338}
+  - component: {fileID: 297474340}
   m_Layer: 0
   m_Name: Synthesizer
   m_TagString: Untagged
@@ -654,8 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd547df07e79dc0459a4691b53cea486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  datasets: {fileID: 51441330}
-  channelsData:
+  channels:
   - name: Base
     targetPropertyName: _BaseMap
     outputTexture: {fileID: 8600000, guid: b21d16ea1bb3d6d48a9df41fc5e3b726, type: 2}
@@ -665,7 +665,7 @@ MonoBehaviour:
   - name: Overlay
     targetPropertyName: _OverlayMap
     outputTexture: {fileID: 8600000, guid: 3b318cea6e438b348ae879458e0f7e92, type: 2}
-  nodeLibrary: {fileID: 11400000, guid: a1477d3fe3025d84b98089aab4d75b9f, type: 2}
+  nodeLibrary: {fileID: 11400000, guid: e55ee97336cf63e49b2c5e994c9c63cd, type: 2}
   layerRenderer: {fileID: 1203454555}
 --- !u!4 &297474339
 Transform:
@@ -682,6 +682,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297474340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297474337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48513c2da6fc7a4ba0acb3f646b2520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  datasets: {fileID: 51441330}
+  synth: {fileID: 297474338}
 --- !u!1 &393661700
 GameObject:
   m_ObjectHideFlags: 0

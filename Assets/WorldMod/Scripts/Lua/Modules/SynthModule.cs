@@ -1,6 +1,6 @@
 using System;
 using Fab.Lua.Core;
-using Fab.WorldMod.Synth;
+using Fab.Synth;
 
 namespace Fab.WorldMod.Lua
 {
@@ -15,7 +15,7 @@ namespace Fab.WorldMod.Lua
 			synthComponent = UnityEngine.Object.FindObjectOfType<SynthComponent>();
 
 			if (synthComponent == null)
-				throw new LuaObjectInitializationException("Could not find dataset component");
+				throw new LuaObjectInitializationException("Could not find synth component");
 		}
 
 		[LuaHelpInfo("Creates a synth layer for a specified channel")]
@@ -31,7 +31,7 @@ namespace Fab.WorldMod.Lua
 			return proxy;
 		}
 
-		[LuaHelpInfo("Tells the synthesizer to update the specified channel until the next frame")]
+		[LuaHelpInfo("Tells the synthesizer to update the specified channel for the next frame")]
 		public void update(string channel)
 		{
 			synthComponent.SetChannelDirty(channel);

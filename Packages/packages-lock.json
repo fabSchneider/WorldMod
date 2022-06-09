@@ -27,6 +27,14 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.fab.synth": {
+      "version": "file:Synth",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "12.1.6"
+      }
+    },
     "com.fabschneider.commandterminal": {
       "version": "https://github.com/fabSchneider/command_terminal.git?path=/CommandTerminal#v1.4.3",
       "depth": 0,
