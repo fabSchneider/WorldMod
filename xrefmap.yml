@@ -1276,13 +1276,13 @@ references:
   isSpec: "True"
   fullName: Fab.Geo.FeatureManager.AddPoint
   nameWithType: FeatureManager.AddPoint
-- uid: Fab.Geo.FeatureManager.AddPolyline(System.String,System.Collections.Generic.ICollection{Fab.Geo.Coordinate},System.Boolean)
+- uid: Fab.Geo.FeatureManager.AddPolyline(System.String,ICollection{Fab.Geo.Coordinate},System.Boolean)
   name: AddPolyline(String, ICollection<Coordinate>, Boolean)
-  href: api/Fab.Geo.FeatureManager.html#Fab_Geo_FeatureManager_AddPolyline_System_String_System_Collections_Generic_ICollection_Fab_Geo_Coordinate__System_Boolean_
-  commentId: M:Fab.Geo.FeatureManager.AddPolyline(System.String,System.Collections.Generic.ICollection{Fab.Geo.Coordinate},System.Boolean)
+  href: api/Fab.Geo.FeatureManager.html#Fab_Geo_FeatureManager_AddPolyline_System_String_ICollection_Fab_Geo_Coordinate__System_Boolean_
+  commentId: M:Fab.Geo.FeatureManager.AddPolyline(System.String,ICollection{Fab.Geo.Coordinate},System.Boolean)
   name.vb: AddPolyline(String, ICollection(Of Coordinate), Boolean)
-  fullName: Fab.Geo.FeatureManager.AddPolyline(System.String, System.Collections.Generic.ICollection<Fab.Geo.Coordinate>, System.Boolean)
-  fullName.vb: Fab.Geo.FeatureManager.AddPolyline(System.String, System.Collections.Generic.ICollection(Of Fab.Geo.Coordinate), System.Boolean)
+  fullName: Fab.Geo.FeatureManager.AddPolyline(System.String, ICollection<Fab.Geo.Coordinate>, System.Boolean)
+  fullName.vb: Fab.Geo.FeatureManager.AddPolyline(System.String, ICollection(Of Fab.Geo.Coordinate), System.Boolean)
   nameWithType: FeatureManager.AddPolyline(String, ICollection<Coordinate>, Boolean)
   nameWithType.vb: FeatureManager.AddPolyline(String, ICollection(Of Coordinate), Boolean)
 - uid: Fab.Geo.FeatureManager.AddPolyline*
@@ -1427,13 +1427,13 @@ references:
   isSpec: "True"
   fullName: Fab.Geo.FeaturePolyline.Geometry
   nameWithType: FeaturePolyline.Geometry
-- uid: Fab.Geo.FeaturePolyline.SetPoints(System.Collections.Generic.ICollection{Fab.Geo.Coordinate},System.Boolean)
+- uid: Fab.Geo.FeaturePolyline.SetPoints(ICollection{Fab.Geo.Coordinate},System.Boolean)
   name: SetPoints(ICollection<Coordinate>, Boolean)
-  href: api/Fab.Geo.FeaturePolyline.html#Fab_Geo_FeaturePolyline_SetPoints_System_Collections_Generic_ICollection_Fab_Geo_Coordinate__System_Boolean_
-  commentId: M:Fab.Geo.FeaturePolyline.SetPoints(System.Collections.Generic.ICollection{Fab.Geo.Coordinate},System.Boolean)
+  href: api/Fab.Geo.FeaturePolyline.html#Fab_Geo_FeaturePolyline_SetPoints_ICollection_Fab_Geo_Coordinate__System_Boolean_
+  commentId: M:Fab.Geo.FeaturePolyline.SetPoints(ICollection{Fab.Geo.Coordinate},System.Boolean)
   name.vb: SetPoints(ICollection(Of Coordinate), Boolean)
-  fullName: Fab.Geo.FeaturePolyline.SetPoints(System.Collections.Generic.ICollection<Fab.Geo.Coordinate>, System.Boolean)
-  fullName.vb: Fab.Geo.FeaturePolyline.SetPoints(System.Collections.Generic.ICollection(Of Fab.Geo.Coordinate), System.Boolean)
+  fullName: Fab.Geo.FeaturePolyline.SetPoints(ICollection<Fab.Geo.Coordinate>, System.Boolean)
+  fullName.vb: Fab.Geo.FeaturePolyline.SetPoints(ICollection(Of Fab.Geo.Coordinate), System.Boolean)
   nameWithType: FeaturePolyline.SetPoints(ICollection<Coordinate>, Boolean)
   nameWithType.vb: FeaturePolyline.SetPoints(ICollection(Of Coordinate), Boolean)
 - uid: Fab.Geo.FeaturePolyline.SetPoints*
@@ -3105,13 +3105,13 @@ references:
   isSpec: "True"
   fullName: Fab.Geo.Lua.Interop.Controls.button
   nameWithType: Controls.button
-- uid: Fab.Geo.Lua.Interop.Controls.choice(System.String,System.Collections.Generic.List{System.String},System.String)
+- uid: Fab.Geo.Lua.Interop.Controls.choice(System.String,List{System.String},System.String)
   name: choice(String, List<String>, String)
-  href: api/Fab.Geo.Lua.Interop.Controls.html#Fab_Geo_Lua_Interop_Controls_choice_System_String_System_Collections_Generic_List_System_String__System_String_
-  commentId: M:Fab.Geo.Lua.Interop.Controls.choice(System.String,System.Collections.Generic.List{System.String},System.String)
+  href: api/Fab.Geo.Lua.Interop.Controls.html#Fab_Geo_Lua_Interop_Controls_choice_System_String_List_System_String__System_String_
+  commentId: M:Fab.Geo.Lua.Interop.Controls.choice(System.String,List{System.String},System.String)
   name.vb: choice(String, List(Of String), String)
-  fullName: Fab.Geo.Lua.Interop.Controls.choice(System.String, System.Collections.Generic.List<System.String>, System.String)
-  fullName.vb: Fab.Geo.Lua.Interop.Controls.choice(System.String, System.Collections.Generic.List(Of System.String), System.String)
+  fullName: Fab.Geo.Lua.Interop.Controls.choice(System.String, List<System.String>, System.String)
+  fullName.vb: Fab.Geo.Lua.Interop.Controls.choice(System.String, List(Of System.String), System.String)
   nameWithType: Controls.choice(String, List<String>, String)
   nameWithType.vb: Controls.choice(String, List(Of String), String)
 - uid: Fab.Geo.Lua.Interop.Controls.choice*
@@ -3457,13 +3457,13 @@ references:
   isSpec: "True"
   fullName: Fab.Geo.Lua.Interop.Features.point
   nameWithType: Features.point
-- uid: Fab.Geo.Lua.Interop.Features.polyline(System.String,System.Collections.Generic.ICollection{Fab.Geo.Coordinate},System.Boolean)
+- uid: Fab.Geo.Lua.Interop.Features.polyline(System.String,ICollection{Fab.Geo.Coordinate},System.Boolean)
   name: polyline(String, ICollection<Coordinate>, Boolean)
-  href: api/Fab.Geo.Lua.Interop.Features.html#Fab_Geo_Lua_Interop_Features_polyline_System_String_System_Collections_Generic_ICollection_Fab_Geo_Coordinate__System_Boolean_
-  commentId: M:Fab.Geo.Lua.Interop.Features.polyline(System.String,System.Collections.Generic.ICollection{Fab.Geo.Coordinate},System.Boolean)
+  href: api/Fab.Geo.Lua.Interop.Features.html#Fab_Geo_Lua_Interop_Features_polyline_System_String_ICollection_Fab_Geo_Coordinate__System_Boolean_
+  commentId: M:Fab.Geo.Lua.Interop.Features.polyline(System.String,ICollection{Fab.Geo.Coordinate},System.Boolean)
   name.vb: polyline(String, ICollection(Of Coordinate), Boolean)
-  fullName: Fab.Geo.Lua.Interop.Features.polyline(System.String, System.Collections.Generic.ICollection<Fab.Geo.Coordinate>, System.Boolean)
-  fullName.vb: Fab.Geo.Lua.Interop.Features.polyline(System.String, System.Collections.Generic.ICollection(Of Fab.Geo.Coordinate), System.Boolean)
+  fullName: Fab.Geo.Lua.Interop.Features.polyline(System.String, ICollection<Fab.Geo.Coordinate>, System.Boolean)
+  fullName.vb: Fab.Geo.Lua.Interop.Features.polyline(System.String, ICollection(Of Fab.Geo.Coordinate), System.Boolean)
   nameWithType: Features.polyline(String, ICollection<Coordinate>, Boolean)
   nameWithType.vb: Features.polyline(String, ICollection(Of Coordinate), Boolean)
 - uid: Fab.Geo.Lua.Interop.Features.polyline*
@@ -4339,13 +4339,13 @@ references:
   isSpec: "True"
   fullName: Fab.Geo.UI.ControlPanel.AddButton
   nameWithType: ControlPanel.AddButton
-- uid: Fab.Geo.UI.ControlPanel.AddChoice(System.String,System.Collections.Generic.List{System.String},System.String)
+- uid: Fab.Geo.UI.ControlPanel.AddChoice(System.String,List{System.String},System.String)
   name: AddChoice(String, List<String>, String)
-  href: api/Fab.Geo.UI.ControlPanel.html#Fab_Geo_UI_ControlPanel_AddChoice_System_String_System_Collections_Generic_List_System_String__System_String_
-  commentId: M:Fab.Geo.UI.ControlPanel.AddChoice(System.String,System.Collections.Generic.List{System.String},System.String)
+  href: api/Fab.Geo.UI.ControlPanel.html#Fab_Geo_UI_ControlPanel_AddChoice_System_String_List_System_String__System_String_
+  commentId: M:Fab.Geo.UI.ControlPanel.AddChoice(System.String,List{System.String},System.String)
   name.vb: AddChoice(String, List(Of String), String)
-  fullName: Fab.Geo.UI.ControlPanel.AddChoice(System.String, System.Collections.Generic.List<System.String>, System.String)
-  fullName.vb: Fab.Geo.UI.ControlPanel.AddChoice(System.String, System.Collections.Generic.List(Of System.String), System.String)
+  fullName: Fab.Geo.UI.ControlPanel.AddChoice(System.String, List<System.String>, System.String)
+  fullName.vb: Fab.Geo.UI.ControlPanel.AddChoice(System.String, List(Of System.String), System.String)
   nameWithType: ControlPanel.AddChoice(String, List<String>, String)
   nameWithType.vb: ControlPanel.AddChoice(String, List(Of String), String)
 - uid: Fab.Geo.UI.ControlPanel.AddChoice*
@@ -4848,13 +4848,13 @@ references:
   isSpec: "True"
   fullName: Fab.Geo.World.OverlayStrength
   nameWithType: World.OverlayStrength
-- uid: Fab.Geo.World.RegenerateChunks(System.Collections.Generic.List{Fab.Geo.WorldChunk})
+- uid: Fab.Geo.World.RegenerateChunks(List{Fab.Geo.WorldChunk})
   name: RegenerateChunks(List<WorldChunk>)
-  href: api/Fab.Geo.World.html#Fab_Geo_World_RegenerateChunks_System_Collections_Generic_List_Fab_Geo_WorldChunk__
-  commentId: M:Fab.Geo.World.RegenerateChunks(System.Collections.Generic.List{Fab.Geo.WorldChunk})
+  href: api/Fab.Geo.World.html#Fab_Geo_World_RegenerateChunks_List_Fab_Geo_WorldChunk__
+  commentId: M:Fab.Geo.World.RegenerateChunks(List{Fab.Geo.WorldChunk})
   name.vb: RegenerateChunks(List(Of WorldChunk))
-  fullName: Fab.Geo.World.RegenerateChunks(System.Collections.Generic.List<Fab.Geo.WorldChunk>)
-  fullName.vb: Fab.Geo.World.RegenerateChunks(System.Collections.Generic.List(Of Fab.Geo.WorldChunk))
+  fullName: Fab.Geo.World.RegenerateChunks(List<Fab.Geo.WorldChunk>)
+  fullName.vb: Fab.Geo.World.RegenerateChunks(List(Of Fab.Geo.WorldChunk))
   nameWithType: World.RegenerateChunks(List<WorldChunk>)
   nameWithType.vb: World.RegenerateChunks(List(Of WorldChunk))
 - uid: Fab.Geo.World.RegenerateChunks*
@@ -6095,13 +6095,13 @@ references:
   commentId: M:Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String,Fab.WorldMod.Localization.StringTableCollection)
   fullName: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String, Fab.WorldMod.Localization.StringTableCollection)
   nameWithType: LocalizationImportUtility.ImportFromCSV(String, StringTableCollection)
-- uid: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String,System.Collections.Generic.List{Fab.WorldMod.Localization.LocalStringKey},System.Collections.Generic.List{Fab.WorldMod.Localization.StringTableAsset})
+- uid: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String,List{Fab.WorldMod.Localization.LocalStringKey},List{Fab.WorldMod.Localization.StringTableAsset})
   name: ImportFromCSV(String, List<LocalStringKey>, List<StringTableAsset>)
-  href: api/Fab.WorldMod.Localization.LocalizationImportUtility.html#Fab_WorldMod_Localization_LocalizationImportUtility_ImportFromCSV_System_String_System_Collections_Generic_List_Fab_WorldMod_Localization_LocalStringKey__System_Collections_Generic_List_Fab_WorldMod_Localization_StringTableAsset__
-  commentId: M:Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String,System.Collections.Generic.List{Fab.WorldMod.Localization.LocalStringKey},System.Collections.Generic.List{Fab.WorldMod.Localization.StringTableAsset})
+  href: api/Fab.WorldMod.Localization.LocalizationImportUtility.html#Fab_WorldMod_Localization_LocalizationImportUtility_ImportFromCSV_System_String_List_Fab_WorldMod_Localization_LocalStringKey__List_Fab_WorldMod_Localization_StringTableAsset__
+  commentId: M:Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String,List{Fab.WorldMod.Localization.LocalStringKey},List{Fab.WorldMod.Localization.StringTableAsset})
   name.vb: ImportFromCSV(String, List(Of LocalStringKey), List(Of StringTableAsset))
-  fullName: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String, System.Collections.Generic.List<Fab.WorldMod.Localization.LocalStringKey>, System.Collections.Generic.List<Fab.WorldMod.Localization.StringTableAsset>)
-  fullName.vb: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String, System.Collections.Generic.List(Of Fab.WorldMod.Localization.LocalStringKey), System.Collections.Generic.List(Of Fab.WorldMod.Localization.StringTableAsset))
+  fullName: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String, List<Fab.WorldMod.Localization.LocalStringKey>, List<Fab.WorldMod.Localization.StringTableAsset>)
+  fullName.vb: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV(System.String, List(Of Fab.WorldMod.Localization.LocalStringKey), List(Of Fab.WorldMod.Localization.StringTableAsset))
   nameWithType: LocalizationImportUtility.ImportFromCSV(String, List<LocalStringKey>, List<StringTableAsset>)
   nameWithType.vb: LocalizationImportUtility.ImportFromCSV(String, List(Of LocalStringKey), List(Of StringTableAsset))
 - uid: Fab.WorldMod.Localization.LocalizationImportUtility.ImportFromCSV*
@@ -6450,13 +6450,13 @@ references:
   isSpec: "True"
   fullName: Fab.WorldMod.Localization.StringTableCollection.SetLocalString
   nameWithType: StringTableCollection.SetLocalString
-- uid: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String,System.Collections.Generic.IEnumerable{System.ValueTuple{Fab.WorldMod.Localization.Locale,System.String}})
+- uid: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String,IEnumerable{System.ValueTuple{Fab.WorldMod.Localization.Locale,System.String}})
   name: SetLocalStrings(String, IEnumerable<(Locale locale, String localString)>)
-  href: api/Fab.WorldMod.Localization.StringTableCollection.html#Fab_WorldMod_Localization_StringTableCollection_SetLocalStrings_System_String_System_Collections_Generic_IEnumerable_System_ValueTuple_Fab_WorldMod_Localization_Locale_System_String___
-  commentId: M:Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String,System.Collections.Generic.IEnumerable{System.ValueTuple{Fab.WorldMod.Localization.Locale,System.String}})
+  href: api/Fab.WorldMod.Localization.StringTableCollection.html#Fab_WorldMod_Localization_StringTableCollection_SetLocalStrings_System_String_IEnumerable_System_ValueTuple_Fab_WorldMod_Localization_Locale_System_String___
+  commentId: M:Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String,IEnumerable{System.ValueTuple{Fab.WorldMod.Localization.Locale,System.String}})
   name.vb: SetLocalStrings(String, IEnumerable(Of (locale As Locale, localString As String)))
-  fullName: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String, System.Collections.Generic.IEnumerable<System.ValueTuple<Fab.WorldMod.Localization.Locale, System.String>>)
-  fullName.vb: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String, System.Collections.Generic.IEnumerable(Of System.ValueTuple(Of Fab.WorldMod.Localization.Locale, System.String)))
+  fullName: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String, IEnumerable<System.ValueTuple<Fab.WorldMod.Localization.Locale, System.String>>)
+  fullName.vb: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings(System.String, IEnumerable(Of System.ValueTuple(Of Fab.WorldMod.Localization.Locale, System.String)))
   nameWithType: StringTableCollection.SetLocalStrings(String, IEnumerable<(Locale locale, String localString)>)
   nameWithType.vb: StringTableCollection.SetLocalStrings(String, IEnumerable(Of (locale As Locale, localString As String)))
 - uid: Fab.WorldMod.Localization.StringTableCollection.SetLocalStrings*
@@ -8795,13 +8795,13 @@ references:
   isSpec: "True"
   fullName: Fab.WorldMod.Synth.Synthesizer.AddLayer
   nameWithType: Synthesizer.AddLayer
-- uid: Fab.WorldMod.Synth.Synthesizer.AddLayers(System.Collections.Generic.IEnumerable{Fab.WorldMod.Synth.SynthLayer},System.Int32)
+- uid: Fab.WorldMod.Synth.Synthesizer.AddLayers(IEnumerable{Fab.WorldMod.Synth.SynthLayer},System.Int32)
   name: AddLayers(IEnumerable<SynthLayer>, Int32)
-  href: api/Fab.WorldMod.Synth.Synthesizer.html#Fab_WorldMod_Synth_Synthesizer_AddLayers_System_Collections_Generic_IEnumerable_Fab_WorldMod_Synth_SynthLayer__System_Int32_
-  commentId: M:Fab.WorldMod.Synth.Synthesizer.AddLayers(System.Collections.Generic.IEnumerable{Fab.WorldMod.Synth.SynthLayer},System.Int32)
+  href: api/Fab.WorldMod.Synth.Synthesizer.html#Fab_WorldMod_Synth_Synthesizer_AddLayers_IEnumerable_Fab_WorldMod_Synth_SynthLayer__System_Int32_
+  commentId: M:Fab.WorldMod.Synth.Synthesizer.AddLayers(IEnumerable{Fab.WorldMod.Synth.SynthLayer},System.Int32)
   name.vb: AddLayers(IEnumerable(Of SynthLayer), Int32)
-  fullName: Fab.WorldMod.Synth.Synthesizer.AddLayers(System.Collections.Generic.IEnumerable<Fab.WorldMod.Synth.SynthLayer>, System.Int32)
-  fullName.vb: Fab.WorldMod.Synth.Synthesizer.AddLayers(System.Collections.Generic.IEnumerable(Of Fab.WorldMod.Synth.SynthLayer), System.Int32)
+  fullName: Fab.WorldMod.Synth.Synthesizer.AddLayers(IEnumerable<Fab.WorldMod.Synth.SynthLayer>, System.Int32)
+  fullName.vb: Fab.WorldMod.Synth.Synthesizer.AddLayers(IEnumerable(Of Fab.WorldMod.Synth.SynthLayer), System.Int32)
   nameWithType: Synthesizer.AddLayers(IEnumerable<SynthLayer>, Int32)
   nameWithType.vb: Synthesizer.AddLayers(IEnumerable(Of SynthLayer), Int32)
 - uid: Fab.WorldMod.Synth.Synthesizer.AddLayers*
@@ -9375,13 +9375,13 @@ references:
   isSpec: "True"
   fullName: Fab.WorldMod.Synth.SynthProcessor.Dispose
   nameWithType: SynthProcessor.Dispose
-- uid: Fab.WorldMod.Synth.SynthProcessor.Process(System.Collections.Generic.List{Fab.WorldMod.Synth.SynthLayer},RenderTexture)
+- uid: Fab.WorldMod.Synth.SynthProcessor.Process(List{Fab.WorldMod.Synth.SynthLayer},RenderTexture)
   name: Process(List<SynthLayer>, RenderTexture)
-  href: api/Fab.WorldMod.Synth.SynthProcessor.html#Fab_WorldMod_Synth_SynthProcessor_Process_System_Collections_Generic_List_Fab_WorldMod_Synth_SynthLayer__RenderTexture_
-  commentId: M:Fab.WorldMod.Synth.SynthProcessor.Process(System.Collections.Generic.List{Fab.WorldMod.Synth.SynthLayer},RenderTexture)
+  href: api/Fab.WorldMod.Synth.SynthProcessor.html#Fab_WorldMod_Synth_SynthProcessor_Process_List_Fab_WorldMod_Synth_SynthLayer__RenderTexture_
+  commentId: M:Fab.WorldMod.Synth.SynthProcessor.Process(List{Fab.WorldMod.Synth.SynthLayer},RenderTexture)
   name.vb: Process(List(Of SynthLayer), RenderTexture)
-  fullName: Fab.WorldMod.Synth.SynthProcessor.Process(System.Collections.Generic.List<Fab.WorldMod.Synth.SynthLayer>, RenderTexture)
-  fullName.vb: Fab.WorldMod.Synth.SynthProcessor.Process(System.Collections.Generic.List(Of Fab.WorldMod.Synth.SynthLayer), RenderTexture)
+  fullName: Fab.WorldMod.Synth.SynthProcessor.Process(List<Fab.WorldMod.Synth.SynthLayer>, RenderTexture)
+  fullName.vb: Fab.WorldMod.Synth.SynthProcessor.Process(List(Of Fab.WorldMod.Synth.SynthLayer), RenderTexture)
   nameWithType: SynthProcessor.Process(List<SynthLayer>, RenderTexture)
   nameWithType.vb: SynthProcessor.Process(List(Of SynthLayer), RenderTexture)
 - uid: Fab.WorldMod.Synth.SynthProcessor.Process*
@@ -9624,13 +9624,13 @@ references:
   commentId: T:Fab.WorldMod.UI.DataPanelController
   fullName: Fab.WorldMod.UI.DataPanelController
   nameWithType: DataPanelController
-- uid: Fab.WorldMod.UI.DataPanelController.#ctor(VisualElement,System.Collections.Generic.IList{Fab.WorldMod.Dataset},Fab.WorldMod.Sequence{Fab.WorldMod.Dataset})
+- uid: Fab.WorldMod.UI.DataPanelController.#ctor(VisualElement,IList{Fab.WorldMod.Dataset},Fab.WorldMod.Sequence{Fab.WorldMod.Dataset})
   name: DataPanelController(VisualElement, IList<Dataset>, Sequence<Dataset>)
-  href: api/Fab.WorldMod.UI.DataPanelController.html#Fab_WorldMod_UI_DataPanelController__ctor_VisualElement_System_Collections_Generic_IList_Fab_WorldMod_Dataset__Fab_WorldMod_Sequence_Fab_WorldMod_Dataset__
-  commentId: M:Fab.WorldMod.UI.DataPanelController.#ctor(VisualElement,System.Collections.Generic.IList{Fab.WorldMod.Dataset},Fab.WorldMod.Sequence{Fab.WorldMod.Dataset})
+  href: api/Fab.WorldMod.UI.DataPanelController.html#Fab_WorldMod_UI_DataPanelController__ctor_VisualElement_IList_Fab_WorldMod_Dataset__Fab_WorldMod_Sequence_Fab_WorldMod_Dataset__
+  commentId: M:Fab.WorldMod.UI.DataPanelController.#ctor(VisualElement,IList{Fab.WorldMod.Dataset},Fab.WorldMod.Sequence{Fab.WorldMod.Dataset})
   name.vb: DataPanelController(VisualElement, IList(Of Dataset), Sequence(Of Dataset))
-  fullName: Fab.WorldMod.UI.DataPanelController.DataPanelController(VisualElement, System.Collections.Generic.IList<Fab.WorldMod.Dataset>, Fab.WorldMod.Sequence<Fab.WorldMod.Dataset>)
-  fullName.vb: Fab.WorldMod.UI.DataPanelController.DataPanelController(VisualElement, System.Collections.Generic.IList(Of Fab.WorldMod.Dataset), Fab.WorldMod.Sequence(Of Fab.WorldMod.Dataset))
+  fullName: Fab.WorldMod.UI.DataPanelController.DataPanelController(VisualElement, IList<Fab.WorldMod.Dataset>, Fab.WorldMod.Sequence<Fab.WorldMod.Dataset>)
+  fullName.vb: Fab.WorldMod.UI.DataPanelController.DataPanelController(VisualElement, IList(Of Fab.WorldMod.Dataset), Fab.WorldMod.Sequence(Of Fab.WorldMod.Dataset))
   nameWithType: DataPanelController.DataPanelController(VisualElement, IList<Dataset>, Sequence<Dataset>)
   nameWithType.vb: DataPanelController.DataPanelController(VisualElement, IList(Of Dataset), Sequence(Of Dataset))
 - uid: Fab.WorldMod.UI.DataPanelController.#ctor*
@@ -9943,13 +9943,13 @@ references:
   isSpec: "True"
   fullName: Fab.WorldMod.UI.DragDrop.AddDropTarget
   nameWithType: DragDrop.AddDropTarget
-- uid: Fab.WorldMod.UI.DragDrop.AddDropTargets(System.Collections.Generic.IEnumerable{VisualElement})
+- uid: Fab.WorldMod.UI.DragDrop.AddDropTargets(IEnumerable{VisualElement})
   name: AddDropTargets(IEnumerable<VisualElement>)
-  href: api/Fab.WorldMod.UI.DragDrop.html#Fab_WorldMod_UI_DragDrop_AddDropTargets_System_Collections_Generic_IEnumerable_VisualElement__
-  commentId: M:Fab.WorldMod.UI.DragDrop.AddDropTargets(System.Collections.Generic.IEnumerable{VisualElement})
+  href: api/Fab.WorldMod.UI.DragDrop.html#Fab_WorldMod_UI_DragDrop_AddDropTargets_IEnumerable_VisualElement__
+  commentId: M:Fab.WorldMod.UI.DragDrop.AddDropTargets(IEnumerable{VisualElement})
   name.vb: AddDropTargets(IEnumerable(Of VisualElement))
-  fullName: Fab.WorldMod.UI.DragDrop.AddDropTargets(System.Collections.Generic.IEnumerable<VisualElement>)
-  fullName.vb: Fab.WorldMod.UI.DragDrop.AddDropTargets(System.Collections.Generic.IEnumerable(Of VisualElement))
+  fullName: Fab.WorldMod.UI.DragDrop.AddDropTargets(IEnumerable<VisualElement>)
+  fullName.vb: Fab.WorldMod.UI.DragDrop.AddDropTargets(IEnumerable(Of VisualElement))
   nameWithType: DragDrop.AddDropTargets(IEnumerable<VisualElement>)
   nameWithType.vb: DragDrop.AddDropTargets(IEnumerable(Of VisualElement))
 - uid: Fab.WorldMod.UI.DragDrop.AddDropTargets*
@@ -11593,13 +11593,13 @@ references:
   isSpec: "True"
   fullName: Fab.WorldMod.WorldFeatureCollection.Add
   nameWithType: WorldFeatureCollection.Add
-- uid: Fab.WorldMod.WorldFeatureCollection.AddRange(System.Collections.Generic.IEnumerable{Fab.WorldMod.WorldFeature})
+- uid: Fab.WorldMod.WorldFeatureCollection.AddRange(IEnumerable{Fab.WorldMod.WorldFeature})
   name: AddRange(IEnumerable<WorldFeature>)
-  href: api/Fab.WorldMod.WorldFeatureCollection.html#Fab_WorldMod_WorldFeatureCollection_AddRange_System_Collections_Generic_IEnumerable_Fab_WorldMod_WorldFeature__
-  commentId: M:Fab.WorldMod.WorldFeatureCollection.AddRange(System.Collections.Generic.IEnumerable{Fab.WorldMod.WorldFeature})
+  href: api/Fab.WorldMod.WorldFeatureCollection.html#Fab_WorldMod_WorldFeatureCollection_AddRange_IEnumerable_Fab_WorldMod_WorldFeature__
+  commentId: M:Fab.WorldMod.WorldFeatureCollection.AddRange(IEnumerable{Fab.WorldMod.WorldFeature})
   name.vb: AddRange(IEnumerable(Of WorldFeature))
-  fullName: Fab.WorldMod.WorldFeatureCollection.AddRange(System.Collections.Generic.IEnumerable<Fab.WorldMod.WorldFeature>)
-  fullName.vb: Fab.WorldMod.WorldFeatureCollection.AddRange(System.Collections.Generic.IEnumerable(Of Fab.WorldMod.WorldFeature))
+  fullName: Fab.WorldMod.WorldFeatureCollection.AddRange(IEnumerable<Fab.WorldMod.WorldFeature>)
+  fullName.vb: Fab.WorldMod.WorldFeatureCollection.AddRange(IEnumerable(Of Fab.WorldMod.WorldFeature))
   nameWithType: WorldFeatureCollection.AddRange(IEnumerable<WorldFeature>)
   nameWithType.vb: WorldFeatureCollection.AddRange(IEnumerable(Of WorldFeature))
 - uid: Fab.WorldMod.WorldFeatureCollection.AddRange*
