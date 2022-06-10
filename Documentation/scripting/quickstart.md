@@ -1,6 +1,6 @@
-# Getting started with FabGeo scripting
+# Getting started with WorldMod scripting
 
-FabGeo supports modding with **Lua scripting**. Script files with the `.lua` extension in the ``Documents/FabGeo/Scripts/` folder are loaded after the application has started.
+WorldMod supports modding with **Lua scripting**. Script files with the `.lua` extension in the ``Documents/WorldMod/Scripts/` folder are loaded after the application has started.
 
 FabGeo is using a custom fork of [MoonSharp](https://www.moonsharp.org/), a Lua unterpreter written in C#. It's syntax is mostly the same to standard Lua with a few exceptions you can check out [here](https://www.moonsharp.org/moonluadifferences.html).
 
