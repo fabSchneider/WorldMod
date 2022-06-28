@@ -56,14 +56,22 @@ namespace Fab.Lua.Console
 
 			consoleElem = doc.rootVisualElement.Q(className: className);
 
-			//consoleElem.Q<Button>(name: toggleBtnName).clicked += () => consoleElem.ToggleInClassList(hiddenClassName);
-			//consoleElem.Q<Button>(name: resetBtnName).clicked += () =>
-			//{
-			//	consoleComp.ResetConsole();
-			//	UpdateHistory();
-			//	consoleTextField.SetValueWithoutNotify(string.Empty);
-			//	errorMsg.style.display = DisplayStyle.None;
-			//};
+			Button toggleButton = consoleElem.Q<Button>(name: toggleBtnName);
+			toggleButton.text = consoleElem.ClassListContains(hiddenClassName) ? "«" : "»";
+
+			toggleButton.clicked += () =>
+			{
+				consoleElem.ToggleInClassList(hiddenClassName);
+				toggleButton.text = consoleElem.ClassListContains(hiddenClassName) ? "«" : "»";
+			};
+			
+			consoleElem.Q<Button>(name: resetBtnName).clicked += () =>
+			{
+				consoleComp.ResetConsole();
+				UpdateHistory();
+				consoleTextField.SetValueWithoutNotify(string.Empty);
+				errorMsg.style.display = DisplayStyle.None;
+			};
 
 			consoleTextField = consoleElem.Q<TextField>(className: textFieldClassName);
 

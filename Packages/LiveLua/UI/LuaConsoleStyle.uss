@@ -1,3 +1,105 @@
+:root {
+    --window-color: rgb(34, 34, 34);
+    --window-border-color: rgb(100, 100, 100);
+    --scroller-color: rgb(140, 140, 140);
+    --scroller-size: 14px;
+}
+
+.unity-scroll-view--vertical-flipped #unity-content-and-vertical-scroll-container {
+    flex-direction: row-reverse;
+}
+
+.unity-scroll-view .unity-repeat-button {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: var(--scroller-color);
+}
+
+.unity-scroll-view .unity-base-slider__tracker {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-scroll-view .unity-base-slider__dragger {
+    background-color: var(--scroller-color);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.unity-scroller--vertical .unity-base-slider__dragger {
+    left: 2px;
+    width: 10px;
+    min-width: 10px;
+}
+
+.unity-scroller--horizontal .unity-base-slider__dragger {
+    top: 2px;
+    height: 10px;
+    min-height: 10px;
+}
+
+.unity-scroller--vertical {
+    width: var(--scroller-size);
+}
+
+.unity-scroller--horizontal {
+    height: var(--scroller-size);
+}
+
+.unity-scroller > .unity-scroller__low-button {
+    width: var(--scroller-size);
+    min-width: var(--scroller-size);
+    height: var(--scroller-size);
+    min-height: var(--scroller-size);
+}
+
+.unity-scroller > .unity-scroller__high-button {
+    width: var(--scroller-size);
+    min-width: var(--scroller-size);
+    height: var(--scroller-size);
+    min-height: var(--scroller-size);
+}
+
+.unity-scroller--vertical > .unity-scroller__slider {
+    width: var(--scroller-size);
+    min-width: var(--scroller-size);
+    margin-top: var(--scroller-size);
+    margin-bottom: var(--scroller-size);
+}
+
+.unity-scroller--vertical #unity-tracker {
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.unity-scroller--horizontal > .unity-scroller__slider {
+    height: var(--scroller-size);
+    min-height: var(--scroller-size);
+    margin-left: var(--scroller-size);
+    margin-right: var(--scroller-size);
+}
+
+.unity-scroller--horizontal #unity-tracker {
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.unity-button {
+    background-color: var(--window-color);
+    border-left-color: var(--window-border-color);
+    border-right-color: var(--window-border-color);
+    border-top-color: var(--window-border-color);
+    border-bottom-color: var(--window-border-color);
+}
+
 .lua-console {
     position: absolute;
     left: 0;
@@ -81,7 +183,9 @@
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
     height: 28px;
-    font-size: 22px;
+    font-size: 20px;
+    color: rgb(176, 176, 176);
+    -unity-text-align: upper-center;
 }
 
 .lua-console__history {
