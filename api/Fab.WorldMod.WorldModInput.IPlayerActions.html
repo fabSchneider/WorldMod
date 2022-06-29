@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class WorldCameraController
+    <title>Interface WorldModInput.IPlayerActions
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class WorldCameraController
+    <meta name="title" content="Interface WorldModInput.IPlayerActions
    ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -68,141 +68,30 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Fab.WorldMod.WorldCameraController">
+            <article class="content wrap" id="_content" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions">
   
   
-  <h1 id="Fab_WorldMod_WorldCameraController" data-uid="Fab.WorldMod.WorldCameraController" class="text-break">Class WorldCameraController
+  <h1 id="Fab_WorldMod_WorldModInput_IPlayerActions" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions" class="text-break">Interface WorldModInput.IPlayerActions
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">WorldCameraController</span></div>
-  </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="Fab.WorldMod.IWorldCameraController.html">IWorldCameraController</a></div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.html">Fab.WorldMod</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Fab_WorldMod_WorldCameraController_syntax">Syntax</h5>
+  <h5 id="Fab_WorldMod_WorldModInput_IPlayerActions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class WorldCameraController : MonoBehaviour, IWorldCameraController</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IPlayerActions</code></pre>
   </div>
-  <h3 id="properties">Properties
-  </h3>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_ControlEnabled_" data-uid="Fab.WorldMod.WorldCameraController.ControlEnabled*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_ControlEnabled" data-uid="Fab.WorldMod.WorldCameraController.ControlEnabled">ControlEnabled</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ControlEnabled { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_GetCoordinate_" data-uid="Fab.WorldMod.WorldCameraController.GetCoordinate*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_GetCoordinate" data-uid="Fab.WorldMod.WorldCameraController.GetCoordinate">GetCoordinate()</h4>
+  <a id="Fab_WorldMod_WorldModInput_IPlayerActions_OnDelta_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnDelta*"></a>
+  <h4 id="Fab_WorldMod_WorldModInput_IPlayerActions_OnDelta_InputAction_CallbackContext_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnDelta(InputAction.CallbackContext)">OnDelta(InputAction.CallbackContext)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Coordinate GetCoordinate()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_GetHeading_" data-uid="Fab.WorldMod.WorldCameraController.GetHeading*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_GetHeading" data-uid="Fab.WorldMod.WorldCameraController.GetHeading">GetHeading()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float GetHeading()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_GetZoom_" data-uid="Fab.WorldMod.WorldCameraController.GetZoom*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_GetZoom" data-uid="Fab.WorldMod.WorldCameraController.GetZoom">GetZoom()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float GetZoom()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_SetCoordinate_" data-uid="Fab.WorldMod.WorldCameraController.SetCoordinate*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_SetCoordinate_Fab_Geo_Coordinate_" data-uid="Fab.WorldMod.WorldCameraController.SetCoordinate(Fab.Geo.Coordinate)">SetCoordinate(Coordinate)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetCoordinate(Coordinate coord)</code></pre>
+    <pre><code class="lang-csharp hljs">void OnDelta(InputAction.CallbackContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -215,21 +104,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a></td>
-        <td><span class="parametername">coord</span></td>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
+        <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_SetZoom_" data-uid="Fab.WorldMod.WorldCameraController.SetZoom*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_SetZoom_System_Single_" data-uid="Fab.WorldMod.WorldCameraController.SetZoom(System.Single)">SetZoom(Single)</h4>
+  <a id="Fab_WorldMod_WorldModInput_IPlayerActions_OnOpenTerminal_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnOpenTerminal*"></a>
+  <h4 id="Fab_WorldMod_WorldModInput_IPlayerActions_OnOpenTerminal_InputAction_CallbackContext_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnOpenTerminal(InputAction.CallbackContext)">OnOpenTerminal(InputAction.CallbackContext)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetZoom(float zoom)</code></pre>
+    <pre><code class="lang-csharp hljs">void OnOpenTerminal(InputAction.CallbackContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -242,21 +131,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td><span class="parametername">zoom</span></td>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
+        <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_SpinCamera_" data-uid="Fab.WorldMod.WorldCameraController.SpinCamera*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_SpinCamera_Vector4_" data-uid="Fab.WorldMod.WorldCameraController.SpinCamera(Vector4)">SpinCamera(Vector4)</h4>
+  <a id="Fab_WorldMod_WorldModInput_IPlayerActions_OnOpenTerminalFull_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnOpenTerminalFull*"></a>
+  <h4 id="Fab_WorldMod_WorldModInput_IPlayerActions_OnOpenTerminalFull_InputAction_CallbackContext_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnOpenTerminalFull(InputAction.CallbackContext)">OnOpenTerminalFull(InputAction.CallbackContext)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SpinCamera(Vector4 axis)</code></pre>
+    <pre><code class="lang-csharp hljs">void OnOpenTerminalFull(InputAction.CallbackContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -269,16 +158,93 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Vector4</span></td>
-        <td><span class="parametername">axis</span></td>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
+        <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="Fab.WorldMod.IWorldCameraController.html">IWorldCameraController</a>
+  
+  
+  <a id="Fab_WorldMod_WorldModInput_IPlayerActions_OnOrbit_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnOrbit*"></a>
+  <h4 id="Fab_WorldMod_WorldModInput_IPlayerActions_OnOrbit_InputAction_CallbackContext_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnOrbit(InputAction.CallbackContext)">OnOrbit(InputAction.CallbackContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnOrbit(InputAction.CallbackContext context)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Fab_WorldMod_WorldModInput_IPlayerActions_OnPan_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnPan*"></a>
+  <h4 id="Fab_WorldMod_WorldModInput_IPlayerActions_OnPan_InputAction_CallbackContext_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnPan(InputAction.CallbackContext)">OnPan(InputAction.CallbackContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnPan(InputAction.CallbackContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Fab_WorldMod_WorldModInput_IPlayerActions_OnZoom_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnZoom*"></a>
+  <h4 id="Fab_WorldMod_WorldModInput_IPlayerActions_OnZoom_InputAction_CallbackContext_" data-uid="Fab.WorldMod.WorldModInput.IPlayerActions.OnZoom(InputAction.CallbackContext)">OnZoom(InputAction.CallbackContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnZoom(InputAction.CallbackContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">InputAction.CallbackContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class WorldCameraController
+    <title>Class IOModule
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class WorldCameraController
+    <meta name="title" content="Class IOModule
    ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -68,39 +68,39 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Fab.WorldMod.WorldCameraController">
+            <article class="content wrap" id="_content" data-uid="Fab.WorldMod.Lua.Interop.IOModule">
   
   
-  <h1 id="Fab_WorldMod_WorldCameraController" data-uid="Fab.WorldMod.WorldCameraController" class="text-break">Class WorldCameraController
+  <h1 id="Fab_WorldMod_Lua_Interop_IOModule" data-uid="Fab.WorldMod.Lua.Interop.IOModule" class="text-break">Class IOModule
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">WorldCameraController</span></div>
+    <div class="level1"><span class="xref">IOModule</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="Fab.WorldMod.IWorldCameraController.html">IWorldCameraController</a></div>
+    <div><span class="xref">ILuaObjectInitialize</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.html">Fab.WorldMod</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.Lua.Interop.html">Fab.WorldMod.Lua.Interop</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
-  <h5 id="Fab_WorldMod_WorldCameraController_syntax">Syntax</h5>
+  <h5 id="Fab_WorldMod_Lua_Interop_IOModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class WorldCameraController : MonoBehaviour, IWorldCameraController</code></pre>
+    <pre><code class="lang-csharp hljs">public class IOModule : LuaObject, ILuaObjectInitialize</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_ControlEnabled_" data-uid="Fab.WorldMod.WorldCameraController.ControlEnabled*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_ControlEnabled" data-uid="Fab.WorldMod.WorldCameraController.ControlEnabled">ControlEnabled</h4>
+  <a id="Fab_WorldMod_Lua_Interop_IOModule_data_dir_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.data_dir*"></a>
+  <h4 id="Fab_WorldMod_Lua_Interop_IOModule_data_dir" data-uid="Fab.WorldMod.Lua.Interop.IOModule.data_dir">data_dir</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ControlEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string data_dir { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -112,7 +112,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -121,88 +121,13 @@
   </h3>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_GetCoordinate_" data-uid="Fab.WorldMod.WorldCameraController.GetCoordinate*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_GetCoordinate" data-uid="Fab.WorldMod.WorldCameraController.GetCoordinate">GetCoordinate()</h4>
+  <a id="Fab_WorldMod_Lua_Interop_IOModule_CheckLoadPath_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.CheckLoadPath*"></a>
+  <h4 id="Fab_WorldMod_Lua_Interop_IOModule_CheckLoadPath_System_String_System_String__System_String__" data-uid="Fab.WorldMod.Lua.Interop.IOModule.CheckLoadPath(System.String,System.String@,System.String@)">CheckLoadPath(String, out String, out String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Coordinate GetCoordinate()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_GetHeading_" data-uid="Fab.WorldMod.WorldCameraController.GetHeading*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_GetHeading" data-uid="Fab.WorldMod.WorldCameraController.GetHeading">GetHeading()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float GetHeading()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_GetZoom_" data-uid="Fab.WorldMod.WorldCameraController.GetZoom*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_GetZoom" data-uid="Fab.WorldMod.WorldCameraController.GetZoom">GetZoom()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float GetZoom()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="Fab_WorldMod_WorldCameraController_SetCoordinate_" data-uid="Fab.WorldMod.WorldCameraController.SetCoordinate*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_SetCoordinate_Fab_Geo_Coordinate_" data-uid="Fab.WorldMod.WorldCameraController.SetCoordinate(Fab.Geo.Coordinate)">SetCoordinate(Coordinate)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetCoordinate(Coordinate coord)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void CheckLoadPath(string path, out string loadPath, out string extension)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -215,21 +140,41 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a></td>
-        <td><span class="parametername">coord</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">loadPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">extension</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_SetZoom_" data-uid="Fab.WorldMod.WorldCameraController.SetZoom*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_SetZoom_System_Single_" data-uid="Fab.WorldMod.WorldCameraController.SetZoom(System.Single)">SetZoom(Single)</h4>
+  <a id="Fab_WorldMod_Lua_Interop_IOModule_Initialize_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.Initialize*"></a>
+  <h4 id="Fab_WorldMod_Lua_Interop_IOModule_Initialize" data-uid="Fab.WorldMod.Lua.Interop.IOModule.Initialize">Initialize()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetZoom(float zoom)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Initialize()</code></pre>
+  </div>
+  
+  
+  <a id="Fab_WorldMod_Lua_Interop_IOModule_load_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.load*"></a>
+  <h4 id="Fab_WorldMod_Lua_Interop_IOModule_load_System_String_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.load(System.String)">load(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object load(string file_path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -242,21 +187,36 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td><span class="parametername">zoom</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">file_path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="Fab_WorldMod_WorldCameraController_SpinCamera_" data-uid="Fab.WorldMod.WorldCameraController.SpinCamera*"></a>
-  <h4 id="Fab_WorldMod_WorldCameraController_SpinCamera_Vector4_" data-uid="Fab.WorldMod.WorldCameraController.SpinCamera(Vector4)">SpinCamera(Vector4)</h4>
+  <a id="Fab_WorldMod_Lua_Interop_IOModule_load_image_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.load_image*"></a>
+  <h4 id="Fab_WorldMod_Lua_Interop_IOModule_load_image_System_String_System_String_" data-uid="Fab.WorldMod.Lua.Interop.IOModule.load_image(System.String,System.String)">load_image(String, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SpinCamera(Vector4 axis)</code></pre>
+    <pre><code class="lang-csharp hljs">public ImageProxy load_image(string file_path, string format = &quot;RGBA8&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -269,15 +229,35 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Vector4</span></td>
-        <td><span class="parametername">axis</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">file_path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">format</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Fab.WorldMod.Lua.Interop.ImageProxy.html">ImageProxy</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Fab.WorldMod.IWorldCameraController.html">IWorldCameraController</a>
+      <span class="xref">ILuaObjectInitialize</span>
   </div>
 </article>
           </div>
