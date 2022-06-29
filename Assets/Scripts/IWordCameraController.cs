@@ -1,4 +1,6 @@
-namespace Fab.Geo
+using Fab.Geo;
+
+namespace Fab.WorldMod
 {
     public interface IWorldCameraController
     {

@@ -1,8 +1,9 @@
 {
-    "name": "Fab.Common",
-    "rootNamespace": "Fab.Common",
+    "name": "Fab.WorldMod.Gen",
+    "rootNamespace": "Fab.WorldMod.Gen",
     "references": [
-        "GUID:d8b63aba1907145bea998dd612889d6b"
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:ac626e45ec0049a47b927d0bd52bd940"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

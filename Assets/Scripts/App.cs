@@ -2,7 +2,7 @@ using UnityEngine;
 using CommandTerminal;
 using UnityEngine.SceneManagement;
 
-namespace Fab.Geo
+namespace Fab.WorldMod
 {
 	/// <summary>
 	/// Class responsible for initializing the app at startup

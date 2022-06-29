@@ -1,0 +1,20 @@
+{
+    "name": "Fab.WorldMod.Gen.Editor",
+    "rootNamespace": "Fab.WorldMod.Gen.Editor",
+    "references": [
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:ac626e45ec0049a47b927d0bd52bd940",
+        "GUID:b2f6028a78bea304ebd9c6c67e5721c3"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

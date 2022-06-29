@@ -1,25 +1,15 @@
+using Unity.Mathematics;
 using UnityEngine;
 
-namespace Fab.Geo.Gen
+namespace Fab.WorldMod.Gen
 {
 	public class GenerateDistanceField
 	{
-		private static readonly string ComputeShaderPath = "Compute/JumpFloodDistance";
-
-		private static readonly string InitMaskKernelName = "InitMask";
-		private static readonly string InitMaskInvertKernelName = "InitMask_Invert";
-		private static readonly string JFAKernelName = "JFA";
-		private static readonly string FillDistanceTransformKernelName = "FillDistanceTransform";
-
-		private int InitMaskKernel;
-		private int InitMaskInvertKernel;
-		private int JFAKernel;
-		private int FillDistanceTransformKernel;
+		private static readonly string ComputeShaderPath = "Compute/GenerateDistanceField";
+		private static readonly int MaxIterations = 5000;
 
 		private ComputeShader compute;
-		private RenderTexture tmp1, tmp2;
-
-		public bool invertMask;
+		private ComputeBuffer changedFlagBuffer;
 
 		public GenerateDistanceField()
 		{
@@ -27,73 +17,84 @@ namespace Fab.Geo.Gen
 
 			if (compute == null)
 				Debug.LogError("Distance field compute shader could not be found");
-
-			InitMaskKernel = compute.FindKernel(InitMaskKernelName);
-			InitMaskInvertKernel = compute.FindKernel(InitMaskInvertKernelName);
-			JFAKernel = compute.FindKernel(JFAKernelName);
-			FillDistanceTransformKernel = compute.FindKernel(FillDistanceTransformKernelName);
 		}
 
-		public void Generate(Texture2D mask, RenderTexture dest)
+		public RenderTexture Generate(Texture2D mask)
 		{
-			InitRenderTexture(mask);
+			if (changedFlagBuffer == null)
+				changedFlagBuffer = new ComputeBuffer(1, sizeof(int));
 
-			int threadGroupsX = Mathf.CeilToInt(mask.width / 8.0f);
-			int threadGroupsY = Mathf.CeilToInt(mask.height / 8.0f);
+			RenderTexture tmpMask = CreateMask(mask);
 
-			// Init Mask
-			Graphics.Blit(mask, tmp1);
+			int passKernel = compute.FindKernel("DistancePass");
 
-			compute.SetInt("Width", mask.width);
-			compute.SetInt("Height", mask.height);
+			RenderTexture distance = new RenderTexture(new RenderTextureDescriptor(tmpMask.width, tmpMask.height, RenderTextureFormat.RFloat));
+			distance.wrapMode = TextureWrapMode.Repeat;
+			distance.enableRandomWrite = true;
+			distance.name = "Distance";
+			Graphics.Blit(tmpMask, distance);
 
-			int kernel = invertMask ? InitMaskInvertKernel : InitMaskKernel;
-			compute.SetTexture(kernel, "Source", tmp1);
-			compute.Dispatch(kernel, threadGroupsX, threadGroupsY, 1);
+			compute.SetTexture(passKernel, "SqrDistanceField", distance);
+			int iY = ExecutePass(distance, new int2(0, 1));
+			int iX = ExecutePass(distance, new int2(1, 0));
+			Debug.Log(Mathf.Max(iX, iY));
 
-			// JFA
-			int stepAmount = (int)Mathf.Log(Mathf.Max(mask.width, mask.height), 2);
+			tmpMask.Release();
+			changedFlagBuffer.Release();
+			changedFlagBuffer = null;
 
-			for (int i = 0; i < stepAmount; i++)
-			{
-				int step = (int)Mathf.Pow(2, stepAmount - i - 1);
-				compute.SetInt("Step", step);
-				compute.SetTexture(JFAKernel, "Source", tmp1);
-				compute.SetTexture(JFAKernel, "Result", tmp2);
-				compute.Dispatch(JFAKernel, threadGroupsX, threadGroupsY, 1);
-				Graphics.Blit(tmp2, tmp1);
+			int normKernel = compute.FindKernel("NormalizeDistance");
+			compute.SetTexture(normKernel, "SqrDistanceField", distance);
+			compute.SetInts("resolution", distance.width, distance.height);
+			compute.SetInt("maxIteration", Mathf.Max(iX, iY));
+			int groupX = (int)math.ceil(distance.width / 8f);
+			int groupY = (int)math.ceil(distance.height / 8f);
+			compute.Dispatch(normKernel, groupX, groupY, 1);
 
-				compute.SetTexture(FillDistanceTransformKernel, "Source", tmp1);
-				compute.SetTexture(FillDistanceTransformKernel, "Result", tmp2);
-				compute.Dispatch(FillDistanceTransformKernel, threadGroupsX, threadGroupsY, 1);
-			}
-
-			compute.SetTexture(FillDistanceTransformKernel, "Source", tmp1);
-			compute.SetTexture(FillDistanceTransformKernel, "Result", tmp2);
-			compute.Dispatch(FillDistanceTransformKernel, threadGroupsX, threadGroupsY, 1);
-
-			Graphics.Blit(tmp2, dest);
-
-			tmp1.Release();
-			tmp1 = null;
-			tmp2.Release();
-			tmp2 = null;
+			return distance;
 		}
 
-		private void InitRenderTexture(Texture source)
-		{
-			if (tmp1 == null || tmp1.width != source.width || tmp1.height != source.height)
-			{
-				tmp1 = new RenderTexture(source.width, source.height, 0,
-					RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
-				tmp1.enableRandomWrite = true;
-				tmp1.Create();
 
-				tmp2 = new RenderTexture(source.width, source.height, 0,
-				   RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
-				tmp2.enableRandomWrite = true;
-				tmp2.Create();
+		private RenderTexture CreateMask(Texture2D source)
+		{
+			RenderTexture mask = new RenderTexture(new RenderTextureDescriptor(source.width, source.height, RenderTextureFormat.RFloat));
+			mask.wrapMode = TextureWrapMode.Repeat;
+			mask.enableRandomWrite = true;
+			Graphics.Blit(source, mask);
+
+			int prepKernel = compute.FindKernel("PrepareMask");
+			compute.SetTexture(prepKernel, "Mask", mask);
+
+			int groupX = (int)math.ceil(mask.width / 8f);
+			int groupY = (int)math.ceil(mask.height / 8f);
+			compute.Dispatch(prepKernel, groupX, groupY, 1);
+			return mask;
+		}
+
+		private int ExecutePass(RenderTexture texture, int2 offset)
+		{
+			compute.SetInts("passOffest", offset.x, offset.y);
+			compute.SetInts("resolution", texture.width, texture.height);
+			int kernel = compute.FindKernel("DistancePass");
+
+			for (int i = 0; i < MaxIterations; i++)
+			{
+				changedFlagBuffer.SetData(new int[] { 0 });
+				compute.SetBuffer(kernel, "ChangedFlag", changedFlagBuffer);
+				compute.SetInt("iterationCount", i);
+
+				int groupX = (int)math.ceil(texture.width / 8f);
+				int groupY = (int)math.ceil(texture.height / 8f);
+				compute.Dispatch(kernel, groupX, groupY, 1);
+
+				int[] numChanges = new int[1];
+				changedFlagBuffer.GetData(numChanges);
+				if (numChanges[0] == 0)
+					return i;
 			}
+
+			Debug.LogError("Max iterations exceeded");
+			return MaxIterations;
 		}
 	}
 }
