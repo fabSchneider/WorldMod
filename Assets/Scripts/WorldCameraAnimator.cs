@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
+using Fab.Geo;
 using UnityEngine;
 
-namespace Fab.Geo
+namespace Fab.WorldMod
 {
 	public interface IWorldCameraAnimator
 	{

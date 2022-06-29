@@ -1,0 +1,24 @@
+{
+    "name": "Fab.WorldMod",
+    "rootNamespace": "Fab.WorldMod",
+    "references": [
+        "GUID:66858421c4a44d042af29faabfbbafb2",
+        "GUID:295bf292576904645bc785544eaaf32f",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:04a8fbc9bd2f28441810a437bfa9c588",
+        "GUID:f6f905bb4b01fab4a9de8590659792d9",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:2caf69e25baef464299abf0be57bf7c7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

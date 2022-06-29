@@ -1,0 +1,16 @@
+{
+    "name": "Fab.Synth.Samples.SimpleSynth",
+    "rootNamespace": "Fab.Synth.Samples",
+    "references": [
+        "GUID:2caf69e25baef464299abf0be57bf7c7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

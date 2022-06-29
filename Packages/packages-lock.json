@@ -22,10 +22,24 @@
       "url": "https://package.openupm.com"
     },
     "com.fab.livelua": {
-      "version": "file:LuaConsole",
+      "version": "file:LiveLua",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
+    },
+    "com.fab.localization": {
+      "version": "file:Localization",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.fab.synth": {
+      "version": "file:Synth",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "12.1.6"
+      }
     },
     "com.fabschneider.commandterminal": {
       "version": "https://github.com/fabSchneider/command_terminal.git?path=/CommandTerminal#v1.4.3",
@@ -198,7 +212,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "fea0883d7e3c11309291f48e40614d7844d5cefa"
+      "hash": "9a4ca897d603b83ad1dc8912cc425d6be5e9b76b"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

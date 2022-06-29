@@ -1,0 +1,269 @@
+:root {
+    --window-color: rgb(34, 34, 34);
+    --window-border-color: rgb(100, 100, 100);
+    --scroller-color: rgb(140, 140, 140);
+    --scroller-size: 14px;
+}
+
+.unity-scroll-view--vertical-flipped #unity-content-and-vertical-scroll-container {
+    flex-direction: row-reverse;
+}
+
+.unity-scroll-view .unity-repeat-button {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: var(--scroller-color);
+}
+
+.unity-scroll-view .unity-base-slider__tracker {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-scroll-view .unity-base-slider__dragger {
+    background-color: var(--scroller-color);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.unity-scroller--vertical .unity-base-slider__dragger {
+    left: 2px;
+    width: 10px;
+    min-width: 10px;
+}
+
+.unity-scroller--horizontal .unity-base-slider__dragger {
+    top: 2px;
+    height: 10px;
+    min-height: 10px;
+}
+
+.unity-scroller--vertical {
+    width: var(--scroller-size);
+}
+
+.unity-scroller--horizontal {
+    height: var(--scroller-size);
+}
+
+.unity-scroller > .unity-scroller__low-button {
+    width: var(--scroller-size);
+    min-width: var(--scroller-size);
+    height: var(--scroller-size);
+    min-height: var(--scroller-size);
+}
+
+.unity-scroller > .unity-scroller__high-button {
+    width: var(--scroller-size);
+    min-width: var(--scroller-size);
+    height: var(--scroller-size);
+    min-height: var(--scroller-size);
+}
+
+.unity-scroller--vertical > .unity-scroller__slider {
+    width: var(--scroller-size);
+    min-width: var(--scroller-size);
+    margin-top: var(--scroller-size);
+    margin-bottom: var(--scroller-size);
+}
+
+.unity-scroller--vertical #unity-tracker {
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.unity-scroller--horizontal > .unity-scroller__slider {
+    height: var(--scroller-size);
+    min-height: var(--scroller-size);
+    margin-left: var(--scroller-size);
+    margin-right: var(--scroller-size);
+}
+
+.unity-scroller--horizontal #unity-tracker {
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.unity-button {
+    background-color: var(--window-color);
+    border-left-color: var(--window-border-color);
+    border-right-color: var(--window-border-color);
+    border-top-color: var(--window-border-color);
+    border-bottom-color: var(--window-border-color);
+}
+
+.lua-console {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    align-items: flex-end;
+    max-height: 100%;
+    flex-direction: row-reverse;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.lua-console--hidden > .lua-console__container {
+    display: none;
+}
+
+.lua-console__container {
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-end;
+}
+
+.lua-console__wrapper {
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start;
+}
+
+.lua-console__text-field {
+    border-left-color: var(--window-border-color);
+    border-right-color: var(--window-border-color);
+    border-top-color: var(--window-border-color);
+    border-bottom-color: var(--window-border-color);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+    background-color: var(--window-color);
+    flex-grow: 1;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.lua-console__text-field #unity-text-input {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(176, 176, 176);
+    border-left-color: rgb(41, 41, 41);
+    border-right-color: rgb(41, 41, 41);
+    border-top-color: rgb(41, 41, 41);
+    border-bottom-color: rgb(41, 41, 41);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    --unity-cursor-color: rgb(255, 255, 255);
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.lua-console__toggle-button {
+    margin-left: 5px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 28px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+    height: 28px;
+    font-size: 20px;
+    color: rgb(176, 176, 176);
+    -unity-text-align: upper-center;
+}
+
+.lua-console__history {
+    margin-left: 18px;
+    margin-right: 18px;
+    margin-top: 0;
+    margin-bottom: 4px;
+    flex-grow: 1;
+    align-items: flex-start;
+    max-width: 60%;
+    min-width: 200px;
+    max-height: 500px;
+}
+
+.history-entry {
+    color: rgb(207, 207, 207);
+    margin-left: 4px;
+    margin-right: 0;
+    margin-top: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 2px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-left-width: 2px;
+    background-color: rgba(87, 87, 87, 0.35);
+    padding-top: 4px;
+}
+
+.history-entry__code {
+    margin-left: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    flex-wrap: wrap;
+}
+
+.history-entry__image {
+    max-height: 256px;
+    max-width: 350px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.history-entry__image--hidden {
+    display: none;
+}
+
+.history-entry__print {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 12px;
+    font-size: 11px;
+    white-space: normal;
+}
+
+.history-entry__print--hidden {
+    display: none;
+}
+
+.history-entry--selected {
+    border-left-color: rgb(0, 165, 255);
+}
+
+.lua-console__error-msg {
+    background-color: rgb(195, 45, 68);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 12px;
+    margin-left: 10px;
+    color: rgb(241, 189, 189);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 6px;
+}
