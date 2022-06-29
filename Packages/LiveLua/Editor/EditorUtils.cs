@@ -10,7 +10,7 @@ namespace Fab.Lua.Editor
 	{
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 
-        [MenuItem("FabGeo/Lua/Open scripts folder")]
+        [MenuItem("Lua/Open scripts folder")]
         public static void OpenScriptFolder()
         {
             if (!Directory.Exists(LuaEnvironment.ScriptsDirectory))
@@ -25,7 +25,7 @@ namespace Fab.Lua.Editor
             Process.Start(startInfo);
         }
 
-        [MenuItem("FabGeo/Lua/Open data folder")]
+        [MenuItem("Lua/Open data folder")]
         public static void OpenDataFolder()
         {
             if (!Directory.Exists(LuaEnvironment.DataDirectory))

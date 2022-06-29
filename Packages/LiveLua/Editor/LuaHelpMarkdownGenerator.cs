@@ -13,7 +13,7 @@ namespace Fab.Lua.Editor
 		/// <summary>
 		/// Generates the Lua Help Markdown file and prompts the save dialog
 		/// </summary>
-		[MenuItem("FabGeo/Lua/Generate Help Docs")]
+		[MenuItem("Lua/Generate Help Docs")]
 		public static void GenerateAndSaveHelp()
 		{
 			LuaHelpMarkdownFormatter formatter = new LuaHelpMarkdownFormatter();
