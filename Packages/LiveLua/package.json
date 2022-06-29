@@ -8,5 +8,12 @@
   "keywords": [],
   "author": {
     "name": "Fabian Schneider"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Console Sample",
+      "description": "An example showing how to integrate the live lua console into unity",
+      "path": "Samples~/ConsoleSample"
+    }
+  ]
 }
