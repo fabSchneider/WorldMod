@@ -1,0 +1,22 @@
+{
+  "name": "com.fab.synth",
+  "version": "0.2.0",
+  "displayName": "Synth",
+  "description": "A visual synthesizer to create, modulate and blend textures together at runtime.",
+  "unity": "2021.3",
+  "unityRelease": "3f1",
+  "keywords": [],
+  "author": {
+    "name": "Fabian Schneider"
+  },
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "12.1.6"
+  },
+  "samples": [
+    {
+        "displayName": "Simple Synth",
+        "description": "An example of a simple Synth",
+        "path": "Samples~/SimpleSynth"
+    }
+  ]
+}

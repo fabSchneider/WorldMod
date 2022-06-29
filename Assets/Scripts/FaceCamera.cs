@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Fab.Geo
+namespace Fab.WorldMod
 {
 	[ExecuteInEditMode]
 	[AddComponentMenu("Face Camera")]

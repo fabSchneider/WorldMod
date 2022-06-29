@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" name="language-dropdown" style="position: absolute; width: 200px;" />
+    <ui:Label text="$HELLO" display-tooltip-when-elided="true" name="local-text" style="position: relative; margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto; background-color: rgba(0, 0, 0, 255); font-size: 28px; color: rgba(255, 255, 255, 255);" />
+</ui:UXML>
