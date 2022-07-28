@@ -78,17 +78,44 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">DatasetModule</span></div>
+    <div class="level1"><a class="xref" href="Fab.Lua.Core.LuaObject.html">LuaObject</a></div>
+    <div class="level2"><span class="xref">DatasetModule</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">ILuaObjectInitialize</span></div>
+    <div><a class="xref" href="Fab.Lua.Core.ILuaObjectInitialize.html">ILuaObjectInitialize</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.Lua.html">Fab.WorldMod.Lua</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="Fab_WorldMod_Lua_DatasetModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DatasetModule : LuaObject, ILuaObjectInitialize</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Module to access the world mod datasets&quot;)]
+[LuaName(&quot;datasets&quot;)]
+public class DatasetModule : LuaObject, ILuaObjectInitialize</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -100,7 +127,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DatasetProxy add(string name)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Adds a dataset to the list of available datasets&quot;)]
+public DatasetProxy add(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -142,7 +170,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DatasetProxy[] all()</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Returns a collection of all datasets&quot;)]
+public DatasetProxy[] all()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,7 +196,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DatasetProxy get(string name)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Gets the dataset with the specified name&quot;)]
+public DatasetProxy get(string name)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -213,7 +243,7 @@
   </div>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">ILuaObjectInitialize</span>
+      <a class="xref" href="Fab.Lua.Core.ILuaObjectInitialize.html">ILuaObjectInitialize</a>
   </div>
 </article>
           </div>

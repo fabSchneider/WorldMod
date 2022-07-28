@@ -78,17 +78,44 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Random</span></div>
+    <div class="level1"><a class="xref" href="Fab.Lua.Core.LuaObject.html">LuaObject</a></div>
+    <div class="level2"><span class="xref">Random</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">ILuaObjectInitialize</span></div>
+    <div><a class="xref" href="Fab.Lua.Core.ILuaObjectInitialize.html">ILuaObjectInitialize</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.Lua.Interop.html">Fab.WorldMod.Lua.Interop</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="Fab_WorldMod_Lua_Interop_Random_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Random : LuaObject, ILuaObjectInitialize</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Module for generating random numbers and more&quot;)]
+[LuaName(&quot;random&quot;)]
+public class Random : LuaObject, ILuaObjectInitialize</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -100,7 +127,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Color color(float saturation = 1F, float brightness = 1F)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;returns a color with a random hue&quot;)]
+public Color color(float saturation = 1F, float brightness = 1F)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -147,7 +175,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Coordinate coord()</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;returns a random coordinate&quot;)]
+public Coordinate coord()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -159,7 +188,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a></td>
+        <td><span class="xref">Coordinate</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -182,7 +211,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float number()</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;returns a random number between 0 [inclusive] and 1 (exclusive)&quot;)]
+public float number()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -207,7 +237,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float number(float min, float max)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;returns a random number between min [inclusive] and max (exclusive)&quot;)]
+public float number(float min, float max)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -254,7 +285,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void set_seed(uint seed)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Sets the seed of the random generator&quot;)]
+public void set_seed(uint seed)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -281,7 +313,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float whole_number(int min, int max)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;returns a random whole number between min [inclusive] and max (exclusive)&quot;)]
+public float whole_number(int min, int max)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -322,7 +355,7 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">ILuaObjectInitialize</span>
+      <a class="xref" href="Fab.Lua.Core.ILuaObjectInitialize.html">ILuaObjectInitialize</a>
   </div>
 </article>
           </div>

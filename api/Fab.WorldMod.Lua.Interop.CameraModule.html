@@ -78,17 +78,44 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">CameraModule</span></div>
+    <div class="level1"><a class="xref" href="Fab.Lua.Core.LuaObject.html">LuaObject</a></div>
+    <div class="level2"><span class="xref">CameraModule</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">ILuaObjectInitialize</span></div>
+    <div><a class="xref" href="Fab.Lua.Core.ILuaObjectInitialize.html">ILuaObjectInitialize</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.Lua.Interop.html">Fab.WorldMod.Lua.Interop</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="Fab_WorldMod_Lua_Interop_CameraModule_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CameraModule : LuaObject, ILuaObjectInitialize</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaName(&quot;camera&quot;)]
+[LuaHelpInfo(&quot;Module for controlling the world camera&quot;)]
+public class CameraModule : LuaObject, ILuaObjectInitialize</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -100,7 +127,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Coordinate coord { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Gets/Sets the camera's position in coordinates&quot;)]
+public Coordinate coord { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -112,7 +140,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a></td>
+        <td><span class="xref">Coordinate</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -122,12 +150,13 @@
   
   
   <a id="Fab_WorldMod_Lua_Interop_CameraModule_animate_" data-uid="Fab.WorldMod.Lua.Interop.CameraModule.animate*"></a>
-  <h4 id="Fab_WorldMod_Lua_Interop_CameraModule_animate_Fab_Geo_Coordinate___System_Single_System_Boolean_" data-uid="Fab.WorldMod.Lua.Interop.CameraModule.animate(Fab.Geo.Coordinate[],System.Single,System.Boolean)">animate(Coordinate[], Single, Boolean)</h4>
+  <h4 id="Fab_WorldMod_Lua_Interop_CameraModule_animate_Coordinate___System_Single_System_Boolean_" data-uid="Fab.WorldMod.Lua.Interop.CameraModule.animate(Coordinate[],System.Single,System.Boolean)">animate(Coordinate[], Single, Boolean)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void animate(Coordinate[] coords, float speed, bool loop = false)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Moves the camera from one coordinate to the next in a list of coordinates&quot;)]
+public void animate(Coordinate[] coords, float speed, bool loop = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -140,7 +169,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Fab.Geo.Coordinate.html">Coordinate</a>[]</td>
+        <td><span class="xref">Coordinate</span>[]</td>
         <td><span class="parametername">coords</span></td>
         <td></td>
       </tr>
@@ -164,7 +193,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void disable_control()</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Disables the camera's input control&quot;)]
+public void disable_control()</code></pre>
   </div>
   
   
@@ -174,7 +204,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void enable_control()</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Enables the camera's input control&quot;)]
+public void enable_control()</code></pre>
   </div>
   
   
@@ -194,7 +225,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void on_animation_finished(Closure evt)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Called when a camera animation finished&quot;)]
+public void on_animation_finished(Closure evt)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -221,7 +253,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void set_zoom(float zoom)</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;Sets the camera's zoom level [0-1]&quot;)]
+public void set_zoom(float zoom)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -242,7 +275,7 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">ILuaObjectInitialize</span>
+      <a class="xref" href="Fab.Lua.Core.ILuaObjectInitialize.html">ILuaObjectInitialize</a>
   </div>
 </article>
           </div>

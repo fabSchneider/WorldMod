@@ -78,13 +78,57 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ImageProxy</span></div>
+    <div class="level1"><a class="xref" href="Fab.Lua.Core.LuaObject.html">LuaObject</a></div>
+    <div class="level2"><a class="xref" href="Fab.Lua.Core.LuaProxy.html">LuaProxy</a></div>
+    <div class="level3"><a class="xref" href="Fab.Lua.Core.LuaProxy-1.html">LuaProxy</a>&lt;<span class="xref">Texture2D</span>&gt;</div>
+    <div class="level4"><span class="xref">ImageProxy</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_target">LuaProxy&lt;Texture2D&gt;.target</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_TargetObject">LuaProxy&lt;Texture2D&gt;.TargetObject</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_Target">LuaProxy&lt;Texture2D&gt;.Target</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_SetTarget__0_">LuaProxy&lt;Texture2D&gt;.SetTarget(Texture2D)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_IsNil">LuaProxy&lt;Texture2D&gt;.IsNil()</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_ThrowIfNil">LuaProxy&lt;Texture2D&gt;.ThrowIfNil()</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_Equals_System_Object_">LuaProxy&lt;Texture2D&gt;.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fab.Lua.Core.LuaProxy-1.html#Fab_Lua_Core_LuaProxy_1_GetHashCode">LuaProxy&lt;Texture2D&gt;.GetHashCode()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Fab.WorldMod.Lua.Interop.html">Fab.WorldMod.Lua.Interop</a></h6>
   <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
   <h5 id="Fab_WorldMod_Lua_Interop_ImageProxy_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ImageProxy : LuaProxy&lt;Texture2D&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;An image object&quot;)]
+[LuaName(&quot;image&quot;)]
+public class ImageProxy : LuaProxy&lt;Texture2D&gt;</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -96,7 +140,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int height { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;The height of the image&quot;)]
+public int height { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -121,7 +166,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string name { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;The name of the image&quot;)]
+public string name { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -146,7 +192,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int width { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[LuaHelpInfo(&quot;The width of the image&quot;)]
+public int width { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,6 +237,8 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
 </article>
           </div>
           

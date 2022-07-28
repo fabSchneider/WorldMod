@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.ASignal-1.html",
-          "hash": "WjtMvx0WOoWgXECiDsyodw=="
+          "hash": "PuwvMce3lHFjxDbp/7Ry+Q=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.ASignal-2.html",
-          "hash": "i42Or9UFCGBJiDpO6PII8w=="
+          "hash": "BF3wWbVzx/mEd6uBcRWV5Q=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.ASignal-3.html",
-          "hash": "AeeVvaVxzFft/zPfjW+1aQ=="
+          "hash": "jFLPmw5ZflIcYylYm7prqg=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.ASignal.html",
-          "hash": "+M7n+FjY7WhAL+9WTZIb3g=="
+          "hash": "yyhjavKYQDkZbeGeCiQ9zQ=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.ObjectPool-1.html",
-          "hash": "nOWKjPwxmbk+rgx9UbQn6A=="
+          "hash": "P1IDd+fGFZyMddbEjncKpw=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.PoolExhaustedException.html",
-          "hash": "aMqIZ6uqHr5I46B7AatOdg=="
+          "hash": "gafBQ1Ga+hUC39iB/csUHA=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.SignalHub.html",
-          "hash": "4tu7FS3/GvA873SpM9ydag=="
+          "hash": "TKoBVdxnamBBp9Vc/TXYSg=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Common.Signals.html",
-          "hash": "0cnEBKnwETmczitOdEgPkw=="
+          "hash": "UQJY8rHRgwuJgDILuvOzVQ=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Geo.Coordinate.html",
-          "hash": "k2tBabfKdHKEA05GuofcQg=="
+          "hash": "+2F8FvlH1ckF2zS7pTN3XA=="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.Geo.Lua.Interop.GeoModule.html",
-          "hash": "Hg5LjEkeGXM1yg5kim3ZgA=="
+          "hash": "8EcwWrzlugNRQ4rk10fS8Q=="
         }
       },
       "is_incremental": false,
@@ -293,6 +293,942 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Editor.StringTableCollectionAssetEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Editor.StringTableCollectionAssetEditor.html",
+          "hash": "u/MCcfcJ18DUTHZoAm0Q+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Editor.html",
+          "hash": "jue2lIlOEBusgGRESXzMCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.ILocalization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.ILocalization.html",
+          "hash": "Eo3MGG4vBQUhAD3tKgkMjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.LocalStringKey.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.LocalStringKey.html",
+          "hash": "BekW6Ga9g0h0Rmv8QBtJ0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Locale.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Locale.html",
+          "hash": "YjGupap7nmzqDCa+v0EHVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.LocaleFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.LocaleFormat.html",
+          "hash": "g9ZcLw3fkrD82ZvF0/Xjow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Localizable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Localizable.html",
+          "hash": "dLYfRdide9eUpdiEeYJoyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Localization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Localization.html",
+          "hash": "1BzEen876UlNxdyZ22MoyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.LocalizationComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.LocalizationComponent.html",
+          "hash": "42Llq8zkNX/o8gLLMCYDjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.LocalizationImportUtility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.LocalizationImportUtility.html",
+          "hash": "bVlNVw6UdkWqBF8pdWBjLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.LocalizationUIExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.LocalizationUIExtensions.html",
+          "hash": "8HjCIFhD308xNBYki6YwjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.OnChangeLocaleSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.OnChangeLocaleSignal.html",
+          "hash": "yVhft5rjtjO7nlqt6bxT5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Samples.TextLocalizationSample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Samples.TextLocalizationSample.html",
+          "hash": "jtnq7Bgclgqd+DQQc/NW3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.Samples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.Samples.html",
+          "hash": "JWV8aeMnyy6+jqAATP3g+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.StringTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.StringTable.html",
+          "hash": "9O2ya9s8W4R+QyW1rHJN9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.StringTableAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.StringTableAsset.html",
+          "hash": "8KjpLQ+qj6yKkzIB40fMDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.StringTableCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.StringTableCollection.html",
+          "hash": "YAWp1M7pWv1dprd3mjcrNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.StringTableCollectionAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.StringTableCollectionAsset.html",
+          "hash": "s0SfxWtSF/aedJpkZzc93w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.UIdGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.UIdGenerator.html",
+          "hash": "AL3gqb3QX7k/FcB9CKnB3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Localization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Localization.html",
+          "hash": "E9PlJnJkdxUTT8gVwlDWqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.Console.EvaluateResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.Console.EvaluateResult.html",
+          "hash": "UTtNkdT2z8SCdMDfQKSy2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.Console.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.Console.html",
+          "hash": "6Y6yFmy6oP0lMtVuuD1XrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.ConsoleComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.ConsoleComponent.html",
+          "hash": "/pvdlYwziX3tUuVLQskkdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.ConsoleHelp.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.ConsoleHelp.html",
+          "hash": "oLhm7//Eu7R/7kccXfPglA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.ConsoleHelpFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.ConsoleHelpFormatter.html",
+          "hash": "KgDMH6PIaLRtGR47yglJyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.ConsoleScriptFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.ConsoleScriptFactory.html",
+          "hash": "UDKEzxbfTgb6miPDplovRQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.ConsoleView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.ConsoleView.html",
+          "hash": "DC+AgmkvrK2kQ6Z/HP6ovg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.History.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.History.html",
+          "hash": "ByA4GNi/UNfOnJn8TnURQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.HistoryEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.HistoryEntry.html",
+          "hash": "yPPeOdPf077OI8EoOrDtZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.HistoryEntryElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.HistoryEntryElement.html",
+          "hash": "7ZOeaz9aodDJldi8uutbhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.IConsoleCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.IConsoleCommand.html",
+          "hash": "Fkdf4+95tJYkCGM1h/5a9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Console.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Console.html",
+          "hash": "F2URQsu880QEgcdJjTQ3hQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.ConsoleSample.CubeModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.ConsoleSample.CubeModule.html",
+          "hash": "MczoEQVROapIX/YzzVbDqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.ConsoleSample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.ConsoleSample.html",
+          "hash": "jOpJPCfSD3WYdkGsd43zjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.ILuaHelpFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.ILuaHelpFormatter.html",
+          "hash": "zbPv1aYoVxbA2IkTL/eE2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.ILuaObjectInitialize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.ILuaObjectInitialize.html",
+          "hash": "m0psAro/mbSpNTPxguOjHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.IScriptFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.IScriptFactory.html",
+          "hash": "qVFfLkQ5BW1ER9gEzeDLXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaDebugger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaDebugger.html",
+          "hash": "o5cNFwayAq8c6RD3A4QGOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaEnvironment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaEnvironment.html",
+          "hash": "jVIr5mRYBvJnyEoRQKFrBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaHelpInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaHelpInfo.html",
+          "hash": "xxNCLdQ3RF2cgjBySumTrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaHelpInfoAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaHelpInfoAttribute.html",
+          "hash": "mvIp5F7qm47LcpjC8NrVDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaHelpInfoCache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaHelpInfoCache.html",
+          "hash": "ZhdnNiEqbw0TO+MBOxeEew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaManagerComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaManagerComponent.html",
+          "hash": "ixDp3pte5rIiJMjC6jso+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaNameAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaNameAttribute.html",
+          "hash": "ruYYn9Gao5RIVi98McFdeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaObject.html",
+          "hash": "Zt3O+ElMjXarqslwgnTtcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaObjectInitializationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaObjectInitializationException.html",
+          "hash": "U1o1LqIwUQU/vfFnfEvN0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaObjectRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaObjectRegistry.html",
+          "hash": "r4PPpEzWYVnrBFN59depzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaProxy-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaProxy-1.html",
+          "hash": "QNSw67D2HXWlDwkO6qpumg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaProxy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaProxy.html",
+          "hash": "tdbbqIJA+DTgsOri33wIxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.LuaProxyFactory-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.LuaProxyFactory-2.html",
+          "hash": "DyTtGyFVXHjcVT1u7xW5Yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.ScriptFileFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.ScriptFileFactory.html",
+          "hash": "FDRcaJn8iCJ2ZdvUMTPGJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Core.html",
+          "hash": "JNsMHOm1JR7e4WxTVTVDQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Editor.EditorUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Editor.EditorUtils.html",
+          "hash": "sNkxZBzOI124nxe8/5zjZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Editor.LuaHelpMarkdownFormatter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Editor.LuaHelpMarkdownFormatter.html",
+          "hash": "xi/YHwWrFHSWPOlwMmBnZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Editor.LuaHelpMarkdownGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Editor.LuaHelpMarkdownGenerator.html",
+          "hash": "fI5KMkaeku1gAfjk25kjiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Editor.LuaScriptImporter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Editor.LuaScriptImporter.html",
+          "hash": "msdbntUk9qCNOuHcOXnLGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Lua.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Lua.Editor.html",
+          "hash": "oXJGQhaf23DKie9944oeLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.BlendNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.BlendNode.html",
+          "hash": "vgDp2rIzRKZcy0Cl5G/t0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.Editor.SynthNodeLibraryAssetEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.Editor.SynthNodeLibraryAssetEditor.html",
+          "hash": "jW4HAA4CqOoIjgmwxIcVFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.Editor.html",
+          "hash": "AAAx+YGMUqsv98NIf2fAXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.GenNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.GenNode.html",
+          "hash": "PTeSDyz/TVgPkLYx+KyPfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.ModulateNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.ModulateNode.html",
+          "hash": "HcH/tkhGAGvOXyQ9A5f+ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.Samples.SimpleSynth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.Samples.SimpleSynth.html",
+          "hash": "uDow6FX/nuCyMLu9STZSfQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.Samples.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.Samples.html",
+          "hash": "UxM4+w5TgatBdwO9d33G7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthChannel.html",
+          "hash": "0ZvSspiWkEKW+UJREGV0eA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthChannelData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthChannelData.html",
+          "hash": "Ya4eqwZVaItjG7paPzkgAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthComponent.html",
+          "hash": "LfhI8stWDKcPw/KbjsJnbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthLayer.html",
+          "hash": "I+AnE9UM+4QLGGaw3OFjoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNode.html",
+          "hash": "moUfi4KnnS/SWHC9F1QupA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNodeDescriptor.PropertyDescriptor.PropertyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNodeDescriptor.PropertyDescriptor.PropertyType.html",
+          "hash": "ycbTXWSZA/fmlyWEMuHICw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNodeDescriptor.PropertyDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNodeDescriptor.PropertyDescriptor.html",
+          "hash": "8zuY9b1hiMiX89mz9eILoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNodeDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNodeDescriptor.html",
+          "hash": "CFKUKCO+TmD0V+gPo3+ylA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNodeFactory.html",
+          "hash": "IQUfMpkTuIip30cNXqAgdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNodeLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNodeLibrary.html",
+          "hash": "cWnqwuuLqdEq0hPLhfscvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthNodeLibraryAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthNodeLibraryAsset.html",
+          "hash": "DLOgQVmFXkqldICCr8s+iQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.SynthProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.SynthProcessor.html",
+          "hash": "KizdSeYP9lWTh6IoWLBZsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.Synthesizer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.Synthesizer.html",
+          "hash": "gPlqrpqdVWqK9awrKXpM6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Fab.Synth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Fab.Synth.html",
+          "hash": "T7WxIY+yk0HWNuDXUcuqSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Fab.WorldMod.App.yml",
       "output": {
         ".html": {
@@ -309,7 +1245,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.ChoiceControl.html",
-          "hash": "H7womoT5iF47vlY8m2YBlw=="
+          "hash": "udyxTyXaK0Kfo18L6FB7eg=="
         }
       },
       "is_incremental": false,
@@ -561,7 +1497,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.IWorldCameraAnimator.html",
-          "hash": "PkZeEn5MJeAUa5HW3UrWxg=="
+          "hash": "BzqxCeKVtHi3A89qMlT4kQ=="
         }
       },
       "is_incremental": false,
@@ -573,7 +1509,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.IWorldCameraController.html",
-          "hash": "8QcjRemV2AKA3wPqQCj9UQ=="
+          "hash": "Z786EE7N8m9MWTiXmSDf2Q=="
         }
       },
       "is_incremental": false,
@@ -585,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.IntervalControl.html",
-          "hash": "eZWCZLiekcm0BGiaUuED1w=="
+          "hash": "56xwVwL58Q63T6E0sy7X/A=="
         }
       },
       "is_incremental": false,
@@ -609,7 +1545,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.BoolControlProxy.html",
-          "hash": "RuRgyDpowihX7xQzr0Ikbg=="
+          "hash": "3snAPMs6kuOk3vfbzvrckQ=="
         }
       },
       "is_incremental": false,
@@ -633,7 +1569,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.ColorControlProxy.html",
-          "hash": "0y36inAMfb2EhpaKuXgDtA=="
+          "hash": "0KoiB4gfavJVA1WrmIGKkw=="
         }
       },
       "is_incremental": false,
@@ -645,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.ControlsModule.html",
-          "hash": "ji4e/5DmY7aYLavI+tu6mA=="
+          "hash": "f9n62MzpepHbNWEhbOTxtA=="
         }
       },
       "is_incremental": false,
@@ -657,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.DatasetModule.html",
-          "hash": "ekRRTvzFfrMsh+UfromArg=="
+          "hash": "fXj7WNE37aJ/P4OQiCg4mQ=="
         }
       },
       "is_incremental": false,
@@ -669,7 +1605,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.DatasetProxy.html",
-          "hash": "Ib3c7jlIE2XPwGg6aLkFwA=="
+          "hash": "X7Pp8uecTfwb4zTgPWOVHw=="
         }
       },
       "is_incremental": false,
@@ -681,7 +1617,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.FeatureCollectionProxy.html",
-          "hash": "AS+I7JMoQfT3On3RqaDMkg=="
+          "hash": "GiMxTHrHTLFV0V45BmRBGw=="
         }
       },
       "is_incremental": false,
@@ -693,7 +1629,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.FeaturesModule.html",
-          "hash": "Z/X1GME92Fwz4bL+2XmaLQ=="
+          "hash": "pzZ4fLObxiuOARLiZB8ODA=="
         }
       },
       "is_incremental": false,
@@ -705,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.FloatControlProxy.html",
-          "hash": "0B2R94ou3+rWarz+7GkByg=="
+          "hash": "xkgRR+qZZfwjGifieT4w6w=="
         }
       },
       "is_incremental": false,
@@ -729,7 +1665,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.Interop.CameraModule.html",
-          "hash": "IMkCt2bZQIVegvbpyanpTw=="
+          "hash": "xvOnFZdogsGRX9P0p5QPpg=="
         }
       },
       "is_incremental": false,
@@ -741,7 +1677,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.Interop.IOModule.html",
-          "hash": "i8T6NHoOf47EkPHL2KXNJg=="
+          "hash": "BQb+xr2hiG8dn5Cvs8KVuA=="
         }
       },
       "is_incremental": false,
@@ -753,7 +1689,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.Interop.ImageProxy.html",
-          "hash": "HXwXgfVxUaNrZzVLV2FTBQ=="
+          "hash": "KfMZAJbjT2pri5WECUG6sA=="
         }
       },
       "is_incremental": false,
@@ -765,7 +1701,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.Interop.ImageProxyFactory.html",
-          "hash": "WuhTRr9PMRcBLuUoiiWhiQ=="
+          "hash": "hmtuLBhXnRoRN+D0X8R1JA=="
         }
       },
       "is_incremental": false,
@@ -777,7 +1713,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.Interop.Random.html",
-          "hash": "ltd3x5NZrFSMz5LO0jCHpA=="
+          "hash": "XY90DNUE5/qozzm/xJkybQ=="
         }
       },
       "is_incremental": false,
@@ -801,7 +1737,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.LocalizationModule.html",
-          "hash": "ayDe73+O7fevQ3fkrpVqEQ=="
+          "hash": "o1y4es579morJu0OJ3iOeQ=="
         }
       },
       "is_incremental": false,
@@ -813,7 +1749,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.LogModule.html",
-          "hash": "d/VxmvU9E1mvQh8DAYoboA=="
+          "hash": "54KBtJIxwoboQnlSv7W47g=="
         }
       },
       "is_incremental": false,
@@ -837,7 +1773,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.ProjectionModule.html",
-          "hash": "KMiNAMXpy4bvXqeo1o3pJQ=="
+          "hash": "D+iYGfmxmM/rEt66PiZ9QA=="
         }
       },
       "is_incremental": false,
@@ -849,7 +1785,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.SequenceModule.html",
-          "hash": "9MXJdHnb7SfB1LaO9jvhug=="
+          "hash": "RydQRbZz52pnYl0bX1b6FQ=="
         }
       },
       "is_incremental": false,
@@ -861,7 +1797,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.StringControlProxy.html",
-          "hash": "n3lKozVP1w1GAmCu6LGsFg=="
+          "hash": "yiR0LZv1m73sc7M2S+T+Ww=="
         }
       },
       "is_incremental": false,
@@ -873,7 +1809,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.SunModule.html",
-          "hash": "Ws75CeufgHdsgEB4EhtuIA=="
+          "hash": "ftpt5ksoimu9eLjZUXZuBA=="
         }
       },
       "is_incremental": false,
@@ -885,7 +1821,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.SynthLayerProxy.html",
-          "hash": "dqoq+GQSBRJlKN/Ux23lCw=="
+          "hash": "CIsRQzPVJ5NdD9pDzzjPlw=="
         }
       },
       "is_incremental": false,
@@ -897,7 +1833,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.SynthModule.html",
-          "hash": "4lyAzYjg5B7frTDrhU+CBQ=="
+          "hash": "nUOT1u7nFoRlrg0D0aTGWg=="
         }
       },
       "is_incremental": false,
@@ -909,7 +1845,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.TimeModule.html",
-          "hash": "nY/z39AfJlMk+DoW/y7wqw=="
+          "hash": "8xm4CkV/me9GlmZAIJ4jaQ=="
         }
       },
       "is_incremental": false,
@@ -921,7 +1857,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.TutorialModule.html",
-          "hash": "a0jyP8Nf3CEF8pC76Gq4JA=="
+          "hash": "G4XWwksPo1ib8dOZ4Auepw=="
         }
       },
       "is_incremental": false,
@@ -933,7 +1869,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.ValueControlProxy-1.html",
-          "hash": "4+U7AM3eOabI+jJDtHP26g=="
+          "hash": "+AW6HS1FTJkmDlxxfqZ9pg=="
         }
       },
       "is_incremental": false,
@@ -945,7 +1881,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Lua.Vector2ControlProxy.html",
-          "hash": "ze46Lau3ARLwwROyGWbI3Q=="
+          "hash": "j93wPlNGnc3o19KXwyEKug=="
         }
       },
       "is_incremental": false,
@@ -993,7 +1929,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Modal.html",
-          "hash": "uGCOSmUnosBZua/6kfw+wg=="
+          "hash": "ikfLcEQEsh5qzWgOYHi0kQ=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +1965,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.RangeControl.html",
-          "hash": "iggYCfeL1GQlonSfCh3q8A=="
+          "hash": "VFzw8gsBo97jom4OknwNKg=="
         }
       },
       "is_incremental": false,
@@ -1053,7 +1989,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.Sequence-1.html",
-          "hash": "5VGUNOoR1WJSLbVXW36JtQ=="
+          "hash": "h0lDmfhnYiR5ZqGiqM1PZQ=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +2025,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.SunController.html",
-          "hash": "1vVrZt9jDMejO8JGrgj8iw=="
+          "hash": "cSMUGEYmD/QAPVi+vnOsRA=="
         }
       },
       "is_incremental": false,
@@ -1209,7 +2145,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.UI.DragDrop.html",
-          "hash": "eVgz/WnUFLWaExaCiKRLpg=="
+          "hash": "RUi8B5eFLv8ob2HLOJG84A=="
         }
       },
       "is_incremental": false,
@@ -1365,7 +2301,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.UI.LayerDropArea.html",
-          "hash": "L2kWTWD1009TAiVD+eIUSA=="
+          "hash": "PIn56q3vBz4Wm0oIVvZa7w=="
         }
       },
       "is_incremental": false,
@@ -1461,7 +2397,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.ValueControl-1.html",
-          "hash": "4R3anB0T9bLTLrUO/sVVPA=="
+          "hash": "Jf3zOM0hQZLQXgms6j9C0g=="
         }
       },
       "is_incremental": false,
@@ -1473,7 +2409,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.ValueControl.html",
-          "hash": "h5MnT5TWyuorAzWGprYQ7Q=="
+          "hash": "fHQ/Wzt5ppX0n+rFsgFt8A=="
         }
       },
       "is_incremental": false,
@@ -1485,7 +2421,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.WorldCameraAnimator.html",
-          "hash": "whp8S8hQ2ufh+u66Lg5Rdw=="
+          "hash": "XiosS3HCd8UprjGGTmc8oQ=="
         }
       },
       "is_incremental": false,
@@ -1497,7 +2433,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.WorldCameraController.html",
-          "hash": "/BA3CHlXP8wimZJO9wBMNA=="
+          "hash": "WOE92I7e8XEvEc1V4HTQAA=="
         }
       },
       "is_incremental": false,
@@ -1521,7 +2457,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.WorldFeature.html",
-          "hash": "Cc9vxMyCjBeyHhV+3wjO7w=="
+          "hash": "I8st/oZ1AUENFCy0eBWTQA=="
         }
       },
       "is_incremental": false,
@@ -1617,7 +2553,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fab.WorldMod.WorldModInput.html",
-          "hash": "HZEtClnvPicOr7Wl97imTA=="
+          "hash": "Q3XWUGSuyCDSzzdZzoGcJQ=="
         }
       },
       "is_incremental": false,
@@ -1653,7 +2589,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "xUOa+VgatvuI/VX4qjI7KA=="
+          "hash": "blI+XB0HiXV7su7OWpi30Q=="
         }
       },
       "is_incremental": false,
@@ -1878,7 +2814,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 136,
+          "total_file_count": 214,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
