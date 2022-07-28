@@ -4,7 +4,8 @@
       "src": [
         {
           "files": [
-            "Assets/**.cs"
+            "Assets/**.cs",
+            "Packages/**.cs"
           ],
           "exclude": [
             "Assets/ThirdParty/**.cs"
